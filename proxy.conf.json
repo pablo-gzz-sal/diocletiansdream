@@ -1,0 +1,11 @@
+{
+  "/wp-json": {
+    "target": "https://diocletiansdream.com",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug",
+    "headers": {
+      "Origin": "https://diocletiansdream.com"
+    }
+  }
+}

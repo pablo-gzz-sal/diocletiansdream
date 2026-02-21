@@ -1,0 +1,109 @@
+<section class="bg-white">
+  <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+    <!-- Header -->
+    <div class="pt-14 pb-10 sm:pt-20">
+      <p class="text-xs uppercase tracking-[0.22em] text-neutral-500">Journal</p>
+      <h1 class="mt-4 text-4xl sm:text-6xl leading-[1.05] tracking-tight text-neutral-900">
+        Notes from the road
+      </h1>
+      <p class="mt-4 max-w-2xl text-base sm:text-lg leading-relaxed text-neutral-600">
+        Stories, guides and practical tips for your experience in Split.
+      </p>
+
+      <div class="mt-8 h-px w-full bg-neutral-200"></div>
+
+      <!-- Controls -->
+      <div class="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+        <div class="flex flex-col sm:flex-row gap-3 sm:items-center">
+          <input
+            [(ngModel)]="query"
+            type="text"
+            placeholder="Search articles..."
+            class="w-full sm:w-72 rounded-full border border-neutral-300 px-4 py-2 text-sm outline-none focus:border-neutral-500"
+          />
+
+          <select
+            [(ngModel)]="selectedCategoryId"
+            class="w-full sm:w-60 rounded-full border border-neutral-300 px-4 py-2 text-sm outline-none focus:border-neutral-500"
+          >
+            <option [ngValue]="null">All categories</option>
+            <option *ngFor="let c of categories" [ngValue]="c.id">
+              {{ c.name }}
+            </option>
+          </select>
+        </div>
+
+        <p class="text-xs uppercase tracking-[0.22em] text-neutral-500">
+          {{ filteredPosts().length }} articles
+        </p>
+      </div>
+    </div>
+
+    @if (loading) {
+      <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 pb-16">
+        <div *ngFor="let i of [1, 2, 3, 4, 5, 6, 7, 8, 9]" class="border border-neutral-200">
+          <div class="aspect-[4/3] bg-neutral-100"></div>
+          <div class="p-5">
+            <div class="h-3 w-24 bg-neutral-100"></div>
+            <div class="mt-3 h-6 w-3/4 bg-neutral-100"></div>
+            <div class="mt-3 h-4 w-full bg-neutral-100"></div>
+            <div class="mt-2 h-4 w-5/6 bg-neutral-100"></div>
+          </div>
+        </div>
+      </div>
+    }
+    <!-- Grid -->
+    @if (!loading) {
+      <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 pb-20">
+        <a
+          *ngFor="let post of filteredPosts(); trackBy: trackById"
+          [routerLink]="['/blog', post.slug]"
+          class="group border border-neutral-200 hover:border-neutral-400 transition-colors bg-white"
+        >
+          <div class="relative overflow-hidden">
+            <img
+              *ngIf="featuredImage(post) as img; else placeholder"
+              [src]="img"
+              [alt]="titleText(post)"
+              class="aspect-[4/3] w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+              loading="lazy"
+            />
+            <ng-template #placeholder>
+              <div class="aspect-[4/3] w-full bg-neutral-100"></div>
+            </ng-template>
+
+            <div class="absolute left-4 top-4">
+              <span
+                *ngIf="categoryLabel(post) as cat"
+                class="inline-flex items-center rounded-full border border-white/60 bg-white/80 px-3 py-1 text-[11px] uppercase tracking-[0.2em] text-neutral-800 backdrop-blur"
+              >
+                {{ cat }}
+              </span>
+            </div>
+          </div>
+
+          <div class="p-6">
+            <div class="flex items-center justify-between gap-4">
+              <p class="text-[11px] uppercase tracking-[0.22em] text-neutral-500">
+                {{ dateLabel(post) }}
+              </p>
+              <span class="text-[11px] uppercase tracking-[0.22em] text-neutral-500"> Read </span>
+            </div>
+
+            <h2 class="mt-3 text-xl leading-snug tracking-tight text-neutral-900">
+              {{ titleText(post) }}
+            </h2>
+
+            <p class="mt-3 text-sm leading-relaxed text-neutral-600 line-clamp-3">
+              {{ excerptText(post) }}
+            </p>
+
+            <div class="mt-6 h-px w-full bg-neutral-200"></div>
+
+            <p class="mt-4 text-xs uppercase tracking-[0.22em] text-neutral-800">Continue</p>
+          </div>
+        </a>
+      </div>
+    }
+  </div>
+</section>

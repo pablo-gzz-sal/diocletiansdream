@@ -1,0 +1,57 @@
+<header
+  class="site-header"
+  [class.site-header--scrolled]="scrolled()"
+>
+  <div class="site-header__inner">
+
+    <!-- Logo -->
+    <a routerLink="/" class="site-header__logo">
+      <span class="site-header__logo-mark"></span>
+      <span class="site-header__logo-text">Diocletian's Dream</span>
+    </a>
+
+    <!-- Desktop Nav -->
+    <nav class="site-header__nav">
+      <a routerLink="/"      routerLinkActive="is-active" [routerLinkActiveOptions]="{exact:true}">Home</a>
+      <a routerLink="/blog"  routerLinkActive="is-active">Blog</a>
+      <a href="#about">About</a>
+      <a href="#faq">FAQ</a>
+      <a href="#contact">Contact</a>
+    </nav>
+
+    <!-- Desktop CTA -->
+    <div class="site-header__actions">
+      <a routerLink="/booking" class="btn btn--dark btn--sm">Book now</a>
+    </div>
+
+    <!-- Hamburger -->
+    <button
+      class="site-header__burger"
+      (click)="menuOpen.set(!menuOpen())"
+      [class.is-open]="menuOpen()"
+      aria-label="Toggle menu"
+    >
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+  </div>
+
+  <!-- Mobile drawer -->
+  @if (menuOpen()) {
+    <div class="mobile-menu">
+      <nav class="mobile-menu__nav">
+        <a routerLink="/"        routerLinkActive="is-active" [routerLinkActiveOptions]="{exact:true}" (click)="menuOpen.set(false)">Home</a>
+        <a href="#experience"    (click)="menuOpen.set(false)">Experience</a>
+        <a href="#visit"         (click)="menuOpen.set(false)">Plan your visit</a>
+        <a routerLink="/blog"    routerLinkActive="is-active" (click)="menuOpen.set(false)">Blog</a>
+        <a href="#faq"           (click)="menuOpen.set(false)">FAQ</a>
+        <a href="#contact"       (click)="menuOpen.set(false)">Contact</a>
+      </nav>
+      <a routerLink="/booking" class="btn btn--dark mobile-menu__cta" (click)="menuOpen.set(false)">
+        Book tickets
+      </a>
+    </div>
+  }
+</header>

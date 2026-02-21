@@ -1,1 +1,31 @@
 /* You can add global styles to this file, and also import other style files */
+@import "tailwindcss";
+/* Tailwind base should already be here */
+
+/* Scroll reveal (used by RevealOnScrollDirective) */
+.reveal-base {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 700ms ease, transform 700ms ease;
+}
+.reveal-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Subtle floating background blobs */
+@keyframes floaty {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(12px, -10px); }
+}
+@keyframes floaty2 {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(-10px, 12px); }
+}
+@keyframes floaty3 {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(-12px, -8px); }
+}
+.floaty { animation: floaty 9s ease-in-out infinite; }
+.floaty2 { animation: floaty2 11s ease-in-out infinite; }
+.floaty3 { animation: floaty3 10s ease-in-out infinite; }
