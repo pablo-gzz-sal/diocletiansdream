@@ -1,109 +1,146 @@
-<section class="bg-white">
-  <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-    <!-- Header -->
-    <div class="pt-14 pb-10 sm:pt-20">
-      <p class="text-xs uppercase tracking-[0.22em] text-neutral-500">Journal</p>
-      <h1 class="mt-4 text-4xl sm:text-6xl leading-[1.05] tracking-tight text-neutral-900">
-        Notes from the road
-      </h1>
-      <p class="mt-4 max-w-2xl text-base sm:text-lg leading-relaxed text-neutral-600">
-        Stories, guides and practical tips for your experience in Split.
-      </p>
+<app-header></app-header>
+<section class="min-h-screen bg-cream overflow-x-hidden">
+  <!-- Header -->
+  <div class="mx-auto max-w-7xl px-6 lg:px-8 pt-32 pb-0">
+    <p
+      class="font-[family-name:var(--font-sans)] text-[0.65rem] font-medium tracking-[0.2em] uppercase text-ink-60 mb-4"
+    >
+      Blogs
+    </p>
+    <h1
+      class="font-[family-name:var(--font-serif)] font-light text-[clamp(3rem,8vw,6rem)] leading-[0.92] tracking-[-0.02em] text-ink"
+    >
+      Diocletians Dream Blog
+    </h1>
+    <p
+      class="mt-5 max-w-xl font-[family-name:var(--font-sans)] text-[1rem] leading-[1.7] text-ink-60"
+    >
+      Welcome to Diocletians Dream blog section, your ultimate destination for exploring the rich
+      history, culture, and attractions of Split, Croatia. Here, you can learn more about
+      Diocletian’s Palace, things to do in Split, and other interesting stories.
+    </p>
+    <div class="h-px bg-black/10 mt-8"></div>
+  </div>
 
-      <div class="mt-8 h-px w-full bg-neutral-200"></div>
+  <!-- Controls -->
+  <div
+    class="mx-auto max-w-7xl px-6 lg:px-8 py-5 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between border-b border-black/10"
+  >
+    <div class="flex flex-col gap-2.5 sm:flex-row sm:items-center">
+      <input
+        [(ngModel)]="query"
+        type="text"
+        placeholder="Search articles..."
+        class="w-full sm:w-72 rounded-full border border-black/10 bg-white/65 px-4 py-2.5 font-[family-name:var(--font-sans)] text-[0.78rem] text-ink placeholder:text-ink-60 outline-none focus:border-ink-60 focus:bg-white transition-colors"
+      />
+      <!-- <select
+        [(ngModel)]="selectedCategoryId"
+        class="w-full sm:w-60 rounded-full border border-black/10 bg-white/65 px-4 py-2.5 font-[family-name:var(--font-sans)] text-[0.78rem] text-ink outline-none focus:border-ink-60 focus:bg-white transition-colors appearance-none"
+      >
+        <option [ngValue]="null">All categories</option>
+        <option *ngFor="let c of categories" [ngValue]="c.id">{{ c.name }}</option>
+      </select> -->
+    </div>
+    <p
+      class="font-[family-name:var(--font-sans)] text-[0.65rem] font-medium tracking-[0.2em] uppercase text-ink-60"
+    >
+      {{ filteredPosts().length }} articles
+    </p>
+  </div>
 
-      <!-- Controls -->
-      <div class="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-        <div class="flex flex-col sm:flex-row gap-3 sm:items-center">
-          <input
-            [(ngModel)]="query"
-            type="text"
-            placeholder="Search articles..."
-            class="w-full sm:w-72 rounded-full border border-neutral-300 px-4 py-2 text-sm outline-none focus:border-neutral-500"
-          />
-
-          <select
-            [(ngModel)]="selectedCategoryId"
-            class="w-full sm:w-60 rounded-full border border-neutral-300 px-4 py-2 text-sm outline-none focus:border-neutral-500"
-          >
-            <option [ngValue]="null">All categories</option>
-            <option *ngFor="let c of categories" [ngValue]="c.id">
-              {{ c.name }}
-            </option>
-          </select>
+  <!-- Skeleton -->
+  @if (loading) {
+    <div
+      class="mx-auto max-w-7xl px-6 lg:px-8 py-8 grid gap-3 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
+    >
+      <div
+        *ngFor="let i of [1, 2, 3, 4, 5, 6]"
+        class="rounded-[2rem] border border-black/10 bg-white/50 overflow-hidden"
+      >
+        <div
+          class="aspect-[4/3] bg-gradient-to-br from-sand to-[#e5ddd0] animate-[shimmer_1.6s_ease-in-out_infinite]"
+        ></div>
+        <div class="p-6 flex flex-col gap-3">
+          <div
+            class="h-2.5 w-24 rounded-full bg-sand animate-[shimmer_1.6s_ease-in-out_infinite]"
+          ></div>
+          <div
+            class="h-4 w-3/4 rounded-full bg-sand animate-[shimmer_1.6s_ease-in-out_infinite]"
+          ></div>
+          <div
+            class="h-3 w-full rounded-full bg-sand animate-[shimmer_1.6s_ease-in-out_infinite]"
+          ></div>
+          <div
+            class="h-3 w-5/6 rounded-full bg-sand animate-[shimmer_1.6s_ease-in-out_infinite]"
+          ></div>
         </div>
-
-        <p class="text-xs uppercase tracking-[0.22em] text-neutral-500">
-          {{ filteredPosts().length }} articles
-        </p>
       </div>
     </div>
+  }
 
-    @if (loading) {
-      <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 pb-16">
-        <div *ngFor="let i of [1, 2, 3, 4, 5, 6, 7, 8, 9]" class="border border-neutral-200">
-          <div class="aspect-[4/3] bg-neutral-100"></div>
-          <div class="p-5">
-            <div class="h-3 w-24 bg-neutral-100"></div>
-            <div class="mt-3 h-6 w-3/4 bg-neutral-100"></div>
-            <div class="mt-3 h-4 w-full bg-neutral-100"></div>
-            <div class="mt-2 h-4 w-5/6 bg-neutral-100"></div>
-          </div>
+  <!-- Grid -->
+  @if (!loading) {
+    <div
+      class="mx-auto max-w-7xl px-6 lg:px-8 py-8 pb-24 grid gap-3 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
+    >
+      <a
+        *ngFor="let post of filteredPosts(); trackBy: trackById"
+        [routerLink]="['/blog', post.slug]"
+        class="group rounded-[2rem] border border-black/10 bg-white/60 overflow-hidden hover:bg-white hover:border-black/20 hover:-translate-y-0.5 transition-all no-underline text-ink"
+      >
+        <!-- Image -->
+        <div class="relative overflow-hidden">
+          <img
+            *ngIf="featuredImage(post) as img; else placeholder"
+            [src]="img"
+            [alt]="titleText(post)"
+            class="aspect-[4/3] w-full object-cover block group-hover:scale-[1.04] transition-transform duration-500"
+            loading="lazy"
+          />
+          <ng-template #placeholder>
+            <div class="aspect-[4/3] w-full bg-gradient-to-br from-sand to-[#ddd5c5]"></div>
+          </ng-template>
+
+          <!-- <span
+            *ngIf="categoryLabel(post) as cat"
+            class="absolute top-3.5 left-3.5 font-[family-name:var(--font-sans)] text-[0.6rem] font-medium tracking-[0.15em] uppercase text-ink rounded-full border border-black/10 bg-cream/88 backdrop-blur-sm px-3 py-1.5"
+          >
+            {{ cat }}
+          </span> -->
         </div>
-      </div>
-    }
-    <!-- Grid -->
-    @if (!loading) {
-      <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 pb-20">
-        <a
-          *ngFor="let post of filteredPosts(); trackBy: trackById"
-          [routerLink]="['/blog', post.slug]"
-          class="group border border-neutral-200 hover:border-neutral-400 transition-colors bg-white"
-        >
-          <div class="relative overflow-hidden">
-            <img
-              *ngIf="featuredImage(post) as img; else placeholder"
-              [src]="img"
-              [alt]="titleText(post)"
-              class="aspect-[4/3] w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
-              loading="lazy"
-            />
-            <ng-template #placeholder>
-              <div class="aspect-[4/3] w-full bg-neutral-100"></div>
-            </ng-template>
 
-            <div class="absolute left-4 top-4">
-              <span
-                *ngIf="categoryLabel(post) as cat"
-                class="inline-flex items-center rounded-full border border-white/60 bg-white/80 px-3 py-1 text-[11px] uppercase tracking-[0.2em] text-neutral-800 backdrop-blur"
-              >
-                {{ cat }}
-              </span>
-            </div>
-          </div>
-
-          <div class="p-6">
-            <div class="flex items-center justify-between gap-4">
-              <p class="text-[11px] uppercase tracking-[0.22em] text-neutral-500">
-                {{ dateLabel(post) }}
-              </p>
-              <span class="text-[11px] uppercase tracking-[0.22em] text-neutral-500"> Read </span>
-            </div>
-
-            <h2 class="mt-3 text-xl leading-snug tracking-tight text-neutral-900">
-              {{ titleText(post) }}
-            </h2>
-
-            <p class="mt-3 text-sm leading-relaxed text-neutral-600 line-clamp-3">
-              {{ excerptText(post) }}
+        <!-- Body -->
+        <div class="p-6">
+          <div class="flex items-center justify-between gap-4">
+            <p
+              class="font-[family-name:var(--font-sans)] text-[0.6rem] font-medium tracking-[0.18em] uppercase text-ink-60"
+            >
+              {{ dateLabel(post) }}
             </p>
-
-            <div class="mt-6 h-px w-full bg-neutral-200"></div>
-
-            <p class="mt-4 text-xs uppercase tracking-[0.22em] text-neutral-800">Continue</p>
+            <span
+              class="font-[family-name:var(--font-sans)] text-[0.6rem] font-medium tracking-[0.18em] uppercase text-ink-60"
+              >Read</span
+            >
           </div>
-        </a>
-      </div>
-    }
-  </div>
+          <h2
+            class="mt-2.5 font-[family-name:var(--font-serif)] text-[1.25rem] leading-[1.2] tracking-[-0.01em] text-ink"
+          >
+            {{ titleText(post) }}
+          </h2>
+          <p
+            class="mt-2 font-[family-name:var(--font-sans)] text-[0.82rem] leading-[1.7] text-ink-60 line-clamp-3"
+          >
+            {{ excerptText(post) }}
+          </p>
+          <div class="h-px bg-black/10 my-4"></div>
+          <p
+            class="font-[family-name:var(--font-sans)] text-[0.65rem] font-medium tracking-[0.18em] uppercase text-ink"
+          >
+            Continue →
+          </p>
+        </div>
+      </a>
+    </div>
+  }
 </section>
+<app-footer></app-footer>

@@ -1,0 +1,309 @@
+/* ================================================
+   BLOG POST — Diocletian's Dream
+   ================================================ */
+
+.blog-post-root {
+  background: var(--cream);
+  min-height: 100vh;
+}
+
+/* ── Back nav ── */
+.blog-post-back {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 5rem 2rem 0;
+}
+
+.blog-post-back__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--sans);
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-60);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.blog-post-back__link:hover {
+  color: var(--ink);
+}
+
+.blog-post-back__arrow {
+  font-size: 1rem;
+  line-height: 1;
+  transition: transform 0.2s;
+}
+
+.blog-post-back__link:hover .blog-post-back__arrow {
+  transform: translateX(-3px);
+}
+
+/* ── Skeleton ── */
+.blog-post-skeleton {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 3rem 2rem 5rem;
+}
+
+.blog-post-skeleton__line {
+  border-radius: 100px;
+  background: var(--sand);
+  animation: shimmer 1.6s ease-in-out infinite;
+}
+
+.blog-post-skeleton__line--eyebrow { height: 0.6rem; width: 8rem; }
+.blog-post-skeleton__line--h1a     { height: 2.5rem; width: 75%; margin-top: 1.25rem; }
+.blog-post-skeleton__line--h1b     { height: 2.5rem; width: 55%; margin-top: 0.5rem; }
+
+.blog-post-skeleton__hero {
+  margin-top: 2.5rem;
+  aspect-ratio: 16 / 9;
+  width: 100%;
+  border-radius: 2rem;
+  background: linear-gradient(135deg, var(--sand) 0%, #e5ddd0 100%);
+  animation: shimmer 1.6s ease-in-out infinite;
+}
+
+.blog-post-skeleton__body {
+  margin-top: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.blog-post-skeleton__body .blog-post-skeleton__line {
+  border-radius: 4px;
+  height: 0.75rem;
+}
+
+@keyframes shimmer {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.5; }
+}
+
+/* ── Not found ── */
+.blog-post-notfound {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 4rem 2rem 5rem;
+}
+
+.blog-post-notfound__h1 {
+  font-family: var(--serif);
+  font-size: 2.5rem;
+  font-weight: 300;
+  color: var(--ink);
+}
+
+.blog-post-notfound__p {
+  margin-top: 0.75rem;
+  font-size: 0.9rem;
+  color: var(--ink-60);
+  line-height: 1.65;
+}
+
+.blog-post-notfound__back {
+  display: inline-block;
+  margin-top: 1.5rem;
+  font-size: 0.8rem;
+  color: var(--ink);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+/* ── Article ── */
+.blog-post-article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 2rem 5rem;
+}
+
+/* header */
+.blog-post-article header {
+  padding-top: 2.5rem;
+}
+
+.blog-post-article__date {
+  font-family: var(--sans);
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-60);
+}
+
+.blog-post-article__h1 {
+  font-family: var(--serif);
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  font-weight: 300;
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  margin-top: 0.85rem;
+}
+
+.blog-post-article__divider {
+  height: 1px;
+  background: var(--ink-20);
+  margin-top: 2rem;
+}
+
+/* hero image */
+.blog-post-article__hero-wrap {
+  margin-top: 2.5rem;
+  border-radius: 2rem;
+  overflow: hidden;
+  border: 1px solid var(--ink-20);
+}
+
+.blog-post-article__hero-img {
+  aspect-ratio: 16 / 9;
+  width: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.blog-post-article__hero-placeholder {
+  aspect-ratio: 16 / 9;
+  width: 100%;
+  background: linear-gradient(135deg, var(--sand) 0%, #ddd5c5 100%);
+}
+
+/* editorial body */
+.blog-post-article__body {
+  margin-top: 3rem;
+  color: var(--ink);
+}
+
+/* prose styles applied via Angular [innerHTML] host class */
+.blog-post-article__body p {
+  font-family: var(--sans);
+  font-size: 1rem;
+  line-height: 1.8;
+  color: var(--ink-60);
+  margin: 1.25rem 0;
+}
+
+@media (min-width: 640px) {
+  .blog-post-article__body p {
+    font-size: 1.05rem;
+  }
+}
+
+.blog-post-article__body h2 {
+  font-family: var(--serif);
+  font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+  font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  margin: 3rem 0 0.85rem;
+}
+
+.blog-post-article__body h3 {
+  font-family: var(--serif);
+  font-size: 1.4rem;
+  font-weight: 400;
+  color: var(--ink);
+  margin: 2.25rem 0 0.65rem;
+}
+
+.blog-post-article__body ul,
+.blog-post-article__body ol {
+  padding-left: 1.5rem;
+  margin: 1.25rem 0;
+  color: var(--ink-60);
+  font-size: 1rem;
+  line-height: 1.8;
+}
+
+.blog-post-article__body ul { list-style: disc; }
+.blog-post-article__body ol { list-style: decimal; }
+
+.blog-post-article__body a {
+  color: var(--ink);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: var(--ink-20);
+  transition: text-decoration-color 0.2s;
+}
+
+.blog-post-article__body a:hover {
+  text-decoration-color: var(--ink);
+}
+
+.blog-post-article__body blockquote {
+  margin: 2.5rem 0;
+  padding: 1.5rem 1.75rem;
+  border-left: 2px solid var(--ink);
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 0 1.25rem 1.25rem 0;
+}
+
+.blog-post-article__body blockquote p {
+  font-family: var(--serif);
+  font-size: 1.2rem;
+  font-style: italic;
+  font-weight: 400;
+  color: var(--ink);
+  line-height: 1.55;
+  margin: 0;
+}
+
+/* ── Footer divider + CTA ── */
+.blog-post-article__footer-divider {
+  height: 1px;
+  background: var(--ink-20);
+  margin-top: 4rem;
+}
+
+.blog-post-article__footer {
+  margin-top: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+@media (min-width: 640px) {
+  .blog-post-article__footer {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.blog-post-article__footer-label {
+  font-family: var(--serif);
+  font-size: 1.35rem;
+  font-weight: 300;
+  font-style: italic;
+  color: var(--ink-60);
+}
+
+.blog-post-article__book-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 100px;
+  border: 1px solid var(--ink);
+  padding: 0.7rem 1.75rem;
+  font-family: var(--sans);
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--ink);
+  text-decoration: none;
+  background: transparent;
+  transition: background 0.2s, color 0.2s;
+  white-space: nowrap;
+}
+
+.blog-post-article__book-btn:hover {
+  background: var(--ink);
+  color: var(--white);
+}

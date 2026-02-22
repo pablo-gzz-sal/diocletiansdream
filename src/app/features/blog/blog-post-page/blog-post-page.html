@@ -1,86 +1,91 @@
-<section class="bg-white">
-  <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-    <!-- Top nav -->
-    <div class="pt-8">
-      <a
-        routerLink="/blog"
-        class="inline-flex items-center gap-2 text-xs uppercase tracking-[0.22em] text-neutral-600 hover:text-neutral-900"
-      >
-        <span class="text-lg leading-none">←</span>
-        Back to journal
+
+<app-header></app-header>
+<div class="min-h-screen bg-cream overflow-x-hidden">
+
+  <!-- Back nav -->
+  <div class="mx-auto max-w-4xl px-6 lg:px-8 pt-28">
+    <a routerLink="/blog"
+       class="inline-flex items-center gap-2 font-[family-name:var(--font-sans)] text-[0.65rem] font-medium tracking-[0.18em] uppercase text-ink-60 hover:text-ink transition-colors no-underline group">
+      <span class="text-base leading-none group-hover:-translate-x-1 transition-transform">←</span>
+      Back to journal
+    </a>
+  </div>
+
+  <!-- Skeleton -->
+  @if (loading) {
+    <div class="mx-auto max-w-4xl px-6 lg:px-8 py-10">
+      <div class="h-2.5 w-32 rounded-full bg-sand animate-[shimmer_1.6s_ease-in-out_infinite]"></div>
+      <div class="h-14 w-3/4 rounded-[0.5rem] bg-sand animate-[shimmer_1.6s_ease-in-out_infinite] mt-5"></div>
+      <div class="h-14 w-1/2 rounded-[0.5rem] bg-sand animate-[shimmer_1.6s_ease-in-out_infinite] mt-3"></div>
+      <div class="aspect-[16/9] w-full rounded-[2rem] bg-gradient-to-br from-sand to-[#e5ddd0] animate-[shimmer_1.6s_ease-in-out_infinite] mt-8"></div>
+      <div class="mt-10 flex flex-col gap-3">
+        <div class="h-3 w-full rounded-full bg-sand animate-[shimmer_1.6s_ease-in-out_infinite]"></div>
+        <div class="h-3 w-11/12 rounded-full bg-sand animate-[shimmer_1.6s_ease-in-out_infinite]"></div>
+        <div class="h-3 w-10/12 rounded-full bg-sand animate-[shimmer_1.6s_ease-in-out_infinite]"></div>
+        <div class="h-3 w-full rounded-full bg-sand animate-[shimmer_1.6s_ease-in-out_infinite]"></div>
+      </div>
+    </div>
+  }
+
+  <!-- Not found -->
+  @if (!loading && !post) {
+    <div class="mx-auto max-w-4xl px-6 lg:px-8 py-20">
+      <h1 class="font-[family-name:var(--font-serif)] font-light text-[2.5rem] leading-[0.95] text-ink">Post not found.</h1>
+      <p class="mt-3 font-[family-name:var(--font-sans)] text-[0.9rem] leading-[1.65] text-ink-60">
+        The article may have been removed or the link is wrong.
+      </p>
+      <a routerLink="/blog"
+         class="inline-block mt-6 font-[family-name:var(--font-sans)] text-[0.8rem] underline underline-offset-4 text-ink hover:opacity-50 transition-opacity no-underline [text-decoration:underline]">
+        ← Go back
       </a>
     </div>
+  }
 
-    @if (loading) {
-      <div class="py-12 sm:py-16">
-        <div class="h-3 w-32 bg-neutral-100"></div>
-        <div class="mt-4 h-10 w-3/4 bg-neutral-100"></div>
-        <div class="mt-3 h-10 w-2/3 bg-neutral-100"></div>
-        <div class="mt-8 aspect-[16/9] w-full bg-neutral-100"></div>
-        <div class="mt-8 h-4 w-full bg-neutral-100"></div>
-        <div class="mt-3 h-4 w-11/12 bg-neutral-100"></div>
-        <div class="mt-3 h-4 w-10/12 bg-neutral-100"></div>
-      </div>
-    }
-    <!-- Loading -->
+  <!-- Article -->
+  @if (!loading && post) {
+    <article class="mx-auto max-w-4xl px-6 lg:px-8 pb-24">
 
-    @if (!loading && !post ) {
-            <!-- Not found -->
-    <div  class="py-16">
-      <h1 class="text-2xl text-neutral-900">Post not found</h1>
-      <p class="mt-2 text-neutral-600">The article may have been removed or the link is wrong.</p>
-      <a routerLink="/blog" class="mt-6 inline-block underline text-neutral-900">Go back</a>
-    </div>
-    }
-
-    @if (!loading && post) {
-            <article  class="pb-20">
-      <header class="pt-10 sm:pt-14">
-        <p class="text-xs uppercase tracking-[0.22em] text-neutral-500">
+      <header class="pt-10">
+        <p class="font-[family-name:var(--font-sans)] text-[0.65rem] font-medium tracking-[0.18em] uppercase text-ink-60">
           {{ dateLabel(post) }}
         </p>
-
-        <h1 class="mt-4 text-4xl sm:text-5xl leading-[1.08] tracking-tight text-neutral-900">
+        <h1 class="mt-3 font-[family-name:var(--font-serif)] font-light text-[clamp(2.5rem,6vw,4.5rem)] leading-[0.95] tracking-[-0.02em] text-ink">
           {{ titleText(post) }}
         </h1>
-
-        <div class="mt-8 h-px w-full bg-neutral-200"></div>
+        <div class="h-px bg-black/10 mt-8"></div>
       </header>
 
-      <div class="mt-8 overflow-hidden border border-neutral-200">
+      <!-- Hero image -->
+      <div class="mt-10 rounded-[2rem] overflow-hidden border border-black/10">
         <img
           *ngIf="featuredImage(post) as img; else heroPlaceholder"
           [src]="img"
           [alt]="titleText(post)"
-          class="aspect-[16/9] w-full object-cover"
+          class="aspect-[16/9] w-full object-cover block"
         />
         <ng-template #heroPlaceholder>
-          <div class="aspect-[16/9] w-full bg-neutral-100"></div>
+          <div class="aspect-[16/9] w-full bg-gradient-to-br from-sand to-[#ddd5c5]"></div>
         </ng-template>
       </div>
 
-      <!-- Editorial body -->
-      <div class="mt-10 leading-relaxed text-neutral-800">
-        <!-- The wrapper below provides decent defaults without typography plugin -->
-        <div
-          class="[&_p]:my-5 [&_p]:text-[16px] sm:[&_p]:text-[17px] [&_p]:leading-relaxed [&_h2]:mt-10 [&_h2]:mb-4 [&_h2]:text-2xl [&_h2]:tracking-tight [&_h3]:mt-8 [&_h3]:mb-3 [&_h3]:text-xl [&_h3]:tracking-tight [&_ul]:my-6 [&_ul]:pl-6 [&_ul]:list-disc [&_ol]:my-6 [&_ol]:pl-6 [&_ol]:list-decimal [&_a]:underline [&_a]:decoration-neutral-300 hover:[&_a]:decoration-neutral-700 [&_blockquote]:my-8 [&_blockquote]:border-l [&_blockquote]:border-neutral-300 [&_blockquote]:pl-6 [&_blockquote]:text-neutral-700"
-          [innerHTML]="contentHtml(post)"
-        ></div>
-      </div>
+      <!-- Prose body -->
+      <!-- These styles need to be in global styles.css since they target innerHTML content -->
+      <div class="mt-12 blog-prose" [innerHTML]="contentHtml(post)"></div>
 
-      <div class="mt-12 h-px w-full bg-neutral-200"></div>
-
-      <div class="mt-8">
-        <a
-          routerLink="/booking"
-          class="inline-flex items-center justify-center rounded-full border border-neutral-900 px-6 py-3 text-xs uppercase tracking-[0.22em] text-neutral-900 hover:bg-neutral-900 hover:text-white transition-colors"
-        >
+      <!-- Footer -->
+      <div class="h-px bg-black/10 mt-16"></div>
+      <div class="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+        <p class="font-[family-name:var(--font-serif)] italic font-light text-[1.35rem] text-ink-60">
+          Ready to step into 305 AD?
+        </p>
+        <a routerLink="/booking"
+           class="inline-flex items-center justify-center rounded-full border border-ink px-6 py-3 font-[family-name:var(--font-sans)] text-[0.68rem] font-medium tracking-[0.15em] uppercase text-ink hover:bg-ink hover:text-warm transition-colors no-underline whitespace-nowrap">
           Book an experience
         </a>
       </div>
-    </article>
-    }
 
-    <!-- Content -->
-  </div>
-</section>
+    </article>
+  }
+
+</div>
+<app-footer></app-footer>

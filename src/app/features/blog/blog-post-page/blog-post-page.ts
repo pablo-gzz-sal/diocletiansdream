@@ -3,10 +3,12 @@ import { CommonModule } from '@angular/common';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { WpService } from '../../../shared/services/wp-service';
+import { Header } from '../../../core/components/header/header';
+import { Footer } from '../../../core/components/footer/footer';
 
 @Component({
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, Header, Footer],
   selector: 'app-blog-post-page',
   templateUrl: './blog-post-page.html',
 })

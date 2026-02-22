@@ -3,10 +3,12 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { WpService } from '../../../shared/services/wp-service';
+import { Footer } from '../../../core/components/footer/footer';
+import { Header } from '../../../core/components/header/header';
 
 @Component({
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterModule],
+  imports: [CommonModule, FormsModule, RouterModule, Header, Footer],
   selector: 'app-blog-list-page',
   templateUrl: './blog-list-page.html',
 })

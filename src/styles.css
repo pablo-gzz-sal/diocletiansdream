@@ -2,6 +2,10 @@
 @import "tailwindcss";
 /* Tailwind base should already be here */
 
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=DM+Sans:wght@300;400;500&display=swap');
+
+
+
 /* Scroll reveal (used by RevealOnScrollDirective) */
 .reveal-base {
   opacity: 0;
@@ -29,3 +33,141 @@
 .floaty { animation: floaty 9s ease-in-out infinite; }
 .floaty2 { animation: floaty2 11s ease-in-out infinite; }
 .floaty3 { animation: floaty3 10s ease-in-out infinite; }
+
+
+/* ── Tailwind v4 theme ── */
+:root {
+  --color-cream:  #f5f0e8;
+  --color-sand:   #ede7d9;
+  --color-ink:    #1a1814;
+  --color-ink-60: rgba(26,24,20,0.6);
+  --color-ink-20: rgba(26,24,20,0.12);
+  --color-ink-08: rgba(26,24,20,0.06);
+  --color-warm:   #faf8f4;
+
+  --font-serif: 'Cormorant Garamond', Georgia, serif;
+  --font-sans:  'DM Sans', sans-serif;
+
+  --animate-float1:     float1 8s ease-in-out infinite;
+  --animate-float2:     float2 10s ease-in-out infinite;
+  --animate-marquee:    marquee 22s linear infinite;
+  --animate-shimmer:    shimmer 1.6s ease-in-out infinite;
+  --animate-revealLine: revealLine 0.9s cubic-bezier(0.16,1,0.3,1) forwards;
+}
+
+@keyframes float1 {
+  0%,100% { transform: translate(0,0); }
+  50%      { transform: translate(30px,20px); }
+}
+@keyframes float2 {
+  0%,100% { transform: translate(0,0); }
+  50%      { transform: translate(-20px,-30px); }
+}
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+@keyframes shimmer {
+  0%,100% { opacity: 1; }
+  50%      { opacity: 0.5; }
+}
+@keyframes revealLine {
+  to { opacity: 1; transform: none; }
+}
+@keyframes overlayIn {
+  from { opacity: 0; transform: translateY(-12px); }
+  to   { opacity: 1; transform: none; }
+}
+@keyframes linkReveal {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: none; }
+}
+
+/* ── Base ── */
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-sans);
+  background: var(--color-cream);
+  -webkit-font-smoothing: antialiased;
+}
+/* ────────────────────────────────────────────
+   BLOG PROSE
+   Applied to [innerHTML] in blog-post.
+   Must live here (global) so it reaches
+   dynamically injected HTML.
+──────────────────────────────────────────── */
+.blog-prose p {
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  line-height: 1.8;
+  color: var(--color-ink-60);
+  margin: 1.25rem 0;
+}
+@media (min-width: 640px) {
+  .blog-prose p { font-size: 1.05rem; }
+}
+.blog-prose h2 {
+  font-family: var(--font-serif);
+  font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+  font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+  color: var(--color-ink);
+  margin: 3rem 0 0.85rem;
+}
+.blog-prose h3 {
+  font-family: var(--font-serif);
+  font-size: 1.4rem;
+  font-weight: 400;
+  color: var(--color-ink);
+  margin: 2.25rem 0 0.65rem;
+}
+.blog-prose ul,
+.blog-prose ol {
+  padding-left: 1.5rem;
+  margin: 1.25rem 0;
+  color: var(--color-ink-60);
+  font-size: 1rem;
+  line-height: 1.8;
+}
+.blog-prose ul { list-style: disc; }
+.blog-prose ol { list-style: decimal; }
+.blog-prose a {
+  color: var(--color-ink);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: rgba(26,24,20,0.2);
+  transition: text-decoration-color 0.2s;
+}
+.blog-prose a:hover { text-decoration-color: var(--color-ink); }
+.blog-prose blockquote {
+  margin: 2.5rem 0;
+  padding: 1.5rem 1.75rem;
+  border-left: 2px solid var(--color-ink);
+  background: rgba(255,255,255,0.5);
+  border-radius: 0 1.25rem 1.25rem 0;
+}
+.blog-prose blockquote p {
+  font-family: var(--font-serif);
+  font-size: 1.2rem;
+  font-style: italic;
+  color: var(--color-ink);
+  line-height: 1.55;
+  margin: 0;
+}
+
+/* ────────────────────────────────────────────
+   LANDING TILE GRID SPANS
+   Used via [ngClass] in landing component.
+   Tailwind can't detect these dynamically.
+──────────────────────────────────────────── */
+.tile-col-2 { grid-column: span 2; }
+.tile-col-3 { grid-column: span 3; }
+@media (max-width: 1023px) {
+  .tile-col-2, .tile-col-3 { grid-column: span 1; }
+}
+
+.grain-overlay {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 200px;
+}
