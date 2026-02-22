@@ -1,9 +1,11 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Header } from '../../../core/components/header/header';
+import { Footer } from '../../../core/components/footer/footer';
 
 @Component({
   selector: 'app-policy-page-component',
   standalone: true,
-  imports: [],
+  imports: [Header, Footer],
   templateUrl: './policy-page-component.html',
   styleUrl: './policy-page-component.css',
 })
