@@ -1,7 +1,8 @@
 import { NgClass } from '@angular/common';
-import { Component, HostListener, signal } from '@angular/core';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import { Component, HostListener, OnDestroy, OnInit, signal } from '@angular/core';
+import { NavigationStart, Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { I18nService, Lang } from '../../i18n/i18n-service';
+import { filter } from 'rxjs';
 
 @Component({
   selector: 'app-header',
@@ -10,31 +11,37 @@ import { I18nService, Lang } from '../../i18n/i18n-service';
   templateUrl: './header.html',
   styleUrl: './header.css',
 })
-export class Header {
-  scrolled = signal(false);
+export class Header implements OnInit, OnDestroy {
   menuOpen = signal(false);
+  scrolled = signal(false);
 
-  constructor(private i18n: I18nService) {}
+  private removeOverflow = () => document.body.classList.remove('overflow-hidden');
+
+  constructor(private router: Router) {}
 
   @HostListener('window:scroll')
-
-  get lang(): Lang {
-    return this.i18n.current();
-  }
   onScroll() {
-    this.scrolled.set(window.scrollY > 8);
+    this.scrolled.set(window.scrollY > 32);
   }
 
-  toggleLang() {
-    this.i18n.use(this.lang === 'en' ? 'hr' : 'en');
+  ngOnInit() {
+    // Close menu on route change
+    this.router.events
+      .pipe(filter((e) => e instanceof NavigationStart))
+      .subscribe(() => this.closeMenu());
   }
+
   toggleMenu() {
-  this.menuOpen.update(v => !v);
-  document.body.classList.toggle('overflow-hidden', this.menuOpen());
-}
+    this.menuOpen.update((v) => !v);
+    document.body.classList.toggle('overflow-hidden', this.menuOpen());
+  }
 
-closeMenu() {
-  this.menuOpen.set(false);
-  document.body.classList.remove('overflow-hidden');
-}
+  closeMenu() {
+    this.menuOpen.set(false);
+    this.removeOverflow();
+  }
+
+  ngOnDestroy() {
+    this.removeOverflow();
+  }
 }

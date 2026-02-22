@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Meta, Title } from '@angular/platform-browser';
 import { RouterLink } from '@angular/router';
@@ -13,7 +13,7 @@ import { Footer } from '../../core/components/footer/footer';
   templateUrl: './contact.html',
   styleUrl: './contact.css',
 })
-export class Contact {
+export class Contact implements OnInit {
   submitting = false;
   submitted = false;
 
@@ -27,6 +27,10 @@ export class Contact {
       content:
         "Get in touch with Diocletian's Dream. Find our address in Split's Old Town, opening hours, ticket prices, and contact details.",
     });
+  }
+
+  ngOnInit(): void {
+    window.scroll(0, 0);
   }
 
   onSubmit() {

@@ -91,6 +91,7 @@ export class LandingPage implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    window.scroll(0, 0);
     this.title.setTitle('Diocletian’s Dream VR Museum | Step back into 305 AD');
     this.meta.updateTag({
       name: 'description',

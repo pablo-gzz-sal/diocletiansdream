@@ -24,6 +24,7 @@ export class BlogListPage implements OnInit {
   constructor(private wp: WpService) {}
 
   ngOnInit(): void {
+    window.scroll(0, 0);
     this.loadPosts();
     this.wp.getCategories().subscribe({
       next: (cats) => (this.categories = cats ?? []),

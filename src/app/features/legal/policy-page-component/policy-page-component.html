@@ -1,0 +1,27 @@
+<main class="pt-24 pb-20 bg-[var(--color-cream)]">
+  <div class="mx-auto max-w-4xl px-6 lg:px-8">
+
+    <header class="mb-10">
+      <p class="text-[0.7rem] tracking-[0.2em] uppercase text-[var(--color-ink-60)]">
+        Legal
+      </p>
+
+      <h1 class="mt-3 font-[family-name:var(--font-serif)] text-[clamp(2.2rem,4.5vw,3.5rem)] leading-[0.95] text-[var(--color-ink)]">
+        {{ title }}
+      </h1>
+
+      @if (updatedAt) {
+        <p class="mt-3 text-[0.9rem] text-[var(--color-ink-60)]">
+          Last updated: {{ updatedAt }}
+        </p>
+      }
+    </header>
+
+    <section
+      class="rounded-[2rem] border border-[var(--color-ink-08)] bg-white/60 backdrop-blur p-6 sm:p-10"
+    >
+      <ng-content></ng-content>
+    </section>
+
+  </div>
+</main>

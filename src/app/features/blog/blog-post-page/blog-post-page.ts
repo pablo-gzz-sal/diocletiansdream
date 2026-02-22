@@ -21,6 +21,7 @@ export class BlogPostPage implements OnInit, OnDestroy {
   constructor(private route: ActivatedRoute, private wp: WpService) {}
 
   ngOnInit(): void {
+    window.scroll(0, 0);
     this.sub = this.route.paramMap.subscribe(params => {
       const slug = params.get('slug');
       if (!slug) return;
