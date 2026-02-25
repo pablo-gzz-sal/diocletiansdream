@@ -1,19 +1,16 @@
 <app-header></app-header>
 <main class="landing-root">
-
-
+  <app-intro-reveal></app-intro-reveal>
   <!-- ════════════════════════════════════════
        HERO
   ════════════════════════════════════════ -->
   <section class="hero">
-
     <!-- background grain texture -->
     <div class="grain"></div>
     <div class="hero-blob hero-blob--1"></div>
     <div class="hero-blob hero-blob--2"></div>
 
     <div class="hero-inner">
-
       <!-- left: big editorial heading -->
       <div class="hero-text">
         <p class="eyebrow">VR Museum · Diocletian's Palace · Split</p>
@@ -26,8 +23,8 @@
         </h1>
 
         <p class="hero-sub">
-          A 15-minute VR museum experience that brings Diocletian's Palace to life
-          in its original splendour — right inside the UNESCO Old Town.
+          A 15-minute VR museum experience that brings Diocletian's Palace to life in its original
+          splendour — right inside the UNESCO Old Town.
         </p>
 
         <div class="hero-actions">
@@ -55,7 +52,6 @@
           <a routerLink="/booking" class="inline-link">Tickets →</a>
         </div>
       </div>
-
     </div>
 
     <!-- editorial tile grid (art-gallery mood board) -->
@@ -73,18 +69,12 @@
   ════════════════════════════════════════ -->
   <div class="marquee-wrap">
     <div class="marquee-track">
-      <span>305 AD</span><span>·</span>
-      <span>UNESCO Heritage</span><span>·</span>
-      <span>Virtual Reality</span><span>·</span>
-      <span>Split, Croatia</span><span>·</span>
-      <span>Diocletian's Palace</span><span>·</span>
-      <span>15 Minutes</span><span>·</span>
-      <span>305 AD</span><span>·</span>
-      <span>UNESCO Heritage</span><span>·</span>
-      <span>Virtual Reality</span><span>·</span>
-      <span>Split, Croatia</span><span>·</span>
-      <span>Diocletian's Palace</span><span>·</span>
-      <span>15 Minutes</span><span>·</span>
+      <span>305 AD</span><span>·</span> <span>UNESCO Heritage</span><span>·</span>
+      <span>Virtual Reality</span><span>·</span> <span>Split, Croatia</span><span>·</span>
+      <span>Diocletian's Palace</span><span>·</span> <span>15 Minutes</span><span>·</span>
+      <span>305 AD</span><span>·</span> <span>UNESCO Heritage</span><span>·</span>
+      <span>Virtual Reality</span><span>·</span> <span>Split, Croatia</span><span>·</span>
+      <span>Diocletian's Palace</span><span>·</span> <span>15 Minutes</span><span>·</span>
     </div>
   </div>
 
@@ -93,7 +83,6 @@
   ════════════════════════════════════════ -->
   <section class="about">
     <div class="about-inner">
-
       <div class="about-heading">
         <p class="eyebrow">The experience</p>
         <h2 class="about-h2">
@@ -104,7 +93,6 @@
       </div>
 
       <div class="bento">
-
         <!-- tall image A -->
         <div class="bento-cell bento-cell--imgA">
           <div class="bento-img-placeholder">Palace reconstruction still</div>
@@ -118,12 +106,14 @@
         <!-- text block -->
         <div class="bento-cell bento-cell--text">
           <p class="bento-copy">
-            Put on the headset and travel through reconstructed rooms, architecture
-            and stories from Diocletian's era — a modern way to understand what
-            you're already walking through outside.
+            Put on the headset and travel through reconstructed rooms, architecture and stories from
+            Diocletian's era — a modern way to understand what you're already walking through
+            outside.
           </p>
-          <a routerLink="/booking" class="btn btn--dark" style="margin-top:2rem;">Book tickets</a>
-          <a routerLink="/blog" class="inline-link" style="display:block; margin-top:1rem;">Read the story →</a>
+          <a routerLink="/booking" class="btn btn--dark" style="margin-top: 2rem">Book tickets</a>
+          <a routerLink="/blog" class="inline-link" style="display: block; margin-top: 1rem"
+            >Read the story →</a
+          >
         </div>
 
         <!-- stat cards -->
@@ -141,7 +131,6 @@
         <div class="bento-cell bento-cell--imgC">
           <div class="bento-img-placeholder">Wide palace panorama</div>
         </div>
-
       </div>
     </div>
   </section>
@@ -154,7 +143,7 @@
       <div class="visit-header">
         <div>
           <p class="eyebrow">Plan your visit</p>
-          <h2 class="section-h2">Everything<br>you need.</h2>
+          <h2 class="section-h2">Everything<br />you need.</h2>
         </div>
         <a routerLink="/booking" class="inline-link hide-mobile">Tickets →</a>
       </div>
@@ -179,7 +168,7 @@
       <div class="blog-header">
         <div>
           <p class="eyebrow">From the blog</p>
-          <h2 class="section-h2">Stories<br>& guides.</h2>
+          <h2 class="section-h2">Stories<br />& guides.</h2>
         </div>
         <a routerLink="/blog" class="inline-link hide-mobile">View all →</a>
       </div>
@@ -187,13 +176,15 @@
       <div class="blog-grid">
         <ng-container *ngFor="let post of blogCards; let i = index">
           <div class="bpost" [ngClass]="i === 0 ? 'bpost--featured' : ''">
-            <div class="bpost-img">
-              <div class="bpost-img-inner">{{ post.imageLabel }}</div>
+            <div class="bpost-img" *ngIf="post.image">
+              <img [src]="post.image" [alt]="post.title" />
             </div>
+
             <div class="bpost-body">
-              <p class="bpost-title">{{ post.title }}</p>
-              <p class="bpost-excerpt">{{ post.excerpt }}</p>
-              <a routerLink="/blog" class="inline-link">Read more →</a>
+              <p class="bpost-title" [innerHTML]="post.title"></p>
+              <p class="bpost-excerpt" [innerHTML]="post.excerpt"></p>
+
+              <a [routerLink]="['/blog', post.slug]" class="inline-link"> Read more → </a>
             </div>
           </div>
         </ng-container>
@@ -208,10 +199,10 @@
     <div class="cta-inner">
       <div class="cta-grain"></div>
       <p class="eyebrow eyebrow--light">Tickets</p>
-      <h2 class="cta-h2">Make it the highlight<br>of your Split day.</h2>
+      <h2 class="cta-h2">Make it the highlight<br />of your Split day.</h2>
       <p class="cta-sub">
-        Book your museum time slot and step into the palace as it once was —
-        then walk outside and recognise it in real life.
+        Book your museum time slot and step into the palace as it once was — then walk outside and
+        recognise it in real life.
       </p>
       <div class="cta-actions">
         <a routerLink="/booking" class="btn btn--cream">Book tickets</a>
@@ -227,14 +218,16 @@
     <div class="faq-inner">
       <div class="faq-left">
         <p class="eyebrow">FAQ</p>
-        <h2 class="section-h2">Good<br>to know.</h2>
+        <h2 class="section-h2">Good<br />to know.</h2>
         <p class="faq-hint">Simple answers to common questions.</p>
       </div>
 
       <div class="faq-list">
-        <div *ngFor="let item of faqs; let i = index"
-             class="faq-item"
-             [class.faq-item--open]="item.open">
+        <div
+          *ngFor="let item of faqs; let i = index"
+          class="faq-item"
+          [class.faq-item--open]="item.open"
+        >
           <button class="faq-q" (click)="toggleFaq(i)">
             <span>{{ item.q }}</span>
             <span class="faq-icon">{{ item.open ? '−' : '+' }}</span>
@@ -250,6 +243,5 @@
   <!-- ════════════════════════════════════════
        FOOTER
   ════════════════════════════════════════ -->
-
 </main>
-  <app-footer></app-footer>
+<app-footer></app-footer>

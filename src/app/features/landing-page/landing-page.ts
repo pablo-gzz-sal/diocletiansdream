@@ -5,11 +5,13 @@ import { RouterLink } from '@angular/router';
 import { RevealOnScrollDirective } from '../../shared/animations/reveal-on-scroll-directive';
 import { Meta, Title } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
+import { WpService } from '../../shared/services/wp-service';
+import { IntroReveal } from '../../shared/components/intro-reveal/intro-reveal';
 
 @Component({
   selector: 'app-landing-page',
   standalone: true,
-  imports: [RouterLink, Header, Footer, RevealOnScrollDirective, CommonModule],
+  imports: [RouterLink, Header, Footer, RevealOnScrollDirective, CommonModule, IntroReveal],
   templateUrl: './landing-page.html',
   styleUrl: './landing-page.css',
 })
@@ -44,23 +46,7 @@ export class LandingPage implements OnInit {
     },
   ];
 
-  blogCards = [
-    {
-      title: 'What to expect from the VR museum',
-      excerpt: 'A quick overview of the experience and why it’s different.',
-      imageLabel: 'Blog cover',
-    },
-    {
-      title: 'Visiting Split: what to know',
-      excerpt: 'Make the most of your day around the Palace and the museum.',
-      imageLabel: 'Blog cover',
-    },
-    {
-      title: 'Family-friendly visit',
-      excerpt: 'Why kids love this way of learning history.',
-      imageLabel: 'Blog cover',
-    },
-  ];
+  blogCards!: any;
 
   faqs: any[] = [
     {
@@ -88,6 +74,7 @@ export class LandingPage implements OnInit {
   constructor(
     private title: Title,
     private meta: Meta,
+    private wpService: WpService,
   ) {}
 
   ngOnInit(): void {
@@ -105,6 +92,13 @@ export class LandingPage implements OnInit {
         'Step into a VR reconstruction of Diocletian’s Palace and understand the UNESCO site like never before.',
     });
     this.meta.updateTag({ name: 'robots', content: 'index,follow' });
+    this.getBlogs();
+  }
+
+  getBlogs() {
+    this.wpService.getSamplePosts().subscribe((posts) => {
+      this.blogCards = posts;
+    });
   }
 
   toggleFaq(i: number) {

@@ -81,6 +81,7 @@
   --animate-marquee:    marquee 22s linear infinite;
   --animate-shimmer:    shimmer 1.6s ease-in-out infinite;
   --animate-revealLine: revealLine 0.9s cubic-bezier(0.16,1,0.3,1) forwards;
+  
 }
 
 @keyframes float1 {
