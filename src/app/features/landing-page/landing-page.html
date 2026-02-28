@@ -1,11 +1,56 @@
 <app-header></app-header>
+<app-header></app-header>
+
 <main class="landing-root">
   <app-intro-reveal></app-intro-reveal>
+
   <!-- ════════════════════════════════════════
        HERO
   ════════════════════════════════════════ -->
   <section class="hero">
-    <!-- background grain texture -->
+    <!-- Background layers (brand subtle details) -->
+    <div class="absolute inset-0 overflow-hidden dd-grain">
+      <!-- soft radial glows -->
+      <div
+        class="absolute -top-24 -left-24 h-[420px] w-[420px] rounded-full blur-3xl opacity-25 dd-float"
+        style="background: radial-gradient(circle at 30% 30%, var(--dd-purple), transparent 60%)"
+      ></div>
+
+      <div
+        class="absolute -bottom-28 -right-24 h-[520px] w-[520px] rounded-full blur-3xl opacity-25 dd-float"
+        style="
+          animation-delay: -2.5s;
+          background: radial-gradient(circle at 30% 30%, var(--dd-gold), transparent 60%);
+        "
+      ></div>
+
+      <!-- elegant top border -->
+      <div
+        class="absolute left-0 right-0 top-0 h-px opacity-60"
+        style="
+          background: linear-gradient(
+            90deg,
+            transparent,
+            rgba(194, 154, 89, 0.65),
+            rgba(45, 4, 106, 0.55),
+            transparent
+          );
+        "
+      ></div>
+
+      <!-- subtle grid -->
+      <div
+        class="absolute inset-0 opacity-[0.05]"
+        style="
+          background-image:
+            linear-gradient(to right, rgba(45, 4, 106, 0.25) 1px, transparent 1px),
+            linear-gradient(to bottom, rgba(194, 154, 89, 0.2) 1px, transparent 1px);
+          background-size: 54px 54px;
+        "
+      ></div>
+    </div>
+
+    <!-- existing grain + blobs -->
     <div class="grain"></div>
     <div class="hero-blob hero-blob--1"></div>
     <div class="hero-blob hero-blob--2"></div>
@@ -244,4 +289,6 @@
        FOOTER
   ════════════════════════════════════════ -->
 </main>
+
+<app-footer></app-footer>
 <app-footer></app-footer>

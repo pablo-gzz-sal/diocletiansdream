@@ -1,14 +1,16 @@
 /* You can add global styles to this file, and also import other style files */
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=DM+Sans:wght@300;400;500&display=swap');
 
-@import "tailwindcss";
+@import 'tailwindcss';
 /* Tailwind base should already be here */
 
 /* Scroll reveal (used by RevealOnScrollDirective) */
 .reveal-base {
   opacity: 0;
   transform: translateY(14px);
-  transition: opacity 700ms ease, transform 700ms ease;
+  transition:
+    opacity 700ms ease,
+    transform 700ms ease;
 }
 .reveal-in {
   opacity: 1;
@@ -17,103 +19,219 @@
 
 /* Subtle floating background blobs */
 @keyframes floaty {
-  0%, 100% { transform: translate(0, 0); }
-  50% { transform: translate(12px, -10px); }
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(12px, -10px);
+  }
 }
 @keyframes floaty2 {
-  0%, 100% { transform: translate(0, 0); }
-  50% { transform: translate(-10px, 12px); }
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(-10px, 12px);
+  }
 }
 @keyframes floaty3 {
-  0%, 100% { transform: translate(0, 0); }
-  50% { transform: translate(-12px, -8px); }
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(-12px, -8px);
+  }
 }
-.floaty { animation: floaty 9s ease-in-out infinite; }
-.floaty2 { animation: floaty2 11s ease-in-out infinite; }
-.floaty3 { animation: floaty3 10s ease-in-out infinite; }
-
+.floaty {
+  animation: floaty 9s ease-in-out infinite;
+}
+.floaty2 {
+  animation: floaty2 11s ease-in-out infinite;
+}
+.floaty3 {
+  animation: floaty3 10s ease-in-out infinite;
+}
 
 /* ── Tailwind v4 theme ── */
 :root {
-  --color-cream:  #f5f0e8;
-  --color-sand:   #ede7d9;
-  --color-ink:    #1a1814;
-  --color-ink-60: rgba(26,24,20,0.6);
-  --color-ink-20: rgba(26,24,20,0.12);
-  --color-ink-08: rgba(26,24,20,0.06);
-  --color-warm:   #faf8f4;
+  --color-cream: #f5f0e8;
+  --color-sand: #ede7d9;
+  --color-ink: #1a1814;
+  --color-ink-60: rgba(26, 24, 20, 0.6);
+  --color-ink-20: rgba(26, 24, 20, 0.12);
+  --color-ink-08: rgba(26, 24, 20, 0.06);
+  --color-warm: #faf8f4;
 
   --font-serif: 'Cormorant Garamond', Georgia, serif;
-  --font-sans:  'DM Sans', sans-serif;
+  --font-sans: 'DM Sans', sans-serif;
 
-  --animate-float1:     float1 8s ease-in-out infinite;
-  --animate-float2:     float2 10s ease-in-out infinite;
-  --animate-marquee:    marquee 22s linear infinite;
-  --animate-shimmer:    shimmer 1.6s ease-in-out infinite;
-  --animate-revealLine: revealLine 0.9s cubic-bezier(0.16,1,0.3,1) forwards;
+  --animate-float1: float1 8s ease-in-out infinite;
+  --animate-float2: float2 10s ease-in-out infinite;
+  --animate-marquee: marquee 22s linear infinite;
+  --animate-shimmer: shimmer 1.6s ease-in-out infinite;
+  --animate-revealLine: revealLine 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 
-    --color-cream:  #f5f0e8;
-  --color-sand:   #ede7d9;
-  --color-ink:    #1a1814;
-  --color-warm:   #faf8f4;
+  --color-cream: #f5f0e8;
+  --color-sand: #ede7d9;
+  --color-ink: #1a1814;
+  --color-warm: #faf8f4;
 
-  --color-ink-60: rgba(26,24,20,0.6);
-  --color-ink-20: rgba(26,24,20,0.12);
-  --color-ink-08: rgba(26,24,20,0.06);
+  --color-ink-60: rgba(26, 24, 20, 0.6);
+  --color-ink-20: rgba(26, 24, 20, 0.12);
+  --color-ink-08: rgba(26, 24, 20, 0.06);
 
   /* add these (important for opacity usage) */
   --cream-85: rgba(245, 240, 232, 0.85);
   --cream-95: rgba(245, 240, 232, 0.95);
-  --ink-70: rgba(26, 24, 20, 0.70);
-   --color-cream:  #f5f0e8;
-  --color-sand:   #ede7d9;
-  --color-ink:    #1a1814;
-  --color-ink-60: rgba(26,24,20,0.6);
-  --color-ink-20: rgba(26,24,20,0.12);
-  --color-ink-08: rgba(26,24,20,0.06);
-  --color-warm:   #faf8f4;
+  --ink-70: rgba(26, 24, 20, 0.7);
+  --color-cream: #f5f0e8;
+  --color-sand: #ede7d9;
+  --color-ink: #1a1814;
+  --color-ink-60: rgba(26, 24, 20, 0.6);
+  --color-ink-20: rgba(26, 24, 20, 0.12);
+  --color-ink-08: rgba(26, 24, 20, 0.06);
+  --color-warm: #faf8f4;
 
   --font-serif: 'Cormorant Garamond', Georgia, serif;
-  --font-sans:  'DM Sans', sans-serif;
+  --font-sans: 'DM Sans', sans-serif;
 
-  --animate-float1:     float1 8s ease-in-out infinite;
-  --animate-float2:     float2 10s ease-in-out infinite;
-  --animate-marquee:    marquee 22s linear infinite;
-  --animate-shimmer:    shimmer 1.6s ease-in-out infinite;
-  --animate-revealLine: revealLine 0.9s cubic-bezier(0.16,1,0.3,1) forwards;
-  
+  --animate-float1: float1 8s ease-in-out infinite;
+  --animate-float2: float2 10s ease-in-out infinite;
+  --animate-marquee: marquee 22s linear infinite;
+  --animate-shimmer: shimmer 1.6s ease-in-out infinite;
+  --animate-revealLine: revealLine 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+
+  --dd-gold: #c29a59;
+  --dd-purple: #2d046a;
+  --radius-xl: 2.5rem;
+  --radius-lg: 1.75rem;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* Premium borders / shadows */
+  --border-soft: rgba(26, 24, 20, 0.1);
+  --border-strong: rgba(26, 24, 20, 0.16);
+  --shadow-soft: 0 10px 40px rgba(26, 24, 20, 0.07);
+  --shadow-hover: 0 18px 55px rgba(26, 24, 20, 0.12);
+
+  /* Accent glow (very subtle) */
+  --glow-gold: 0 0 0 6px rgba(194, 154, 89, 0.1);
+  --glow-purple: 0 0 0 6px rgba(45, 4, 106, 0.1);
+}
+
+/* Soft grain texture (very subtle) */
+.dd-grain::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='.22'/%3E%3C/svg%3E");
+  opacity: 0.06;
+  mix-blend-mode: overlay;
+}
+
+/* slow float */
+@keyframes dd-float {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -10px, 0);
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+}
+.dd-float {
+  animation: dd-float 8s ease-in-out infinite;
+}
+
+/* soft shimmer line */
+@keyframes dd-sheen {
+  0% {
+    transform: translateX(-120%);
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.35;
+  }
+  100% {
+    transform: translateX(120%);
+    opacity: 0;
+  }
+}
+.dd-sheen {
+  animation: dd-sheen 4.5s ease-in-out infinite;
 }
 
 @keyframes float1 {
-  0%,100% { transform: translate(0,0); }
-  50%      { transform: translate(30px,20px); }
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(30px, 20px);
+  }
 }
 @keyframes float2 {
-  0%,100% { transform: translate(0,0); }
-  50%      { transform: translate(-20px,-30px); }
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(-20px, -30px);
+  }
 }
 @keyframes marquee {
-  from { transform: translateX(0); }
-  to   { transform: translateX(-50%); }
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
 }
 @keyframes shimmer {
-  0%,100% { opacity: 1; }
-  50%      { opacity: 0.5; }
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
 }
 @keyframes revealLine {
-  to { opacity: 1; transform: none; }
+  to {
+    opacity: 1;
+    transform: none;
+  }
 }
 @keyframes overlayIn {
-  from { opacity: 0; transform: translateY(-12px); }
-  to   { opacity: 1; transform: none; }
+  from {
+    opacity: 0;
+    transform: translateY(-12px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
 }
 @keyframes linkReveal {
-  from { opacity: 0; transform: translateY(20px); }
-  to   { opacity: 1; transform: none; }
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
 }
 
 /* ── Base ── */
-html { scroll-behavior: smooth; }
+html {
+  scroll-behavior: smooth;
+}
 body {
   font-family: var(--font-sans);
   background: var(--color-cream);
@@ -133,7 +251,9 @@ body {
   margin: 1.25rem 0;
 }
 @media (min-width: 640px) {
-  .blog-prose p { font-size: 1.05rem; }
+  .blog-prose p {
+    font-size: 1.05rem;
+  }
 }
 .blog-prose h2 {
   font-family: var(--font-serif);
@@ -159,21 +279,27 @@ body {
   font-size: 1rem;
   line-height: 1.8;
 }
-.blog-prose ul { list-style: disc; }
-.blog-prose ol { list-style: decimal; }
+.blog-prose ul {
+  list-style: disc;
+}
+.blog-prose ol {
+  list-style: decimal;
+}
 .blog-prose a {
   color: var(--color-ink);
   text-decoration: underline;
   text-underline-offset: 3px;
-  text-decoration-color: rgba(26,24,20,0.2);
+  text-decoration-color: rgba(26, 24, 20, 0.2);
   transition: text-decoration-color 0.2s;
 }
-.blog-prose a:hover { text-decoration-color: var(--color-ink); }
+.blog-prose a:hover {
+  text-decoration-color: var(--color-ink);
+}
 .blog-prose blockquote {
   margin: 2.5rem 0;
   padding: 1.5rem 1.75rem;
   border-left: 2px solid var(--color-ink);
-  background: rgba(255,255,255,0.5);
+  background: rgba(255, 255, 255, 0.5);
   border-radius: 0 1.25rem 1.25rem 0;
 }
 .blog-prose blockquote p {
@@ -190,10 +316,17 @@ body {
    Used via [ngClass] in landing component.
    Tailwind can't detect these dynamically.
 ──────────────────────────────────────────── */
-.tile-col-2 { grid-column: span 2; }
-.tile-col-3 { grid-column: span 3; }
+.tile-col-2 {
+  grid-column: span 2;
+}
+.tile-col-3 {
+  grid-column: span 3;
+}
 @media (max-width: 1023px) {
-  .tile-col-2, .tile-col-3 { grid-column: span 1; }
+  .tile-col-2,
+  .tile-col-3 {
+    grid-column: span 1;
+  }
 }
 
 .grain-overlay {
@@ -207,14 +340,14 @@ body {
   font-weight: 500;
   letter-spacing: 0.15em;
   text-transform: uppercase;
-  color: rgba(250,248,244,0.35);
+  color: rgba(250, 248, 244, 0.35);
   margin-bottom: 1rem;
 }
 
 .footer-nav-link {
   font-family: var(--font-sans);
   font-size: 0.8rem;
-  color: rgba(250,248,244,0.55);
+  color: rgba(250, 248, 244, 0.55);
   text-decoration: none;
   transition: color 0.2s;
 }
@@ -229,19 +362,22 @@ body {
   width: 2.25rem;
   height: 2.25rem;
   border-radius: 0.625rem;
-  border: 1px solid rgba(250,248,244,0.15);
+  border: 1px solid rgba(250, 248, 244, 0.15);
   font-family: var(--font-sans);
   font-size: 0.65rem;
   font-weight: 500;
   letter-spacing: 0.06em;
-  color: rgba(250,248,244,0.5);
+  color: rgba(250, 248, 244, 0.5);
   text-decoration: none;
-  transition: background 0.2s, color 0.2s, border-color 0.2s;
+  transition:
+    background 0.2s,
+    color 0.2s,
+    border-color 0.2s;
 }
 .footer-social:hover {
-  background: rgba(250,248,244,0.1);
+  background: rgba(250, 248, 244, 0.1);
   color: var(--color-warm);
-  border-color: rgba(250,248,244,0.3);
+  border-color: rgba(250, 248, 244, 0.3);
 }
 
 /* ────────────────────────────────────────────
@@ -256,4 +392,19 @@ body {
 .nav-link.is-active {
   color: var(--color-ink) !important;
   background: var(--color-ink-08);
+}
+
+:where(a, button, [role="button"], .btn):focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(245, 240, 232, 0.9), 0 0 0 6px rgba(194, 154, 89, 0.35);
+  border-radius: 999px;
+}
+
+/* Reduce motion */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
 }
