@@ -331,5 +331,37 @@
       "experienceLinkText": "VR Iskustvo",
       "experienceSentence": "Za detaljan opis rekonstrukcije pogledajte VR Iskustvo."
     }
+  },
+  "header": {
+    "brand": "Diocletian's Dream",
+    "nav": {
+      "home": "Početna",
+      "about": "O nama",
+      "experience": "Iskustvo",
+      "blog": "Blog",
+      "visit": "Posjetite nas"
+    },
+    "cta": {
+      "bookNow": "Rezerviraj",
+      "tickets": "Ulaznice",
+      "bookTickets": "Rezerviraj ulaznice →"
+    },
+    "ui": {
+      "toggleLanguage": "Promijeni jezik",
+      "toggleMenu": "Otvori izbornik",
+      "closeMenu": "Zatvori izbornik"
+    },
+    "info": {
+      "locationLabel": "Lokacija",
+      "hoursLabel": "Radno vrijeme",
+      "address": "Zagrebačka ulica 1",
+      "hoursValue": "Pon–Ned · 10–18 h"
+    },
+    "lang": {
+      "hr": "Hrvatski",
+      "en": "English",
+      "switchToHr": "Prebaci na hrvatski",
+      "switchToEn": "Prebaci na engleski"
+    }
   }
 }

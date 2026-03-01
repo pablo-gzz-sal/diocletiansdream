@@ -331,5 +331,37 @@
       "experienceLinkText": "The Experience",
       "experienceSentence": "To explore the reconstruction in detail, visit The Experience."
     }
+  },
+   "header": {
+    "brand": "Diocletian's Dream",
+    "nav": {
+      "home": "Home",
+      "about": "About",
+      "experience": "Experience",
+      "blog": "Blog",
+      "visit": "Visit us"
+    },
+    "cta": {
+      "bookNow": "Book now",
+      "tickets": "Tickets",
+      "bookTickets": "Book tickets →"
+    },
+    "ui": {
+      "toggleLanguage": "Toggle language",
+      "toggleMenu": "Toggle menu",
+      "closeMenu": "Close menu"
+    },
+    "info": {
+      "locationLabel": "Location",
+      "hoursLabel": "Hours",
+      "address": "Zagrebačka ulica 1",
+      "hoursValue": "Mon–Sun · 10–18h"
+    },
+    "lang": {
+      "hr": "Hrvatski",
+      "en": "English",
+      "switchToHr": "Switch to Croatian",
+      "switchToEn": "Switch to English"
+    }
   }
 }
