@@ -1,0 +1,335 @@
+{
+  "home": {
+    "hero": {
+      "title": "Diocletian’s Palace VR Experience in Split",
+      "subtitle": "Step back to 305 AD and experience Diocletian’s Palace as it once stood through immersive virtual reality in the heart of Split, Croatia.",
+      "ctaPrimary": "Book Now",
+      "ctaSecondary": "Watch Trailer",
+      "1Line": "Step",
+      "2Line": "back",
+      "3Line": "into",
+      "4Line": "305 AD."
+    },
+    "experience": {
+      "title": "Experience Ancient Split Through Virtual Reality",
+      "p1": "Diocletian’s Dream is a 15-minute virtual reality experience located just steps from Diocletian’s Palace in Split. Through carefully designed 3D reconstruction and immersive VR technology, it presents the palace complex as it appeared in 305 AD.",
+      "p2": "You stand inside spaces that no longer exist in their original form and witness scenes inspired by historical sources, offering a rare visual interpretation of the palace at the height of Diocletian’s reign.",
+      "p3": "The experience focuses on atmosphere, scale, and visual storytelling, allowing visitors to better understand how the palace functioned within the life of the emperor and the city that grew around it.",
+      "cta": "The Experience"
+    },
+    "unique": {
+      "title": "What Makes This VR Experience Unique in Croatia",
+      "reconstruction": {
+        "title": "A Faithful Reconstruction of Diocletian’s Palace",
+        "text": "Our VR experience brings the original palace complex to life as it appeared in late antiquity. Every detail — architecture, atmosphere, and narrative — is carefully recreated to reflect historical research."
+      },
+      "journey": {
+        "title": "A 15-Minute Immersive Journey Through Roman History",
+        "text": "The experience is designed to be powerful, focused, and memorable. In just 15 minutes, visitors gain a deeper understanding of Split’s origins and the legacy of Emperor Diocletian."
+      },
+      "educational": {
+        "title": "Educational, Engaging, and Suitable for All Ages",
+        "text": "Whether you are visiting as a tourist, a family, or a school group, Diocletian’s Dream offers an accessible and engaging way to understand Roman heritage and the story of Split."
+      },
+      "cta": "Plan Your Visit"
+    },
+    "location": {
+      "title": "Located in the Heart of Split",
+      "p1": "Diocletian’s Dream is located near the Golden Gate entrance of Diocletian’s Palace, within the UNESCO World Heritage Site.",
+      "p2": "It is an ideal indoor activity in Split, perfect in any season and especially suitable when exploring the Old Town. Full details about opening hours, ticket prices, and directions are available on our Visit Us page.",
+      "cta": "Visit Us"
+    },
+    "reviews": {
+      "title": "Trusted by Thousands of Visitors",
+      "p1": "Over 50,000 visitors have experienced Diocletian’s Dream and described it as one of the most unique cultural experiences in Split.",
+      "p2": "With hundreds of five-star reviews, the experience consistently stands out for its storytelling, historical depth, and immersive technology.",
+      "selected": "Selected testimonials:",
+      "cta": "Read More Reviews"
+    },
+    "story": {
+      "title": "The Story Behind Diocletian’s Dream",
+      "p1": "Diocletian’s Dream was created to present cultural heritage in a modern and engaging way. By combining historical research with virtual reality technology, the project offers a new perspective on the presentation of Roman architecture and ancient history.",
+      "p2": "It is Croatia’s leading virtual reality heritage experience, built to connect modern audiences with ancient history.",
+      "cta": "About the Project"
+    },
+    "finalCta": {
+      "title": "Ready to Step Back in Time?",
+      "text": "Experience Diocletian’s Palace as it stood in 305 AD. Book your tickets today and discover Split’s history in a way you’ve never seen before.",
+      "cta": "Book Now"
+    },
+    "newsletter": {
+      "title": "Stay Connected",
+      "text": "Subscribe for updates about special offers, educational programs, and new historical content.",
+      "emailPlaceholder": "Your email address",
+      "submit": "Subscribe"
+    },
+    "marquee": {
+      "items": [
+        "Diocletian’s Palace VR experience",
+        "virtual reality Split",
+        "VR museum Split",
+        "immersive historical experience Split",
+        "educational VR experience",
+        "Diocletian Palace virtual reality"
+      ]
+    }
+  },
+  "experiencePage": {
+    "hero": {
+      "title": "The Diocletian’s Palace Virtual Reality Experience",
+      "p1": "Diocletian’s Dream is a 15-minute immersive virtual reality experience in Split that reconstructs Diocletian’s Palace as it appeared in 305 AD. Through historically informed 3D modelling and spatial design, visitors are placed inside the architectural environment of the late Roman Empire.",
+      "p2": "Diocletian’s Dream is located just outside the walls of Diocletian’s Palace, adjacent to Split’s historic centre, at Zagrebačka ul. 1.",
+      "ctaTrailer": "Watch the Trailer"
+    },
+    "whatYouWillSee": {
+      "title": "What You Will See",
+      "intro": "During the session, visitors enter a digitally reconstructed version of the imperial residence and surrounding spaces. The experience presents:",
+      "bullets": [
+        "The palace complex in its original architectural scale",
+        "Ceremonial and residential areas no longer preserved in full",
+        "Scenes inspired by the historical context of Diocletian’s reign"
+      ],
+      "outro": "Through immersive 360° visual storytelling, the reconstruction reveals the atmosphere, proportions, and presence of the palace as it once stood, offering a clearer sense of its original form and significance within ancient Split.",
+      "ctaBook": "Book Your Visit"
+    },
+    "howItWorks": {
+      "title": "How the Experience Works",
+      "p1": "The VR experience lasts approximately 15 minutes.",
+      "p2": "Sessions take place every 30 minutes throughout the day, starting at fixed time slots (for example 11:00, 11:30, 12:00, 12:30). To ensure a smooth start, we recommend arriving a few minutes before your scheduled session. The final session of the day begins 30 minutes before closing time.",
+      "p3": "After a short introduction by our staff, visitors wear a VR headset and are guided through the reconstructed palace environment. The experience is intuitive and accessible, even for first-time VR users.",
+      "p4": "Visitors enter in small groups at their assigned time. For practical information about opening hours and planning your visit, please see Visit Us.",
+      "visitUsLinkText": "Visit Us"
+    },
+    "availableLanguages": {
+      "title": "Available Languages",
+      "p1": "The VR experience is available in six languages: English, German, Italian, French, Croatian, and Spanish.",
+      "p2": "Visitors can select their preferred language before the session begins, ensuring clear narration and full understanding of the historical reconstruction.",
+      "note": "Language availability for the updated VR film launching in April 2026 is subject to confirmation with Declan."
+    },
+    "accuracy": {
+      "title": "Historical Reconstruction and Accuracy",
+      "p1": "The digital reconstruction is based on archaeological research, historical references, and architectural analysis of the palace remains. Where original structures are partially preserved today, the VR experience presents a complete visual interpretation of their former appearance. The aim is to provide historical context through immersive spatial presentation rather than abstract explanation."
+    },
+    "audience": {
+      "title": "Who Is This Experience For",
+      "individual": {
+        "title": "Individual Visitors",
+        "text": "Ideal for travellers interested in Roman history, architecture, and cultural heritage. See booking details under Individual Visits.",
+        "linkText": "Individual Visits"
+      },
+      "families": {
+        "title": "Families",
+        "text": "Accessible and engaging for older children and teenagers, especially those studying ancient history. We recommend the experience for children aged 8 and above. Additional practical information is available in the FAQ section below."
+      },
+      "schools": {
+        "title": "School Groups",
+        "text": "An educational complement to history curriculum and field trips in Split. Learn more on our School Visits page.",
+        "linkText": "School Visits"
+      },
+      "privateGroups": {
+        "title": "Private Groups",
+        "text": "Available for organised groups and tailored time slots. Details under Group Visits.",
+        "linkText": "Group Visits"
+      }
+    },
+    "locationAccessibility": {
+      "title": "Location and Accessibility",
+      "p1": "Diocletian’s Dream is located near the Golden Gate of Diocletian’s Palace, just outside the palace walls, at Zagrebačka ul. 1 in Split’s historic centre.",
+      "p2": "As a fully indoor experience, it is suitable year-round, regardless of weather conditions.",
+      "p3": "The venue is located on the ground floor and is wheelchair accessible, ensuring comfortable access for all visitors.",
+      "p4": "Full directions, opening hours, and practical visitor information are available on the Visit Us page.",
+      "visitUsLinkText": "Visit Us"
+    },
+    "faq": {
+      "title": "FAQ",
+      "items": [
+        {
+          "q": "How long does the experience last?",
+          "a": "The VR experience lasts approximately 15 minutes. Sessions start every 30 minutes, on the hour and half past (e.g. 11:00, 11:30, 12:00). Please arrive a few minutes early for your scheduled session. The final screening begins 30 minutes before closing time."
+        },
+        {
+          "q": "Is it suitable for children?",
+          "a": "The experience is suitable for children aged 8 and above. Younger visitors should be accompanied by an adult.\n\nAs this is a fully immersive 360° virtual reality experience, participants should feel comfortable using VR headsets and engaging with digital environments. Individuals who are sensitive to motion simulation, virtual heights, or immersive visual effects may wish to consider this before participating.\n\nIf you are unsure, our staff will be happy to provide guidance before the session."
+        },
+        {
+          "q": "Do I need to book in advance?",
+          "a": "Advance booking is recommended, especially during peak tourist season. You can secure your time slot on the Book Now page.",
+          "linkText": "Book Now"
+        },
+        {
+          "q": "Is the experience physically demanding?",
+          "a": "No. The experience is seated. Visitors remain comfortably seated throughout the 15-minute VR session."
+        }
+      ],
+      "schemaNote": "Implement FAQ schema here."
+    },
+    "trailer": {
+      "title": "Watch the Trailer",
+      "text": "Preview selected scenes from the reconstruction and see how Diocletian’s Palace has been digitally restored.",
+      "embedLabel": "Embedded Video",
+      "schemaNote": "Implement VideoObject schema."
+    },
+    "booking": {
+      "title": "Book Your VR Experience in Split",
+      "text": "Experience Diocletian’s Palace in its original architectural form. Secure your ticket and step inside a reconstructed chapter of Roman history.",
+      "cta": "Book Now"
+    }
+  },
+  "visitPage": {
+    "hero": {
+      "title": "Visit Diocletian’s Dream in Split",
+      "text": "Diocletian’s Dream is located in the historic centre of Split, just steps from the Golden Gate of Diocletian’s Palace. Whether you are visiting independently, with family, as part of a tour, or organising a school group, our virtual reality experience offers a structured and memorable way to explore Roman heritage.",
+      "ctaPrimary": "Book Now"
+    },
+    "individual": {
+      "title": "Individual Visits",
+      "p1": "Individual visits are ideal for solo travellers, couples, families, and small groups of friends who wish to experience Diocletian’s Palace through immersive virtual reality.",
+      "p2": "The 15-minute VR session runs throughout the day at fixed time intervals. Because group size per session is limited, we recommend booking your preferred time slot in advance.",
+      "p3": "If you are visiting Split and looking for a focused cultural experience near Diocletian’s Palace, this format offers a structured and accessible way to understand the city’s Roman origins.",
+      "cta": "Book Your Time Slot"
+    },
+    "groups": {
+      "title": "Group Visits",
+      "p1": "Group visits are available for organised travel groups, walking tours, cultural programs, and private bookings.",
+      "p2": "The experience can be scheduled as part of a guided tour of Split or integrated into a broader cultural itinerary. Time slots can be arranged to accommodate organised groups, depending on availability. If you are coordinating a group visit, please contact us in advance to discuss scheduling options and tailored arrangements.",
+      "note": "Please note: during the off-season (typically from November through the end of February), the museum may be closed for regular individual visits. However, scheduled group visits may still be arranged upon request.",
+      "cta": "Inquire About Group Visits",
+      "ctaLinkText": "Contact Us"
+    },
+    "schools": {
+      "title": "School Visits",
+      "p1": "Diocletian’s Dream is an educational complement to history curriculum and school field trips in Split.",
+      "p2": "The experience provides a visual and spatial interpretation of Diocletian’s Palace in 305 AD, supporting classroom learning through immersive reconstruction. Over the years, we have welcomed numerous school groups and received positive feedback from both teachers and students.",
+      "p3": "Special discounted rates are available for school visits. Pricing depends on the number of students and group size. Advance coordination is required. Please contact us to receive a customised offer and available dates. Off-season visits for school groups may also be arranged upon request.",
+      "cta": "Contact Us for School Discounts",
+      "ctaLinkText": "Contact"
+    },
+    "hours": {
+      "title": "Opening Hours",
+      "intro": "Diocletian’s Dream is currently open:",
+      "schedule": {
+        "days": "Monday – Saturday",
+        "time": "11:00 AM – 4:00 PM"
+      },
+      "sessions": "VR sessions begin every 30 minutes throughout the day, with the final session starting at 3:30 PM.",
+      "note": "Please note that opening hours may vary during holidays, special events, or seasonal adjustments.",
+      "google": "For the most accurate and up-to-date information, we recommend checking our official Google Business profile, which is regularly updated.",
+      "googleLinkText": "Google Business profile"
+    },
+    "seasonal": {
+      "title": "Seasonal Information",
+      "p1": "During the main season, individual visits operate according to published opening hours, with sessions running every 30 minutes.",
+      "p2": "In the winter period (most commonly from November through the end of February), regular public opening hours may be reduced or temporarily paused. Scheduled group and school visits can still be arranged during this time upon request.",
+      "p3": "For current availability and scheduling, please see Book Now or contact us directly.",
+      "bookNowLinkText": "Book Now"
+    },
+    "bookingInfo": {
+      "title": "Booking Information",
+      "p1": "Advance booking is strongly recommended.",
+      "p2": "Although we do welcome walk-in visitors when availability allows, sessions operate at fixed 30-minute intervals throughout the day (on the hour and half past). Because each session has limited capacity, arriving without a reservation may result in waiting for the next available time slot.",
+      "p3": "To secure your preferred session — especially during peak season — we recommend booking in advance.",
+      "p4": "For customised offers, group arrangements, or school discounts, please contact us directly.",
+      "ctaPrimary": "Book Now",
+      "ctaSecondary": "Contact Us"
+    },
+    "faq": {
+      "title": "FAQ",
+      "schemaNote": "Implement FAQPage schema here.",
+      "items": [
+        {
+          "q": "Do I need to book in advance?",
+          "a": "Advance booking is strongly recommended, especially during peak tourist season. While we do accept walk-in visitors when availability allows, each session has limited capacity and operates at fixed 30-minute intervals. Booking in advance guarantees your preferred time slot."
+        },
+        {
+          "q": "How often do sessions run?",
+          "a": "VR sessions take place every 30 minutes throughout the day. The final session begins 30 minutes before closing time. Please check our opening hours above or on our official Google Business profile for the most up-to-date information."
+        },
+        {
+          "q": "Where is Diocletian’s Dream located?",
+          "a": "We are located at Zagrebačka ul. 1, just outside the walls of Diocletian’s Palace near the Golden Gate, in Split’s historic centre."
+        },
+        {
+          "q": "Is Diocletian’s Dream within walking distance of the Palace?",
+          "a": "Yes. The experience is located near the palace walls and the Golden Gate entrance. It is less than a one-minute walk from the palace complex and easily accessible while exploring the Old Town."
+        },
+        {
+          "q": "Can groups visit during the off-season?",
+          "a": "Yes. During the winter period (typically November through February), regular individual opening hours may be reduced or temporarily paused. However, organised group and school visits can still be arranged upon request. Please contact us in advance to schedule your visit."
+        },
+        {
+          "q": "Are discounts available for school groups?",
+          "a": "Yes. Special discounted rates are available for school visits. Pricing depends on the number of students and group size. Please contact us directly to receive a customised offer and available dates."
+        },
+        {
+          "q": "Is the experience suitable for families with children?",
+          "a": "Yes. The experience is recommended for children aged 8 and above. Younger children should be accompanied by an adult. Additional details can be found in the Experience section.",
+          "linkText": "Experience"
+        }
+      ]
+    }
+  },
+  "aboutPage": {
+    "hero": {
+      "title": "About Diocletian’s Dream",
+      "p1": "Diocletian’s Dream is a specialised virtual reality heritage experience and VR museum located in the historic centre of Split, Croatia. Developed to present Diocletian’s Palace through immersive 3D reconstruction, the project combines archaeological interpretation, architectural analysis, and contemporary VR technology.",
+      "p2": "It is one of the first dedicated virtual reality museum concepts in Croatia and a distinct cultural experience within Split’s UNESCO-listed Old Town."
+    },
+    "mission": {
+      "title": "Our Mission",
+      "p1": "The purpose of Diocletian’s Dream is to offer a clearer spatial understanding of Diocletian’s Palace as it appeared in 305 AD.",
+      "p2": "While the palace remains one of the most significant Roman monuments in the world, much of its original structure has changed over centuries of adaptation and urban development. The VR reconstruction provides a visual interpretation of the palace’s architectural scale, ceremonial spaces, and imperial layout.",
+      "p3": "Rather than replacing traditional historical interpretation, the experience complements it, allowing visitors to contextualise what they see today in the preserved remains.",
+      "linkText": "Experience",
+      "linkSentence": "Learn more about how the reconstruction works on our Experience page."
+    },
+    "whyVr": {
+      "title": "Why Virtual Reality and History",
+      "p1": "Historical sites often require imagination. Walls survive, but volumes disappear. Structures fragment, and their original proportions become difficult to perceive.",
+      "p2": "Virtual reality enables a different type of engagement. By reconstructing architectural environments at full scale, it allows visitors to understand:",
+      "bullets": [
+        "Spatial relationships",
+        "Monumental scale",
+        "Urban context",
+        "Interior organisation"
+      ],
+      "p3": "Through immersive 360° modelling, Diocletian’s Dream presents the palace as an integrated architectural system within the Roman Empire."
+    },
+    "origin": {
+      "title": "The Origin of the Project",
+      "p1": "The idea behind Diocletian’s Dream emerged from a simple observation: even guided tours of Diocletian’s Palace often rely heavily on explanation and imagination.",
+      "p2": "Walking through the palace today requires reconstructing its original appearance mentally. The concept of Diocletian’s Dream was developed to bridge that gap, using digital technology to support historical interpretation. The founders envisioned a space where visitors could pause, step away from crowded streets, and see a complete architectural interpretation of the imperial residence.",
+      "p3": "Development took over a year and involved collaboration between historians, designers, digital artists, and VR specialists. The experience opened to the public in 2020 and has since welcomed tens of thousands of visitors.",
+      "p4": "From April 2026, visitors can experience a completely new VR film, developed according to the latest production and immersive technology standards, further enhancing the visual quality and narrative depth of the reconstruction.",
+      "note": "Confirm April 2026 VR film launch before publishing."
+    },
+    "languages": {
+      "title": "Available in Multiple Languages",
+      "p1": "To make the experience accessible to international visitors, Diocletian’s Dream is available in six languages: English, German, Italian, French, Croatian, and Spanish.",
+      "p2": "The goal has always been to present Roman heritage in a way that is clear and understandable across different cultural backgrounds. Offering multilingual narration ensures that visitors can fully engage with the historical reconstruction in their preferred language.",
+      "note": "Language availability for the updated VR film launching in April 2026 must be confirmed before publishing."
+    },
+    "media": {
+      "title": "Media and Public Recognition",
+      "p1": "Since opening, Diocletian’s Dream has been featured in regional and international travel publications, cultural portals, and news outlets.",
+      "p2": "Articles have highlighted the experience as an innovative approach to Roman heritage, a modern complement to walking tours of Split, a distinctive indoor cultural activity within the Old Town, and much more.",
+      "pressLogosPlaceholder": "Insert press logos here",
+      "linksPlaceholder": "Insert featured article links here",
+      "note": "Add article links and logos when ready."
+    },
+    "culturalLandscape": {
+      "title": "Part of Split’s Cultural Landscape",
+      "p1": "Diocletian’s Dream is located just outside the walls of Diocletian’s Palace, approximately a one-minute walk from the Golden Gate entrance, at Zagrebačka ul. 1 in Split.",
+      "p2Intro": "The experience is frequently combined with:",
+      "bullets": [
+        "Walking tours of the palace",
+        "Educational field trips",
+        "Cultural itineraries",
+        "Organised group visits"
+      ],
+      "visitLinkText": "Visit Us",
+      "visitSentence": "To plan your visit, see Visit Us.",
+      "experienceLinkText": "The Experience",
+      "experienceSentence": "To explore the reconstruction in detail, visit The Experience."
+    }
+  }
+}

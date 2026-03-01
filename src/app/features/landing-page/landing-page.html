@@ -6,133 +6,115 @@
   <!-- ════════════════════════════════════════
        HERO
   ════════════════════════════════════════ -->
-  <section class="hero">
-    <!-- Background layers (brand subtle details) -->
-    <div class="absolute inset-0 overflow-hidden dd-grain">
-      <!-- soft radial glows -->
-      <div
-        class="absolute -top-24 -left-24 h-[420px] w-[420px] rounded-full blur-3xl opacity-25 dd-float"
-        style="background: radial-gradient(circle at 30% 30%, var(--dd-purple), transparent 60%)"
-      ></div>
+<section class="hero">
+  <!-- background grain texture -->
+  <div class="grain"></div>
+  <div class="hero-blob hero-blob--1"></div>
+  <div class="hero-blob hero-blob--2"></div>
 
-      <div
-        class="absolute -bottom-28 -right-24 h-[520px] w-[520px] rounded-full blur-3xl opacity-25 dd-float"
-        style="
-          animation-delay: -2.5s;
-          background: radial-gradient(circle at 30% 30%, var(--dd-gold), transparent 60%);
-        "
-      ></div>
+  <div class="hero-inner">
+    <!-- left: big editorial heading -->
+    <div class="hero-text">
+      <!-- Use existing JSON key (no new data) -->
+      <p class="eyebrow">VR Museum · Diocletian's Palace · Split</p>
 
-      <!-- elegant top border -->
-      <div
-        class="absolute left-0 right-0 top-0 h-px opacity-60"
-        style="
-          background: linear-gradient(
-            90deg,
-            transparent,
-            rgba(194, 154, 89, 0.65),
-            rgba(45, 4, 106, 0.55),
-            transparent
-          );
-        "
-      ></div>
+      <!-- Keep the split look, but use i18n for the real H1 for SEO -->
+      <h1 class="hero-h1">
+        <!-- Real SEO title (i18n) -->
+        <span class="sr-only">{{ 'home.hero.title' | translate }}</span>
 
-      <!-- subtle grid -->
-      <div
-        class="absolute inset-0 opacity-[0.05]"
-        style="
-          background-image:
-            linear-gradient(to right, rgba(45, 4, 106, 0.25) 1px, transparent 1px),
-            linear-gradient(to bottom, rgba(194, 154, 89, 0.2) 1px, transparent 1px);
-          background-size: 54px 54px;
-        "
-      ></div>
-    </div>
+        <!-- Visual split lines (static words to preserve the exact design) -->
+        <span class="h1-line h1-line--1">{{ 'home.hero.1Line' | translate }}</span>
+        <span class="h1-line h1-line--2">{{ 'home.hero.2Line' | translate }}</span>
+        <span class="h1-line h1-line--3">{{ 'home.hero.3Line' | translate }}</span>
+        <span class="h1-line h1-line--4">{{ 'home.hero.4Line' | translate }}</span>
+      </h1>
 
-    <!-- existing grain + blobs -->
-    <div class="grain"></div>
-    <div class="hero-blob hero-blob--1"></div>
-    <div class="hero-blob hero-blob--2"></div>
+      <!-- Existing JSON subtitle -->
+      <p class="hero-sub">
+        {{ 'home.hero.subtitle' | translate }}
+      </p>
 
-    <div class="hero-inner">
-      <!-- left: big editorial heading -->
-      <div class="hero-text">
-        <p class="eyebrow">VR Museum · Diocletian's Palace · Split</p>
-
-        <h1 class="hero-h1">
-          <span class="h1-line h1-line--1">Step</span>
-          <span class="h1-line h1-line--2">back</span>
-          <span class="h1-line h1-line--3">into</span>
-          <span class="h1-line h1-line--4">305 AD.</span>
-        </h1>
-
-        <p class="hero-sub">
-          A 15-minute VR museum experience that brings Diocletian's Palace to life in its original
-          splendour — right inside the UNESCO Old Town.
-        </p>
-
-        <div class="hero-actions">
-          <a routerLink="/booking" class="btn btn--dark">Book tickets</a>
-          <a href="#experience" class="btn btn--ghost">See the experience</a>
-        </div>
-
-        <div class="hero-tags">
-          <span>15-min VR show</span>
-          <span>UNESCO context</span>
-          <span>Family-friendly</span>
-        </div>
+      <div class="hero-actions">
+        <a routerLink="/booking" class="btn btn--dark">
+          {{ 'home.hero.ctaPrimary' | translate }}
+        </a>
+        <a href="#experience" class="btn btn--ghost">
+          {{ 'home.hero.ctaSecondary' | translate }}
+        </a>
       </div>
 
-      <!-- right: floating card -->
-      <div class="hero-card">
-        <div class="hero-card__img">
-          <div class="hero-card__placeholder">Replace with a strong museum / VR still</div>
-        </div>
-        <div class="hero-card__footer">
-          <div>
-            <p class="card-title">Museum experience</p>
-            <p class="card-sub">Reconstructed palace interiors · 360°</p>
-          </div>
-          <a routerLink="/booking" class="inline-link">Tickets →</a>
-        </div>
+      <!-- Use existing JSON keys (no hardcoded tags) -->
+      <div class="hero-tags">
+        <span>{{ 'home.unique.reconstruction.title' | translate }}</span>
+        <span>{{ 'home.unique.journey.title' | translate }}</span>
+        <span>{{ 'home.unique.educational.title' | translate }}</span>
       </div>
     </div>
 
-    <!-- editorial tile grid (art-gallery mood board) -->
-    <div class="tile-grid">
-      <ng-container *ngFor="let tile of tiles">
-        <div class="tile" [ngClass]="tile.span">
-          <span>{{ tile.label }}</span>
+    <!-- right: floating card -->
+    <div class="hero-card">
+      <div class="hero-card__img">
+        <!-- No placeholder text: always a real image -->
+        <img
+          src="assets/images/heroAnimation.jpg"
+          alt="{{ 'home.hero.title' | translate }}"
+          loading="eager"
+          fetchpriority="high"
+        />
+      </div>
+
+      <div class="hero-card__footer">
+        <div>
+          <p class="card-title">{{ 'home.experience.title' | translate }}</p>
+          <p class="card-sub">{{ 'home.unique.reconstruction.text' | translate }}</p>
         </div>
-      </ng-container>
+        <a routerLink="/booking" class="inline-link">
+          {{ 'home.hero.ctaPrimary' | translate }} →
+        </a>
+      </div>
     </div>
-  </section>
+  </div>
+
+  <!-- tile grid stays component-driven (no JSON available for it yet) -->
+  <div class="tile-grid" *ngIf="tiles?.length">
+    <ng-container *ngFor="let tile of tiles">
+      <div class="tile" [ngClass]="tile.span">
+        <span>{{ tile.label }}</span>
+      </div>
+    </ng-container>
+  </div>
+</section>
 
   <!-- ════════════════════════════════════════
        MARQUEE STRIP
+       (not in JSON yet — keep as lightweight SEO strip)
   ════════════════════════════════════════ -->
-  <div class="marquee-wrap">
+  <div class="marquee-wrap" aria-label="highlights">
     <div class="marquee-track">
-      <span>305 AD</span><span>·</span> <span>UNESCO Heritage</span><span>·</span>
-      <span>Virtual Reality</span><span>·</span> <span>Split, Croatia</span><span>·</span>
-      <span>Diocletian's Palace</span><span>·</span> <span>15 Minutes</span><span>·</span>
-      <span>305 AD</span><span>·</span> <span>UNESCO Heritage</span><span>·</span>
-      <span>Virtual Reality</span><span>·</span> <span>Split, Croatia</span><span>·</span>
-      <span>Diocletian's Palace</span><span>·</span> <span>15 Minutes</span><span>·</span>
+      <!-- First loop -->
+      <ng-container *ngFor="let item of 'home.marquee.items' | translate">
+        <span>{{ item }}</span>
+        <span>·</span>
+      </ng-container>
+
+      <!-- Duplicate for infinite scroll effect -->
+      <ng-container *ngFor="let item of 'home.marquee.items' | translate">
+        <span>{{ item }}</span>
+        <span>·</span>
+      </ng-container>
     </div>
   </div>
 
   <!-- ════════════════════════════════════════
-       ABOUT / BENTO
+       EXPERIENCE (from JSON)
   ════════════════════════════════════════ -->
-  <section class="about">
+  <section id="experience" class="about">
     <div class="about-inner">
       <div class="about-heading">
-        <p class="eyebrow">The experience</p>
+        <p class="eyebrow">{{ 'home.experience.cta' | translate }}</p>
         <h2 class="about-h2">
-          <span class="ah-line">We</span>
-          <span class="ah-line ah-line--indent">restore</span>
-          <span class="ah-line">history.</span>
+          {{ 'home.experience.title' | translate }}
         </h2>
       </div>
 
@@ -150,25 +132,32 @@
         <!-- text block -->
         <div class="bento-cell bento-cell--text">
           <p class="bento-copy">
-            Put on the headset and travel through reconstructed rooms, architecture and stories from
-            Diocletian's era — a modern way to understand what you're already walking through
-            outside.
+            {{ 'home.experience.p1' | translate }}
           </p>
-          <a routerLink="/booking" class="btn btn--dark" style="margin-top: 2rem">Book tickets</a>
-          <a routerLink="/blog" class="inline-link" style="display: block; margin-top: 1rem"
-            >Read the story →</a
-          >
+          <p class="bento-copy" style="margin-top: 1rem">
+            {{ 'home.experience.p2' | translate }}
+          </p>
+          <p class="bento-copy" style="margin-top: 1rem">
+            {{ 'home.experience.p3' | translate }}
+          </p>
+
+          <a routerLink="/booking" class="btn btn--dark" style="margin-top: 2rem">
+            {{ 'home.hero.ctaPrimary' | translate }}
+          </a>
+          <a routerLink="/experience" class="inline-link" style="display: block; margin-top: 1rem">
+            {{ 'home.experience.cta' | translate }} →
+          </a>
         </div>
 
-        <!-- stat cards -->
+        <!-- stat cards (kept as strong quick facts; add JSON later if you want) -->
         <div class="bento-cell bento-cell--stat">
           <span class="stat-num">15'</span>
-          <span class="stat-label">Focused VR experience</span>
+          <span class="stat-label">VR session</span>
         </div>
 
         <div class="bento-cell bento-cell--stat bento-cell--statB">
           <span class="stat-num">305</span>
-          <span class="stat-label">AD — the year you'll visit</span>
+          <span class="stat-label">AD</span>
         </div>
 
         <!-- wide image C -->
@@ -180,93 +169,210 @@
   </section>
 
   <!-- ════════════════════════════════════════
-       PLAN YOUR VISIT
+       UNIQUE (from JSON)
   ════════════════════════════════════════ -->
-  <section id="visit" class="visit">
+  <section class="visit">
     <div class="visit-inner">
       <div class="visit-header">
         <div>
-          <p class="eyebrow">Plan your visit</p>
-          <h2 class="section-h2">Everything<br />you need.</h2>
+          <p class="eyebrow">{{ 'home.unique.cta' | translate }}</p>
+          <h2 class="section-h2">
+            {{ 'home.unique.title' | translate }}
+          </h2>
         </div>
-        <a routerLink="/booking" class="inline-link hide-mobile">Tickets →</a>
+
+        <a routerLink="/visit" class="inline-link hide-mobile">
+          {{ 'home.unique.cta' | translate }} →
+        </a>
       </div>
 
       <div class="visit-cards">
-        <ng-container *ngFor="let card of visitCards">
-          <div class="vcard">
-            <p class="vcard-title">{{ card.title }}</p>
-            <p class="vcard-text">{{ card.text }}</p>
-            <a [routerLink]="card.link" class="btn btn--ghost vcard-btn">{{ card.cta }}</a>
-          </div>
-        </ng-container>
+        <div class="vcard">
+          <p class="vcard-title">{{ 'home.unique.reconstruction.title' | translate }}</p>
+          <p class="vcard-text">{{ 'home.unique.reconstruction.text' | translate }}</p>
+          <a routerLink="/experience" class="btn btn--ghost vcard-btn">
+            {{ 'home.experience.cta' | translate }}
+          </a>
+        </div>
+
+        <div class="vcard">
+          <p class="vcard-title">{{ 'home.unique.journey.title' | translate }}</p>
+          <p class="vcard-text">{{ 'home.unique.journey.text' | translate }}</p>
+          <a routerLink="/booking" class="btn btn--ghost vcard-btn">
+            {{ 'home.hero.ctaPrimary' | translate }}
+          </a>
+        </div>
+
+        <div class="vcard">
+          <p class="vcard-title">{{ 'home.unique.educational.title' | translate }}</p>
+          <p class="vcard-text">{{ 'home.unique.educational.text' | translate }}</p>
+          <a routerLink="/visit" class="btn btn--ghost vcard-btn">
+            {{ 'home.unique.cta' | translate }}
+          </a>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- ════════════════════════════════════════
-       BLOG
+       LOCATION (from JSON)
+  ════════════════════════════════════════ -->
+<section class="about">
+  <div class="about-inner">
+    <div class="about-heading">
+      <p class="eyebrow">{{ 'home.location.cta' | translate }}</p>
+      <h2 class="about-h2">{{ 'home.location.title' | translate }}</h2>
+    </div>
+
+    <div class="bento bento--location">
+      <!-- Text -->
+      <div class="bento-cell bento-cell--text bento-cell--locText">
+        <p class="bento-copy">{{ 'home.location.p1' | translate }}</p>
+        <p class="bento-copy" style="margin-top: 1rem">{{ 'home.location.p2' | translate }}</p>
+
+        <a routerLink="/visit" class="btn btn--dark" style="margin-top: 2rem">
+          {{ 'home.location.cta' | translate }}
+        </a>
+      </div>
+
+      <!-- Map -->
+      <div class="bento-cell bento-cell--map">
+        <iframe
+          class="bento-map"
+          title="Diocletian's Dream — Zagrebačka ulica 1, Split"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d720.7837!2d16.43997!3d43.50831!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x13355df883e58f93%3A0x5d2f8c929c408e3!2sZagreba%C4%8Dka%20ul.%201%2C%2021000%2C%20Split%2C%20Croatia!5e0!3m2!1sen!2shr!4v1700000000000!5m2!1sen!2shr"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          allowfullscreen
+        ></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+  <!-- ════════════════════════════════════════
+       REVIEWS (from JSON)
   ════════════════════════════════════════ -->
   <section class="blog">
     <div class="blog-inner">
       <div class="blog-header">
         <div>
-          <p class="eyebrow">From the blog</p>
-          <h2 class="section-h2">Stories<br />& guides.</h2>
+          <p class="eyebrow">{{ 'home.reviews.selected' | translate }}</p>
+          <h2 class="section-h2">{{ 'home.reviews.title' | translate }}</h2>
         </div>
-        <a routerLink="/blog" class="inline-link hide-mobile">View all →</a>
+
+        <a routerLink="/reviews" class="inline-link hide-mobile">
+          {{ 'home.reviews.cta' | translate }} →
+        </a>
       </div>
 
-      <div class="blog-grid">
-        <ng-container *ngFor="let post of blogCards; let i = index">
-          <div class="bpost" [ngClass]="i === 0 ? 'bpost--featured' : ''">
-            <div class="bpost-img" *ngIf="post.image">
-              <img [src]="post.image" [alt]="post.title" />
-            </div>
+      <div class="bento">
+        <div class="bento-cell bento-cell--text" style="grid-column: 1 / 8">
+          <p class="bento-copy">{{ 'home.reviews.p1' | translate }}</p>
+          <p class="bento-copy" style="margin-top: 1rem">{{ 'home.reviews.p2' | translate }}</p>
 
-            <div class="bpost-body">
-              <p class="bpost-title" [innerHTML]="post.title"></p>
-              <p class="bpost-excerpt" [innerHTML]="post.excerpt"></p>
+          <a routerLink="/reviews" class="inline-link" style="display: block; margin-top: 1.25rem">
+            {{ 'home.reviews.cta' | translate }} →
+          </a>
+        </div>
 
-              <a [routerLink]="['/blog', post.slug]" class="inline-link"> Read more → </a>
-            </div>
-          </div>
-        </ng-container>
-      </div>
-    </div>
-  </section>
-
-  <!-- ════════════════════════════════════════
-       CTA BANNER
-  ════════════════════════════════════════ -->
-  <section class="cta-banner">
-    <div class="cta-inner">
-      <div class="cta-grain"></div>
-      <p class="eyebrow eyebrow--light">Tickets</p>
-      <h2 class="cta-h2">Make it the highlight<br />of your Split day.</h2>
-      <p class="cta-sub">
-        Book your museum time slot and step into the palace as it once was — then walk outside and
-        recognise it in real life.
-      </p>
-      <div class="cta-actions">
-        <a routerLink="/booking" class="btn btn--cream">Book tickets</a>
-        <a href="#faq" class="btn btn--ghost-light">Read FAQ</a>
+        <div class="bento-cell bento-cell--imgB" style="grid-column: 8 / 13">
+          <div class="bento-img-placeholder">Selected testimonials / rating card</div>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- ════════════════════════════════════════
-       FAQ
+       STORY (from JSON)
   ════════════════════════════════════════ -->
-  <section id="faq" class="faq">
+  <section class="about">
+    <div class="about-inner">
+      <div class="about-heading">
+        <p class="eyebrow">{{ 'home.story.cta' | translate }}</p>
+        <h2 class="about-h2">{{ 'home.story.title' | translate }}</h2>
+      </div>
+
+      <div class="bento">
+        <div class="bento-cell bento-cell--imgA" style="grid-column: 1 / 6; grid-row: 1 / 2">
+          <div class="bento-img-placeholder">Project / team / production still</div>
+        </div>
+
+        <div class="bento-cell bento-cell--text" style="grid-column: 6 / 13; grid-row: 1 / 2">
+          <p class="bento-copy">{{ 'home.story.p1' | translate }}</p>
+          <p class="bento-copy" style="margin-top: 1rem">{{ 'home.story.p2' | translate }}</p>
+
+          <a routerLink="/about" class="btn btn--dark" style="margin-top: 2rem">
+            {{ 'home.story.cta' | translate }}
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════
+       FINAL CTA (from JSON)
+  ════════════════════════════════════════ -->
+<!-- <section class="cta-banner">
+  <div class="cta-inner">
+    <div class="cta-grain"></div>
+
+    <p class="eyebrow eyebrow--light">{{ 'home.finalCta.cta' | translate }}</p>
+    <h2 class="cta-h2">{{ 'home.finalCta.title' | translate }}</h2>
+    <p class="cta-sub">{{ 'home.finalCta.text' | translate }}</p>
+
+    <div class="cta-actions">
+      <a routerLink="/booking" class="btn btn--cream">
+        {{ 'home.finalCta.cta' | translate }}
+      </a>
+      <a routerLink="/experience" class="btn btn--ghost-light">
+        {{ 'home.experience.cta' | translate }}
+      </a>
+    </div>
+  </div>
+</section> -->
+
+  <!-- ════════════════════════════════════════
+       NEWSLETTER (from JSON)
+  ════════════════════════════════════════ -->
+  <section class="faq">
     <div class="faq-inner">
       <div class="faq-left">
-        <p class="eyebrow">FAQ</p>
-        <h2 class="section-h2">Good<br />to know.</h2>
-        <p class="faq-hint">Simple answers to common questions.</p>
+        <p class="eyebrow">{{ 'home.newsletter.submit' | translate }}</p>
+        <h2 class="section-h2">{{ 'home.newsletter.title' | translate }}</h2>
+        <p class="faq-hint">{{ 'home.newsletter.text' | translate }}</p>
       </div>
 
       <div class="faq-list">
+        <div class="faq-item faq-item--open">
+          <div class="faq-a" style="max-height: 400px; opacity: 1">
+            <form class="newsletter-form" (ngSubmit)="onSubscribe()" #f="ngForm">
+              <div style="display: flex; gap: 0.75rem; flex-wrap: wrap">
+                <input
+                  type="email"
+                  name="email"
+                  [(ngModel)]="newsletterEmail"
+                  required
+                  [placeholder]="'home.newsletter.emailPlaceholder' | translate"
+                  style="
+                    flex: 1;
+                    min-width: 220px;
+                    padding: 0.9rem 1.1rem;
+                    border-radius: 1rem;
+                    border: 1px solid var(--ink-20);
+                    background: rgba(255,255,255,0.8);
+                    outline: none;
+                  "
+                />
+                <button type="submit" class="btn btn--dark" [disabled]="f.invalid">
+                  {{ 'home.newsletter.submit' | translate }}
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <!-- Optional: keep your FAQ accordion below if you still want it on homepage -->
         <div
           *ngFor="let item of faqs; let i = index"
           class="faq-item"
@@ -283,10 +389,6 @@
       </div>
     </div>
   </section>
-
-  <!-- ════════════════════════════════════════
-       FOOTER
-  ════════════════════════════════════════ -->
 </main>
 
 <app-footer></app-footer>

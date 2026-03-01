@@ -7,15 +7,19 @@ import { Meta, Title } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
 import { WpService } from '../../shared/services/wp-service';
 import { IntroReveal } from '../../shared/components/intro-reveal/intro-reveal';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-landing-page',
   standalone: true,
-  imports: [RouterLink, Header, Footer, RevealOnScrollDirective, CommonModule, IntroReveal],
+  imports: [RouterLink, Header, Footer, FormsModule, CommonModule, IntroReveal, TranslateModule],
   templateUrl: './landing-page.html',
   styleUrl: './landing-page.css',
 })
 export class LandingPage implements OnInit {
+  newsletterEmail: string = '';
+  isSubmitting: boolean = false;
   tiles = [
     { label: '305 AD', span: 'tile-span-2' },
     { label: 'VR Museum', span: 'tile-span-1' },
@@ -71,14 +75,18 @@ export class LandingPage implements OnInit {
     },
   ];
 
+  marqueeItems: string[] = [];
+
   constructor(
     private title: Title,
     private meta: Meta,
     private wpService: WpService,
+    private translate: TranslateService,
   ) {}
 
   ngOnInit(): void {
     window.scroll(0, 0);
+    this.setSeoTags();
     this.title.setTitle('Diocletian’s Dream VR Museum | Step back into 305 AD');
     this.meta.updateTag({
       name: 'description',
@@ -92,6 +100,9 @@ export class LandingPage implements OnInit {
         'Step into a VR reconstruction of Diocletian’s Palace and understand the UNESCO site like never before.',
     });
     this.meta.updateTag({ name: 'robots', content: 'index,follow' });
+    this.translate.get('home.marquee.items').subscribe((items: string[]) => {
+      this.marqueeItems = items;
+    });
     this.getBlogs();
   }
 
@@ -103,5 +114,52 @@ export class LandingPage implements OnInit {
 
   toggleFaq(i: number) {
     this.faqs = this.faqs.map((x, idx) => (idx === i ? { ...x, open: !x.open } : x));
+  }
+
+  onSubscribe(): void {
+    if (!this.newsletterEmail) return;
+
+    this.isSubmitting = true;
+    console.log('Newsletter email:', this.newsletterEmail);
+
+    setTimeout(() => {
+      this.isSubmitting = false;
+      this.newsletterEmail = '';
+
+      alert('Subscribed successfully!');
+    }, 1000);
+  }
+
+  private setSeoTags(): void {
+    this.translate.get('home.hero.title').subscribe((titleText: string) => {
+      // Browser tab title
+      this.title.setTitle(titleText);
+
+      // Primary meta description
+      this.meta.updateTag({
+        name: 'description',
+        content:
+          'Diocletian’s Palace VR experience in Split. Step into 305 AD through an immersive virtual reality museum experience inside the UNESCO Old Town.',
+      });
+
+      // Optional keywords (Google mostly ignores but still useful)
+      this.meta.updateTag({
+        name: 'keywords',
+        content:
+          'Diocletian’s Palace VR experience, virtual reality Split, VR museum Split, immersive historical experience Split, Roman history experience Croatia',
+      });
+
+      // OpenGraph (for social sharing)
+      this.meta.updateTag({
+        property: 'og:title',
+        content: titleText,
+      });
+
+      this.meta.updateTag({
+        property: 'og:description',
+        content:
+          'Experience Diocletian’s Palace in virtual reality inside Split’s UNESCO Old Town.',
+      });
+    });
   }
 }

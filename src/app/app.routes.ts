@@ -8,16 +8,18 @@ import { About } from './features/about/about';
 import { Privacy } from './features/legal/privacy/privacy';
 import { Terms } from './features/legal/terms/terms';
 import { Cookies } from './features/legal/cookies/cookies';
+import { Experience } from './features/experience/experience';
 
 export const routes: Routes = [
   { path: '', component: LandingPage },
   { path: 'booking', component: Booking },
-  { path: 'contact', component: Contact },
+  { path: 'visit', component: Contact },
   { path: 'about', component: About },
   { path: 'blog', component: BlogListPage },
   { path: 'blog/:slug', component: BlogPostPage },
   { path: 'privacy', component: Privacy },
   { path: 'terms', component: Terms },
   { path: 'cookies', component: Cookies },
+  { path: 'experience', component: Experience },
   { path: '**', redirectTo: '' },
 ];

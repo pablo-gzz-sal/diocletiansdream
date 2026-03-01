@@ -1,10 +1,14 @@
-import { ApplicationConfig, provideBrowserGlobalErrorListeners, provideZoneChangeDetection } from '@angular/core';
+import { ApplicationConfig, importProvidersFrom, provideBrowserGlobalErrorListeners, provideZoneChangeDetection } from '@angular/core';
 import { provideRouter } from '@angular/router';
 
 import { routes } from './app.routes';
-import { provideHttpClient } from '@angular/common/http';
-import { provideTranslateService } from '@ngx-translate/core';
-import { provideTranslateHttpLoader } from '@ngx-translate/http-loader';
+import { HttpClient, provideHttpClient } from '@angular/common/http';
+import {  TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { JsonTranslateLoader } from './core/i18n/json-translate.loader';
+
+export function HttpLoaderFactory(http: HttpClient) {
+  return new JsonTranslateLoader(http);
+}
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -12,15 +16,16 @@ export const appConfig: ApplicationConfig = {
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
     provideHttpClient(),
-    
-    provideTranslateService({
-      loader: provideTranslateHttpLoader({
-        prefix: './assets/i18n/',
-        suffix: '.json',
+    importProvidersFrom(
+      TranslateModule.forRoot({
+        defaultLanguage: 'es',
+        loader: {
+          provide: TranslateLoader,
+          useFactory: HttpLoaderFactory,
+          deps: [HttpClient],
+        },
+        useDefaultLang: true,
       }),
-
-      fallbackLang: 'en', // <- replaces defaultLanguage/useDefaultLang
-      lang: 'en',         // initial language
-    }),
+    ),
   ]
 };

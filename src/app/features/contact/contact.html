@@ -1,25 +1,25 @@
 <app-header></app-header>
-<main class="overflow-x-hidden bg-cream">
 
-  <!-- ════════ HERO ════════ -->
-  <section class="relative overflow-hidden bg-cream pt-24 pb-16 px-6 lg:px-8">
-        <!-- Background layers (brand subtle details) -->
+<main class="overflow-x-hidden bg-cream">
+  <!-- ════════════════════════════════════════
+       HERO
+  ════════════════════════════════════════ -->
+  <section class="relative overflow-hidden bg-cream pt-40 pb-16 px-6 lg:px-8">
+    <!-- Background layers -->
     <div class="absolute inset-0 overflow-hidden dd-grain">
-      <!-- soft radial glows -->
       <div
-        class="absolute -top-24 -left-24 h-[420px] w-[420px] rounded-full blur-3xl opacity-25 dd-float"
+        class="pointer-events-none absolute -top-24 -left-24 h-[420px] w-[420px] rounded-full blur-3xl opacity-25 dd-float"
         style="background: radial-gradient(circle at 30% 30%, var(--dd-purple), transparent 60%)"
       ></div>
 
       <div
-        class="absolute -bottom-28 -right-24 h-[520px] w-[520px] rounded-full blur-3xl opacity-25 dd-float"
+        class="pointer-events-none absolute -bottom-28 -right-24 h-[520px] w-[520px] rounded-full blur-3xl opacity-25 dd-float"
         style="
           animation-delay: -2.5s;
           background: radial-gradient(circle at 30% 30%, var(--dd-gold), transparent 60%);
         "
       ></div>
 
-      <!-- elegant top border -->
       <div
         class="absolute left-0 right-0 top-0 h-px opacity-60"
         style="
@@ -33,9 +33,8 @@
         "
       ></div>
 
-      <!-- subtle grid -->
       <div
-        class="absolute inset-0 opacity-[0.05]"
+        class="pointer-events-none absolute inset-0 opacity-[0.05]"
         style="
           background-image:
             linear-gradient(to right, rgba(45, 4, 106, 0.25) 1px, transparent 1px),
@@ -44,120 +43,122 @@
         "
       ></div>
     </div>
-    <div class="pointer-events-none absolute -top-24 -right-24 w-[500px] h-[500px] rounded-full opacity-40 blur-[80px] animate-[float1_9s_ease-in-out_infinite]"
-         style="background:radial-gradient(circle,#d4b896 0%,transparent 70%)"></div>
-    <div class="pointer-events-none absolute -bottom-20 -left-20 w-[350px] h-[350px] rounded-full opacity-35 blur-[80px] animate-[float2_11s_ease-in-out_infinite]"
-         style="background:radial-gradient(circle,#c4a882 0%,transparent 70%)"></div>
 
     <div class="relative mx-auto max-w-7xl">
-      <p class="font-[family-name:var(--font-sans)] text-[0.65rem] font-medium tracking-[0.2em] uppercase text-ink-60 mb-5">Contact</p>
-      <h1 class="font-[family-name:var(--font-serif)] font-light leading-[0.88] tracking-[-0.02em] text-ink">
-        <span class="block text-[clamp(3.5rem,9vw,7.5rem)] opacity-0 translate-y-9 animate-[revealLine_0.9s_cubic-bezier(0.16,1,0.3,1)_0.05s_forwards]">Get in</span>
-        <span class="block text-[clamp(3.5rem,9vw,7.5rem)] italic pl-10 opacity-0 translate-y-9 animate-[revealLine_0.9s_cubic-bezier(0.16,1,0.3,1)_0.15s_forwards]">touch</span>
-        <span class="block text-[clamp(3.5rem,9vw,7.5rem)] font-medium opacity-0 translate-y-9 animate-[revealLine_0.9s_cubic-bezier(0.16,1,0.3,1)_0.25s_forwards]">with us.</span>
-      </h1>
-      <p class="mt-7 max-w-xl font-[family-name:var(--font-sans)] text-[1rem] leading-[1.7] text-ink-60">
-        We're right inside the Palace walls. Come find us, drop us an email, or give us a call — we're happy to help.
+      <p class="mb-5 font-[family-name:var(--font-sans)] text-[0.65rem] font-medium tracking-[0.2em] uppercase text-ink-60">
+        Visit Diocletian’s Dream Split · Golden Gate · scheduled time slots
       </p>
-    </div>
-  </section>
 
-  <section class="py-16 bg-cream px-6 lg:px-8">
-    <div class="mx-auto max-w-7xl">
+      <h1 class="font-[family-name:var(--font-serif)] font-light leading-[0.92] tracking-[-0.02em] text-ink">
+        <span
+          class="block text-[clamp(3.0rem,7.6vw,6.8rem)] opacity-0 translate-y-9 animate-[revealLine_0.9s_cubic-bezier(0.16,1,0.3,1)_0.05s_forwards]"
+        >
+          {{ 'visitPage.hero.title' | translate }}
+        </span>
+      </h1>
 
-      <!-- 3-column info cards -->
-      <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+      <div class="mt-10 grid gap-12 lg:grid-cols-[1fr_420px] lg:items-start">
+        <div class="max-w-2xl">
+          <p class="font-[family-name:var(--font-sans)] text-[0.98rem] leading-[1.9] text-ink-60">
+            {{ 'visitPage.hero.text' | translate }}
+          </p>
 
-        <!-- Address -->
-        <div class="rounded-[2.5rem] border border-black/10 bg-white/60 hover:bg-white transition-colors p-8 flex flex-col gap-4">
-          <span class="text-2xl">📍</span>
-          <div>
-            <p class="font-[family-name:var(--font-sans)] text-[0.65rem] font-medium tracking-[0.18em] uppercase text-ink-60 mb-2">Address</p>
-            <p class="font-[family-name:var(--font-serif)] text-[1.3rem] leading-[1.35] text-ink">
-              Zagrebačka ulica 1,<br>Split, 21000
+          <div class="mt-10 flex flex-wrap gap-3">
+            <a
+              routerLink="/booking"
+              class="inline-flex items-center justify-center rounded-full px-6 py-3 font-[family-name:var(--font-sans)] text-[0.8rem] font-medium text-white hover:opacity-90 transition-opacity no-underline"
+              style="background: var(--dd-purple)"
+            >
+              {{ 'visitPage.hero.ctaPrimary' | translate }}
+            </a>
+
+            <a
+              href="#map"
+              class="inline-flex items-center justify-center rounded-full px-6 py-3 font-[family-name:var(--font-sans)] text-[0.8rem] font-medium border border-black/10 bg-white/50 text-ink hover:bg-white transition-colors no-underline"
+            >
+              Map & directions
+            </a>
+
+            <a
+              href="#hours"
+              class="inline-flex items-center justify-center rounded-full px-6 py-3 font-[family-name:var(--font-sans)] text-[0.8rem] font-medium border border-black/10 bg-white/50 text-ink hover:bg-white transition-colors no-underline"
+            >
+              Opening hours
+            </a>
+          </div>
+
+          <div class="mt-10 flex flex-wrap items-center gap-3 text-ink-60">
+            <span class="rounded-full border border-black/10 bg-white/50 px-4 py-2 font-[family-name:var(--font-sans)] text-[0.7rem] tracking-[0.12em] uppercase">
+              historic centre
+            </span>
+            <span class="rounded-full border border-black/10 bg-white/50 px-4 py-2 font-[family-name:var(--font-sans)] text-[0.7rem] tracking-[0.12em] uppercase">
+              Golden Gate
+            </span>
+            <span class="rounded-full border border-black/10 bg-white/50 px-4 py-2 font-[family-name:var(--font-sans)] text-[0.7rem] tracking-[0.12em] uppercase">
+              30-min time slots
+            </span>
+          </div>
+        </div>
+
+        <!-- Side card -->
+        <div class="rounded-[2.5rem] border border-black/10 bg-white/60 overflow-hidden shadow-[0_12px_60px_rgba(26,24,20,0.07)]">
+          <div class="aspect-[4/5] bg-gradient-to-b from-sand to-cream grid place-items-center">
+            <p class="font-[family-name:var(--font-sans)] text-[0.75rem] text-ink-60 text-center px-6">
+              Replace with entrance / museum interior photo
             </p>
-            <p class="font-[family-name:var(--font-sans)] text-[0.82rem] leading-[1.6] text-ink-60 mt-2">Croatia</p>
           </div>
-          <a href="https://maps.google.com/?q=Zagrebačka+ulica+1+Split+Croatia"
-             target="_blank" rel="noopener"
-             class="inline-flex items-center justify-center self-start rounded-full px-5 py-2 mt-auto font-[family-name:var(--font-sans)] text-[0.78rem] font-medium border border-black/10 bg-white/70 text-ink hover:bg-white transition-colors no-underline">
-            Get directions →
-          </a>
-        </div>
-
-        <!-- Email & Phone -->
-        <div class="rounded-[2.5rem] border border-black/10 bg-white/60 hover:bg-white transition-colors p-8 flex flex-col gap-6">
-          <div>
-            <span class="text-2xl">✉️</span>
-            <p class="font-[family-name:var(--font-sans)] text-[0.65rem] font-medium tracking-[0.18em] uppercase text-ink-60 mt-4 mb-2">Email</p>
-            <a href="mailto:contact@diocletiansdream.com"
-               class="font-[family-name:var(--font-serif)] text-[1.15rem] leading-[1.3] text-ink no-underline hover:opacity-60 transition-opacity break-all">
-              contact@diocletiansdream.com
-            </a>
-          </div>
-          <div>
-            <span class="text-2xl">📞</span>
-            <p class="font-[family-name:var(--font-sans)] text-[0.65rem] font-medium tracking-[0.18em] uppercase text-ink-60 mt-4 mb-2">Phone</p>
-            <a href="tel:+38521886015"
-               class="font-[family-name:var(--font-serif)] text-[1.15rem] leading-[1.3] text-ink no-underline hover:opacity-60 transition-opacity block">
-              +385 21 886 015
-            </a>
-            <a href="tel:+38591520445"
-               class="font-[family-name:var(--font-serif)] text-[1.15rem] leading-[1.3] text-ink no-underline hover:opacity-60 transition-opacity block mt-1">
-              +385 91 520 4452
-            </a>
+          <div class="p-6">
+            <p class="font-[family-name:var(--font-serif)] italic text-[1.1rem] text-ink">
+              Tickets & group visits
+            </p>
+            <p class="mt-1 font-[family-name:var(--font-sans)] text-[0.78rem] text-ink-60">
+              VR experience Split booking · school trip Split · group activity Split
+            </p>
           </div>
         </div>
-
-        <!-- Opening hours -->
-        <div class="rounded-[2.5rem] border border-black/10 bg-ink text-warm p-8 flex flex-col gap-4">
-          <span class="text-2xl">🕙</span>
-          <div>
-            <p class="font-[family-name:var(--font-sans)] text-[0.65rem] font-medium tracking-[0.18em] uppercase text-warm/50 mb-2">Opening hours</p>
-            <p class="font-[family-name:var(--font-serif)] text-[1.3rem] leading-[1.35] text-warm">Monday – Sunday</p>
-            <p class="font-[family-name:var(--font-serif)] italic text-[1.6rem] leading-[1.2] text-warm mt-1">10:00 – 18:00</p>
-          </div>
-          <div class="h-px bg-white/10 my-1"></div>
-          <p class="font-[family-name:var(--font-sans)] text-[0.78rem] leading-[1.65] text-warm/60">
-            Last viewing begins 30 minutes before closing. Sessions start on the hour and every half hour.
-          </p>
-          <p class="font-[family-name:var(--font-sans)] text-[0.72rem] tracking-[0.06em] text-warm/40 uppercase">
-            DE · EN · FR · HR · IT · ES
-          </p>
-        </div>
-
       </div>
     </div>
   </section>
 
-  <!-- ════════ MARQUEE ════════ -->
-  <div class="border-t border-b border-black/10 bg-sand overflow-hidden py-3">
-    <div class="flex gap-10 w-max animate-[marquee_22s_linear_infinite] font-[family-name:var(--font-serif)] italic text-[0.9rem] text-ink-60 items-center">
-      <span>305 AD</span><span class="not-italic font-[family-name:var(--font-sans)] text-[0.6rem] opacity-40">·</span>
-      <span>Zagrebačka ulica 1</span><span class="not-italic font-[family-name:var(--font-sans)] text-[0.6rem] opacity-40">·</span>
-      <span>Split, Croatia</span><span class="not-italic font-[family-name:var(--font-sans)] text-[0.6rem] opacity-40">·</span>
-      <span>Open Daily</span><span class="not-italic font-[family-name:var(--font-sans)] text-[0.6rem] opacity-40">·</span>
-      <span>10:00 – 18:00</span><span class="not-italic font-[family-name:var(--font-sans)] text-[0.6rem] opacity-40">·</span>
-      <span>UNESCO Old Town</span><span class="not-italic font-[family-name:var(--font-sans)] text-[0.6rem] opacity-40">·</span>
-      <span>305 AD</span><span class="not-italic font-[family-name:var(--font-sans)] text-[0.6rem] opacity-40">·</span>
-      <span>Zagrebačka ulica 1</span><span class="not-italic font-[family-name:var(--font-sans)] text-[0.6rem] opacity-40">·</span>
-      <span>Split, Croatia</span><span class="not-italic font-[family-name:var(--font-sans)] text-[0.6rem] opacity-40">·</span>
-      <span>Open Daily</span><span class="not-italic font-[family-name:var(--font-sans)] text-[0.6rem] opacity-40">·</span>
-      <span>10:00 – 18:00</span><span class="not-italic font-[family-name:var(--font-sans)] text-[0.6rem] opacity-40">·</span>
-      <span>UNESCO Old Town</span><span class="not-italic font-[family-name:var(--font-sans)] text-[0.6rem] opacity-40">·</span>
-    </div>
-  </div>
-
-  <!-- ════════ MAP + TICKET INFO ════════ -->
-  <section class="py-24 bg-sand px-6 lg:px-8">
-    <div class="mx-auto max-w-7xl grid gap-12 lg:grid-cols-2 items-start">
-
-      <!-- Map -->
-      <div>
-        <p class="font-[family-name:var(--font-sans)] text-[0.65rem] font-medium tracking-[0.2em] uppercase text-ink-60 mb-3">Find us</p>
-        <h2 class="font-[family-name:var(--font-serif)] font-light text-[clamp(2.2rem,4.5vw,3.5rem)] leading-[0.95] tracking-[-0.02em] text-ink mb-8">
-          Inside the<br>Palace walls.
+  <!-- ════════════════════════════════════════
+       MAP (keep the map)
+  ════════════════════════════════════════ -->
+  <section id="map" class="bg-sand px-6 lg:px-8 py-24">
+    <div class="mx-auto max-w-7xl grid gap-12 lg:grid-cols-12 items-start">
+      <div class="lg:col-span-5">
+        <p class="font-[family-name:var(--font-sans)] text-[0.65rem] font-medium tracking-[0.2em] uppercase text-ink-60">
+          Location
+        </p>
+        <h2 class="mt-3 font-[family-name:var(--font-serif)] font-light text-[clamp(2.5rem,6vw,4.4rem)] leading-[0.92] tracking-[-0.02em] text-ink">
+          Split historic centre
         </h2>
+
+        <p class="mt-6 font-[family-name:var(--font-sans)] text-[0.95rem] leading-[1.85] text-ink-60">
+          Zagrebačka ul. 1 — just outside the walls of Diocletian’s Palace near the Golden Gate.
+        </p>
+
+        <div class="mt-8 flex flex-wrap gap-3">
+          <a
+            [href]="directionsUrl"
+            target="_blank"
+            rel="noopener"
+            class="inline-flex items-center justify-center rounded-full px-6 py-3 font-[family-name:var(--font-sans)] text-[0.8rem] font-medium text-white hover:opacity-90 transition-opacity no-underline"
+            style="background: var(--dd-purple)"
+          >
+            Get directions
+          </a>
+          <a
+            routerLink="/booking"
+            class="inline-flex items-center justify-center rounded-full px-6 py-3 font-[family-name:var(--font-sans)] text-[0.8rem] font-medium text-ink hover:opacity-90 transition-opacity no-underline"
+            style="background: var(--dd-gold)"
+          >
+            {{ 'visitPage.hero.ctaPrimary' | translate }}
+          </a>
+        </div>
+      </div>
+
+      <div class="lg:col-span-7">
+        <div class="rounded-[2.5rem] border border-black/10 bg-white/60 overflow-hidden shadow-[0_12px_60px_rgba(26,24,20,0.07)]">
         <div class="rounded-[2.5rem] overflow-hidden border border-black/10 shadow-[0_12px_60px_rgba(26,24,20,0.07)] h-[400px] lg:h-[460px]">
           <iframe
             class="w-full h-full border-none block"
@@ -167,240 +168,396 @@
             style="filter:saturate(0.9) brightness(1.02)"
           ></iframe>
         </div>
-      </div>
-
-      <!-- Ticket info -->
-      <div>
-        <p class="font-[family-name:var(--font-sans)] text-[0.65rem] font-medium tracking-[0.2em] uppercase text-ink-60 mb-3">Tickets & info</p>
-        <h2 class="font-[family-name:var(--font-serif)] font-light text-[clamp(2.2rem,4.5vw,3.5rem)] leading-[0.95] tracking-[-0.02em] text-ink mb-8">
-          What to<br>know.
-        </h2>
-
-        <div class="flex flex-col gap-3">
-
-          <!-- Prices -->
-          <div class="rounded-[2rem] border border-black/10 bg-white/60 hover:bg-white transition-colors p-6">
-            <p class="font-[family-name:var(--font-sans)] text-[0.65rem] font-medium tracking-[0.18em] uppercase text-ink-60 mb-4">Ticket prices</p>
-            <div class="flex items-end justify-between border-b border-black/8 pb-4 mb-4">
-              <div>
-                <p class="font-[family-name:var(--font-serif)] text-[1.2rem] text-ink">Adults</p>
-                <p class="font-[family-name:var(--font-sans)] text-[0.78rem] text-ink-60 mt-0.5">Age 14 and over</p>
-              </div>
-              <p class="font-[family-name:var(--font-serif)] text-[2rem] font-light leading-none text-ink">13 <span class="text-[1.1rem]">EUR</span></p>
-            </div>
-            <div class="flex items-end justify-between">
-              <div>
-                <p class="font-[family-name:var(--font-serif)] text-[1.2rem] text-ink">Kids</p>
-                <p class="font-[family-name:var(--font-sans)] text-[0.78rem] text-ink-60 mt-0.5">Under 14 · min. age 8</p>
-              </div>
-              <p class="font-[family-name:var(--font-serif)] text-[2rem] font-light leading-none text-ink">9 <span class="text-[1.1rem]">EUR</span></p>
-            </div>
-          </div>
-
-          <!-- Session info -->
-          <div class="rounded-[2rem] border border-black/10 bg-white/60 hover:bg-white transition-colors p-6">
-            <p class="font-[family-name:var(--font-sans)] text-[0.65rem] font-medium tracking-[0.18em] uppercase text-ink-60 mb-4">Session info</p>
-            <div class="flex flex-col gap-3">
-              <div class="flex items-start gap-3">
-                <span class="font-[family-name:var(--font-sans)] text-[0.6rem] tracking-[0.1em] uppercase text-ink-60 w-20 shrink-0 pt-0.5">Duration</span>
-                <p class="font-[family-name:var(--font-serif)] text-[1rem] text-ink">~15 minutes per session</p>
-              </div>
-              <div class="flex items-start gap-3">
-                <span class="font-[family-name:var(--font-sans)] text-[0.6rem] tracking-[0.1em] uppercase text-ink-60 w-20 shrink-0 pt-0.5">Schedule</span>
-                <p class="font-[family-name:var(--font-serif)] text-[1rem] text-ink">Every hour & half-hour</p>
-              </div>
-              <div class="flex items-start gap-3">
-                <span class="font-[family-name:var(--font-sans)] text-[0.6rem] tracking-[0.1em] uppercase text-ink-60 w-20 shrink-0 pt-0.5">Capacity</span>
-                <p class="font-[family-name:var(--font-serif)] text-[1rem] text-ink">13 seats per slot</p>
-              </div>
-              <div class="flex items-start gap-3">
-                <span class="font-[family-name:var(--font-sans)] text-[0.6rem] tracking-[0.1em] uppercase text-ink-60 w-20 shrink-0 pt-0.5">Arrive</span>
-                <p class="font-[family-name:var(--font-serif)] text-[1rem] text-ink">10 minutes early</p>
-              </div>
-              <div class="flex items-start gap-3">
-                <span class="font-[family-name:var(--font-sans)] text-[0.6rem] tracking-[0.1em] uppercase text-ink-60 w-20 shrink-0 pt-0.5">Languages</span>
-                <p class="font-[family-name:var(--font-serif)] text-[1rem] text-ink">DE · EN · FR · HR · IT · ES</p>
-              </div>
-            </div>
-          </div>
-
-          <a routerLink="/booking"
-             class="flex items-center justify-center rounded-full bg-ink text-warm py-3.5 font-[family-name:var(--font-sans)] text-[0.8rem] font-medium tracking-[0.03em] hover:opacity-85 transition-opacity no-underline">
-            Book your tickets →
-          </a>
-
         </div>
-      </div>
 
+        <p class="mt-4 font-[family-name:var(--font-sans)] text-[0.82rem] leading-[1.6] text-ink-60">
+          Tip: arrive a few minutes early for briefing before your scheduled time slot.
+        </p>
+      </div>
     </div>
   </section>
 
-  <!-- ════════ CONTACT FORM ════════ -->
-  <section id="contact" class="py-24 bg-cream px-6 lg:px-8">
-    <div class="mx-auto max-w-7xl grid gap-16 lg:grid-cols-[380px_1fr] items-start">
+  <!-- ════════════════════════════════════════
+       INDIVIDUAL / GROUPS / SCHOOLS (bento)
+  ════════════════════════════════════════ -->
+  <section class="bg-cream px-6 lg:px-8 py-24">
+    <div class="mx-auto max-w-7xl">
+      <div class="grid gap-3 lg:grid-cols-3">
+        <!-- Individual -->
+        <article class="rounded-[2.5rem] border border-black/10 bg-white/55 p-8 sm:p-10 lg:p-12">
+          <p class="font-[family-name:var(--font-sans)] text-[0.65rem] font-medium tracking-[0.2em] uppercase text-ink-60">
+            {{ 'visitPage.individual.title' | translate }}
+          </p>
+          <h2 class="mt-3 font-[family-name:var(--font-serif)] font-light text-[clamp(2.0rem,4vw,3.0rem)] leading-[0.95] tracking-[-0.02em] text-ink">
+            {{ 'visitPage.individual.title' | translate }}
+          </h2>
 
-      <!-- Left -->
-      <div>
-        <p class="font-[family-name:var(--font-sans)] text-[0.65rem] font-medium tracking-[0.2em] uppercase text-ink-60 mb-3">Write to us</p>
-        <h2 class="font-[family-name:var(--font-serif)] font-light text-[clamp(2.2rem,4.5vw,3.5rem)] leading-[0.95] tracking-[-0.02em] text-ink">
-          Send us<br>a message.
+          <div class="mt-6 grid gap-5">
+            <p class="font-[family-name:var(--font-sans)] text-[0.95rem] leading-[1.85] text-ink-60">
+              {{ 'visitPage.individual.p1' | translate }}
+            </p>
+            <p class="font-[family-name:var(--font-sans)] text-[0.95rem] leading-[1.85] text-ink-60">
+              {{ 'visitPage.individual.p2' | translate }}
+            </p>
+            <p class="font-[family-name:var(--font-sans)] text-[0.95rem] leading-[1.85] text-ink-60">
+              {{ 'visitPage.individual.p3' | translate }}
+            </p>
+
+            <div class="pt-4 border-t border-black/10">
+              <a
+                routerLink="/booking"
+                class="inline-flex items-center justify-center rounded-full px-7 py-3 font-[family-name:var(--font-sans)] text-[0.8rem] font-medium text-white hover:opacity-90 transition-opacity no-underline"
+                style="background: var(--dd-purple)"
+              >
+                {{ 'visitPage.individual.cta' | translate }}
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Groups -->
+        <article class="rounded-[2.5rem] border border-black/10 bg-white/55 p-8 sm:p-10 lg:p-12">
+          <p class="font-[family-name:var(--font-sans)] text-[0.65rem] font-medium tracking-[0.2em] uppercase text-ink-60">
+            {{ 'visitPage.groups.title' | translate }}
+          </p>
+          <h2 class="mt-3 font-[family-name:var(--font-serif)] font-light text-[clamp(2.0rem,4vw,3.0rem)] leading-[0.95] tracking-[-0.02em] text-ink">
+            {{ 'visitPage.groups.title' | translate }}
+          </h2>
+
+          <div class="mt-6 grid gap-5">
+            <p class="font-[family-name:var(--font-sans)] text-[0.95rem] leading-[1.85] text-ink-60">
+              {{ 'visitPage.groups.p1' | translate }}
+            </p>
+            <p class="font-[family-name:var(--font-sans)] text-[0.95rem] leading-[1.85] text-ink-60">
+              {{ 'visitPage.groups.p2' | translate }}
+            </p>
+
+            <div class="rounded-[1.75rem] border border-black/10 bg-sand px-6 py-4">
+              <p class="font-[family-name:var(--font-sans)] text-[0.82rem] leading-[1.7] text-ink-60">
+                {{ 'visitPage.groups.note' | translate }}
+              </p>
+            </div>
+
+            <div class="pt-4 border-t border-black/10 flex flex-wrap gap-3">
+              <a
+                routerLink="/contact"
+                class="inline-flex items-center justify-center rounded-full px-7 py-3 font-[family-name:var(--font-sans)] text-[0.8rem] font-medium text-ink hover:opacity-90 transition-opacity no-underline"
+                style="background: var(--dd-gold)"
+              >
+                {{ 'visitPage.groups.cta' | translate }}
+              </a>
+              <a
+                routerLink="/contact"
+                class="inline-flex items-center gap-2 font-[family-name:var(--font-sans)] text-[0.8rem] font-medium text-ink underline underline-offset-4 hover:opacity-60 transition-opacity"
+              >
+                {{ 'visitPage.groups.ctaLinkText' | translate }} →
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Schools -->
+        <article class="rounded-[2.5rem] border border-black/10 bg-white/55 p-8 sm:p-10 lg:p-12">
+          <p class="font-[family-name:var(--font-sans)] text-[0.65rem] font-medium tracking-[0.2em] uppercase text-ink-60">
+            {{ 'visitPage.schools.title' | translate }}
+          </p>
+          <h2 class="mt-3 font-[family-name:var(--font-serif)] font-light text-[clamp(2.0rem,4vw,3.0rem)] leading-[0.95] tracking-[-0.02em] text-ink">
+            {{ 'visitPage.schools.title' | translate }}
+          </h2>
+
+          <div class="mt-6 grid gap-5">
+            <p class="font-[family-name:var(--font-sans)] text-[0.95rem] leading-[1.85] text-ink-60">
+              {{ 'visitPage.schools.p1' | translate }}
+            </p>
+            <p class="font-[family-name:var(--font-sans)] text-[0.95rem] leading-[1.85] text-ink-60">
+              {{ 'visitPage.schools.p2' | translate }}
+            </p>
+            <p class="font-[family-name:var(--font-sans)] text-[0.95rem] leading-[1.85] text-ink-60">
+              {{ 'visitPage.schools.p3' | translate }}
+            </p>
+
+            <div class="pt-4 border-t border-black/10 flex flex-wrap gap-3">
+              <a
+                routerLink="/contact"
+                class="inline-flex items-center justify-center rounded-full px-7 py-3 font-[family-name:var(--font-sans)] text-[0.8rem] font-medium text-white hover:opacity-90 transition-opacity no-underline"
+                style="background: var(--dd-purple)"
+              >
+                {{ 'visitPage.schools.cta' | translate }}
+              </a>
+
+              <a
+                routerLink="/contact"
+                class="inline-flex items-center gap-2 font-[family-name:var(--font-sans)] text-[0.8rem] font-medium text-ink underline underline-offset-4 hover:opacity-60 transition-opacity"
+              >
+                {{ 'visitPage.schools.ctaLinkText' | translate }} →
+              </a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════
+       HOURS
+  ════════════════════════════════════════ -->
+  <section id="hours" class="bg-sand px-6 lg:px-8 py-24">
+    <div class="mx-auto max-w-7xl grid gap-12 lg:grid-cols-12 items-start">
+      <div class="lg:col-span-5">
+        <p class="font-[family-name:var(--font-sans)] text-[0.65rem] font-medium tracking-[0.2em] uppercase text-ink-60">
+          {{ 'visitPage.hours.title' | translate }}
+        </p>
+        <h2 class="mt-3 font-[family-name:var(--font-serif)] font-light text-[clamp(2.5rem,6vw,4.6rem)] leading-[0.92] tracking-[-0.02em] text-ink">
+          {{ 'visitPage.hours.title' | translate }}
         </h2>
-        <p class="mt-5 font-[family-name:var(--font-sans)] text-[0.88rem] leading-[1.75] text-ink-60">
-          Have a question about the experience, group bookings, or anything else? We'll get back to you as soon as we can.
+
+        <p class="mt-6 font-[family-name:var(--font-sans)] text-[0.95rem] leading-[1.85] text-ink-60">
+          {{ 'visitPage.hours.intro' | translate }}
         </p>
 
-        <!-- Social links -->
-        <div class="mt-10">
-          <p class="font-[family-name:var(--font-sans)] text-[0.65rem] font-medium tracking-[0.18em] uppercase text-ink-60 mb-4">Follow us</p>
-          <div class="flex flex-col gap-3">
-            <a href="https://www.instagram.com/diocletiansdream/" target="_blank" rel="noopener"
-               class="inline-flex items-center gap-3 rounded-[1.25rem] border border-black/10 bg-white/60 hover:bg-white px-4 py-3 no-underline transition-colors group">
-              <span class="w-8 h-8 rounded-[0.5rem] bg-ink flex items-center justify-center font-[family-name:var(--font-sans)] text-[0.6rem] font-medium text-warm shrink-0">IG</span>
-              <span class="font-[family-name:var(--font-sans)] text-[0.82rem] text-ink group-hover:opacity-70 transition-opacity">&#64;diocletiansdream</span>
-            </a>
-            <a href="https://www.facebook.com/diocletiansdream/" target="_blank" rel="noopener"
-               class="inline-flex items-center gap-3 rounded-[1.25rem] border border-black/10 bg-white/60 hover:bg-white px-4 py-3 no-underline transition-colors group">
-              <span class="w-8 h-8 rounded-[0.5rem] bg-ink flex items-center justify-center font-[family-name:var(--font-sans)] text-[0.6rem] font-medium text-warm shrink-0">FB</span>
-              <span class="font-[family-name:var(--font-sans)] text-[0.82rem] text-ink group-hover:opacity-70 transition-opacity">Diocletian's Dream</span>
-            </a>
-            <a href="https://www.tripadvisor.com/Attraction_Review-g295370-d20921353-Reviews-Diocletians_Dream-Split_Split_Dalmatia_County_Dalmatia.html"
-               target="_blank" rel="noopener"
-               class="inline-flex items-center gap-3 rounded-[1.25rem] border border-black/10 bg-white/60 hover:bg-white px-4 py-3 no-underline transition-colors group">
-              <span class="w-8 h-8 rounded-[0.5rem] bg-ink flex items-center justify-center font-[family-name:var(--font-sans)] text-[0.6rem] font-medium text-warm shrink-0">TA</span>
-              <span class="font-[family-name:var(--font-sans)] text-[0.82rem] text-ink group-hover:opacity-70 transition-opacity">Tripadvisor</span>
-            </a>
-          </div>
+        <div class="mt-8 rounded-[2rem] border border-black/10 bg-white/60 p-7">
+          <p class="font-[family-name:var(--font-sans)] text-[0.75rem] tracking-[0.12em] uppercase text-ink-60">
+            {{ 'visitPage.hours.schedule.days' | translate }}
+          </p>
+          <p class="mt-2 font-[family-name:var(--font-serif)] italic text-[1.15rem] text-ink">
+            {{ 'visitPage.hours.schedule.time' | translate }}
+          </p>
+
+          <p class="mt-4 font-[family-name:var(--font-sans)] text-[0.92rem] leading-[1.8] text-ink-60">
+            {{ 'visitPage.hours.sessions' | translate }}
+          </p>
         </div>
       </div>
 
-      <!-- Form -->
-      <div class="rounded-[2.5rem] border border-black/10 bg-white/75 p-8 lg:p-10 shadow-[0_12px_60px_rgba(26,24,20,0.07)]">
-        <form (ngSubmit)="onSubmit()" #contactForm="ngForm" class="flex flex-col gap-5">
+      <div class="lg:col-span-7">
+        <div class="rounded-[2.5rem] border border-black/10 bg-white/55 p-8 sm:p-10 lg:p-12">
+          <p class="font-[family-name:var(--font-sans)] text-[0.95rem] leading-[1.85] text-ink-60">
+            {{ 'visitPage.hours.note' | translate }}
+          </p>
 
-          <div class="grid gap-5 sm:grid-cols-2">
-            <div class="flex flex-col gap-2">
-              <label class="font-[family-name:var(--font-sans)] text-[0.65rem] font-medium tracking-[0.15em] uppercase text-ink-60">
-                First name *
-              </label>
-              <input
-                name="firstName" ngModel required
-                type="text"
-                placeholder="Maria"
-                class="rounded-[0.875rem] border border-black/10 bg-cream/60 px-4 py-3 font-[family-name:var(--font-sans)] text-[0.88rem] text-ink placeholder:text-ink-60/50 outline-none focus:border-ink-60 focus:bg-white transition-colors"
-              />
-            </div>
-            <div class="flex flex-col gap-2">
-              <label class="font-[family-name:var(--font-sans)] text-[0.65rem] font-medium tracking-[0.15em] uppercase text-ink-60">
-                Last name *
-              </label>
-              <input
-                name="lastName" ngModel required
-                type="text"
-                placeholder="Rossi"
-                class="rounded-[0.875rem] border border-black/10 bg-cream/60 px-4 py-3 font-[family-name:var(--font-sans)] text-[0.88rem] text-ink placeholder:text-ink-60/50 outline-none focus:border-ink-60 focus:bg-white transition-colors"
-              />
-            </div>
+          <div class="mt-6 rounded-[1.75rem] border border-black/10 bg-cream px-6 py-4">
+            <p class="font-[family-name:var(--font-sans)] text-[0.92rem] leading-[1.8] text-ink-60">
+              {{ 'visitPage.hours.google' | translate }}
+              <a
+                href="https://share.google/jvFVjRA7cMSPI9ib7"
+                target="_blank"
+                rel="noopener"
+                class="ml-2 underline underline-offset-4 font-medium text-ink hover:opacity-60 transition-opacity"
+              >
+                {{ 'visitPage.hours.googleLinkText' | translate }} →
+              </a>
+            </p>
           </div>
 
-          <div class="flex flex-col gap-2">
-            <label class="font-[family-name:var(--font-sans)] text-[0.65rem] font-medium tracking-[0.15em] uppercase text-ink-60">
-              Email address *
-            </label>
-            <input
-              name="email" ngModel required
-              type="email"
-              placeholder="maria@example.com"
-              class="rounded-[0.875rem] border border-black/10 bg-cream/60 px-4 py-3 font-[family-name:var(--font-sans)] text-[0.88rem] text-ink placeholder:text-ink-60/50 outline-none focus:border-ink-60 focus:bg-white transition-colors"
-            />
-          </div>
-
-          <div class="flex flex-col gap-2">
-            <label class="font-[family-name:var(--font-sans)] text-[0.65rem] font-medium tracking-[0.15em] uppercase text-ink-60">
-              Subject
-            </label>
-            <select
-              name="subject" ngModel
-              class="rounded-[0.875rem] border border-black/10 bg-cream/60 px-4 py-3 font-[family-name:var(--font-sans)] text-[0.88rem] text-ink outline-none focus:border-ink-60 focus:bg-white transition-colors appearance-none"
+          <div class="mt-8 flex flex-wrap gap-3">
+            <a
+              routerLink="/booking"
+              class="inline-flex items-center justify-center rounded-full px-7 py-3 font-[family-name:var(--font-sans)] text-[0.8rem] font-medium text-white hover:opacity-90 transition-opacity no-underline"
+              style="background: var(--dd-purple)"
             >
-              <option value="">Select a topic...</option>
-              <option value="general">General enquiry</option>
-              <option value="group">Group booking</option>
-              <option value="press">Press & media</option>
-              <option value="partnership">Partnership</option>
-              <option value="other">Other</option>
-            </select>
+              Book now
+            </a>
+            <a
+              routerLink="/contact"
+              class="inline-flex items-center justify-center rounded-full px-7 py-3 font-[family-name:var(--font-sans)] text-[0.8rem] font-medium text-ink hover:opacity-90 transition-opacity no-underline"
+              style="background: var(--dd-gold)"
+            >
+              Contact
+            </a>
           </div>
-
-          <div class="flex flex-col gap-2">
-            <label class="font-[family-name:var(--font-sans)] text-[0.65rem] font-medium tracking-[0.15em] uppercase text-ink-60">
-              Message *
-            </label>
-            <textarea
-              name="message" ngModel required
-              rows="5"
-              placeholder="How can we help you?"
-              class="rounded-[0.875rem] border border-black/10 bg-cream/60 px-4 py-3 font-[family-name:var(--font-sans)] text-[0.88rem] text-ink placeholder:text-ink-60/50 outline-none focus:border-ink-60 focus:bg-white transition-colors resize-none"
-            ></textarea>
-          </div>
-
-          <!-- Success message -->
-          @if (submitted) {
-            <div class="rounded-[1.25rem] bg-ink text-warm px-6 py-4 flex items-center gap-3">
-              <span class="text-lg">✓</span>
-              <p class="font-[family-name:var(--font-sans)] text-[0.85rem]">Message sent — we'll be in touch soon!</p>
-            </div>
-          }
-
-          <button
-            type="submit"
-            [disabled]="contactForm.invalid || submitting"
-            class="flex items-center justify-center rounded-full bg-ink text-warm py-3.5 font-[family-name:var(--font-sans)] text-[0.8rem] font-medium tracking-[0.03em] hover:opacity-85 transition-opacity disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer border-none mt-1">
-            {{ submitting ? 'Sending…' : 'Send message' }}
-          </button>
-
-          <p class="font-[family-name:var(--font-sans)] text-[0.72rem] text-ink-60 text-center">
-            Your email address will not be published or shared.
-          </p>
-
-        </form>
+        </div>
       </div>
-
     </div>
   </section>
 
-  <!-- ════════ NEWSLETTER ════════ -->
-  <section class="px-6 lg:px-8 pb-8">
+  <!-- ════════════════════════════════════════
+       SEASONAL
+  ════════════════════════════════════════ -->
+  <section class="bg-cream px-6 lg:px-8 py-24">
+    <div class="mx-auto max-w-7xl grid gap-12 lg:grid-cols-12 items-start">
+      <div class="lg:col-span-4">
+        <p class="font-[family-name:var(--font-sans)] text-[0.65rem] font-medium tracking-[0.2em] uppercase text-ink-60">
+          {{ 'visitPage.seasonal.title' | translate }}
+        </p>
+        <h2 class="mt-3 font-[family-name:var(--font-serif)] font-light text-[clamp(2.5rem,6vw,4.5rem)] leading-[0.92] tracking-[-0.02em] text-ink">
+          {{ 'visitPage.seasonal.title' | translate }}
+        </h2>
+      </div>
+
+      <div class="lg:col-span-8">
+        <div class="rounded-[2.5rem] border border-black/10 bg-white/55 p-8 sm:p-10 lg:p-12">
+          <div class="grid gap-5">
+            <p class="font-[family-name:var(--font-sans)] text-[0.95rem] leading-[1.85] text-ink-60">
+              {{ 'visitPage.seasonal.p1' | translate }}
+            </p>
+            <p class="font-[family-name:var(--font-sans)] text-[0.95rem] leading-[1.85] text-ink-60">
+              {{ 'visitPage.seasonal.p2' | translate }}
+            </p>
+            <p class="font-[family-name:var(--font-sans)] text-[0.95rem] leading-[1.85] text-ink-60">
+              {{ 'visitPage.seasonal.p3' | translate }}
+              <a
+                routerLink="/booking"
+                class="ml-2 underline underline-offset-4 font-medium text-ink hover:opacity-60 transition-opacity"
+              >
+                {{ 'visitPage.seasonal.bookNowLinkText' | translate }} →
+              </a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════
+       BOOKING INFO
+  ════════════════════════════════════════ -->
+  <section class="bg-sand px-6 lg:px-8 py-24">
+    <div class="mx-auto max-w-7xl grid gap-12 lg:grid-cols-12 items-start">
+      <div class="lg:col-span-5">
+        <p class="font-[family-name:var(--font-sans)] text-[0.65rem] font-medium tracking-[0.2em] uppercase text-ink-60">
+          {{ 'visitPage.bookingInfo.title' | translate }}
+        </p>
+        <h2 class="mt-3 font-[family-name:var(--font-serif)] font-light text-[clamp(2.5rem,6vw,4.6rem)] leading-[0.92] tracking-[-0.02em] text-ink">
+          {{ 'visitPage.bookingInfo.title' | translate }}
+        </h2>
+
+        <p class="mt-6 font-[family-name:var(--font-serif)] text-[clamp(1.25rem,2.2vw,1.6rem)] font-light leading-[1.6] text-ink">
+          {{ 'visitPage.bookingInfo.p1' | translate }}
+        </p>
+      </div>
+
+      <div class="lg:col-span-7">
+        <div class="rounded-[2.5rem] border border-black/10 bg-white/55 p-8 sm:p-10 lg:p-12">
+          <div class="grid gap-5">
+            <p class="font-[family-name:var(--font-sans)] text-[0.95rem] leading-[1.85] text-ink-60">
+              {{ 'visitPage.bookingInfo.p2' | translate }}
+            </p>
+            <p class="font-[family-name:var(--font-sans)] text-[0.95rem] leading-[1.85] text-ink-60">
+              {{ 'visitPage.bookingInfo.p3' | translate }}
+            </p>
+            <p class="font-[family-name:var(--font-sans)] text-[0.95rem] leading-[1.85] text-ink-60">
+              {{ 'visitPage.bookingInfo.p4' | translate }}
+            </p>
+
+            <div class="pt-4 border-t border-black/10 flex flex-wrap gap-3">
+              <a
+                routerLink="/booking"
+                class="inline-flex items-center justify-center rounded-full px-7 py-3 font-[family-name:var(--font-sans)] text-[0.8rem] font-medium text-white hover:opacity-90 transition-opacity no-underline"
+                style="background: var(--dd-purple)"
+              >
+                {{ 'visitPage.bookingInfo.ctaPrimary' | translate }}
+              </a>
+
+              <a
+                routerLink="/contact"
+                class="inline-flex items-center justify-center rounded-full px-7 py-3 font-[family-name:var(--font-sans)] text-[0.8rem] font-medium text-ink hover:opacity-90 transition-opacity no-underline"
+                style="background: var(--dd-gold)"
+              >
+                {{ 'visitPage.bookingInfo.ctaSecondary' | translate }}
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════
+       FAQ
+  ════════════════════════════════════════ -->
+  <section class="bg-cream px-6 lg:px-8 py-24">
+    <div class="mx-auto max-w-7xl grid gap-12 lg:grid-cols-12 items-start">
+      <div class="lg:col-span-4">
+        <p class="font-[family-name:var(--font-sans)] text-[0.65rem] font-medium tracking-[0.2em] uppercase text-ink-60">
+          {{ 'visitPage.faq.title' | translate }}
+        </p>
+        <h2 class="mt-3 font-[family-name:var(--font-serif)] font-light text-[clamp(2.5rem,6vw,4.5rem)] leading-[0.92] tracking-[-0.02em] text-ink">
+          {{ 'visitPage.faq.title' | translate }}
+        </h2>
+
+        <!-- <p class="mt-6 font-[family-name:var(--font-sans)] text-[0.85rem] leading-[1.7] text-ink-60">
+          {{ 'visitPage.faq.schemaNote' | translate }}
+        </p> -->
+      </div>
+
+      <div class="lg:col-span-8">
+        <div class="rounded-[2.5rem] border border-black/10 bg-white/55 p-4 sm:p-6 lg:p-8">
+          <div class="grid gap-3">
+            <details
+              *ngFor="let item of ('visitPage.faq.items' | translate)"
+              class="group rounded-[1.75rem] border border-black/10 bg-white/60 open:bg-white transition-colors px-6 py-5"
+            >
+              <summary class="cursor-pointer list-none flex items-start justify-between gap-4">
+                <span class="font-[family-name:var(--font-serif)] text-[1.1rem] leading-[1.35] text-ink">
+                  {{ item.q }}
+                </span>
+                <span class="mt-1 font-[family-name:var(--font-sans)] text-ink-60 group-open:rotate-45 transition-transform">+</span>
+              </summary>
+
+              <div class="mt-4">
+                <p class="font-[family-name:var(--font-sans)] text-[0.92rem] leading-[1.8] text-ink-60 whitespace-pre-line">
+                  {{ item.a }}
+                </p>
+
+                <a
+                  *ngIf="item.linkText"
+                  routerLink="/experience"
+                  class="mt-4 inline-flex items-center gap-2 font-[family-name:var(--font-sans)] text-[0.8rem] font-medium text-ink underline underline-offset-4 hover:opacity-60 transition-opacity"
+                >
+                  {{ item.linkText }} →
+                </a>
+              </div>
+            </details>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA band -->
+  <!-- <section class="px-6 lg:px-8 pb-10">
     <div class="mx-auto max-w-7xl rounded-[3rem] bg-ink overflow-hidden relative">
-      <!-- <div class="pointer-events-none absolute inset-0 opacity-10"
-           style="background-image:url(\"data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E\");background-size:200px"></div> -->
-      <div class="relative z-10 px-10 py-14 lg:px-20 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8">
+      <div class="pointer-events-none absolute inset-0 opacity-10 dd-grain"></div>
+      <div
+        class="pointer-events-none absolute -bottom-32 -right-32 w-[600px] h-[600px] rounded-full opacity-[0.08] blur-[100px]"
+        style="background:radial-gradient(circle,var(--dd-gold) 0%,transparent 70%)"
+      ></div>
+
+      <div class="relative z-10 px-10 py-14 lg:px-20 grid gap-10 lg:grid-cols-[1fr_auto] lg:items-center">
         <div>
-          <p class="font-[family-name:var(--font-sans)] text-[0.65rem] font-medium tracking-[0.2em] uppercase text-warm/50 mb-2">Newsletter</p>
-          <h2 class="font-[family-name:var(--font-serif)] font-light text-[clamp(1.75rem,4vw,3rem)] leading-[0.95] tracking-[-0.01em] text-warm">
-            Stay in the loop.
+          <p class="font-[family-name:var(--font-sans)] text-[0.65rem] font-medium tracking-[0.2em] uppercase  mb-3">
+            Visit
+          </p>
+          <h2 class="font-[family-name:var(--font-serif)] font-light text-[clamp(2.3rem,6vw,4.2rem)] leading-[0.95] tracking-[-0.01em] ">
+            Book your time slot — or contact us for groups & schools.
           </h2>
-          <p class="mt-3 font-[family-name:var(--font-sans)] text-[0.88rem] leading-[1.7] text-warm/60 max-w-md">
-            Get updates about new experiences, events, and stories from the Palace.
+          <p class="mt-5 font-[family-name:var(--font-sans)] text-[0.92rem] leading-[1.7]  max-w-xl">
+            Visit Diocletian’s Dream Split · school trip Split · group activity Split
           </p>
         </div>
-        <form (ngSubmit)="onNewsletterSubmit()" #newsletterForm="ngForm"
-              class="flex flex-col sm:flex-row gap-3 w-full lg:max-w-sm shrink-0">
-          <input
-            name="newsletterEmail" ngModel required
-            type="email"
-            placeholder="Your email address"
-            class="flex-1 rounded-full border border-white/20 bg-white/10 px-5 py-3 font-[family-name:var(--font-sans)] text-[0.85rem] text-warm placeholder:text-warm/40 outline-none focus:border-white/40 transition-colors"
-          />
-          <button
-            type="submit"
-            [disabled]="newsletterForm.invalid"
-            class="rounded-full bg-warm text-ink px-6 py-3 font-[family-name:var(--font-sans)] text-[0.78rem] font-medium hover:opacity-90 transition-opacity border-none cursor-pointer whitespace-nowrap disabled:opacity-40">
-            Subscribe
-          </button>
-        </form>
+
+        <div class="flex flex-col gap-3 lg:items-end shrink-0">
+          <a
+            routerLink="/booking"
+            class="inline-flex items-center justify-center rounded-full px-8 py-3.5 font-[family-name:var(--font-sans)] text-[0.8rem] font-medium text-white hover:opacity-90 transition-opacity no-underline whitespace-nowrap"
+            style="background: var(--dd-purple)"
+          >
+            {{ 'visitPage.hero.ctaPrimary' | translate }}
+          </a>
+          <a
+            routerLink="/contact"
+            class="inline-flex items-center justify-center rounded-full px-8 py-3.5 font-[family-name:var(--font-sans)] text-[0.8rem] font-medium text-ink hover:opacity-90 transition-opacity no-underline whitespace-nowrap"
+            style="background: var(--dd-gold)"
+          >
+            {{ 'visitPage.bookingInfo.ctaSecondary' | translate }}
+          </a>
+        </div>
       </div>
     </div>
-  </section>
+  </section> -->
 
+  <!-- JSON-LD hook -->
+  <script type="application/ld+json" [innerHTML]="schemaJsonLd"></script>
 </main>
-<app-footer></app-footer>
+
+<app-footer></app-footer>y
