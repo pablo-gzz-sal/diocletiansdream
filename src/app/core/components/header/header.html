@@ -1,5 +1,5 @@
 <header
-  class="fixed top-0 left-0 right-0 z-50 transition-all duration-500"
+  class="fixed top-0 left-0 right-0 z-50 transition-all duration-500 font-[family-name:var(--font-serif)]"
   [class]="scrolled() ? 'backdrop-blur-md shadow-[0_1px_0_var(--color-ink-08)]' : 'bg-transparent'"
   [style.background]="scrolled() ? 'var(--cream-95)' : 'transparent'"
 >
@@ -30,7 +30,7 @@
           routerLink="/"
           routerLinkActive="is-active"
           [routerLinkActiveOptions]="{ exact: true }"
-          class="nav-link font-[family-name:var(--font-sans)] text-[0.78rem] font-medium rounded-[0.625rem] px-3.5 py-2 transition-colors no-underline"
+          class="nav-link text-[0.78rem] font-medium rounded-[0.625rem] px-3.5 py-2 transition-colors no-underline"
           style="color: var(--color-ink-60)"
         >
           Home
@@ -38,7 +38,7 @@
         <a
           routerLink="/about"
           routerLinkActive="is-active"
-          class="nav-link font-[family-name:var(--font-sans)] text-[0.78rem] font-medium rounded-[0.625rem] px-3.5 py-2 transition-colors no-underline"
+          class="nav-link text-[0.78rem] font-medium rounded-[0.625rem] px-3.5 py-2 transition-colors no-underline"
           style="color: var(--color-ink-60)"
         >
           About
@@ -46,7 +46,7 @@
         <a
           routerLink="/experience"
           routerLinkActive="is-active"
-          class="nav-link font-[family-name:var(--font-sans)] text-[0.78rem] font-medium rounded-[0.625rem] px-3.5 py-2 transition-colors no-underline"
+          class="nav-link text-[0.78rem] font-medium rounded-[0.625rem] px-3.5 py-2 transition-colors no-underline"
           style="color: var(--color-ink-60)"
         >
           Experience
@@ -54,7 +54,7 @@
         <a
           routerLink="/blog"
           routerLinkActive="is-active"
-          class="nav-link font-[family-name:var(--font-sans)] text-[0.78rem] font-medium rounded-[0.625rem] px-3.5 py-2 transition-colors no-underline"
+          class="nav-link text-[0.78rem] font-medium rounded-[0.625rem] px-3.5 py-2 transition-colors no-underline"
           style="color: var(--color-ink-60)"
         >
           Blog
@@ -62,7 +62,7 @@
         <a
           routerLink="/visit"
           routerLinkActive="is-active"
-          class="nav-link font-[family-name:var(--font-sans)] text-[0.78rem] font-medium rounded-[0.625rem] px-3.5 py-2 transition-colors no-underline"
+          class="nav-link text-[0.78rem] font-medium rounded-[0.625rem] px-3.5 py-2 transition-colors no-underline"
           style="color: var(--color-ink-60)"
         >
           Visit us
@@ -72,7 +72,7 @@
       <button
         type="button"
         (click)="toggleLang()"
-        class="flex items-center gap-1.5 rounded-xl bg-card px-3 py-2 text-xs font-medium text-fg ring-1 ring-border hover:bg-white/10 transition-colors"
+        class="hidden lg:flex items-center gap-1.5 rounded-xl bg-card px-3 py-2 text-xs font-medium text-fg ring-1 ring-border hover:bg-white/10 transition-colors"
         aria-label="Toggle language"
       >
         <img
@@ -92,7 +92,7 @@
       <!-- ── Desktop Book CTA ── -->
       <a
         routerLink="/booking"
-        class="hidden md:inline-flex items-center justify-center shrink-0 rounded-full px-5 py-2 font-[family-name:var(--font-sans)] text-[0.75rem] font-medium tracking-[0.03em] hover:opacity-80 transition-opacity no-underline"
+        class="hidden md:inline-flex items-center justify-center shrink-0 rounded-full px-5 py-2 text-[0.75rem] font-medium tracking-[0.03em] hover:opacity-80 transition-opacity no-underline"
         style="background: var(--color-ink); color: var(--color-warm)"
       >
         Book now
@@ -193,8 +193,7 @@
           class="font-[family-name:var(--font-serif)] text-[1.4rem] font-light tracking-[-0.01em] text-ink"
           >Home</span
         >
-        <span
-          class="font-[family-name:var(--font-sans)] text-[0.7rem] text-ink-60 group-hover:translate-x-1 transition-transform"
+        <span class="text-[0.7rem] text-ink-60 group-hover:translate-x-1 transition-transform"
           >→</span
         >
       </a>
@@ -209,8 +208,7 @@
           class="font-[family-name:var(--font-serif)] text-[1.4rem] font-light tracking-[-0.01em] text-ink"
           >Tickets</span
         >
-        <span
-          class="font-[family-name:var(--font-sans)] text-[0.7rem] text-ink-60 group-hover:translate-x-1 transition-transform"
+        <span class="text-[0.7rem] text-ink-60 group-hover:translate-x-1 transition-transform"
           >→</span
         >
       </a>
@@ -225,8 +223,7 @@
           class="font-[family-name:var(--font-serif)] text-[1.4rem] font-light tracking-[-0.01em] text-ink"
           >About</span
         >
-        <span
-          class="font-[family-name:var(--font-sans)] text-[0.7rem] text-ink-60 group-hover:translate-x-1 transition-transform"
+        <span class="text-[0.7rem] text-ink-60 group-hover:translate-x-1 transition-transform"
           >→</span
         >
       </a>
@@ -241,8 +238,7 @@
           class="font-[family-name:var(--font-serif)] text-[1.4rem] font-light tracking-[-0.01em] text-ink"
           >Experience</span
         >
-        <span
-          class="font-[family-name:var(--font-sans)] text-[0.7rem] text-ink-60 group-hover:translate-x-1 transition-transform"
+        <span class="text-[0.7rem] text-ink-60 group-hover:translate-x-1 transition-transform"
           >→</span
         >
       </a>
@@ -257,8 +253,7 @@
           class="font-[family-name:var(--font-serif)] text-[1.4rem] font-light tracking-[-0.01em] text-ink"
           >Blog</span
         >
-        <span
-          class="font-[family-name:var(--font-sans)] text-[0.7rem] text-ink-60 group-hover:translate-x-1 transition-transform"
+        <span class="text-[0.7rem] text-ink-60 group-hover:translate-x-1 transition-transform"
           >→</span
         >
       </a>
@@ -273,11 +268,30 @@
           class="font-[family-name:var(--font-serif)] text-[1.4rem] font-light tracking-[-0.01em] text-ink"
           >Visit us</span
         >
-        <span
-          class="font-[family-name:var(--font-sans)] text-[0.7rem] text-ink-60 group-hover:translate-x-1 transition-transform"
+        <span class="text-[0.7rem] text-ink-60 group-hover:translate-x-1 transition-transform"
           >→</span
         >
       </a>
+
+      <button
+        type="button"
+        (click)="toggleLang()"
+        class="lg:hidden flex justify-center items-center text-center gap-1.5 rounded-xl bg-card px-3 py-2 text-xs font-medium text-fg ring-1 ring-border hover:bg-white/10 transition-colors"
+        aria-label="Toggle language"
+      >
+        <img
+          [src]="
+            currentLang() === 'en'
+              ? 'https://flagcdn.com/w20/hr.png'
+              : 'https://flagcdn.com/w20/gb.png'
+          "
+          [alt]="currentLang() === 'en' ? 'Hrvatski' : 'English'"
+          width="20"
+          height="14"
+          class="rounded-sm object-cover"
+        />
+        <span>{{ currentLang() === 'en' ? 'HR' : 'EN' }}</span>
+      </button>
     </nav>
 
     <!-- bottom section -->
@@ -286,13 +300,13 @@
       <a
         routerLink="/booking"
         (click)="closeMenu()"
-        class="flex items-center justify-center rounded-full bg-ink text-warm py-3 font-[family-name:var(--font-sans)] text-[0.8rem] font-medium hover:opacity-85 transition-opacity no-underline"
+        class="flex items-center justify-center rounded-full bg-ink text-warm py-3 text-[0.8rem] font-medium hover:opacity-85 transition-opacity no-underline"
       >
         Book tickets →
       </a>
 
       <!-- info strip -->
-      <div class="flex gap-5 font-[family-name:var(--font-sans)] text-[0.68rem] text-ink-60">
+      <div class="flex gap-5 text-[0.68rem] text-ink-60">
         <div>
           <p class="font-medium tracking-[0.1em] uppercase text-[0.55rem] mb-0.5 text-ink-60/70">
             Location

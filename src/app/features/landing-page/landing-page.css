@@ -1523,3 +1523,133 @@ html, body {
 .hero-actions .btn--dark:hover::after {
   opacity: 1;
 }
+
+/* =========================
+   MOBILE / RESPONSIVE FIXES
+   ========================= */
+
+/* Prevent occasional 1-2px sideways scroll from blobs/transforms */
+.landing-root,
+.hero {
+  overflow-x: clip;
+}
+
+/* Make hero spacing responsive (less “too tall” on phones) */
+.hero-inner {
+  padding: clamp(2.25rem, 6vw, 4rem) 1.25rem clamp(2rem, 5vw, 3rem);
+}
+
+/* H1 sizing: slightly smaller baseline + safer on small screens */
+.h1-line {
+  font-size: clamp(3.1rem, 12vw, 8.5rem);
+  will-change: transform;
+}
+
+/* The “italic + left padding” lines can cause overflow on narrow phones */
+@media (max-width: 480px) {
+  .h1-line {
+    font-size: clamp(2.7rem, 13vw, 4.6rem);
+  }
+
+  .h1-line--2,
+  .h1-line--3 {
+    padding-left: 0.5rem; /* was 2rem/1rem */
+  }
+
+  .hero-sub {
+    font-size: 0.98rem;
+    line-height: 1.65;
+    margin-top: 1.25rem;
+  }
+
+  .hero-tags {
+    gap: 0.75rem 1rem;
+    font-size: 0.68rem;
+  }
+}
+
+/* Hero card: better mobile layout */
+@media (max-width: 980px) {
+  .hero-card {
+    max-width: 560px;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero-card {
+    border-radius: 2rem;
+  }
+
+  .hero-card__img {
+    aspect-ratio: 16 / 10; /* less vertical on phones */
+    border-radius: 1.5rem;
+  }
+
+  .hero-card__footer {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+
+  .inline-link {
+    transform: none; /* avoid jitter with hover transforms on touch */
+  }
+}
+
+/* Buttons: keep them comfy on mobile */
+@media (max-width: 420px) {
+  .btn {
+    padding: 0.75rem 1.25rem;
+  }
+
+  .hero-actions {
+    gap: 0.6rem;
+  }
+}
+
+/* Bento: collapse to single column on mobile even if inline grid-column is set */
+@media (max-width: 980px) {
+  .bento {
+    grid-template-columns: 1fr !important;
+  }
+
+  .bento-cell {
+    grid-column: 1 / -1 !important;
+    grid-row: auto !important;
+    min-height: unset;
+  }
+
+  /* If you have placeholder image boxes, keep them visible */
+  .bento-img-placeholder {
+    min-height: 220px;
+  }
+}
+
+/* Make motion more friendly */
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track,
+  .h1-line,
+  .hero-card {
+    animation: none !important;
+    transform: none !important;
+    opacity: 1 !important;
+  }
+}
+
+/* Optional: consistent vertical rhythm */
+.about,
+.blog {
+  padding-block: clamp(4rem, 8vw, 6rem);
+}
+
+.sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
