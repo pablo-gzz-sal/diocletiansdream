@@ -1,0 +1,25 @@
+    <div class="mx-auto max-w-7xl px-6 lg:px-8 pb-24">
+      <div class="rounded-[2.5rem] border border-black/10 bg-white/55 overflow-hidden p-8 sm:p-10">
+        <h2 class="font-[family-name:var(--font-serif)] text-[clamp(1.8rem,3.2vw,2.6rem)] font-light leading-[1.05] tracking-[-0.02em] text-ink">
+          {{ 'blogPage.seo.title' | translate }}
+        </h2>
+
+        <p class="mt-4 max-w-3xl font-[family-name:var(--font-sans)] text-[0.95rem] leading-[1.8] text-ink-60">
+          {{ 'blogPage.seo.text' | translate }}
+        </p>
+
+        <div class="mt-7 flex flex-wrap gap-3">
+          <a routerLink="/experience" class="btn btn--ghost">
+            {{ 'blogPage.cta.experience' | translate }} →
+          </a>
+
+          <a routerLink="/visit" class="btn btn--ghost">
+            {{ 'blogPage.cta.visit' | translate }} →
+          </a>
+
+          <a routerLink="/booking" class="btn btn--dark">
+            {{ 'blogPage.cta.book' | translate }} →
+          </a>
+        </div>
+      </div>
+    </div>

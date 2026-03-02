@@ -7,12 +7,13 @@ import { Footer } from '../../../core/components/footer/footer';
 import { Header } from '../../../core/components/header/header';
 import { TranslateModule } from '@ngx-translate/core';
 import { SeoService } from '../../../shared/services/seo-service';
+import { CtaBlock } from '../../../shared/components/cta-block/cta-block';
 
 type CategoryTab = { id: number | null; slug: string; labelKey?: string; fallback: string };
 
 @Component({
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterModule, Header, Footer, TranslateModule],
+  imports: [CommonModule, FormsModule, RouterModule, Header, Footer, TranslateModule, CtaBlock],
   selector: 'app-blog-list-page',
   templateUrl: './blog-list-page.html',
 })

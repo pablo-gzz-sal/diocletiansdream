@@ -7,10 +7,11 @@ import { Header } from '../../../core/components/header/header';
 import { Footer } from '../../../core/components/footer/footer';
 import { TranslateModule } from '@ngx-translate/core';
 import { SeoService } from '../../../shared/services/seo-service';
+import { CtaBlock } from '../../../shared/components/cta-block/cta-block';
 
 @Component({
   standalone: true,
-  imports: [CommonModule, RouterModule, Header, Footer, TranslateModule],
+  imports: [CommonModule, RouterModule, Header, Footer, TranslateModule, CtaBlock],
   selector: 'app-blog-post-page',
   templateUrl: './blog-post-page.html',
 })
