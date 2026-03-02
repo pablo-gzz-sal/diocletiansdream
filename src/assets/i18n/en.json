@@ -410,5 +410,12 @@
       "headline": "Ready to step into 305 AD?",
       "cta": "Book an experience"
     }
+  }, 
+    "blogInvite": {
+    "title": "Explore Roman History & Split Travel Guides",
+    "text": "Discover articles about Diocletian’s Palace, Roman heritage, and things to do in Split. Get deeper cultural context connected to the immersive VR experience.",
+    "ctaPrimary": "Visit the Blog",
+    "ctaExperience": "The Experience",
+    "ctaVisit": "Plan Your Visit"
   }
 }

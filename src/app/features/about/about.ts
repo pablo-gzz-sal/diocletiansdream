@@ -4,11 +4,12 @@ import { Footer } from '../../core/components/footer/footer';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { DomSanitizer, Meta, SafeHtml, Title } from '@angular/platform-browser';
 import { Subscription } from 'rxjs';
+import { BlogInvite } from '../../shared/components/blog-invite/blog-invite';
 
 @Component({
   selector: 'app-about',
   standalone: true,
-  imports: [Header, Footer, TranslateModule],
+  imports: [Header, Footer, TranslateModule, BlogInvite],
   templateUrl: './about.html',
   styleUrl: './about.css',
 })

@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Header } from '../../core/components/header/header';
 import { Footer } from '../../core/components/footer/footer';
+import { BlogInvite } from '../../shared/components/blog-invite/blog-invite';
 
 @Component({
   selector: 'app-booking',
   standalone: true,
-  imports: [Header, Footer],
+  imports: [Header, Footer, BlogInvite],
   templateUrl: './booking.html',
   styleUrl: './booking.css',
 })

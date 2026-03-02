@@ -410,5 +410,12 @@
       "headline": "Spremni za povratak u 305. godinu?",
       "cta": "Rezerviraj iskustvo"
     }
+  },
+  "blogInvite": {
+    "title": "Istražite rimsku povijest i vodiče kroz Split",
+    "text": "Otkrijte članke o Dioklecijanovoj palači, rimskoj baštini i aktivnostima u Splitu. Saznajte više kroz sadržaj povezan s VR iskustvom.",
+    "ctaPrimary": "Posjetite blog",
+    "ctaExperience": "VR iskustvo",
+    "ctaVisit": "Planirajte posjet"
   }
 }

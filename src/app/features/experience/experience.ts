@@ -6,11 +6,12 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
 import { Meta, Title } from '@angular/platform-browser';
 import { RouterLink } from '@angular/router';
+import { BlogInvite } from '../../shared/components/blog-invite/blog-invite';
 
 @Component({
   selector: 'app-experience',
   standalone: true,
-  imports: [Header, Footer, CommonModule, TranslateModule, RouterLink],
+  imports: [Header, Footer, CommonModule, TranslateModule, RouterLink, BlogInvite],
   templateUrl: './experience.html',
   styleUrl: './experience.css',
 })

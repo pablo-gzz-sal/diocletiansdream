@@ -9,11 +9,12 @@ import { WpService } from '../../shared/services/wp-service';
 import { IntroReveal } from '../../shared/components/intro-reveal/intro-reveal';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { FormsModule } from '@angular/forms';
+import { BlogInvite } from '../../shared/components/blog-invite/blog-invite';
 
 @Component({
   selector: 'app-landing-page',
   standalone: true,
-  imports: [RouterLink, Header, Footer, FormsModule, CommonModule, IntroReveal, TranslateModule],
+  imports: [RouterLink, Header, Footer, FormsModule, CommonModule, IntroReveal, TranslateModule, BlogInvite],
   templateUrl: './landing-page.html',
   styleUrl: './landing-page.css',
 })

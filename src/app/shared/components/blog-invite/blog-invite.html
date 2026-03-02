@@ -1,0 +1,46 @@
+<div class="mx-auto max-w-7xl px-6 lg:px-8 pb-24">
+  <div class="rounded-[2.5rem] border border-black/10 bg-white/55 overflow-hidden p-8 sm:p-10 relative">
+
+    <!-- Subtle background glow -->
+    <div
+      class="pointer-events-none absolute -top-20 -right-20 h-[260px] w-[260px] rounded-full blur-[80px] opacity-20"
+      style="background: radial-gradient(circle, var(--dd-purple), transparent 60%)"
+    ></div>
+
+    <div class="relative z-10">
+      <!-- Title -->
+      <h2
+        class="font-[family-name:var(--font-serif)] text-[clamp(1.8rem,3.2vw,2.6rem)] font-light leading-[1.05] tracking-[-0.02em] text-ink"
+      >
+        {{ title || ('blogInvite.title' | translate) }}
+      </h2>
+
+      <!-- Text -->
+      <p
+        class="mt-4 max-w-3xl font-[family-name:var(--font-sans)] text-[0.95rem] leading-[1.8] text-ink-60"
+      >
+        {{ text || ('blogInvite.text' | translate) }}
+      </p>
+
+      <!-- Buttons -->
+      <div class="mt-7 flex flex-wrap gap-3">
+        <!-- Primary blog button -->
+        <a routerLink="/blog" class="btn btn--dark">
+          {{ 'blogInvite.ctaPrimary' | translate }} →
+        </a>
+
+        <!-- Optional extra links -->
+        <ng-container *ngIf="showSecondaryLinks">
+          <a routerLink="/experience" class="btn btn--ghost">
+            {{ 'blogInvite.ctaExperience' | translate }} →
+          </a>
+
+          <a routerLink="/visit" class="btn btn--ghost">
+            {{ 'blogInvite.ctaVisit' | translate }} →
+          </a>
+        </ng-container>
+      </div>
+    </div>
+
+  </div>
+</div>
