@@ -363,5 +363,52 @@
       "switchToHr": "Prebaci na hrvatski",
       "switchToEn": "Prebaci na engleski"
     }
+  },
+  "blogPage": {
+    "hero": {
+      "eyebrow": "Blog",
+      "title": "Diocletian’s Dream Blog",
+      "intro": "Diocletian’s Dream blog donosi vam članke i vodiče o rimskoj povijesti, Dioklecijanovoj palači, savjetima za posjet Splitu i kulturnoj baštini grada. Bilo da planirate dolazak ili želite dublje upoznati povijest Rimskog Carstva, ovdje ćete pronaći dodatni kontekst koji nadopunjuje VR iskustvo."
+    },
+    "controls": {
+      "searchPlaceholder": "Pretraži članke…",
+      "articlesCount": "{{count}} članaka"
+    },
+    "filters": {
+      "label": "Kategorije:",
+      "all": "Svi članci",
+      "romanHistory": "Rimska povijest",
+      "splitGuides": "Vodič kroz Split",
+      "thingsToDo": "Što raditi u Splitu",
+      "familyTravel": "Putovanja s obitelji i u grupi",
+      "dayTrips": "Izleti van Splita"
+    },
+    "card": {
+      "readLabel": "Čitaj",
+      "continueLabel": "Nastavi →"
+    },
+    "seo": {
+      "title": "Saznajte više o rimskoj povijesti i kulturi Splita",
+      "text": "Naši članci obrađuju teme od povijesnog značaja Dioklecijanove palače do praktičnih savjeta za istraživanje Splita. Bez obzira istražujete li rimsku baštinu ili planirate svoj itinerar, blog nudi korisne informacije povezane s iskustvom virtualne stvarnosti.",
+      "metaTitle": "Blog Diocletian’s Dream | Rimska povijest i što raditi u Splitu",
+      "metaDescription": "Pročitajte članke o Dioklecijanovoj palači, rimskoj povijesti i aktivnostima u Splitu. Istražite vodiče kroz grad i kulturne teme povezane s VR iskustvom."
+    },
+    "cta": {
+      "experience": "Doživite rekonstrukciju palače",
+      "visit": "Planirajte posjet",
+      "book": "Rezervirajte termin"
+    }
+  },
+  "blogPostPage": {
+    "back": "Natrag na blog",
+    "notFound": {
+      "title": "Članak nije pronađen.",
+      "text": "Članak je možda uklonjen ili je poveznica neispravna.",
+      "cta": "← Povratak"
+    },
+    "footer": {
+      "headline": "Spremni za povratak u 305. godinu?",
+      "cta": "Rezerviraj iskustvo"
+    }
   }
 }

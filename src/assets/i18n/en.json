@@ -332,7 +332,7 @@
       "experienceSentence": "To explore the reconstruction in detail, visit The Experience."
     }
   },
-   "header": {
+  "header": {
     "brand": "Diocletian's Dream",
     "nav": {
       "home": "Home",
@@ -362,6 +362,53 @@
       "en": "English",
       "switchToHr": "Switch to Croatian",
       "switchToEn": "Switch to English"
+    }
+  },
+  "blogPage": {
+    "hero": {
+      "eyebrow": "Blogs",
+      "title": "Diocletian’s Dream Blog",
+      "intro": "Explore articles and guides about Roman history, Diocletian’s Palace, Split travel tips, and cultural heritage. Whether planning your visit or exploring the history of the Roman Empire, our blog provides deeper context connected to the immersive VR experience."
+    },
+    "controls": {
+      "searchPlaceholder": "Search articles…",
+      "articlesCount": "{{count}} articles"
+    },
+    "filters": {
+      "label": "Category Filters:",
+      "all": "All Blogs",
+      "romanHistory": "Roman History",
+      "splitGuides": "Split Travel Guides",
+      "thingsToDo": "Things to Do in Split",
+      "familyTravel": "Family & Group Travel",
+      "dayTrips": "Beyond Split & Day Trips"
+    },
+    "card": {
+      "readLabel": "Read",
+      "continueLabel": "Continue →"
+    },
+    "seo": {
+      "title": "Learn More About Roman History and Split Culture",
+      "text": "Our articles explore everything from the legacy of Diocletian’s Palace to practical travel advice in Split. Whether researching Roman heritage or planning your itinerary, the blog offers useful insights connected to our immersive VR experience.",
+      "metaTitle": "Diocletian’s Dream Blog | Roman History & Things to Do in Split",
+      "metaDescription": "Read articles about Diocletian’s Palace, Roman history, and things to do in Split. Explore Split travel guides and cultural insights connected to the immersive VR experience."
+    },
+    "cta": {
+      "experience": "Experience the palace reconstruction",
+      "visit": "Plan your visit",
+      "book": "Book your visit"
+    }
+  },
+  "blogPostPage": {
+    "back": "Back to journal",
+    "notFound": {
+      "title": "Post not found.",
+      "text": "The article may have been removed or the link is wrong.",
+      "cta": "← Go back"
+    },
+    "footer": {
+      "headline": "Ready to step into 305 AD?",
+      "cta": "Book an experience"
     }
   }
 }

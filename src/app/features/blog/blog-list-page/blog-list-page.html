@@ -5,20 +5,19 @@
     <p
       class="font-[family-name:var(--font-sans)] text-[0.65rem] font-medium tracking-[0.2em] uppercase text-ink-60 mb-4"
     >
-      Blogs
+      {{ 'blogPage.hero.eyebrow' | translate }}
     </p>
+
     <h1
       class="font-[family-name:var(--font-serif)] font-light text-[clamp(3rem,8vw,6rem)] leading-[0.92] tracking-[-0.02em] text-ink"
     >
-      Diocletians Dream Blog
+      {{ 'blogPage.hero.title' | translate }}
     </h1>
-    <p
-      class="mt-5 max-w-xl font-[family-name:var(--font-sans)] text-[1rem] leading-[1.7] text-ink-60"
-    >
-      Welcome to Diocletians Dream blog section, your ultimate destination for exploring the rich
-      history, culture, and attractions of Split, Croatia. Here, you can learn more about
-      Diocletian’s Palace, things to do in Split, and other interesting stories.
+
+    <p class="mt-5 max-w-xl font-[family-name:var(--font-sans)] text-[1rem] leading-[1.7] text-ink-60">
+      {{ 'blogPage.hero.intro' | translate }}
     </p>
+
     <div class="h-px bg-black/10 mt-8"></div>
   </div>
 
@@ -30,22 +29,46 @@
       <input
         [(ngModel)]="query"
         type="text"
-        placeholder="Search articles..."
+        [placeholder]="'blogPage.controls.searchPlaceholder' | translate"
         class="w-full sm:w-72 rounded-full border border-black/10 bg-white/65 px-4 py-2.5 font-[family-name:var(--font-sans)] text-[0.78rem] text-ink placeholder:text-ink-60 outline-none focus:border-ink-60 focus:bg-white transition-colors"
       />
-      <!-- <select
-        [(ngModel)]="selectedCategoryId"
-        class="w-full sm:w-60 rounded-full border border-black/10 bg-white/65 px-4 py-2.5 font-[family-name:var(--font-sans)] text-[0.78rem] text-ink outline-none focus:border-ink-60 focus:bg-white transition-colors appearance-none"
-      >
-        <option [ngValue]="null">All categories</option>
-        <option *ngFor="let c of categories" [ngValue]="c.id">{{ c.name }}</option>
-      </select> -->
     </div>
-    <p
-      class="font-[family-name:var(--font-sans)] text-[0.65rem] font-medium tracking-[0.2em] uppercase text-ink-60"
-    >
-      {{ filteredPosts().length }} articles
+
+    <p class="font-[family-name:var(--font-sans)] text-[0.65rem] font-medium tracking-[0.2em] uppercase text-ink-60">
+      {{ 'blogPage.controls.articlesCount' | translate:{ count: filteredPosts().length } }}
     </p>
+  </div>
+
+  <!-- Category filter tabs (above grid) -->
+  <div class="mx-auto max-w-7xl px-6 lg:px-8 pt-4">
+    <div class="flex flex-wrap items-center gap-2">
+      <span
+        class="mr-2 font-[family-name:var(--font-sans)] text-[0.65rem] font-medium tracking-[0.2em] uppercase text-ink-60"
+      >
+        {{ 'blogPage.filters.label' | translate }}
+      </span>
+
+      <button
+        type="button"
+        (click)="selectCategory(null)"
+        [class]="selectedCategoryId === null ? 'bg-ink text-warm border-black/10' : 'bg-white/60 text-ink border-black/10 hover:bg-white'"
+        class="rounded-full border px-3.5 py-2 font-[family-name:var(--font-sans)] text-[0.7rem] font-medium tracking-[0.12em] uppercase transition-colors"
+      >
+        {{ 'blogPage.filters.all' | translate }}
+      </button>
+
+      <!-- Render known category tabs (mapped to WP categories) -->
+      <button
+        *ngFor="let tab of categoryTabs"
+        type="button"
+        (click)="selectCategory(tab.id)"
+        [disabled]="!tab.id"
+        [class]="selectedCategoryId === tab.id ? 'bg-ink text-warm border-black/10' : 'bg-white/60 text-ink border-black/10 hover:bg-white'"
+        class="rounded-full border px-3.5 py-2 font-[family-name:var(--font-sans)] text-[0.7rem] font-medium tracking-[0.12em] uppercase transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
+      >
+        {{ tab.labelKey ? (tab.labelKey | translate) : tab.fallback }}
+      </button>
+    </div>
   </div>
 
   <!-- Skeleton -->
@@ -61,18 +84,10 @@
           class="aspect-[4/3] bg-gradient-to-br from-sand to-[#e5ddd0] animate-[shimmer_1.6s_ease-in-out_infinite]"
         ></div>
         <div class="p-6 flex flex-col gap-3">
-          <div
-            class="h-2.5 w-24 rounded-full bg-sand animate-[shimmer_1.6s_ease-in-out_infinite]"
-          ></div>
-          <div
-            class="h-4 w-3/4 rounded-full bg-sand animate-[shimmer_1.6s_ease-in-out_infinite]"
-          ></div>
-          <div
-            class="h-3 w-full rounded-full bg-sand animate-[shimmer_1.6s_ease-in-out_infinite]"
-          ></div>
-          <div
-            class="h-3 w-5/6 rounded-full bg-sand animate-[shimmer_1.6s_ease-in-out_infinite]"
-          ></div>
+          <div class="h-2.5 w-24 rounded-full bg-sand animate-[shimmer_1.6s_ease-in-out_infinite]"></div>
+          <div class="h-4 w-3/4 rounded-full bg-sand animate-[shimmer_1.6s_ease-in-out_infinite]"></div>
+          <div class="h-3 w-full rounded-full bg-sand animate-[shimmer_1.6s_ease-in-out_infinite]"></div>
+          <div class="h-3 w-5/6 rounded-full bg-sand animate-[shimmer_1.6s_ease-in-out_infinite]"></div>
         </div>
       </div>
     </div>
@@ -81,7 +96,7 @@
   <!-- Grid -->
   @if (!loading) {
     <div
-      class="mx-auto max-w-7xl px-6 lg:px-8 py-8 pb-24 grid gap-3 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
+      class="mx-auto max-w-7xl px-6 lg:px-8 py-8 pb-16 grid gap-3 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
     >
       <a
         *ngFor="let post of filteredPosts(); trackBy: trackById"
@@ -100,13 +115,6 @@
           <ng-template #placeholder>
             <div class="aspect-[4/3] w-full bg-gradient-to-br from-sand to-[#ddd5c5]"></div>
           </ng-template>
-
-          <!-- <span
-            *ngIf="categoryLabel(post) as cat"
-            class="absolute top-3.5 left-3.5 font-[family-name:var(--font-sans)] text-[0.6rem] font-medium tracking-[0.15em] uppercase text-ink rounded-full border border-black/10 bg-cream/88 backdrop-blur-sm px-3 py-1.5"
-          >
-            {{ cat }}
-          </span> -->
         </div>
 
         <!-- Body -->
@@ -117,29 +125,53 @@
             >
               {{ dateLabel(post) }}
             </p>
-            <span
-              class="font-[family-name:var(--font-sans)] text-[0.6rem] font-medium tracking-[0.18em] uppercase text-ink-60"
-              >Read</span
-            >
+            <span class="font-[family-name:var(--font-sans)] text-[0.6rem] font-medium tracking-[0.18em] uppercase text-ink-60">
+              {{ 'blogPage.card.readLabel' | translate }}
+            </span>
           </div>
-          <h2
-            class="mt-2.5 font-[family-name:var(--font-serif)] text-[1.25rem] leading-[1.2] tracking-[-0.01em] text-ink"
-          >
+
+          <h2 class="mt-2.5 font-[family-name:var(--font-serif)] text-[1.25rem] leading-[1.2] tracking-[-0.01em] text-ink">
             {{ titleText(post) }}
           </h2>
-          <p
-            class="mt-2 font-[family-name:var(--font-sans)] text-[0.82rem] leading-[1.7] text-ink-60 line-clamp-3"
-          >
+
+          <p class="mt-2 font-[family-name:var(--font-sans)] text-[0.82rem] leading-[1.7] text-ink-60 line-clamp-3">
             {{ excerptText(post) }}
           </p>
+
           <div class="h-px bg-black/10 my-4"></div>
-          <p
-            class="font-[family-name:var(--font-sans)] text-[0.65rem] font-medium tracking-[0.18em] uppercase text-ink"
-          >
-            Continue →
+
+          <p class="font-[family-name:var(--font-sans)] text-[0.65rem] font-medium tracking-[0.18em] uppercase text-ink">
+            {{ 'blogPage.card.continueLabel' | translate }}
           </p>
         </div>
       </a>
+    </div>
+
+    <!-- SEO footer block + Internal links -->
+    <div class="mx-auto max-w-7xl px-6 lg:px-8 pb-24">
+      <div class="rounded-[2.5rem] border border-black/10 bg-white/55 overflow-hidden p-8 sm:p-10">
+        <h2 class="font-[family-name:var(--font-serif)] text-[clamp(1.8rem,3.2vw,2.6rem)] font-light leading-[1.05] tracking-[-0.02em] text-ink">
+          {{ 'blogPage.seo.title' | translate }}
+        </h2>
+
+        <p class="mt-4 max-w-3xl font-[family-name:var(--font-sans)] text-[0.95rem] leading-[1.8] text-ink-60">
+          {{ 'blogPage.seo.text' | translate }}
+        </p>
+
+        <div class="mt-7 flex flex-wrap gap-3">
+          <a routerLink="/experience" class="btn btn--ghost">
+            {{ 'blogPage.cta.experience' | translate }} →
+          </a>
+
+          <a routerLink="/visit" class="btn btn--ghost">
+            {{ 'blogPage.cta.visit' | translate }} →
+          </a>
+
+          <a routerLink="/booking" class="btn btn--dark">
+            {{ 'blogPage.cta.book' | translate }} →
+          </a>
+        </div>
+      </div>
     </div>
   }
 </section>
