@@ -1,0 +1,120 @@
+<section class="hero">
+  <!-- background grain texture -->
+  <div class="grain"></div>
+  <div class="hero-blob hero-blob--1"></div>
+  <div class="hero-blob hero-blob--2"></div>
+      <div class="absolute inset-0 overflow-hidden dd-grain">
+      <!-- soft radial glows -->
+      <div
+        class="pointer-events-none absolute -top-24 -left-24 h-[420px] w-[420px] rounded-full blur-3xl opacity-25 dd-float"
+        style="background: radial-gradient(circle at 30% 30%, var(--dd-purple), transparent 60%)"
+      ></div>
+
+      <div
+        class="pointer-events-none absolute -bottom-28 -right-24 h-[520px] w-[520px] rounded-full blur-3xl opacity-25 dd-float"
+        style="
+          animation-delay: -2.5s;
+          background: radial-gradient(circle at 30% 30%, var(--dd-gold), transparent 60%);
+        "
+      ></div>
+
+      <!-- elegant top border -->
+      <div
+        class="absolute left-0 right-0 top-0 h-px opacity-60"
+        style="
+          background: linear-gradient(
+            90deg,
+            transparent,
+            rgba(194, 154, 89, 0.65),
+            rgba(45, 4, 106, 0.55),
+            transparent
+          );
+        "
+      ></div>
+
+      <!-- subtle grid -->
+      <div
+        class="pointer-events-none absolute inset-0 opacity-[0.05]"
+        style="
+          background-image:
+            linear-gradient(to right, rgba(45, 4, 106, 0.25) 1px, transparent 1px),
+            linear-gradient(to bottom, rgba(194, 154, 89, 0.2) 1px, transparent 1px);
+          background-size: 54px 54px;
+        "
+      ></div>
+    </div>
+
+
+  <div class="hero-inner">
+    <!-- left: big editorial heading -->
+    <div class="hero-text">
+      <!-- Use existing JSON key (no new data) -->
+      <p class="eyebrow">VR Museum · Diocletian's Palace · Split</p>
+
+      <!-- Keep the split look, but use i18n for the real H1 for SEO -->
+      <h1 class="hero-h1">
+        <!-- Real SEO title (i18n) -->
+        <span class="sr-only">{{ 'home.hero.title' | translate }}</span>
+
+        <!-- Visual split lines (static words to preserve the exact design) -->
+        <span class="h1-line h1-line--1">{{ 'home.hero.1Line' | translate }}</span>
+        <span class="h1-line h1-line--2">{{ 'home.hero.2Line' | translate }}</span>
+        <span class="h1-line h1-line--3">{{ 'home.hero.3Line' | translate }}</span>
+        <span class="h1-line h1-line--4">{{ 'home.hero.4Line' | translate }}</span>
+      </h1>
+
+      <!-- Existing JSON subtitle -->
+      <p class="hero-sub">
+        {{ 'home.hero.subtitle' | translate }}
+      </p>
+
+      <div class="hero-actions">
+        <a routerLink="/booking" class="btn btn--dark">
+          {{ 'home.hero.ctaPrimary' | translate }}
+        </a>
+        <a href="#experience" class="btn btn--ghost">
+          {{ 'home.hero.ctaSecondary' | translate }}
+        </a>
+      </div>
+
+      <!-- Use existing JSON keys (no hardcoded tags) -->
+      <div class="hero-tags">
+        <span>{{ 'home.unique.reconstruction.title' | translate }}</span>
+        <span>{{ 'home.unique.journey.title' | translate }}</span>
+        <span>{{ 'home.unique.educational.title' | translate }}</span>
+      </div>
+    </div>
+
+    <!-- right: floating card -->
+    <div class="hero-card">
+      <div class="hero-card__img">
+        <!-- No placeholder text: always a real image -->
+        <img
+          src="assets/images/heroAnimation.jpg"
+          alt="{{ 'home.hero.title' | translate }}"
+          loading="eager"
+          fetchpriority="high"
+        />
+      </div>
+
+      <div class="hero-card__footer">
+        <div>
+          <p class="card-title">{{ 'home.experience.title' | translate }}</p>
+          <p class="card-sub">{{ 'home.unique.reconstruction.text' | translate }}</p>
+        </div>
+        <a routerLink="/booking" class="inline-link">
+          {{ 'home.hero.ctaPrimary' | translate }} →
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- tile grid stays component-driven (no JSON available for it yet) -->
+  <div class="tile-grid" *ngIf="tiles?.length">
+    <ng-container *ngFor="let tile of tiles">
+      <div class="tile" [ngClass]="tile.span">
+        <span>{{ tile.label }}</span>
+      </div>
+    </ng-container>
+  </div>
+</section>

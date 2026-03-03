@@ -1,0 +1,29 @@
+  <section class="blog">
+    <div class="blog-inner">
+      <div class="blog-header">
+        <div>
+          <p class="eyebrow">{{ 'home.reviews.selected' | translate }}</p>
+          <h2 class="section-h2">{{ 'home.reviews.title' | translate }}</h2>
+        </div>
+
+        <a routerLink="/reviews" class="inline-link hide-mobile">
+          {{ 'home.reviews.cta' | translate }} →
+        </a>
+      </div>
+
+      <div class="bento">
+        <div class="bento-cell bento-cell--text" style="grid-column: 1 / 8">
+          <p class="bento-copy">{{ 'home.reviews.p1' | translate }}</p>
+          <p class="bento-copy" style="margin-top: 1rem">{{ 'home.reviews.p2' | translate }}</p>
+
+          <a routerLink="/reviews" class="inline-link" style="display: block; margin-top: 1.25rem">
+            {{ 'home.reviews.cta' | translate }} →
+          </a>
+        </div>
+
+        <div class="bento-cell bento-cell--imgB" style="grid-column: 8 / 13">
+          <div class="bento-img-placeholder">Selected testimonials / rating card</div>
+        </div>
+      </div>
+    </div>
+  </section>

@@ -1,0 +1,32 @@
+<section class="about">
+  <div class="about-inner">
+    <div class="about-heading">
+      <p class="eyebrow">{{ 'home.location.cta' | translate }}</p>
+      <h2 class="about-h2">{{ 'home.location.title' | translate }}</h2>
+    </div>
+
+    <div class="bento bento--location">
+      <!-- Text -->
+      <div class="bento-cell bento-cell--text bento-cell--locText">
+        <p class="bento-copy">{{ 'home.location.p1' | translate }}</p>
+        <p class="bento-copy" style="margin-top: 1rem">{{ 'home.location.p2' | translate }}</p>
+
+        <a routerLink="/visit" class="btn btn--dark" style="margin-top: 2rem">
+          {{ 'home.location.cta' | translate }}
+        </a>
+      </div>
+
+      <!-- Map -->
+      <div class="bento-cell bento-cell--map">
+        <iframe
+          class="bento-map"
+          title="Diocletian's Dream — Zagrebačka ulica 1, Split"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d720.7837!2d16.43997!3d43.50831!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x13355df883e58f93%3A0x5d2f8c929c408e3!2sZagreba%C4%8Dka%20ul.%201%2C%2021000%2C%20Split%2C%20Croatia!5e0!3m2!1sen!2shr!4v1700000000000!5m2!1sen!2shr"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          allowfullscreen
+        ></iframe>
+      </div>
+    </div>
+  </div>
+</section>

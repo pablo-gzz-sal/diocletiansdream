@@ -10,73 +10,37 @@ import { IntroReveal } from '../../shared/components/intro-reveal/intro-reveal';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { FormsModule } from '@angular/forms';
 import { BlogInvite } from '../../shared/components/blog-invite/blog-invite';
+import { Hero } from '../../core/components/hero/hero';
+import { Experience } from '../../core/components/experience/experience';
+import { Visit } from '../../core/components/visit/visit';
+import { Reviews } from '../../core/components/reviews/reviews';
+import { Faq } from '../../core/components/faq/faq';
 
 @Component({
   selector: 'app-landing-page',
   standalone: true,
-  imports: [RouterLink, Header, Footer, FormsModule, CommonModule, IntroReveal, TranslateModule, BlogInvite],
+  imports: [
+    RouterLink,
+    Header,
+    Footer,
+    FormsModule,
+    CommonModule,
+    IntroReveal,
+    TranslateModule,
+    BlogInvite,
+    Hero,
+    Experience,
+    Visit,
+    Reviews,
+    Faq,
+  ],
   templateUrl: './landing-page.html',
   styleUrl: './landing-page.css',
 })
 export class LandingPage implements OnInit {
-  newsletterEmail: string = '';
-  isSubmitting: boolean = false;
-  tiles = [
-    { label: '305 AD', span: 'tile-span-2' },
-    { label: 'VR Museum', span: 'tile-span-1' },
-    { label: 'UNESCO', span: 'tile-span-1' },
-    { label: 'Reconstruction', span: 'tile-span-2' },
-    { label: 'Split', span: 'tile-span-3' },
-    { label: 'Diocletian', span: 'tile-span-3' },
-  ];
-
-  visitCards = [
-    {
-      title: 'Location',
-      text: 'Right by Diocletian’s Palace — easy to combine with your Old Town walk.',
-      cta: 'Get tickets',
-      link: '/booking',
-    },
-    {
-      title: 'Duration',
-      text: 'A focused 15-minute VR show, designed to fit any itinerary.',
-      cta: 'Book a slot',
-      link: '/booking',
-    },
-    {
-      title: 'Before you go',
-      text: 'Arrive a few minutes early and keep your schedule relaxed after.',
-      cta: 'Read guide',
-      link: '/blog',
-    },
-  ];
+  marqueeItems: string[] = [];
 
   blogCards!: any;
-
-  faqs: any[] = [
-    {
-      q: 'How long is the experience?',
-      a: 'The VR museum experience lasts about 15 minutes.',
-      open: true,
-    },
-    {
-      q: 'Do I need to book in advance?',
-      a: 'Booking is recommended so you get your preferred time slot.',
-      open: false,
-    },
-    {
-      q: 'Is it suitable for kids?',
-      a: 'Yes, it’s family-friendly (you can specify a minimum age if you want).',
-      open: false,
-    },
-    {
-      q: 'Is it near the Palace?',
-      a: 'Yes — it’s designed to pair perfectly with a walk around Diocletian’s Palace.',
-      open: false,
-    },
-  ];
-
-  marqueeItems: string[] = [];
 
   constructor(
     private title: Title,
@@ -111,24 +75,6 @@ export class LandingPage implements OnInit {
     this.wpService.getSamplePosts().subscribe((posts) => {
       this.blogCards = posts;
     });
-  }
-
-  toggleFaq(i: number) {
-    this.faqs = this.faqs.map((x, idx) => (idx === i ? { ...x, open: !x.open } : x));
-  }
-
-  onSubscribe(): void {
-    if (!this.newsletterEmail) return;
-
-    this.isSubmitting = true;
-    console.log('Newsletter email:', this.newsletterEmail);
-
-    setTimeout(() => {
-      this.isSubmitting = false;
-      this.newsletterEmail = '';
-
-      alert('Subscribed successfully!');
-    }, 1000);
   }
 
   private setSeoTags(): void {

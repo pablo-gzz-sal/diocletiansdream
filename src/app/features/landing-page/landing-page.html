@@ -6,85 +6,7 @@
   <!-- ════════════════════════════════════════
        HERO
   ════════════════════════════════════════ -->
-<section class="hero">
-  <!-- background grain texture -->
-  <div class="grain"></div>
-  <div class="hero-blob hero-blob--1"></div>
-  <div class="hero-blob hero-blob--2"></div>
-
-  <div class="hero-inner">
-    <!-- left: big editorial heading -->
-    <div class="hero-text">
-      <!-- Use existing JSON key (no new data) -->
-      <p class="eyebrow">VR Museum · Diocletian's Palace · Split</p>
-
-      <!-- Keep the split look, but use i18n for the real H1 for SEO -->
-      <h1 class="hero-h1">
-        <!-- Real SEO title (i18n) -->
-        <span class="sr-only">{{ 'home.hero.title' | translate }}</span>
-
-        <!-- Visual split lines (static words to preserve the exact design) -->
-        <span class="h1-line h1-line--1">{{ 'home.hero.1Line' | translate }}</span>
-        <span class="h1-line h1-line--2">{{ 'home.hero.2Line' | translate }}</span>
-        <span class="h1-line h1-line--3">{{ 'home.hero.3Line' | translate }}</span>
-        <span class="h1-line h1-line--4">{{ 'home.hero.4Line' | translate }}</span>
-      </h1>
-
-      <!-- Existing JSON subtitle -->
-      <p class="hero-sub">
-        {{ 'home.hero.subtitle' | translate }}
-      </p>
-
-      <div class="hero-actions">
-        <a routerLink="/booking" class="btn btn--dark">
-          {{ 'home.hero.ctaPrimary' | translate }}
-        </a>
-        <a href="#experience" class="btn btn--ghost">
-          {{ 'home.hero.ctaSecondary' | translate }}
-        </a>
-      </div>
-
-      <!-- Use existing JSON keys (no hardcoded tags) -->
-      <div class="hero-tags">
-        <span>{{ 'home.unique.reconstruction.title' | translate }}</span>
-        <span>{{ 'home.unique.journey.title' | translate }}</span>
-        <span>{{ 'home.unique.educational.title' | translate }}</span>
-      </div>
-    </div>
-
-    <!-- right: floating card -->
-    <div class="hero-card">
-      <div class="hero-card__img">
-        <!-- No placeholder text: always a real image -->
-        <img
-          src="assets/images/heroAnimation.jpg"
-          alt="{{ 'home.hero.title' | translate }}"
-          loading="eager"
-          fetchpriority="high"
-        />
-      </div>
-
-      <div class="hero-card__footer">
-        <div>
-          <p class="card-title">{{ 'home.experience.title' | translate }}</p>
-          <p class="card-sub">{{ 'home.unique.reconstruction.text' | translate }}</p>
-        </div>
-        <a routerLink="/booking" class="inline-link">
-          {{ 'home.hero.ctaPrimary' | translate }} →
-        </a>
-      </div>
-    </div>
-  </div>
-
-  <!-- tile grid stays component-driven (no JSON available for it yet) -->
-  <div class="tile-grid" *ngIf="tiles?.length">
-    <ng-container *ngFor="let tile of tiles">
-      <div class="tile" [ngClass]="tile.span">
-        <span>{{ tile.label }}</span>
-      </div>
-    </ng-container>
-  </div>
-</section>
+<app-hero></app-hero>
 
   <!-- ════════════════════════════════════════
        MARQUEE STRIP
@@ -109,64 +31,7 @@
   <!-- ════════════════════════════════════════
        EXPERIENCE (from JSON)
   ════════════════════════════════════════ -->
-  <section id="experience" class="about">
-    <div class="about-inner">
-      <div class="about-heading">
-        <p class="eyebrow">{{ 'home.experience.cta' | translate }}</p>
-        <h2 class="about-h2">
-          {{ 'home.experience.title' | translate }}
-        </h2>
-      </div>
-
-      <div class="bento">
-        <!-- tall image A -->
-        <div class="bento-cell bento-cell--imgA">
-          <div class="bento-img-placeholder">Palace reconstruction still</div>
-        </div>
-
-        <!-- tall image B -->
-        <div class="bento-cell bento-cell--imgB">
-          <div class="bento-img-placeholder">Visitors in VR headsets</div>
-        </div>
-
-        <!-- text block -->
-        <div class="bento-cell bento-cell--text">
-          <p class="bento-copy">
-            {{ 'home.experience.p1' | translate }}
-          </p>
-          <p class="bento-copy" style="margin-top: 1rem">
-            {{ 'home.experience.p2' | translate }}
-          </p>
-          <p class="bento-copy" style="margin-top: 1rem">
-            {{ 'home.experience.p3' | translate }}
-          </p>
-
-          <a routerLink="/booking" class="btn btn--dark" style="margin-top: 2rem">
-            {{ 'home.hero.ctaPrimary' | translate }}
-          </a>
-          <a routerLink="/experience" class="inline-link" style="display: block; margin-top: 1rem">
-            {{ 'home.experience.cta' | translate }} →
-          </a>
-        </div>
-
-        <!-- stat cards (kept as strong quick facts; add JSON later if you want) -->
-        <div class="bento-cell bento-cell--stat">
-          <span class="stat-num">15'</span>
-          <span class="stat-label">VR session</span>
-        </div>
-
-        <div class="bento-cell bento-cell--stat bento-cell--statB">
-          <span class="stat-num">305</span>
-          <span class="stat-label">AD</span>
-        </div>
-
-        <!-- wide image C -->
-        <div class="bento-cell bento-cell--imgC">
-          <div class="bento-img-placeholder">Wide palace panorama</div>
-        </div>
-      </div>
-    </div>
-  </section>
+  <app-experience></app-experience>
 
   <!-- ════════════════════════════════════════
        UNIQUE (from JSON)
@@ -217,71 +82,12 @@
   <!-- ════════════════════════════════════════
        LOCATION (from JSON)
   ════════════════════════════════════════ -->
-<section class="about">
-  <div class="about-inner">
-    <div class="about-heading">
-      <p class="eyebrow">{{ 'home.location.cta' | translate }}</p>
-      <h2 class="about-h2">{{ 'home.location.title' | translate }}</h2>
-    </div>
-
-    <div class="bento bento--location">
-      <!-- Text -->
-      <div class="bento-cell bento-cell--text bento-cell--locText">
-        <p class="bento-copy">{{ 'home.location.p1' | translate }}</p>
-        <p class="bento-copy" style="margin-top: 1rem">{{ 'home.location.p2' | translate }}</p>
-
-        <a routerLink="/visit" class="btn btn--dark" style="margin-top: 2rem">
-          {{ 'home.location.cta' | translate }}
-        </a>
-      </div>
-
-      <!-- Map -->
-      <div class="bento-cell bento-cell--map">
-        <iframe
-          class="bento-map"
-          title="Diocletian's Dream — Zagrebačka ulica 1, Split"
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d720.7837!2d16.43997!3d43.50831!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x13355df883e58f93%3A0x5d2f8c929c408e3!2sZagreba%C4%8Dka%20ul.%201%2C%2021000%2C%20Split%2C%20Croatia!5e0!3m2!1sen!2shr!4v1700000000000!5m2!1sen!2shr"
-          loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade"
-          allowfullscreen
-        ></iframe>
-      </div>
-    </div>
-  </div>
-</section>
+<app-visit></app-visit>
 
   <!-- ════════════════════════════════════════
        REVIEWS (from JSON)
   ════════════════════════════════════════ -->
-  <section class="blog">
-    <div class="blog-inner">
-      <div class="blog-header">
-        <div>
-          <p class="eyebrow">{{ 'home.reviews.selected' | translate }}</p>
-          <h2 class="section-h2">{{ 'home.reviews.title' | translate }}</h2>
-        </div>
-
-        <a routerLink="/reviews" class="inline-link hide-mobile">
-          {{ 'home.reviews.cta' | translate }} →
-        </a>
-      </div>
-
-      <div class="bento">
-        <div class="bento-cell bento-cell--text" style="grid-column: 1 / 8">
-          <p class="bento-copy">{{ 'home.reviews.p1' | translate }}</p>
-          <p class="bento-copy" style="margin-top: 1rem">{{ 'home.reviews.p2' | translate }}</p>
-
-          <a routerLink="/reviews" class="inline-link" style="display: block; margin-top: 1.25rem">
-            {{ 'home.reviews.cta' | translate }} →
-          </a>
-        </div>
-
-        <div class="bento-cell bento-cell--imgB" style="grid-column: 8 / 13">
-          <div class="bento-img-placeholder">Selected testimonials / rating card</div>
-        </div>
-      </div>
-    </div>
-  </section>
+<app-reviews></app-reviews>
 
   <!-- ════════════════════════════════════════
        STORY (from JSON)
@@ -337,60 +143,7 @@
   <!-- ════════════════════════════════════════
        NEWSLETTER (from JSON)
   ════════════════════════════════════════ -->
-  <section class="faq">
-    <div class="faq-inner">
-      <div class="faq-left">
-        <p class="eyebrow">{{ 'home.newsletter.submit' | translate }}</p>
-        <h2 class="section-h2">{{ 'home.newsletter.title' | translate }}</h2>
-        <p class="faq-hint">{{ 'home.newsletter.text' | translate }}</p>
-      </div>
-
-      <div class="faq-list">
-        <div class="faq-item faq-item--open">
-          <div class="faq-a" style="max-height: 400px; opacity: 1">
-            <form class="newsletter-form" (ngSubmit)="onSubscribe()" #f="ngForm">
-              <div style="display: flex; gap: 0.75rem; flex-wrap: wrap">
-                <input
-                  type="email"
-                  name="email"
-                  [(ngModel)]="newsletterEmail"
-                  required
-                  [placeholder]="'home.newsletter.emailPlaceholder' | translate"
-                  style="
-                    flex: 1;
-                    min-width: 220px;
-                    padding: 0.9rem 1.1rem;
-                    border-radius: 1rem;
-                    border: 1px solid var(--ink-20);
-                    background: rgba(255,255,255,0.8);
-                    outline: none;
-                  "
-                />
-                <button type="submit" class="btn btn--dark" [disabled]="f.invalid">
-                  {{ 'home.newsletter.submit' | translate }}
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
-
-        <!-- Optional: keep your FAQ accordion below if you still want it on homepage -->
-        <div
-          *ngFor="let item of faqs; let i = index"
-          class="faq-item"
-          [class.faq-item--open]="item.open"
-        >
-          <button class="faq-q" (click)="toggleFaq(i)">
-            <span>{{ item.q }}</span>
-            <span class="faq-icon">{{ item.open ? '−' : '+' }}</span>
-          </button>
-          <div class="faq-a" [style.maxHeight]="item.open ? '200px' : '0'">
-            <p>{{ item.a }}</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+  <app-faq></app-faq>
 </main>
 
 <app-footer></app-footer>
