@@ -6,6 +6,8 @@
 .intro-img {
   filter: saturate(0.9) contrast(1.05) brightness(0.92);
   transform: translateZ(0);
+  will-change: transform;
+  backface-visibility: hidden;
 }
 
 /* Overlay: soft top-to-bottom + slight warm tint */

@@ -45,8 +45,6 @@ export class Faq {
     if (!this.newsletterEmail) return;
 
     this.isSubmitting = true;
-    console.log('Newsletter email:', this.newsletterEmail);
-
     setTimeout(() => {
       this.isSubmitting = false;
       this.newsletterEmail = '';

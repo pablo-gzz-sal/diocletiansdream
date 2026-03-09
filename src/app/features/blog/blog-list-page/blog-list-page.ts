@@ -82,9 +82,10 @@ export class BlogListPage implements OnInit {
         this.posts = posts ?? [];
         this.loading = false;
       },
-      error: () => {
+      error: (err) => {
         this.posts = [];
         this.loading = false;
+        
       },
     });
   }

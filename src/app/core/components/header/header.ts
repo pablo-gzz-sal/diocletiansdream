@@ -90,8 +90,6 @@ export class Header implements OnInit, OnDestroy, AfterViewInit {
   }
 
   currentLang() {
-    console.log(this.i18n.current());
-
     return this.i18n.current();
   }
 }

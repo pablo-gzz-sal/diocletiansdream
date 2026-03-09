@@ -1,4 +1,4 @@
 export const environment = {
   production: false,
-  wpBaseUrl: '',
+  wpBaseUrl: 'https://diocletiansdream.com',
 };

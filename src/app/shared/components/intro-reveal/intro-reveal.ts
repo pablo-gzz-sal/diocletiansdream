@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { AfterViewInit, Component, ElementRef, OnDestroy, ViewChild } from '@angular/core';
+import { AfterViewInit, OnDestroy, ElementRef, ViewChild, Component } from '@angular/core';
 import gsap from 'gsap';
-import ScrollTrigger from 'gsap/ScrollTrigger';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -24,6 +24,7 @@ export class IntroReveal implements AfterViewInit, OnDestroy {
     if (typeof window === 'undefined') return;
 
     this.ctx = gsap.context(() => {
+      // Initial states
       gsap.set(this.overlay.nativeElement, { yPercent: 0 });
       gsap.set(this.image.nativeElement, { scale: 1, y: 0 });
       gsap.set(this.content.nativeElement, { y: 0, autoAlpha: 1 });
@@ -32,17 +33,26 @@ export class IntroReveal implements AfterViewInit, OnDestroy {
         scrollTrigger: {
           trigger: this.spacer.nativeElement,
           start: 'top top',
-          end: 'bottom top', 
-          scrub: true,
+          end: 'bottom top',
+          scrub: 1.4, // smooth lerp — the most impactful change
           invalidateOnRefresh: true,
         },
       });
 
-      tl.to(this.image.nativeElement, { scale: 1.06, y: -20, ease: 'none' }, 0);
-      tl.to(this.content.nativeElement, { y: -30, ease: 'none' }, 0);
+      // Image: parallax drift + subtle scale, eased so it accelerates gently
+      tl.to(this.image.nativeElement, { scale: 1.08, y: -60, ease: 'power1.in' }, 0);
 
-      tl.to(this.overlay.nativeElement, { yPercent: -100, ease: 'none' }, 0);
+      // Content: rises + fades out in the first 60% of scroll
+      tl.to(this.content.nativeElement, { y: -60, autoAlpha: 0, ease: 'power2.in' }, 0);
 
+      // Overlay: stays put for the first 15%, then slides off fast — feels deliberate
+      tl.to(
+        this.overlay.nativeElement,
+        { yPercent: -100, ease: 'power2.inOut' },
+        0.15, // offset: starts after a short hold
+      );
+
+      // Disable pointer events once fully scrolled past
       ScrollTrigger.create({
         trigger: this.spacer.nativeElement,
         start: 'bottom top',
