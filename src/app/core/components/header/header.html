@@ -1,11 +1,9 @@
 <header
-  class="fixed top-0 left-0 right-0 z-50 transition-all duration-500 will-change-transform font-[family-name:var(--font-serif)]"
+  class="z-[999] fixed top-0 left-0 right-0 z-50 transition-all duration-500 font-[family-name:var(--font-serif)]"
   [ngClass]="{
-    '-translate-y-full': hidden(),
-    'translate-y-0': !hidden(),
     'backdrop-blur-md shadow-[0_1px_0_rgba(26,24,20,0.12)]': scrolled()
   }"
-  [style.background]="scrolled() ? 'rgba(245,240,232,0.88)' : 'transparent'"
+  [style.background]="scrolled() ? 'rgba(245,240,232,0.88)' : 'rgba(245,240,232,0.5)'"
 >
   <div class="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
     <div class="h-16 flex items-center justify-between gap-8">
@@ -22,7 +20,7 @@
         />
         <span
           class="hidden sm:block font-[family-name:var(--font-serif)] text-[1.05rem] font-medium leading-none group-hover:opacity-60 transition-opacity"
-          style="color: var(--color-ink)"
+
         >
           {{ 'header.brand' | translate }}
         </span>

@@ -1,9 +1,6 @@
 <div #spacer class="h-[140vh]"></div>
 
-<section
-  #overlay
-  class="fixed inset-0 z-[999] overflow-hidden will-change-transform"
->
+<section #overlay class="fixed inset-0 z-[998] overflow-hidden will-change-transform">
   <div #image class="absolute inset-0">
     <img
       src="assets/images/heroAnimation.jpg"
@@ -21,7 +18,7 @@
     <div #content class="relative z-10 flex h-full items-center justify-center px-6">
       <div class="max-w-4xl text-center">
         <p class="intro-kicker">
-          VR Museum · Diocletian's Palace · Split
+          {{ 'home.hero.title' | translate }}
         </p>
 
         <h1 class="intro-title">
@@ -30,7 +27,7 @@
         </h1>
 
         <p class="intro-sub">
-          A hidden world beneath Split. Scroll to explore the museum, tickets, and stories.
+          {{ 'home.hero.subtitle' | translate }}
         </p>
 
         <div class="intro-scroll" aria-label="Scroll down">

@@ -13,16 +13,13 @@ import { TranslateModule } from '@ngx-translate/core';
   styleUrl: './header.css',
 })
 export class Header implements OnInit, OnDestroy, AfterViewInit {
-  private lastY = 0;
   menuOpen = signal(false);
   scrolled = signal(false);
-  hidden = signal(false);
-  private i18n = inject(I18nService);
 
+  private i18n = inject(I18nService);
   private removeOverflow = () => document.body.classList.remove('overflow-hidden');
 
   constructor(private router: Router) {}
-
 
   ngOnInit() {
     this.router.events
@@ -30,45 +27,14 @@ export class Header implements OnInit, OnDestroy, AfterViewInit {
       .subscribe(() => this.closeMenu());
   }
 
-    private isMobileOrTablet(): boolean {
-    return window.matchMedia('(max-width: 1023px)').matches;
-  }
-
-
   ngAfterViewInit() {
-    this.lastY = window.scrollY || 0;
-    this.scrolled.set(this.lastY > 8);
-    this.hidden.set(false);
+    this.scrolled.set((window.scrollY || 0) > 8);
   }
 
-@HostListener('window:scroll')
+  @HostListener('window:scroll')
   onScroll() {
     const y = window.scrollY || 0;
     this.scrolled.set(y > 8);
-
-    if (!this.isMobileOrTablet()) {
-      this.hidden.set(false);
-      this.lastY = y;
-      return;
-    }
-
-    if (y < 24) {
-      this.hidden.set(false);
-      this.lastY = y;
-      return;
-    }
-
-    const delta = y - this.lastY;
-
-    if (Math.abs(delta) < 6) return;
-    this.hidden.set(delta > 0 && y > 120);
-
-    this.lastY = y;
-  }
-
-  @HostListener('window:resize')
-  onResize() {
-    if (!this.isMobileOrTablet()) this.hidden.set(false);
   }
 
   toggleMenu() {

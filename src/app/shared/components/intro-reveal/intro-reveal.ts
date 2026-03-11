@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { AfterViewInit, OnDestroy, ElementRef, ViewChild, Component } from '@angular/core';
+import { TranslateModule } from '@ngx-translate/core';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -8,7 +9,7 @@ gsap.registerPlugin(ScrollTrigger);
 @Component({
   selector: 'app-intro-reveal',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, TranslateModule],
   templateUrl: './intro-reveal.html',
   styleUrl: './intro-reveal.css',
 })
