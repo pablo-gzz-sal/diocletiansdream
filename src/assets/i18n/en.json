@@ -410,12 +410,68 @@
       "headline": "Ready to step into 305 AD?",
       "cta": "Book an experience"
     }
-  }, 
-    "blogInvite": {
+  },
+  "blogInvite": {
     "title": "Explore Roman History & Split Travel Guides",
     "text": "Discover articles about Diocletian’s Palace, Roman heritage, and things to do in Split. Get deeper cultural context connected to the immersive VR experience.",
     "ctaPrimary": "Visit the Blog",
     "ctaExperience": "The Experience",
     "ctaVisit": "Plan Your Visit"
+  },
+  "bookingPage": {
+    "hero": {
+      "title": "Book Your Diocletian’s Palace VR Experience",
+      "text": "Step inside a reconstructed chapter of Roman history and experience Diocletian’s Palace as it appeared in 305 AD. Our 15-minute seated virtual reality experience presents the palace in its original architectural form through immersive 360° reconstruction. Sessions run every 30 minutes throughout the day. Advance booking is strongly recommended due to limited capacity per session."
+    },
+    "booking": {
+      "eyebrow": "Book now",
+      "title": "Choose your preferred date and time below.",
+      "text": "Sessions run every 30 minutes throughout the day. Advance booking is strongly recommended due to limited capacity per session."
+    },
+    "facts": {
+      "durationLabel": "Duration",
+      "durationValue": "15 minutes",
+      "locationLabel": "Location",
+      "locationValue": "Zagrebačka ul. 1, Split",
+      "ageLabel": "Recommended age",
+      "ageValue": "8+ only",
+      "bookingLabel": "Booking",
+      "bookingValue": "Advance booking recommended"
+    },
+    "widget": {
+      "title": "Diocletian’s Dream VR Experience",
+      "badge": "15 min",
+      "note": "Secure payment · Instant confirmation · Free cancellation up to 24h before"
+    },
+    "policy": {
+      "eyebrow": "Important information",
+      "title": "Cancellation & Refund Policy",
+      "p1": "Bookings may be rescheduled or cancelled up to 24 hours before the scheduled session. For changes within 24 hours of your booking, please contact us directly and we will assist where possible.",
+      "p2": "In the event of technical issues or unforeseen operational circumstances, a full refund or alternative time slot will be offered.",
+      "p3": "Please note that the VR experience is recommended for visitors aged 8 and above. Children under the age of 8 are not permitted to participate. If tickets are purchased for children below the recommended age, entry may be declined at arrival and refunds will not be issued in such cases."
+    },
+    "location": {
+      "eyebrow": "Find us",
+      "title": "Diocletian’s Dream location",
+      "text": "We are located at Zagrebačka ul. 1, just outside the walls of Diocletian’s Palace near the Golden Gate. The venue is fully indoor and wheelchair accessible.",
+      "addressLabel": "Address",
+      "addressLine1": "Zagrebačka ul. 1",
+      "addressLine2": "21000 Split, Croatia",
+      "directions": "Get directions →"
+    },
+    "faq": {
+      "eyebrow": "FAQ",
+      "title": "FAQ",
+      "q1": "How long does the experience last?",
+      "a1": "The VR experience lasts approximately 15 minutes and takes place as a fully seated session.",
+      "q2": "How often do sessions run?",
+      "a2": "Sessions begin every 30 minutes throughout the day (on the hour and half past). Advance booking is recommended due to limited capacity per session.",
+      "q3": "Where is Diocletian’s Dream located?",
+      "a3": "We are located at Zagrebačka ul. 1, just outside the walls of Diocletian’s Palace near the Golden Gate. The venue is fully indoor and wheelchair accessible.",
+      "q4": "Can I buy tickets on arrival?",
+      "a4": "Yes, walk-in visitors are welcome when availability allows. However, because sessions operate in fixed time slots with limited seating, we strongly recommend booking in advance. If your preferred time slot is already fully booked upon arrival, our staff will offer you the next available session.",
+      "q5": "In which languages is the experience available?",
+      "a5": "The VR experience is available in English, German, Italian, French, Croatian, Spanish, Polish and Portuguese. Visitors choose their preferred language before the session begins."
+    }
   }
 }

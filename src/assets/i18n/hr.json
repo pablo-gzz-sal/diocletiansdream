@@ -417,5 +417,61 @@
     "ctaPrimary": "Posjetite blog",
     "ctaExperience": "VR iskustvo",
     "ctaVisit": "Planirajte posjet"
+  },
+  "bookingPage": {
+    "hero": {
+      "title": "Rezervirajte VR iskustvo Dioklecijanove palače",
+      "text": "Zakoračite u rekonstruirani svijet rimskog doba i doživite Dioklecijanovu palaču onako kako je izgledala 305. godine. Naše 15-minutno, u potpunosti sjedeće iskustvo virtualne stvarnosti prikazuje palaču u njezinu izvornom arhitektonskom obliku kroz 360° rekonstrukciju. Projekcije se održavaju svakih 30 minuta tijekom dana. Zbog ograničenog broja mjesta po terminu preporučujemo rezervaciju unaprijed."
+    },
+    "booking": {
+      "eyebrow": "Rezerviraj",
+      "title": "Odaberite željeni datum i termin u nastavku.",
+      "text": "Projekcije se održavaju svakih 30 minuta tijekom dana. Zbog ograničenog broja mjesta po terminu preporučujemo rezervaciju unaprijed."
+    },
+    "facts": {
+      "durationLabel": "Trajanje",
+      "durationValue": "15 minuta",
+      "locationLabel": "Lokacija",
+      "locationValue": "Zagrebačka ul. 1, Split",
+      "ageLabel": "Preporučena dob",
+      "ageValue": "8+",
+      "bookingLabel": "Rezervacija",
+      "bookingValue": "Preporučujemo unaprijed"
+    },
+    "widget": {
+      "title": "Diocletian’s Dream VR Experience",
+      "badge": "15 min",
+      "note": "Sigurno plaćanje · Trenutna potvrda · Besplatno otkazivanje do 24h ranije"
+    },
+    "policy": {
+      "eyebrow": "Važne informacije",
+      "title": "Otkazivanje i povrat sredstava",
+      "p1": "Rezervaciju je moguće izmijeniti ili otkazati najkasnije 24 sata prije zakazanog termina. Za promjene unutar 24 sata molimo da nas kontaktirate izravno te ćemo, gdje je moguće, pokušati izaći u susret.",
+      "p2": "U slučaju tehničkih poteškoća ili nepredviđenih okolnosti nudimo puni povrat sredstava ili alternativni termin.",
+      "p3": "Napominjemo da je VR iskustvo namijenjeno posjetiteljima starijima od 8 godina. Djeci mlađoj od 8 godina sudjelovanje nije dopušteno. Ako su ulaznice kupljene za djecu ispod preporučene dobi, ulaz može biti odbijen, a povrat sredstava u tom slučaju nije moguć."
+    },
+    "location": {
+      "eyebrow": "Pronađite nas",
+      "title": "Lokacija Diocletian’s Dream",
+      "text": "Nalazimo se na adresi Zagrebačka ul. 1, neposredno uz zidine Dioklecijanove palače, u blizini Zlatnih vrata. Prostor je u potpunosti zatvoren i prilagođen osobama s invaliditetom.",
+      "addressLabel": "Adresa",
+      "addressLine1": "Zagrebačka ul. 1",
+      "addressLine2": "21000 Split, Hrvatska",
+      "directions": "Upute →"
+    },
+    "faq": {
+      "eyebrow": "FAQ",
+      "title": "FAQ – Često postavljana pitanja",
+      "q1": "Koliko traje VR iskustvo?",
+      "a1": "VR iskustvo traje približno 15 minuta i svo vrijeme sjedite.",
+      "q2": "Koliko često se održavaju projekcije?",
+      "a2": "Projekcije započinju svakih 30 minuta tijekom radnog vremena (na puni sat i pola sata). Zbog ograničenog kapaciteta preporučujemo rezervaciju unaprijed.",
+      "q3": "Gdje se nalazi Diocletian’s Dream?",
+      "a3": "Nalazimo se na adresi Zagrebačka ul. 1, neposredno uz zidine Dioklecijanove palače, u blizini Zlatnih vrata. Prostor je u potpunosti zatvoren i prilagođen osobama s invaliditetom.",
+      "q4": "Mogu li kupiti ulaznicu na licu mjesta?",
+      "a4": "Da, ako ima slobodnih mjesta. Ipak, budući da se projekcije održavaju u fiksnim terminima s ograničenim brojem posjetitelja, preporučujemo rezervaciju unaprijed. Ako je željeni termin po dolasku popunjen, ponudit ćemo vam prvi sljedeći slobodan termin.",
+      "q5": "Na kojim je jezicima dostupno iskustvo?",
+      "a5": "Iskustvo je dostupno na engleskom, njemačkom, talijanskom, francuskom, hrvatskom, španjolskom, poljskom i portugalskom jeziku. Prije početka projekcije možete odabrati željeni jezik."
+    }
   }
 }

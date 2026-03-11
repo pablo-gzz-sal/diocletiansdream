@@ -2,9 +2,7 @@
 <main class="booking-root">
   <!-- ── HERO ── -->
   <section class="booking-hero">
-        <!-- Background layers (brand subtle details) -->
     <div class="absolute inset-0 overflow-hidden dd-grain">
-      <!-- soft radial glows -->
       <div
         class="absolute -top-24 -left-24 h-[420px] w-[420px] rounded-full blur-3xl opacity-25 dd-float"
         style="background: radial-gradient(circle at 30% 30%, var(--dd-purple), transparent 60%)"
@@ -18,7 +16,6 @@
         "
       ></div>
 
-      <!-- elegant top border -->
       <div
         class="absolute left-0 right-0 top-0 h-px opacity-60"
         style="
@@ -32,7 +29,6 @@
         "
       ></div>
 
-      <!-- subtle grid -->
       <div
         class="absolute inset-0 opacity-[0.05]"
         style="
@@ -43,52 +39,46 @@
         "
       ></div>
     </div>
+
     <div class="grain"></div>
     <div class="booking-hero__blob booking-hero__blob--1"></div>
     <div class="booking-hero__blob booking-hero__blob--2"></div>
 
     <div class="booking-hero__inner">
       <div class="booking-hero__text">
-        <p class="eyebrow">Tickets</p>
+        <p class="eyebrow">{{ 'bookingPage.booking.eyebrow' | translate }}</p>
+
         <h1 class="booking-hero__h1">
-          <span class="bh-line bh-line--1">Book your</span>
-          <span class="bh-line bh-line--2">journey to</span>
-          <span class="bh-line bh-line--3">305 AD.</span>
+          {{ 'bookingPage.hero.title' | translate }}
         </h1>
+
         <p class="booking-hero__sub">
-          Choose your date and time, pick how many guests, and you're set. The whole experience
-          lasts 15 minutes — easy to drop into any Split itinerary.
+          {{ 'bookingPage.hero.text' | translate }}
         </p>
       </div>
 
-      <!-- quick-facts strip -->
       <div class="booking-facts">
         <div class="booking-fact">
           <span class="fact-icon">⏱</span>
           <div>
-            <p class="fact-label">Duration</p>
-            <p class="fact-value">15 minutes</p>
+            <p class="fact-label">{{ 'bookingPage.facts.durationLabel' | translate }}</p>
+            <p class="fact-value">{{ 'bookingPage.facts.durationValue' | translate }}</p>
           </div>
         </div>
+
         <div class="booking-fact">
           <span class="fact-icon">📍</span>
           <div>
-            <p class="fact-label">Location</p>
-            <p class="fact-value">Diocletian's Palace, Split</p>
+            <p class="fact-label">{{ 'bookingPage.facts.locationLabel' | translate }}</p>
+            <p class="fact-value">{{ 'bookingPage.facts.locationValue' | translate }}</p>
           </div>
         </div>
-        <div class="booking-fact">
-          <span class="fact-icon">👨‍👩‍👧</span>
-          <div>
-            <p class="fact-label">Suitable for</p>
-            <p class="fact-value">All ages</p>
-          </div>
-        </div>
+
         <div class="booking-fact">
           <span class="fact-icon">🎟</span>
           <div>
-            <p class="fact-label">Booking</p>
-            <p class="fact-value">Instant confirmation</p>
+            <p class="fact-label">{{ 'bookingPage.facts.bookingLabel' | translate }}</p>
+            <p class="fact-value">{{ 'bookingPage.facts.bookingValue' | translate }}</p>
           </div>
         </div>
       </div>
@@ -98,88 +88,66 @@
   <!-- ── BOOKING WIDGET ── -->
   <section class="booking-widget-section">
     <div class="booking-widget-inner">
-      <!-- left: context -->
       <div class="booking-context">
-        <p class="eyebrow">Reserve your slot</p>
-        <h2 class="booking-context__h2">Pick a time<br />that works for you.</h2>
+        <p class="eyebrow">{{ 'bookingPage.booking.eyebrow' | translate }}</p>
+        <h2 class="booking-context__h2">{{ 'bookingPage.booking.title' | translate }}</h2>
         <p class="booking-context__copy">
-          Sessions run throughout the day. We recommend arriving 5 minutes early. Booking takes less
-          than 2 minutes.
+          {{ 'bookingPage.booking.text' | translate }}
         </p>
-
-        <div class="booking-steps">
-          <div class="booking-step">
-            <span class="step-num">01</span>
-            <div>
-              <p class="step-title">Choose a date</p>
-              <p class="step-desc">Pick any available day from the calendar.</p>
-            </div>
-          </div>
-          <div class="booking-step">
-            <span class="step-num">02</span>
-            <div>
-              <p class="step-title">Select a time slot</p>
-              <p class="step-desc">Sessions run throughout the day.</p>
-            </div>
-          </div>
-          <div class="booking-step">
-            <span class="step-num">03</span>
-            <div>
-              <p class="step-title">Add guests & pay</p>
-              <p class="step-desc">Instant confirmation sent to your email.</p>
-            </div>
-          </div>
-        </div>
       </div>
 
-      <!-- right: Turitop widget -->
       <div class="turitop-card">
         <div class="turitop-card__header">
-          <p class="turitop-card__title">Diocletian's Dream VR Experience</p>
-          <span class="turitop-card__badge">15 min</span>
+          <p class="turitop-card__title">{{ 'bookingPage.widget.title' | translate }}</p>
+          <span class="turitop-card__badge">{{ 'bookingPage.widget.badge' | translate }}</span>
         </div>
 
         <div class="load-turitop" data-service="P1" data-lang="en" data-embed="box"></div>
         <p class="turitop-card__note">
-          Secure payment · Instant confirmation · Free cancellation up to 24h before
+          {{ 'bookingPage.widget.note' | translate }}
         </p>
       </div>
     </div>
   </section>
 
-  <!-- ── MARQUEE ── -->
-  <div class="marquee-wrap">
-    <div class="marquee-track">
-      <span>305 AD</span><span class="marquee-dot">·</span> <span>UNESCO Heritage</span
-      ><span class="marquee-dot">·</span> <span>Virtual Reality</span
-      ><span class="marquee-dot">·</span> <span>Split, Croatia</span
-      ><span class="marquee-dot">·</span> <span>15 Minutes</span><span class="marquee-dot">·</span>
-      <span>Instant Confirmation</span><span class="marquee-dot">·</span> <span>305 AD</span
-      ><span class="marquee-dot">·</span> <span>UNESCO Heritage</span
-      ><span class="marquee-dot">·</span> <span>Virtual Reality</span
-      ><span class="marquee-dot">·</span> <span>Split, Croatia</span
-      ><span class="marquee-dot">·</span> <span>15 Minutes</span><span class="marquee-dot">·</span>
-      <span>Instant Confirmation</span><span class="marquee-dot">·</span>
+  <!-- ── CANCELLATION / REFUND ── -->
+  <section class="booking-faq">
+    <div class="booking-faq__inner">
+      <p class="eyebrow">{{ 'bookingPage.policy.eyebrow' | translate }}</p>
+      <h2 class="booking-faq__h2">{{ 'bookingPage.policy.title' | translate }}</h2>
+
+      <div class="booking-faq__grid">
+        <div class="bfaq-item">
+          <p class="bfaq-a">{{ 'bookingPage.policy.p1' | translate }}</p>
+        </div>
+        <div class="bfaq-item">
+          <p class="bfaq-a">{{ 'bookingPage.policy.p2' | translate }}</p>
+        </div>
+        <div class="bfaq-item">
+          <p class="bfaq-a">{{ 'bookingPage.policy.p3' | translate }}</p>
+        </div>
+      </div>
     </div>
-  </div>
+  </section>
 
   <!-- ── MAP ── -->
   <section class="map-section">
     <div class="map-section__inner">
       <div class="map-header">
         <div>
-          <p class="eyebrow">Find us</p>
-          <h2 class="map-header__h2">We're right inside<br />the Palace.</h2>
+          <p class="eyebrow">{{ 'bookingPage.location.eyebrow' | translate }}</p>
+          <h2 class="map-header__h2">{{ 'bookingPage.location.title' | translate }}</h2>
           <p class="map-header__copy">
-            Located within the walls of Diocletian's Palace in Split's UNESCO Old Town. Step outside
-            after your experience and explore the very rooms you just saw reconstructed.
+            {{ 'bookingPage.location.text' | translate }}
           </p>
 
           <div class="map-address-card">
-            <p class="map-address-card__label">Address</p>
+            <p class="map-address-card__label">
+              {{ 'bookingPage.location.addressLabel' | translate }}
+            </p>
             <p class="map-address-card__text">
-              Zagrebačka ul. 1<br />
-              21000 Split, Croatia
+              {{ 'bookingPage.location.addressLine1' | translate }}<br />
+              {{ 'bookingPage.location.addressLine2' | translate }}
             </p>
             <a
               href="https://maps.app.goo.gl/ypBTY6gDES6HWmPE6"
@@ -187,13 +155,12 @@
               rel="noopener"
               class="btn btn--ghost map-directions-btn"
             >
-              Get directions →
+              {{ 'bookingPage.location.directions' | translate }}
             </a>
           </div>
         </div>
       </div>
 
-      <!-- Google Maps embed -->
       <div class="map-embed-wrap">
         <iframe
           src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d1627.5148717054722!2d16.441261064686753!3d43.51033175986271!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x13355f9ef3d67eef%3A0x8f303249a0bd6799!2sDiocletians%20Dream%20(VR%20Experience)!5e0!3m2!1sen!2sde!4v1771758886351!5m2!1sen!2sde"
@@ -210,49 +177,36 @@
   <!-- ── FAQ MINI ── -->
   <section class="booking-faq">
     <div class="booking-faq__inner">
-      <p class="eyebrow">Before you go</p>
-      <h2 class="booking-faq__h2">Quick answers.</h2>
+      <p class="eyebrow">{{ 'bookingPage.faq.eyebrow' | translate }}</p>
+      <h2 class="booking-faq__h2">{{ 'bookingPage.faq.title' | translate }}</h2>
 
       <div class="booking-faq__grid">
         <div class="bfaq-item">
-          <p class="bfaq-q">Do I need to print my ticket?</p>
-          <p class="bfaq-a">
-            No — just show your confirmation email on your phone at the entrance.
-          </p>
+          <p class="bfaq-q">{{ 'bookingPage.faq.q1' | translate }}</p>
+          <p class="bfaq-a">{{ 'bookingPage.faq.a1' | translate }}</p>
         </div>
+
         <div class="bfaq-item">
-          <p class="bfaq-q">Can I cancel or reschedule?</p>
-          <p class="bfaq-a">
-            Yes, free cancellation or rescheduling up to 24 hours before your slot.
-          </p>
+          <p class="bfaq-q">{{ 'bookingPage.faq.q2' | translate }}</p>
+          <p class="bfaq-a">{{ 'bookingPage.faq.a2' | translate }}</p>
         </div>
+
         <div class="bfaq-item">
-          <p class="bfaq-q">Is it suitable for children?</p>
-          <p class="bfaq-a">
-            Absolutely — families are welcome. Check the age recommendation when booking.
-          </p>
+          <p class="bfaq-q">{{ 'bookingPage.faq.q3' | translate }}</p>
+          <p class="bfaq-a">{{ 'bookingPage.faq.a3' | translate }}</p>
         </div>
+
         <div class="bfaq-item">
-          <p class="bfaq-q">How early should I arrive?</p>
-          <p class="bfaq-a">
-            We recommend arriving 5 minutes before your slot so we can get you set up.
-          </p>
+          <p class="bfaq-q">{{ 'bookingPage.faq.q4' | translate }}</p>
+          <p class="bfaq-a">{{ 'bookingPage.faq.a4' | translate }}</p>
         </div>
+
         <div class="bfaq-item">
-          <p class="bfaq-q">Is the experience in English?</p>
-          <p class="bfaq-a">
-            Yes, the VR experience is available in English. Additional languages coming soon.
-          </p>
-        </div>
-        <div class="bfaq-item">
-          <p class="bfaq-q">What if I wear glasses?</p>
-          <p class="bfaq-a">Our headsets accommodate most prescription glasses comfortably.</p>
+          <p class="bfaq-q">{{ 'bookingPage.faq.q5' | translate }}</p>
+          <p class="bfaq-a">{{ 'bookingPage.faq.a5' | translate }}</p>
         </div>
       </div>
     </div>
   </section>
-
-    <app-blog-invite [showSecondaryLinks]="true"></app-blog-invite>
-
 </main>
 <app-footer></app-footer>

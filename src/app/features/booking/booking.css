@@ -132,8 +132,9 @@
 /* stacked headline */
 .booking-hero__h1 {
   font-family: var(--serif);
+  font-size: clamp(2.5rem, 5vw, 4rem);
   font-weight: 300;
-  line-height: 0.88;
+  line-height: 0.95;
   letter-spacing: -0.02em;
 }
 
