@@ -1,23 +1,32 @@
+/* ══════════════════════════════════════════
+   BLOG
+   ══════════════════════════════════════════ */
+
 .blog {
-  padding: 6rem 0;
+  padding: clamp(4rem, 9vw, 8rem) 0;
 }
 
 .blog-inner {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 0 2rem;
+  padding: 0 clamp(1rem, 5vw, 2.5rem);
 }
 
 .blog-header {
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-  margin-bottom: 2.5rem;
+  gap: clamp(1rem, 3vw, 2rem);
+  margin-bottom: clamp(1.75rem, 3.5vw, 3rem);
+}
+
+.blog-header > div:first-child {
+  min-width: 0;
 }
 
 .blog-grid {
   display: grid;
-  gap: 0.75rem;
+  gap: clamp(0.5rem, 1vw, 0.75rem);
 }
 
 @media (min-width: 640px) {
@@ -35,18 +44,40 @@
 .bpost {
   background: rgba(255, 255, 255, 0.6);
   border: 1px solid var(--ink-20);
-  border-radius: 2.5rem;
+  border-radius: clamp(1.5rem, 2.5vw, 2.5rem);
   overflow: hidden;
-  transition: background 0.2s;
+  display: flex;
+  flex-direction: column;
+  transition:
+    transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    background 0.2s,
+    border-color 0.25s;
 }
 
 .bpost:hover {
   background: #fff;
+  transform: translateY(-4px);
+  box-shadow: 0 18px 50px rgba(26, 24, 20, 0.1);
+  border-color: rgba(194, 154, 89, 0.2);
 }
 
 .bpost-img {
   aspect-ratio: 16 / 10;
   overflow: hidden;
+  flex-shrink: 0;
+}
+
+.bpost-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.bpost:hover .bpost-img img {
+  transform: scale(1.04);
 }
 
 .bpost-img-inner {
@@ -57,23 +88,46 @@
   place-items: center;
   font-size: 0.72rem;
   color: var(--ink-60);
+  letter-spacing: 0.04em;
 }
 
 .bpost-body {
-  padding: 1.5rem;
+  padding: clamp(1.25rem, 2.5vw, 1.75rem);
+  display: flex;
+  flex-direction: column;
+  flex: 1;
 }
 
 .bpost-title {
   font-family: var(--serif);
-  font-size: 1.2rem;
+  font-size: clamp(1.1rem, 1.8vw, 1.25rem);
   font-weight: 400;
   line-height: 1.25;
   margin-bottom: 0.5rem;
 }
 
 .bpost-excerpt {
-  font-size: 0.82rem;
+  font-size: clamp(0.78rem, 1.2vw, 0.83rem);
   color: var(--ink-60);
-  line-height: 1.6;
+  line-height: 1.65;
   margin-bottom: 1rem;
+  flex: 1;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bpost,
+  .bpost-img img {
+    transition: background 0.2s, border-color 0.2s;
+  }
+  .bpost:hover {
+    transform: none;
+    box-shadow: none;
+  }
+  .bpost:hover .bpost-img img {
+    transform: none;
+  }
 }

@@ -15,6 +15,8 @@ import { Experience } from '../../core/components/experience/experience';
 import { Visit } from '../../core/components/visit/visit';
 import { Reviews } from '../../core/components/reviews/reviews';
 import { Faq } from '../../core/components/faq/faq';
+import { AboutProject } from '../../core/components/about-project/about-project';
+import { Highlights } from '../../core/components/highlights/highlights';
 
 @Component({
   selector: 'app-landing-page',
@@ -33,6 +35,8 @@ import { Faq } from '../../core/components/faq/faq';
     Visit,
     Reviews,
     Faq,
+    AboutProject,
+    Highlights
   ],
   templateUrl: './landing-page.html',
   styleUrl: './landing-page.css',

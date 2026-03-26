@@ -8,99 +8,19 @@
        MARQUEE STRIP
        (not in JSON yet — keep as lightweight SEO strip)
   ════════════════════════════════════════ -->
-  <div class="marquee-wrap" aria-label="highlights">
-    <div class="marquee-track">
-      <!-- First loop -->
-      <ng-container *ngFor="let item of 'home.marquee.items' | translate">
-        <span>{{ item }}</span>
-        <span>·</span>
-      </ng-container>
-
-      <!-- Duplicate for infinite scroll effect -->
-      <ng-container *ngFor="let item of 'home.marquee.items' | translate">
-        <span>{{ item }}</span>
-        <span>·</span>
-      </ng-container>
-    </div>
-  </div>
+  <app-highlights></app-highlights>
 
   <app-experience></app-experience>
 
   <!-- ════════════════════════════════════════
        UNIQUE (from JSON)
   ════════════════════════════════════════ -->
-  <section class="visit">
-    <div class="visit-inner">
-      <div class="visit-header">
-        <div>
-          <p class="eyebrow">{{ 'home.unique.cta' | translate }}</p>
-          <h2 class="section-h2">
-            {{ 'home.unique.title' | translate }}
-          </h2>
-        </div>
-
-        <a routerLink="/visit" class="inline-link hide-mobile">
-          {{ 'home.unique.cta' | translate }} →
-        </a>
-      </div>
-
-      <div class="visit-cards">
-        <div class="vcard">
-          <p class="vcard-title">{{ 'home.unique.reconstruction.title' | translate }}</p>
-          <p class="vcard-text">{{ 'home.unique.reconstruction.text' | translate }}</p>
-          <a routerLink="/experience" class="btn btn--ghost vcard-btn">
-            {{ 'home.experience.cta' | translate }}
-          </a>
-        </div>
-
-        <div class="vcard">
-          <p class="vcard-title">{{ 'home.unique.journey.title' | translate }}</p>
-          <p class="vcard-text">{{ 'home.unique.journey.text' | translate }}</p>
-          <a routerLink="/booking" class="btn btn--ghost vcard-btn">
-            {{ 'home.hero.ctaPrimary' | translate }}
-          </a>
-        </div>
-
-        <div class="vcard">
-          <p class="vcard-title">{{ 'home.unique.educational.title' | translate }}</p>
-          <p class="vcard-text">{{ 'home.unique.educational.text' | translate }}</p>
-          <a routerLink="/visit" class="btn btn--ghost vcard-btn">
-            {{ 'home.unique.cta' | translate }}
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
 
 <app-visit></app-visit>
 
 <app-reviews></app-reviews>
-
-  <section class="about">
-    <div class="about-inner">
-      <div class="about-heading">
-        <p class="eyebrow">{{ 'home.story.cta' | translate }}</p>
-        <h2 class="about-h2">{{ 'home.story.title' | translate }}</h2>
-      </div>
-
-      <div class="bento">
-        <div class="bento-cell bento-cell--imgA" style="grid-column: 1 / 6; grid-row: 1 / 2">
-          <div class="bento-img-placeholder">Project / team / production still</div>
-        </div>
-
-        <div class="bento-cell bento-cell--text" style="grid-column: 6 / 13; grid-row: 1 / 2">
-          <p class="bento-copy">{{ 'home.story.p1' | translate }}</p>
-          <p class="bento-copy" style="margin-top: 1rem">{{ 'home.story.p2' | translate }}</p>
-
-          <a routerLink="/about" class="btn btn--dark" style="margin-top: 2rem">
-            {{ 'home.story.cta' | translate }}
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <app-blog-invite [showSecondaryLinks]="true"></app-blog-invite>
+<app-about-project></app-about-project>
+<app-blog-invite [showSecondaryLinks]="true"></app-blog-invite>
 
   <!-- ════════════════════════════════════════
        FINAL CTA (from JSON)

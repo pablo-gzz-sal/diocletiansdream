@@ -4,7 +4,7 @@
 
 /* ─── Section shell ─── */
 .about {
-  padding: clamp(4rem, 9vw, 8rem) 0;
+  padding: clamp(4rem, 2vw, 8rem) 0;
 }
 
 .about-inner {
@@ -301,125 +301,5 @@
   .bento-cell:hover,
   .bento-cell--stat:hover {
     transform: none;
-  }
-}
-
-/* ══════════════════════════════════════════
-   VISIT / UNIQUE CARDS
-   ══════════════════════════════════════════ */
-
-.visit {
-  padding: clamp(4rem, 9vw, 8rem) 0;
-  background: var(--sand);
-}
-
-.visit-inner {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 0 clamp(1rem, 5vw, 2.5rem);
-}
-
-.visit-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  gap: clamp(1rem, 3vw, 2rem);
-  margin-bottom: clamp(1.75rem, 3.5vw, 3rem);
-}
-
-.visit-header > div:first-child {
-  min-width: 0;
-}
-
-.visit-cards {
-  display: grid;
-  gap: clamp(0.5rem, 1vw, 0.75rem);
-}
-
-@media (min-width: 640px) {
-  .visit-cards {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (min-width: 1024px) {
-  .visit-cards {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-.vcard {
-  position: relative;
-  background: rgba(255, 255, 255, 0.65);
-  border: 1px solid var(--ink-20);
-  border-radius: clamp(1.5rem, 2.5vw, 2.5rem);
-  padding: clamp(1.5rem, 3vw, 2.25rem);
-  display: flex;
-  flex-direction: column;
-  transition:
-    transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-    box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-    background 0.2s,
-    border-color 0.25s;
-}
-
-/* Gold/violet accent rule — reveals on hover */
-.vcard::before {
-  content: "";
-  position: absolute;
-  left: 1.25rem;
-  right: 1.25rem;
-  top: 0;
-  height: 1px;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(194, 154, 89, 0.5),
-    rgba(45, 4, 106, 0.3),
-    transparent
-  );
-  opacity: 0;
-  transition: opacity 0.3s;
-}
-
-.vcard:hover {
-  background: #fff;
-  transform: translateY(-4px);
-  box-shadow: 0 18px 50px rgba(26, 24, 20, 0.1);
-  border-color: rgba(194, 154, 89, 0.2);
-}
-
-.vcard:hover::before {
-  opacity: 1;
-}
-
-.vcard-title {
-  font-family: var(--serif);
-  font-size: clamp(1.2rem, 2vw, 1.45rem);
-  font-weight: 400;
-  font-style: italic;
-  line-height: 1.2;
-}
-
-.vcard-text {
-  font-size: clamp(0.8rem, 1.2vw, 0.875rem);
-  line-height: 1.7;
-  color: var(--ink-60);
-  margin-top: 0.75rem;
-  flex: 1;
-}
-
-.vcard-btn {
-  margin-top: 1.5rem;
-  align-self: flex-start;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .vcard {
-    transition: background 0.2s, border-color 0.2s;
-  }
-  .vcard:hover {
-    transform: none;
-    box-shadow: none;
   }
 }

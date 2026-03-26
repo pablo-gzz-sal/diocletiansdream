@@ -1,0 +1,15 @@
+ <div class="marquee-wrap" aria-label="highlights">
+    <div class="marquee-track">
+      <!-- First loop -->
+      <ng-container *ngFor="let item of 'home.marquee.items' | translate">
+        <span>{{ item }}</span>
+        <span>·</span>
+      </ng-container>
+
+      <!-- Duplicate for infinite scroll effect -->
+      <ng-container *ngFor="let item of 'home.marquee.items' | translate">
+        <span>{{ item }}</span>
+        <span>·</span>
+      </ng-container>
+    </div>
+  </div>
