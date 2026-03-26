@@ -1,29 +1,66 @@
-  <section class="blog">
-    <div class="blog-inner">
-      <div class="blog-header">
-        <div>
-          <p class="eyebrow">{{ 'home.reviews.selected' | translate }}</p>
-          <h2 class="section-h2">{{ 'home.reviews.title' | translate }}</h2>
+<section class="reviews">
+  <div class="reviews-inner">
+
+    <div class="reviews-header">
+      <div>
+        <p class="eyebrow">{{ 'home.reviews.selected' | translate }}</p>
+        <h2 class="section-h2">{{ 'home.reviews.title' | translate }}</h2>
+      </div>
+      <a routerLink="/reviews" class="inline-link hide-mobile">
+        {{ 'home.reviews.cta' | translate }} →
+      </a>
+    </div>
+
+    <div class="bento reviews-bento">
+
+      <!-- Quote / text cell -->
+      <div class="bento-cell bento-cell--text">
+
+        <!-- Star rating — gold micro-detail -->
+        <div class="reviews-stars" aria-label="5 out of 5 stars">
+          <svg class="reviews-star" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+          </svg>
+          <svg class="reviews-star" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+          </svg>
+          <svg class="reviews-star" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+          </svg>
+          <svg class="reviews-star" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+          </svg>
+          <svg class="reviews-star" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+          </svg>
         </div>
 
-        <a routerLink="/reviews" class="inline-link hide-mobile">
+        <!-- Pull quote -->
+        <blockquote class="reviews-quote">
+          {{ 'home.reviews.p1' | translate }}
+        </blockquote>
+
+        <!-- Attribution -->
+        <div class="reviews-attribution">
+          <div class="reviews-avatar" aria-hidden="true">M</div>
+          <div>
+            <p class="reviews-name">{{ 'home.reviews.authorName' | translate }}</p>
+            <p class="reviews-meta">{{ 'home.reviews.authorMeta' | translate }}</p>
+          </div>
+        </div>
+
+        <!-- CTA -->
+        <a routerLink="/reviews" class="inline-link">
           {{ 'home.reviews.cta' | translate }} →
         </a>
+
       </div>
 
-      <div class="bento">
-        <div class="bento-cell bento-cell--text" style="grid-column: 1 / 8">
-          <p class="bento-copy">{{ 'home.reviews.p1' | translate }}</p>
-          <p class="bento-copy" style="margin-top: 1rem">{{ 'home.reviews.p2' | translate }}</p>
-
-          <a routerLink="/reviews" class="inline-link" style="display: block; margin-top: 1.25rem">
-            {{ 'home.reviews.cta' | translate }} →
-          </a>
-        </div>
-
-        <div class="bento-cell bento-cell--imgB" style="grid-column: 8 / 13">
-          <div class="bento-img-placeholder">Selected testimonials / rating card</div>
-        </div>
+      <!-- Testimonial card / image -->
+      <div class="bento-cell bento-cell--imgB">
+        <div class="bento-img-placeholder">Selected testimonials · rating card</div>
       </div>
+
     </div>
-  </section>
+  </div>
+</section>

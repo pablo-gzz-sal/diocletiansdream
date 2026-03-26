@@ -1,58 +1,56 @@
-  <section id="experience" class="about">
-    <div class="about-inner">
-      <div class="about-heading">
-        <p class="eyebrow">{{ 'home.experience.cta' | translate }}</p>
-        <h2 class="about-h2">
-          {{ 'home.experience.title' | translate }}
-        </h2>
-      </div>
+<section id="experience" class="experience">
+  <div class="experience-inner">
 
-      <div class="bento">
-        <!-- tall image A -->
-        <div class="bento-cell bento-cell--imgA">
-          <div class="bento-img-placeholder">Palace reconstruction still</div>
-        </div>
-
-        <!-- tall image B -->
-        <div class="bento-cell bento-cell--imgB">
-          <div class="bento-img-placeholder">Visitors in VR headsets</div>
-        </div>
-
-        <!-- text block -->
-        <div class="bento-cell bento-cell--text">
-          <p class="bento-copy">
-            {{ 'home.experience.p1' | translate }}
-          </p>
-          <p class="bento-copy" style="margin-top: 1rem">
-            {{ 'home.experience.p2' | translate }}
-          </p>
-          <p class="bento-copy" style="margin-top: 1rem">
-            {{ 'home.experience.p3' | translate }}
-          </p>
-
-          <a routerLink="/booking" class="btn btn--dark" style="margin-top: 2rem">
-            {{ 'home.hero.ctaPrimary' | translate }}
-          </a>
-          <a routerLink="/experience" class="inline-link" style="display: block; margin-top: 1rem">
-            {{ 'home.experience.cta' | translate }} →
-          </a>
-        </div>
-
-        <!-- stat cards (kept as strong quick facts; add JSON later if you want) -->
-        <div class="bento-cell bento-cell--stat">
-          <span class="stat-num">15'</span>
-          <span class="stat-label">VR session</span>
-        </div>
-
-        <div class="bento-cell bento-cell--stat bento-cell--statB">
-          <span class="stat-num">305</span>
-          <span class="stat-label">AD</span>
-        </div>
-
-        <!-- wide image C -->
-        <div class="bento-cell bento-cell--imgC">
-          <div class="bento-img-placeholder">Wide palace panorama</div>
-        </div>
-      </div>
+    <div class="experience-heading">
+      <p class="eyebrow">{{ 'home.experience.cta' | translate }}</p>
+      <h2 class="experience-h2">
+        {{ 'home.experience.title' | translate }}
+      </h2>
     </div>
-  </section>
+
+    <div class="bento">
+
+      <!-- Tall image A -->
+      <div class="bento-cell bento-cell--imgA">
+        <div class="bento-img-placeholder">Palace reconstruction still</div>
+      </div>
+
+      <!-- Tall image B -->
+      <div class="bento-cell bento-cell--imgB">
+        <div class="bento-img-placeholder">Visitors in VR headsets</div>
+      </div>
+
+      <!-- Text block -->
+      <div class="bento-cell bento-cell--text">
+        <p class="bento-copy">{{ 'home.experience.p1' | translate }}</p>
+        <p class="bento-copy">{{ 'home.experience.p2' | translate }}</p>
+        <p class="bento-copy">{{ 'home.experience.p3' | translate }}</p>
+
+        <a routerLink="/booking" class="btn btn--dark">
+          {{ 'home.hero.ctaPrimary' | translate }}
+        </a>
+        <a routerLink="/experience" class="inline-link">
+          {{ 'home.experience.cta' | translate }} →
+        </a>
+      </div>
+
+      <!-- Stat: duration -->
+      <div class="bento-cell bento-cell--stat">
+        <span class="stat-num">15<span class="stat-unit">'</span></span>
+        <span class="stat-label">{{ 'home.experience.statDuration' | translate }}</span>
+      </div>
+
+      <!-- Stat: year -->
+      <div class="bento-cell bento-cell--stat bento-cell--statB">
+        <span class="stat-num">305</span>
+        <span class="stat-label">{{ 'home.experience.statYear' | translate }}</span>
+      </div>
+
+      <!-- Wide panorama image -->
+      <div class="bento-cell bento-cell--imgC">
+        <div class="bento-img-placeholder">Wide palace panorama</div>
+      </div>
+
+    </div>
+  </div>
+</section>

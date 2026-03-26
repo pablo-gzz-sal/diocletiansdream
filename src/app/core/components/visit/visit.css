@@ -1,316 +1,10 @@
 /* ══════════════════════════════════════════
-   ABOUT / BENTO — Diocletian's Dream
-   ══════════════════════════════════════════ */
-
-/* ─── Section shell ─── */
-.about {
-  padding: clamp(4rem, 9vw, 8rem) 0;
-}
-
-.about-inner {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 0 clamp(1rem, 5vw, 2.5rem);
-}
-
-/* ─── Heading block ─── */
-.about-heading {
-  max-width: 640px;
-  margin-bottom: clamp(2rem, 4vw, 3.5rem);
-}
-
-.about-h2 {
-  font-family: var(--serif);
-  font-weight: 300;
-  font-size: clamp(2.8rem, 7vw, 7rem);
-  line-height: 0.92;
-  letter-spacing: -0.025em;
-  margin-top: 0.75rem;
-}
-
-.ah-line {
-  display: block;
-}
-
-.ah-line--indent {
-  padding-left: clamp(1.5rem, 4vw, 4rem);
-  font-style: italic;
-}
-
-/* ─── Bento grid — base (desktop 12-col) ─── */
-.bento {
-  display: grid;
-  gap: clamp(0.5rem, 1vw, 0.75rem);
-  grid-template-columns: repeat(12, 1fr);
-  /* All cells get a consistent min-height so short content doesn't collapse rows */
-  grid-auto-rows: auto;
-}
-
-/* ─── Shared cell defaults ─── */
-.bento-cell {
-  border-radius: clamp(1.5rem, 2.5vw, 2.5rem);
-  overflow: hidden;
-  border: 1px solid var(--ink-20);
-  background: rgba(255, 255, 255, 0.55);
-  /* Subtle lift on hover for all cells */
-  transition:
-    transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-    box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-    border-color 0.25s;
-}
-
-.bento-cell:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 16px 50px rgba(26, 24, 20, 0.1);
-  border-color: rgba(194, 154, 89, 0.25);
-}
-
-/* ─── Image cells ─── */
-.bento-cell--imgA {
-  grid-column: 1 / 5;
-  grid-row: 1 / 3;
-  aspect-ratio: 3 / 5;
-}
-
-.bento-cell--imgB {
-  grid-column: 5 / 8;
-  grid-row: 1 / 2;
-  aspect-ratio: 4 / 5;
-}
-
-/* ─── Text cell ─── */
-.bento-cell--text {
-  grid-column: 8 / 13;
-  grid-row: 1 / 2;
-  padding: clamp(1.75rem, 3.5vw, 2.75rem);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  background: var(--sand);
-}
-
-.bento-copy {
-  font-size: clamp(0.95rem, 1.4vw, 1.05rem);
-  line-height: 1.75;
-  color: var(--ink-60);
-}
-
-.bento-copy + .bento-copy {
-  margin-top: 1rem;
-}
-
-/* ─── Stat cells ─── */
-.bento-cell--stat {
-  grid-column: 5 / 8;
-  grid-row: 2 / 3;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  padding: clamp(1.25rem, 2.5vw, 1.75rem);
-  background: var(--ink);
-  color: var(--white);
-  /* Distinct hover — gold glow instead of the default */
-  transition:
-    transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-    box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.bento-cell--stat:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 16px 50px rgba(45, 4, 106, 0.25);
-  border-color: rgba(45, 4, 106, 0.4);
-}
-
-.bento-cell--statB {
-  grid-column: 8 / 13;
-  grid-row: 2 / 3;
-  background: var(--sand);
-  color: var(--ink);
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  padding: clamp(1.25rem, 2.5vw, 1.75rem);
-}
-
-.stat-num {
-  font-family: var(--serif);
-  font-size: clamp(2.2rem, 4.5vw, 4rem);
-  font-weight: 300;
-  line-height: 1;
-  /* Gold accent on the number */
-  background: linear-gradient(135deg, currentColor 60%, rgba(194, 154, 89, 0.75) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-/* Reset gradient on dark cell so it reads as plain white */
-.bento-cell--stat .stat-num {
-  background: none;
-  -webkit-text-fill-color: var(--white);
-}
-
-.stat-label {
-  font-size: 0.7rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  margin-top: 0.5rem;
-  opacity: 0.55;
-}
-
-/* ─── Full-width image cell ─── */
-.bento-cell--imgC {
-  grid-column: 1 / 13;
-  aspect-ratio: 16 / 5;
-}
-
-/* ─── Image placeholder ─── */
-.bento-img-placeholder {
-  width: 100%;
-  height: 100%;
-  min-height: 220px;
-  background: linear-gradient(135deg, var(--sand) 0%, #e5ddd0 100%);
-  display: grid;
-  place-items: center;
-  font-size: 0.75rem;
-  color: var(--ink-60);
-  letter-spacing: 0.05em;
-}
-
-
-/* ══════════════════════════════════════════
-   RESPONSIVE — tablet (≤1023px)
-   ══════════════════════════════════════════ */
-@media (max-width: 1023px) {
-  .bento {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .bento-cell--imgA  { grid-column: 1 / 2; grid-row: 1 / 2; aspect-ratio: 3 / 4; }
-  .bento-cell--imgB  { grid-column: 2 / 3; grid-row: 1 / 2; aspect-ratio: 3 / 4; }
-  .bento-cell--text  { grid-column: 1 / 3; grid-row: 2 / 3; }
-  .bento-cell--stat  { grid-column: 1 / 2; grid-row: 3 / 4; }
-  .bento-cell--statB { grid-column: 2 / 3; grid-row: 3 / 4; }
-  .bento-cell--imgC  { grid-column: 1 / 3; }
-}
-
-
-/* ══════════════════════════════════════════
-   RESPONSIVE — mobile (≤640px)
-   ══════════════════════════════════════════ */
-@media (max-width: 640px) {
-  .bento {
-    /* Keep stat cells side-by-side; everything else full-width */
-    grid-template-columns: 1fr 1fr;
-    gap: 0.5rem;
-  }
-
-  .bento-cell--imgA,
-  .bento-cell--imgB,
-  .bento-cell--imgC {
-    grid-column: 1 / 3;
-    grid-row: auto;
-    aspect-ratio: 4 / 3;
-  }
-
-  .bento-cell--text {
-    grid-column: 1 / 3;
-    grid-row: auto;
-  }
-
-  .bento-cell--stat  { grid-column: 1 / 2; grid-row: auto; }
-  .bento-cell--statB { grid-column: 2 / 3; grid-row: auto; }
-}
-
-/* Extra-small — collapse stats too */
-@media (max-width: 380px) {
-  .bento {
-    grid-template-columns: 1fr;
-  }
-
-  .bento-cell--stat,
-  .bento-cell--statB {
-    grid-column: 1;
-  }
-}
-
-
-/* ══════════════════════════════════════════
-   LOCATION VARIANT
-   ══════════════════════════════════════════ */
-.bento--location .bento-cell--locText {
-  grid-column: 1 / 7;
-  grid-row: 1 / 2;
-  background: var(--sand);
-  padding: clamp(1.75rem, 3.5vw, 2.75rem);
-}
-
-.bento--location .bento-cell--map {
-  grid-column: 7 / 13;
-  grid-row: 1 / 2;
-  border-radius: clamp(1.5rem, 2.5vw, 2.5rem);
-  overflow: hidden;
-  border: 1px solid var(--ink-20);
-  background: rgba(255, 255, 255, 0.55);
-  min-height: clamp(280px, 40vw, 420px);
-}
-
-.bento-map {
-  width: 100%;
-  height: 100%;
-  border: 0;
-  display: block;
-  filter: saturate(0.92) contrast(0.98) brightness(1.03);
-}
-
-@media (max-width: 1023px) {
-  .bento--location .bento-cell--locText {
-    grid-column: 1 / 3;
-    grid-row: 2 / 3;
-  }
-
-  .bento--location .bento-cell--map {
-    grid-column: 1 / 3;
-    grid-row: 1 / 2;
-    min-height: 320px;
-  }
-}
-
-@media (max-width: 640px) {
-  .bento--location .bento-cell--locText,
-  .bento--location .bento-cell--map {
-    grid-column: 1 / 3;
-    grid-row: auto;
-  }
-
-  .bento--location .bento-cell--map {
-    min-height: 260px;
-  }
-}
-
-
-/* ══════════════════════════════════════════
-   REDUCED MOTION
-   ══════════════════════════════════════════ */
-@media (prefers-reduced-motion: reduce) {
-  .bento-cell,
-  .bento-cell--stat {
-    transition: none;
-  }
-
-  .bento-cell:hover,
-  .bento-cell--stat:hover {
-    transform: none;
-  }
-}
-
-/* ══════════════════════════════════════════
-   VISIT / UNIQUE CARDS
+   VISIT — Unique cards section
    ══════════════════════════════════════════ */
 
 .visit {
   padding: clamp(4rem, 9vw, 8rem) 0;
-  background: var(--sand);
+  background: var(--color-sand);
 }
 
 .visit-inner {
@@ -327,74 +21,110 @@
   margin-bottom: clamp(1.75rem, 3.5vw, 3rem);
 }
 
-.visit-header > div:first-child {
-  min-width: 0;
+.visit-header > div { min-width: 0; }
+
+.visit-header .eyebrow {
+  display: inline-block;
+  padding-bottom: 0.6rem;
+  border-bottom: 1px solid var(--dd-gold-30);
+  color: var(--dd-gold);
+  letter-spacing: 0.22em;
 }
 
+/* "Plan your visit" link — purple */
+.visit-header .inline-link {
+  color: var(--dd-purple);
+  border-bottom: 1px solid var(--dd-purple-20);
+  text-decoration: none;
+  font-size: 0.82rem;
+  font-weight: 500;
+  padding-bottom: 0.1rem;
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  transition: border-color 0.2s, color 0.2s, gap 0.2s;
+}
+
+.visit-header .inline-link:hover {
+  border-color: var(--dd-gold);
+  color: color-mix(in srgb, var(--dd-purple) 80%, #000);
+  gap: 0.5rem;
+}
+
+/* ─── Cards grid ─── */
 .visit-cards {
   display: grid;
   gap: clamp(0.5rem, 1vw, 0.75rem);
 }
 
 @media (min-width: 640px) {
-  .visit-cards {
-    grid-template-columns: repeat(2, 1fr);
-  }
+  .visit-cards { grid-template-columns: repeat(2, 1fr); }
 }
 
 @media (min-width: 1024px) {
-  .visit-cards {
-    grid-template-columns: repeat(3, 1fr);
-  }
+  .visit-cards { grid-template-columns: repeat(3, 1fr); }
 }
 
 .vcard {
   position: relative;
   background: rgba(255, 255, 255, 0.65);
-  border: 1px solid var(--ink-20);
-  border-radius: clamp(1.5rem, 2.5vw, 2.5rem);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-xl);
   padding: clamp(1.5rem, 3vw, 2.25rem);
   display: flex;
   flex-direction: column;
   transition:
-    transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-    box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.4s var(--ease-out),
+    box-shadow 0.4s var(--ease-out),
     background 0.2s,
     border-color 0.25s;
 }
 
-/* Gold/violet accent rule — reveals on hover */
+/* Gold accent line — micro-detail, reveals on hover */
 .vcard::before {
   content: "";
   position: absolute;
-  left: 1.25rem;
-  right: 1.25rem;
+  left: 1.5rem;
+  right: 1.5rem;
   top: 0;
   height: 1px;
   background: linear-gradient(
     90deg,
     transparent,
-    rgba(194, 154, 89, 0.5),
-    rgba(45, 4, 106, 0.3),
+    var(--dd-gold-60),
+    var(--dd-purple-20),
     transparent
   );
   opacity: 0;
-  transition: opacity 0.3s;
+  transition: opacity 0.35s;
 }
 
+/* Purple hover — primary brand interaction */
 .vcard:hover {
-  background: #fff;
+  background: var(--color-warm);
   transform: translateY(-4px);
-  box-shadow: 0 18px 50px rgba(26, 24, 20, 0.1);
-  border-color: rgba(194, 154, 89, 0.2);
+  box-shadow: var(--shadow-hover), var(--shadow-purple);
+  border-color: var(--dd-purple-20);
 }
 
 .vcard:hover::before {
   opacity: 1;
 }
 
+/* Card ordinal — gold micro-detail */
+.vcard-num {
+  font-family: var(--font-serif);
+  font-size: 0.75rem;
+  font-style: italic;
+  color: var(--dd-gold);
+  letter-spacing: 0.06em;
+  margin-bottom: 0.75rem;
+  opacity: 0.8;
+}
+
 .vcard-title {
-  font-family: var(--serif);
+  font-family: var(--font-serif);
   font-size: clamp(1.2rem, 2vw, 1.45rem);
   font-weight: 400;
   font-style: italic;
@@ -404,22 +134,177 @@
 .vcard-text {
   font-size: clamp(0.8rem, 1.2vw, 0.875rem);
   line-height: 1.7;
-  color: var(--ink-60);
+  color: var(--color-ink-60);
   margin-top: 0.75rem;
   flex: 1;
 }
 
+/* Ghost button — purple identity */
 .vcard-btn {
   margin-top: 1.5rem;
   align-self: flex-start;
+  color: var(--dd-purple);
+  border: 1px solid var(--dd-purple-20);
+  background: transparent;
+}
+
+.vcard-btn:hover {
+  background: var(--dd-purple-06);
+  border-color: var(--dd-purple);
+  box-shadow: var(--shadow-purple);
+  color: var(--dd-purple);
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .vcard {
-    transition: background 0.2s, border-color 0.2s;
-  }
-  .vcard:hover {
-    transform: none;
-    box-shadow: none;
-  }
+  .vcard { transition: background 0.2s, border-color 0.2s; }
+  .vcard:hover { transform: none; box-shadow: none; }
+}
+
+
+/* ══════════════════════════════════════════
+   LOCATION — bento map section
+   ══════════════════════════════════════════ */
+
+.location {
+  padding: clamp(4rem, 9vw, 8rem) 0;
+}
+
+.location-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 clamp(1rem, 5vw, 2.5rem);
+}
+
+.location-heading {
+  max-width: 640px;
+  margin-bottom: clamp(2rem, 4vw, 3.5rem);
+}
+
+.location-heading .eyebrow {
+  display: inline-block;
+  padding-bottom: 0.6rem;
+  border-bottom: 1px solid var(--dd-gold-30);
+  color: var(--dd-gold);
+  letter-spacing: 0.22em;
+}
+
+.location-h2 {
+  font-family: var(--font-serif);
+  font-weight: 300;
+  font-size: clamp(2.4rem, 6vw, 5.5rem);
+  line-height: 0.92;
+  letter-spacing: -0.02em;
+  margin-top: 0.75rem;
+}
+
+/* ─── Location bento ─── */
+.location-bento {
+  display: grid;
+  gap: clamp(0.5rem, 1vw, 0.75rem);
+  grid-template-columns: repeat(12, 1fr);
+}
+
+.location-bento .bento-cell {
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  border: 1px solid var(--border-soft);
+  background: rgba(255, 255, 255, 0.55);
+  transition:
+    transform 0.4s var(--ease-out),
+    box-shadow 0.4s var(--ease-out),
+    border-color 0.25s;
+}
+
+.location-bento .bento-cell:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-hover), var(--shadow-purple);
+  border-color: var(--dd-purple-20);
+}
+
+/* Text cell */
+.bento-cell--locText {
+  grid-column: 1 / 6;
+  grid-row: 1 / 2;
+  padding: clamp(1.75rem, 3.5vw, 2.75rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: var(--color-sand);
+  border-left: 2px solid var(--dd-gold-30);
+}
+
+.location-bento .bento-cell--locText:hover {
+  border-left-color: var(--dd-gold);
+}
+
+/* Address block — gold separator + icon */
+.location-address {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--dd-gold-30);
+}
+
+.location-address-icon {
+  width: 1rem;
+  height: 1rem;
+  color: var(--dd-gold);
+  flex-shrink: 0;
+  margin-top: 0.1rem;
+}
+
+.location-address-text {
+  font-size: 0.82rem;
+  color: var(--color-ink-60);
+  line-height: 1.5;
+}
+
+/* Primary CTA — purple */
+.bento-cell--locText .btn--dark {
+  margin-top: 2rem;
+  align-self: flex-start;
+  background: var(--dd-purple);
+  color: var(--color-warm);
+  box-shadow: 0 8px 28px var(--dd-purple-10);
+}
+
+.bento-cell--locText .btn--dark:hover {
+  background: color-mix(in srgb, var(--dd-purple) 88%, #000);
+  box-shadow: var(--shadow-purple);
+  transform: translateY(-2px);
+}
+
+/* Map cell */
+.bento-cell--map {
+  grid-column: 6 / 13;
+  grid-row: 1 / 2;
+  min-height: clamp(280px, 40vw, 460px);
+}
+
+.bento-map {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+  filter: saturate(0.9) contrast(0.97) brightness(1.04);
+}
+
+@media (max-width: 1023px) {
+  .location-bento { grid-template-columns: 1fr 1fr; }
+  .bento-cell--locText { grid-column: 1 / 3; grid-row: 2 / 3; }
+  .bento-cell--map     { grid-column: 1 / 3; grid-row: 1 / 2; min-height: 320px; }
+}
+
+@media (max-width: 640px) {
+  .location-bento { grid-template-columns: 1fr; }
+  .bento-cell--locText,
+  .bento-cell--map { grid-column: 1; grid-row: auto; }
+  .bento-cell--map { min-height: 260px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .location-bento .bento-cell { transition: none; }
+  .location-bento .bento-cell:hover { transform: none; box-shadow: none; }
 }

@@ -1,59 +1,80 @@
-  <section class="visit">
-    <div class="visit-inner">
-      <div class="visit-header">
-        <div>
-          <p class="eyebrow">{{ 'home.unique.cta' | translate }}</p>
-          <h2 class="section-h2">
-            {{ 'home.unique.title' | translate }}
-          </h2>
-        </div>
+<!-- ═══ VISIT / UNIQUE CARDS ═══ -->
+<section class="visit">
+  <div class="visit-inner">
 
-        <a routerLink="/visit" class="inline-link hide-mobile">
-          {{ 'home.unique.cta' | translate }} →
+    <div class="visit-header">
+      <div>
+        <p class="eyebrow">{{ 'home.unique.cta' | translate }}</p>
+        <h2 class="section-h2">{{ 'home.unique.title' | translate }}</h2>
+      </div>
+      <a routerLink="/visit" class="inline-link hide-mobile">
+        {{ 'home.unique.cta' | translate }} →
+      </a>
+    </div>
+
+    <div class="visit-cards">
+
+      <div class="vcard">
+        <span class="vcard-num">01</span>
+        <p class="vcard-title">{{ 'home.unique.reconstruction.title' | translate }}</p>
+        <p class="vcard-text">{{ 'home.unique.reconstruction.text' | translate }}</p>
+        <a routerLink="/experience" class="btn btn--ghost vcard-btn">
+          {{ 'home.experience.cta' | translate }}
         </a>
       </div>
 
-      <div class="visit-cards">
-        <div class="vcard">
-          <p class="vcard-title">{{ 'home.unique.reconstruction.title' | translate }}</p>
-          <p class="vcard-text">{{ 'home.unique.reconstruction.text' | translate }}</p>
-          <a routerLink="/experience" class="btn btn--ghost vcard-btn">
-            {{ 'home.experience.cta' | translate }}
-          </a>
-        </div>
-
-        <div class="vcard">
-          <p class="vcard-title">{{ 'home.unique.journey.title' | translate }}</p>
-          <p class="vcard-text">{{ 'home.unique.journey.text' | translate }}</p>
-          <a routerLink="/booking" class="btn btn--ghost vcard-btn">
-            {{ 'home.hero.ctaPrimary' | translate }}
-          </a>
-        </div>
-
-        <div class="vcard">
-          <p class="vcard-title">{{ 'home.unique.educational.title' | translate }}</p>
-          <p class="vcard-text">{{ 'home.unique.educational.text' | translate }}</p>
-          <a routerLink="/visit" class="btn btn--ghost vcard-btn">
-            {{ 'home.unique.cta' | translate }}
-          </a>
-        </div>
+      <div class="vcard">
+        <span class="vcard-num">02</span>
+        <p class="vcard-title">{{ 'home.unique.journey.title' | translate }}</p>
+        <p class="vcard-text">{{ 'home.unique.journey.text' | translate }}</p>
+        <a routerLink="/booking" class="btn btn--ghost vcard-btn">
+          {{ 'home.hero.ctaPrimary' | translate }}
+        </a>
       </div>
+
+      <div class="vcard">
+        <span class="vcard-num">03</span>
+        <p class="vcard-title">{{ 'home.unique.educational.title' | translate }}</p>
+        <p class="vcard-text">{{ 'home.unique.educational.text' | translate }}</p>
+        <a routerLink="/visit" class="btn btn--ghost vcard-btn">
+          {{ 'home.unique.cta' | translate }}
+        </a>
+      </div>
+
     </div>
-  </section>
-<section class="about">
-  <div class="about-inner">
-    <div class="about-heading">
+  </div>
+</section>
+
+
+<!-- ═══ LOCATION ═══ -->
+<section class="location">
+  <div class="location-inner">
+
+    <div class="location-heading">
       <p class="eyebrow">{{ 'home.location.cta' | translate }}</p>
-      <h2 class="about-h2">{{ 'home.location.title' | translate }}</h2>
+      <h2 class="location-h2">{{ 'home.location.title' | translate }}</h2>
     </div>
 
-    <div class="bento bento--location">
-      <!-- Text -->
-      <div class="bento-cell bento-cell--text bento-cell--locText">
+    <div class="bento location-bento">
+
+      <!-- Text + address -->
+      <div class="bento-cell bento-cell--locText">
         <p class="bento-copy">{{ 'home.location.p1' | translate }}</p>
         <p class="bento-copy" style="margin-top: 1rem">{{ 'home.location.p2' | translate }}</p>
 
-        <a routerLink="/visit" class="btn btn--dark" style="margin-top: 2rem">
+        <!-- Address — gold micro-detail separator -->
+        <div class="location-address">
+          <!-- Pin icon -->
+          <svg class="location-address-icon" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+            <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/>
+          </svg>
+          <p class="location-address-text">
+            Zagrebačka ulica 1<br>
+            21000 Split, Croatia
+          </p>
+        </div>
+
+        <a routerLink="/visit" class="btn btn--dark">
           {{ 'home.location.cta' | translate }}
         </a>
       </div>
@@ -69,6 +90,7 @@
           allowfullscreen
         ></iframe>
       </div>
+
     </div>
   </div>
 </section>

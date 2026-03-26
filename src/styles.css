@@ -57,86 +57,70 @@
 
 /* ── Tailwind v4 theme ── */
 :root {
-  --color-cream: #f5f0e8;
-  --color-sand: #ede7d9;
-  --color-ink: #1a1814;
-  --color-ink-60: rgba(26, 24, 20, 0.6);
-  --color-ink-20: rgba(26, 24, 20, 0.12);
-  --color-ink-08: rgba(26, 24, 20, 0.06);
-  --color-warm: #faf8f4;
-
+ 
+  /* ─── Neutrals ─── */
+  --color-cream:   #f5f0e8;
+  --color-sand:    #ede7d9;
+  --color-ink:     #1a1814;
+  --color-warm:    #faf8f4;
+ 
+  --color-ink-70:  rgba(26, 24, 20, 0.70);
+  --color-ink-60:  rgba(26, 24, 20, 0.60);
+  --color-ink-20:  rgba(26, 24, 20, 0.12);
+  --color-ink-08:  rgba(26, 24, 20, 0.06);
+ 
+  --cream-85:      rgba(245, 240, 232, 0.85);
+  --cream-95:      rgba(245, 240, 232, 0.95);
+ 
+  /* ─── Brand accents ─── */
+  /* Purple — primary accent: buttons, hover states, links, active nav */
+  --dd-purple:        #2d046a;
+  --dd-purple-80:     rgba(45, 4, 106, 0.80);
+  --dd-purple-20:     rgba(45, 4, 106, 0.20);
+  --dd-purple-10:     rgba(45, 4, 106, 0.10);
+  --dd-purple-06:     rgba(45, 4, 106, 0.06);
+ 
+  /* Gold — secondary accent: dividers, micro-details, hover highlights */
+  --dd-gold:          #c29a59;
+  --dd-gold-60:       rgba(194, 154, 89, 0.60);
+  --dd-gold-30:       rgba(194, 154, 89, 0.30);
+  --dd-gold-12:       rgba(194, 154, 89, 0.12);
+ 
+  /* ─── Typography ─── */
   --font-serif: 'Cormorant Garamond', Georgia, serif;
-  --font-sans: 'DM Sans', sans-serif;
-
-  --animate-float1: float1 8s ease-in-out infinite;
-  --animate-float2: float2 10s ease-in-out infinite;
-  --animate-marquee: marquee 22s linear infinite;
-  --animate-shimmer: shimmer 1.6s ease-in-out infinite;
-  --animate-revealLine: revealLine 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-
-  --color-cream: #f5f0e8;
-  --color-sand: #ede7d9;
-  --color-ink: #1a1814;
-  --color-warm: #faf8f4;
-
-  --color-ink-60: rgba(26, 24, 20, 0.6);
-  --color-ink-20: rgba(26, 24, 20, 0.12);
-  --color-ink-08: rgba(26, 24, 20, 0.06);
-
-  /* add these (important for opacity usage) */
-  --cream-85: rgba(245, 240, 232, 0.85);
-  --cream-95: rgba(245, 240, 232, 0.95);
-  --ink-70: rgba(26, 24, 20, 0.7);
-  --color-cream: #f5f0e8;
-  --color-sand: #ede7d9;
-  --color-ink: #1a1814;
-  --color-ink-60: rgba(26, 24, 20, 0.6);
-  --color-ink-20: rgba(26, 24, 20, 0.12);
-  --color-ink-08: rgba(26, 24, 20, 0.06);
-  --color-warm: #faf8f4;
-
-  --font-serif: 'Cormorant Garamond', Georgia, serif;
-  --font-sans: 'DM Sans', sans-serif;
-
-  --animate-float1: float1 8s ease-in-out infinite;
-  --animate-float2: float2 10s ease-in-out infinite;
-  --animate-marquee: marquee 22s linear infinite;
-  --animate-shimmer: shimmer 1.6s ease-in-out infinite;
-  --animate-revealLine: revealLine 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-
-  --dd-gold: #c29a59;
-  --dd-purple: #2d046a;
-  --radius-xl: 2.5rem;
-  --radius-lg: 1.75rem;
+  --font-sans:  'DM Sans', sans-serif;
+ 
+  /* ─── Radii ─── */
+  --radius-xl:  2.5rem;
+  --radius-lg:  1.75rem;
+  --radius-md:  1rem;
+  --radius-sm:  0.5rem;
+  --radius-pill: 100px;
+ 
+  /* ─── Easing ─── */
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
-
-  /* Premium borders / shadows */
-  --border-soft: rgba(26, 24, 20, 0.1);
+ 
+  /* ─── Borders ─── */
+  --border-soft:   rgba(26, 24, 20, 0.10);
   --border-strong: rgba(26, 24, 20, 0.16);
-  --shadow-soft: 0 10px 40px rgba(26, 24, 20, 0.07);
-  --shadow-hover: 0 18px 55px rgba(26, 24, 20, 0.12);
-
-  /* Accent glow (very subtle) */
-  --glow-gold: 0 0 0 6px rgba(194, 154, 89, 0.1);
-  --glow-purple: 0 0 0 6px rgba(45, 4, 106, 0.1);
-    --cream:  #f5f0e8;
-  --sand:   #ede7d9;
-  --ink:    #1a1814;
-  --ink-60: rgba(26, 24, 20, 0.6);
-  --ink-20: rgba(26, 24, 20, 0.12);
-  --white:  #faf8f4;
-  --serif:  'Cormorant Garamond', Georgia, serif;
-  --sans:   'DM Sans', sans-serif;
-    --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
-
-  --border-soft: rgba(26, 24, 20, 0.12);
-
-  --shadow-soft: 0 10px 35px rgba(26, 24, 20, 0.08);
-  --shadow-hover: 0 18px 55px rgba(26, 24, 20, 0.14);
-
-  --glow-purple: 0 18px 55px rgba(45, 4, 106, 0.10);
-  --glow-gold: 0 18px 55px rgba(194, 154, 89, 0.12);
-
+ 
+  /* ─── Shadows ─── */
+  --shadow-soft:   0 10px 40px rgba(26, 24, 20, 0.07);
+  --shadow-hover:  0 18px 55px rgba(26, 24, 20, 0.12);
+  --shadow-purple: 0 18px 55px rgba(45, 4, 106, 0.18);
+  --shadow-gold:   0 18px 55px rgba(194, 154, 89, 0.14);
+ 
+  /* ─── Glow rings (focus / hover) ─── */
+  --glow-purple: 0 0 0 3px rgba(45, 4, 106, 0.18);
+  --glow-gold:   0 0 0 3px rgba(194, 154, 89, 0.20);
+ 
+  /* ─── Animation names ─── */
+  --animate-float1:      float1 8s ease-in-out infinite;
+  --animate-float2:      float2 10s ease-in-out infinite;
+  --animate-marquee:     marquee 22s linear infinite;
+  --animate-shimmer:     shimmer 1.6s ease-in-out infinite;
+  --animate-revealLine:  revealLine 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+ 
 }
 
 /* Soft grain texture (very subtle) */
