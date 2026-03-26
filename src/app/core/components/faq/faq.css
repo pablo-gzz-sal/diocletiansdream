@@ -1,52 +1,157 @@
+/* ══════════════════════════════════════════
+   FAQ + NEWSLETTER — Diocletian's Dream
+   ══════════════════════════════════════════ */
 
 .faq {
-  padding: 6rem 0;
-  background: var(--sand);
+  padding: clamp(4rem, 9vw, 8rem) 0;
+  background: var(--color-sand);
 }
 
 .faq-inner {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 0 2rem;
+  padding: 0 clamp(1rem, 5vw, 2.5rem);
   display: grid;
-  gap: 3rem;
+  gap: clamp(2rem, 5vw, 4rem);
+  align-items: start;
 }
 
 @media (min-width: 1024px) {
   .faq-inner {
-    grid-template-columns: 320px 1fr;
+    grid-template-columns: 340px 1fr;
   }
 }
 
-.faq-hint {
-  font-size: 0.85rem;
-  color: var(--ink-60);
-  line-height: 1.6;
-  margin-top: 1rem;
+/* ─── Left column: heading + hint ─── */
+.faq-left {
+  padding-top: 0.5rem;
 }
 
+.faq-left .eyebrow {
+  display: inline-block;
+  padding-bottom: 0.6rem;
+  border-bottom: 1px solid var(--dd-gold-30);
+  color: var(--dd-gold);
+  letter-spacing: 0.22em;
+}
+
+.faq-left .section-h2 {
+  margin-top: 0.75rem;
+}
+
+.faq-hint {
+  font-size: clamp(0.82rem, 1.2vw, 0.9rem);
+  color: var(--color-ink-60);
+  line-height: 1.7;
+  margin-top: 1rem;
+  max-width: 34ch;
+}
+
+/* ─── Newsletter form ─── */
+.newsletter-form {
+  margin-bottom: clamp(1.25rem, 2.5vw, 1.75rem);
+}
+
+.newsletter-pill {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.5rem 0.5rem 0.5rem 1.1rem;
+  border-radius: var(--radius-pill);
+  background: rgba(255, 255, 255, 0.75);
+  border: 1px solid var(--border-soft);
+  box-shadow: var(--shadow-soft);
+  backdrop-filter: blur(10px);
+  /* Gold ring on focus-within */
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.newsletter-pill:focus-within {
+  border-color: var(--dd-gold-60);
+  box-shadow: var(--shadow-soft), 0 0 0 3px var(--dd-gold-12);
+}
+
+.newsletter-input {
+  flex: 1;
+  min-width: 0;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-family: var(--font-sans);
+  font-size: clamp(0.875rem, 1.3vw, 0.95rem);
+  color: var(--color-ink);
+  padding: 0.6rem 0;
+}
+
+.newsletter-input::placeholder {
+  color: var(--color-ink-60);
+}
+
+/* Submit — purple primary button */
+.newsletter-btn {
+  flex-shrink: 0;
+  border: none;
+  border-radius: var(--radius-pill);
+  padding: 0.7rem 1.4rem;
+  cursor: pointer;
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  background: var(--dd-purple);
+  color: var(--color-warm);
+  box-shadow: 0 6px 20px var(--dd-purple-10);
+  transition:
+    transform 0.3s var(--ease-out),
+    box-shadow 0.3s var(--ease-out),
+    background 0.2s;
+}
+
+.newsletter-btn:not(:disabled):hover {
+  background: color-mix(in srgb, var(--dd-purple) 88%, #000);
+  box-shadow: var(--shadow-purple);
+  transform: translateY(-1px);
+}
+
+.newsletter-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* ─── FAQ list ─── */
 .faq-list {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 0.625rem;
 }
 
 .faq-item {
-  border-radius: 1.75rem;
-  border: 1px solid var(--ink-20);
-  background: rgba(255, 255, 255, 0.55);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-soft);
+  background: rgba(255, 255, 255, 0.58);
   overflow: hidden;
-  transition: background 0.2s;
+  backdrop-filter: blur(8px);
+  transition:
+    border-color 0.25s,
+    box-shadow 0.25s,
+    background 0.2s;
 }
 
 .faq-item:hover {
-  background: rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.82);
+}
+
+/* Open state — gold highlight */
+.faq-item--open {
+  border-color: var(--dd-gold-30);
+  box-shadow: var(--shadow-soft), 0 0 0 3px var(--dd-gold-12);
+  background: rgba(255, 255, 255, 0.82);
 }
 
 .faq-q {
   width: 100%;
   text-align: left;
-  padding: 1.25rem 1.5rem;
+  padding: clamp(1rem, 2.5vw, 1.4rem) clamp(1.25rem, 2.5vw, 1.5rem);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -54,35 +159,55 @@
   background: none;
   border: none;
   cursor: pointer;
-  font-family: var(--serif);
-  font-size: 1.1rem;
+  font-family: var(--font-serif);
+  font-size: clamp(1rem, 1.6vw, 1.15rem);
   font-weight: 400;
-  color: var(--ink);
+  color: var(--color-ink);
+  line-height: 1.35;
 }
 
+.faq-q:focus-visible {
+  outline: 2px solid var(--dd-purple);
+  outline-offset: -2px;
+  border-radius: var(--radius-lg);
+}
+
+/* Icon — purple when open, gold border on hover */
 .faq-icon {
   width: 2rem;
   height: 2rem;
-  border-radius: 0.75rem;
-  border: 1px solid var(--ink-20);
+  border-radius: 50%;
+  border: 1px solid var(--border-soft);
+  background: rgba(255, 255, 255, 0.6);
   display: grid;
   place-items: center;
   font-size: 1.1rem;
   line-height: 1;
   flex-shrink: 0;
-  transition: background 0.2s, color 0.2s;
+  color: var(--color-ink-60);
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
 }
 
+.faq-q:hover .faq-icon {
+  border-color: var(--dd-gold-60);
+  color: var(--dd-purple);
+}
+
+/* Open icon — purple fill */
 .faq-item--open .faq-icon {
-  background: var(--ink);
-  color: var(--white);
+  background: var(--dd-purple);
+  border-color: var(--dd-purple);
+  color: var(--color-warm);
 }
 
+/* ─── Answer panel ─── */
 .faq-a {
   overflow: hidden;
   max-height: 0;
   opacity: 0;
-  transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s;
+  transition:
+    max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 0.3s;
 }
 
 .faq-item--open .faq-a {
@@ -90,184 +215,28 @@
 }
 
 .faq-a p {
-  padding: 0 1.5rem 1.25rem;
-  font-size: 0.88rem;
-  color: var(--ink-60);
+  padding: 0 clamp(1.25rem, 2.5vw, 1.5rem) clamp(1rem, 2vw, 1.35rem);
+  font-size: clamp(0.84rem, 1.2vw, 0.9rem);
+  color: var(--color-ink-60);
   line-height: 1.7;
 }
 
-.faq-item--open {
-  border-color: rgba(194, 154, 89, 0.28);
-  box-shadow: var(--shadow-soft), var(--glow-gold);
-  background: rgba(255, 255, 255, 0.78);
+/* Gold rule above answer */
+.faq-item--open .faq-a p {
+  border-top: 1px solid var(--dd-gold-30);
+  padding-top: clamp(0.875rem, 2vw, 1.1rem);
+  margin: 0 clamp(1.25rem, 2.5vw, 1.5rem);
+  padding-left: 0;
+  padding-right: 0;
 }
 
-.faq-q:hover .faq-icon {
-  border-color: rgba(45, 4, 106, 0.25);
-}
-/* ===== Subscribe + FAQ layout (like your screenshot) ===== */
-
-.faq {
-  padding: clamp(64px, 8vw, 120px) 0;
+/* ─── Responsive ─── */
+@media (max-width: 1023px) {
+  .faq-hint { max-width: 50ch; }
 }
 
-.faq-inner {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 24px;
-
-  display: grid;
-  grid-template-columns: 1fr 1.45fr;
-  gap: clamp(24px, 4vw, 56px);
-  align-items: start;
-}
-
-.faq-left {
-  padding-top: 10px;
-}
-
-.subscribe-title {
-  margin: 10px 0 18px;
-  font-size: clamp(56px, 6.2vw, 96px);
-  line-height: 0.92;
-  letter-spacing: -0.03em;
-  font-weight: 500;
-}
-
-.faq-hint {
-  margin-top: 8px;
-  max-width: 34ch;
-  opacity: 0.9;
-}
-
-/* Right column container */
-.faq-right {
-  display: grid;
-  gap: 18px;
-}
-
-/* Newsletter pill */
-.newsletter-pill {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-
-  padding: 12px;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.72);
-  border: 1px solid rgba(26, 24, 20, 0.10);
-  box-shadow: 0 10px 35px rgba(26, 24, 20, 0.06);
-  backdrop-filter: blur(10px);
-}
-
-.newsletter-input {
-  flex: 1;
-  border: 0;
-  outline: none;
-  background: transparent;
-  padding: 14px 18px;
-  font-size: 16px;
-  border-radius: 999px;
-}
-
-.newsletter-btn {
-  border: 0;
-  border-radius: 999px;
-  padding: 12px 18px;
-  cursor: pointer;
-  font-weight: 600;
-
-  /* Use your existing btn colors if you want;
-     otherwise keep it neutral and it’ll fit the screenshot style */
-  background: rgba(255, 255, 255, 0.65);
-  border: 1px solid rgba(26, 24, 20, 0.12);
-  transition: transform 200ms var(--ease-out, ease), box-shadow 200ms var(--ease-out, ease);
-}
-
-.newsletter-btn:disabled {
-  opacity: 0.55;
-  cursor: not-allowed;
-}
-
-.newsletter-btn:not(:disabled):hover {
-  transform: translateY(-1px);
-  box-shadow: 0 14px 40px rgba(26, 24, 20, 0.10);
-}
-
-/* FAQ list */
-.faq-list {
-  display: grid;
-  gap: 14px;
-}
-
-.faq-item {
-  background: rgba(255, 255, 255, 0.55);
-  border: 1px solid rgba(26, 24, 20, 0.10);
-  border-radius: 28px;
-  overflow: hidden;
-  box-shadow: 0 10px 35px rgba(26, 24, 20, 0.05);
-  backdrop-filter: blur(10px);
-}
-
-.faq-q {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  padding: 22px 22px;
-  background: transparent;
-  border: 0;
-  cursor: pointer;
-  text-align: left;
-}
-
-.faq-q-text {
-  font-size: 18px;
-  font-weight: 600;
-}
-
-.faq-icon {
-  width: 36px;
-  height: 36px;
-  border-radius: 999px;
-  display: grid;
-  place-items: center;
-
-  background: rgba(255, 255, 255, 0.6);
-  border: 1px solid rgba(26, 24, 20, 0.10);
-}
-
-.faq-a {
-  max-height: 0;
-  opacity: 0;
-  overflow: hidden;
-  transition: max-height 260ms var(--ease-out, ease), opacity 260ms var(--ease-out, ease);
-}
-
-.faq-a--open {
-  max-height: 260px;
-  opacity: 1;
-}
-
-.faq-a p {
-  padding: 0 22px 22px;
-  margin: 0;
-  opacity: 0.9;
-  line-height: 1.6;
-}
-
-/* Responsive */
-@media (max-width: 980px) {
-  .faq-inner {
-    grid-template-columns: 1fr;
-  }
-
-  .subscribe-title {
-    font-size: clamp(44px, 10vw, 72px);
-  }
-
-  .faq-hint {
-    max-width: 50ch;
-  }
+/* ─── Reduced motion ─── */
+@media (prefers-reduced-motion: reduce) {
+  .faq-a { transition: none; }
+  .newsletter-btn { transition: none; }
 }

@@ -1,15 +1,17 @@
- <div class="marquee-wrap" aria-label="highlights">
-    <div class="marquee-track">
-      <!-- First loop -->
-      <ng-container *ngFor="let item of 'home.marquee.items' | translate">
-        <span>{{ item }}</span>
-        <span>·</span>
-      </ng-container>
+<div class="marquee-wrap" aria-label="highlights">
+  <div class="marquee-track" aria-hidden="true">
 
-      <!-- Duplicate for infinite scroll effect -->
-      <ng-container *ngFor="let item of 'home.marquee.items' | translate">
-        <span>{{ item }}</span>
-        <span>·</span>
-      </ng-container>
-    </div>
+    <!-- First pass -->
+    <ng-container *ngFor="let item of ('home.marquee.items' | translate)">
+      <span>{{ item }}</span>
+      <span aria-hidden="true">·</span>
+    </ng-container>
+
+    <!-- Duplicate for seamless loop -->
+    <ng-container *ngFor="let item of ('home.marquee.items' | translate)">
+      <span>{{ item }}</span>
+      <span aria-hidden="true">·</span>
+    </ng-container>
+
   </div>
+</div>

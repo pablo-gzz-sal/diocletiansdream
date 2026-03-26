@@ -1,54 +1,65 @@
-  <section class="faq">
-    <div class="faq-inner">
-      <div class="faq-left">
-        <p class="eyebrow">{{ 'home.newsletter.submit' | translate }}</p>
-        <h2 class="section-h2">{{ 'home.newsletter.title' | translate }}</h2>
-        <p class="faq-hint">{{ 'home.newsletter.text' | translate }}</p>
-      </div>
+<section class="faq">
+  <div class="faq-inner">
 
-      <div class="faq-list">
-        <div class="faq-item faq-item--open">
-          <div class="faq-a" style="max-height: 400px; opacity: 1">
-            <form class="newsletter-form" (ngSubmit)="onSubscribe()" #f="ngForm">
-              <div style="display: flex; gap: 0.75rem; flex-wrap: wrap">
-                <input
-                  type="email"
-                  name="email"
-                  [(ngModel)]="newsletterEmail"
-                  required
-                  [placeholder]="'home.newsletter.emailPlaceholder' | translate"
-                  style="
-                    flex: 1;
-                    min-width: 220px;
-                    padding: 0.9rem 1.1rem;
-                    border-radius: 1rem;
-                    border: 1px solid var(--ink-20);
-                    background: rgba(255,255,255,0.8);
-                    outline: none;
-                  "
-                />
-                <button type="submit" class="btn btn--dark" [disabled]="f.invalid">
-                  {{ 'home.newsletter.submit' | translate }}
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
-
-        <!-- Optional: keep your FAQ accordion below if you still want it on homepage -->
-        <div
-          *ngFor="let item of faqs; let i = index"
-          class="faq-item"
-          [class.faq-item--open]="item.open"
-        >
-          <button class="faq-q" (click)="toggleFaq(i)">
-            <span>{{ item.q }}</span>
-            <span class="faq-icon">{{ item.open ? '−' : '+' }}</span>
-          </button>
-          <div class="faq-a" [style.maxHeight]="item.open ? '200px' : '0'">
-            <p>{{ item.a }}</p>
-          </div>
-        </div>
-      </div>
+    <!-- Left: heading + hint -->
+    <div class="faq-left">
+      <p class="eyebrow">{{ 'home.newsletter.submit' | translate }}</p>
+      <h2 class="section-h2">{{ 'home.newsletter.title' | translate }}</h2>
+      <p class="faq-hint">{{ 'home.newsletter.text' | translate }}</p>
     </div>
-  </section>
+
+    <!-- Right: newsletter + FAQ accordion -->
+    <div class="faq-list">
+
+      <!-- Newsletter form item -->
+      <div class="faq-item faq-item--open">
+        <div class="faq-a" [style.maxHeight]="'none'" [style.opacity]="'1'">
+          <form class="newsletter-form" (ngSubmit)="onSubscribe()" #f="ngForm">
+            <div class="newsletter-pill">
+              <input
+                class="newsletter-input"
+                type="email"
+                name="email"
+                [(ngModel)]="newsletterEmail"
+                required
+                [placeholder]="'home.newsletter.emailPlaceholder' | translate"
+                autocomplete="email"
+              />
+              <button
+                class="newsletter-btn"
+                type="submit"
+                [disabled]="f.invalid"
+              >
+                {{ 'home.newsletter.submit' | translate }}
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- FAQ accordion items -->
+      <div
+        *ngFor="let item of faqs; let i = index"
+        class="faq-item"
+        [class.faq-item--open]="item.open"
+      >
+        <button
+          class="faq-q"
+          (click)="toggleFaq(i)"
+          [attr.aria-expanded]="item.open"
+        >
+          <span>{{ item.q }}</span>
+          <span class="faq-icon" aria-hidden="true">{{ item.open ? '−' : '+' }}</span>
+        </button>
+        <div
+          class="faq-a"
+          [style.maxHeight]="item.open ? '300px' : '0'"
+          role="region"
+        >
+          <p>{{ item.a }}</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
