@@ -3,9 +3,9 @@ import { Header } from '../../core/components/header/header';
 import { Footer } from '../../core/components/footer/footer';
 import { RouterLink } from '@angular/router';
 import { RevealOnScrollDirective } from '../../shared/animations/reveal-on-scroll-directive';
-import { Meta, Title } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
 import { WpService } from '../../shared/services/wp-service';
+import { SeoService } from '../../shared/services/seo-service';
 import { IntroReveal } from '../../shared/components/intro-reveal/intro-reveal';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { FormsModule } from '@angular/forms';
@@ -43,32 +43,17 @@ import { Highlights } from '../../core/components/highlights/highlights';
 })
 export class LandingPage implements OnInit {
   marqueeItems: string[] = [];
-
   blogCards!: any;
 
   constructor(
-    private title: Title,
-    private meta: Meta,
+    private seo: SeoService,
     private wpService: WpService,
     private translate: TranslateService,
   ) {}
 
   ngOnInit(): void {
     window.scroll(0, 0);
-    this.setSeoTags();
-    this.title.setTitle('Diocletian’s Dream VR Museum | Step back into 305 AD');
-    this.meta.updateTag({
-      name: 'description',
-      content:
-        'A 15-minute VR museum experience in Split that brings Diocletian’s Palace back to life in 305 AD. Book tickets and plan your visit.',
-    });
-    this.meta.updateTag({ property: 'og:title', content: 'Diocletian’s Dream VR Museum | 305 AD' });
-    this.meta.updateTag({
-      property: 'og:description',
-      content:
-        'Step into a VR reconstruction of Diocletian’s Palace and understand the UNESCO site like never before.',
-    });
-    this.meta.updateTag({ name: 'robots', content: 'index,follow' });
+    this.applySeo();
     this.translate.get('home.marquee.items').subscribe((items: string[]) => {
       this.marqueeItems = items;
     });
@@ -81,36 +66,53 @@ export class LandingPage implements OnInit {
     });
   }
 
-  private setSeoTags(): void {
-    this.translate.get('home.hero.title').subscribe((titleText: string) => {
-      // Browser tab title
-      this.title.setTitle(titleText);
+  private applySeo(): void {
+    const title = "Diocletian's Dream VR Museum | Step back into 305 AD";
+    const description = "A 15-minute VR museum experience in Split that brings Diocletian's Palace back to life in 305 AD. Located just outside the palace walls near the Golden Gate. Book tickets online.";
 
-      // Primary meta description
-      this.meta.updateTag({
-        name: 'description',
-        content:
-          'Diocletian’s Palace VR experience in Split. Step into 305 AD through an immersive virtual reality museum experience inside the UNESCO Old Town.',
-      });
+    this.seo.setTitle(title);
+    this.seo.setDescription(description);
+    this.seo.setCanonical('https://diocletiansdream.com/');
+    this.seo.setOpenGraph({
+      title,
+      description,
+      url: 'https://diocletiansdream.com/',
+      type: 'website',
+    });
 
-      // Optional keywords (Google mostly ignores but still useful)
-      this.meta.updateTag({
-        name: 'keywords',
-        content:
-          'Diocletian’s Palace VR experience, virtual reality Split, VR museum Split, immersive historical experience Split, Roman history experience Croatia',
-      });
-
-      // OpenGraph (for social sharing)
-      this.meta.updateTag({
-        property: 'og:title',
-        content: titleText,
-      });
-
-      this.meta.updateTag({
-        property: 'og:description',
-        content:
-          'Experience Diocletian’s Palace in virtual reality inside Split’s UNESCO Old Town.',
-      });
+    this.seo.setJsonLd('ld-local-business', {
+      '@context': 'https://schema.org',
+      '@type': ['LocalBusiness', 'TouristAttraction'],
+      name: "Diocletian's Dream VR Museum",
+      description,
+      url: 'https://diocletiansdream.com',
+      telephone: '+38521886015',
+      email: 'contact@diocletiansdream.com',
+      address: {
+        '@type': 'PostalAddress',
+        streetAddress: 'Zagrebačka ul. 1',
+        addressLocality: 'Split',
+        postalCode: '21000',
+        addressCountry: 'HR',
+      },
+      geo: {
+        '@type': 'GeoCoordinates',
+        latitude: 43.5081,
+        longitude: 16.4402,
+      },
+      openingHoursSpecification: [
+        {
+          '@type': 'OpeningHoursSpecification',
+          dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+          opens: '11:00',
+          closes: '16:00',
+        },
+      ],
+      sameAs: [
+        'https://www.instagram.com/diocletiansdream/',
+        'https://www.facebook.com/diocletiansdream/',
+        'https://www.tripadvisor.com/Attraction_Review-g295370-d20921353',
+      ],
     });
   }
 }

@@ -4,6 +4,7 @@ import { Footer } from '../../core/components/footer/footer';
 import { BlogInvite } from '../../shared/components/blog-invite/blog-invite';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { DomSanitizer, Meta, Title } from '@angular/platform-browser';
+import { SeoService } from '../../shared/services/seo-service';
 
 @Component({
   selector: 'app-booking',
@@ -46,6 +47,7 @@ export class Booking implements OnInit {
     private meta: Meta,
     private translate: TranslateService,
     private sanitizer: DomSanitizer,
+    private seo: SeoService,
   ) {}
 
   ngOnInit(): void {
@@ -75,6 +77,7 @@ export class Booking implements OnInit {
         : 'Reserve your 15-minute Diocletian’s Palace VR experience in Split. Choose your time slot and secure your tickets online.';
 
     this.title.setTitle(metaTitle);
+    this.seo.setCanonical('https://diocletiansdream.com/booking');
 
     this.meta.updateTag({ name: 'description', content: metaDescription });
     this.meta.updateTag({ name: 'robots', content: 'index,follow' });
@@ -83,7 +86,7 @@ export class Booking implements OnInit {
     this.meta.updateTag({ property: 'og:title', content: metaTitle });
     this.meta.updateTag({ property: 'og:description', content: metaDescription });
     this.meta.updateTag({ property: 'og:type', content: 'website' });
-    this.meta.updateTag({ property: 'og:url', content: 'https://diocletiansdream.com/visit' });
+    this.meta.updateTag({ property: 'og:url', content: 'https://diocletiansdream.com/booking' });
 
     // Twitter
     this.meta.updateTag({ name: 'twitter:title', content: metaTitle });

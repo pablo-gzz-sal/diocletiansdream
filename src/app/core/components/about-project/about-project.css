@@ -3,7 +3,7 @@
    ══════════════════════════════════════════ */
 
 .about {
-  padding: clamp(4rem, 9vw, 8rem) 0;
+  padding: clamp(3.5rem, 7.5vw, 6.5rem) 0;
 }
 
 .about-inner {
@@ -15,7 +15,7 @@
 /* ─── Heading ─── */
 .about-heading {
   max-width: 640px;
-  margin-bottom: clamp(2rem, 4vw, 3.5rem);
+  margin-bottom: clamp(1.75rem, 3.2vw, 2.75rem);
 }
 
 /* Gold rule — section separator micro-detail */

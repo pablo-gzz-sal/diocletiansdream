@@ -78,7 +78,7 @@
     >
       <div
         *ngFor="let i of [1, 2, 3, 4, 5, 6]"
-        class="rounded-[2rem] border border-black/10 bg-white/50 overflow-hidden"
+        class="rounded-[1rem] border border-black/10 bg-white/50 overflow-hidden"
       >
         <div
           class="aspect-[4/3] bg-gradient-to-br from-sand to-[#e5ddd0] animate-[shimmer_1.6s_ease-in-out_infinite]"
@@ -101,7 +101,7 @@
       <a
         *ngFor="let post of filteredPosts(); trackBy: trackById"
         [routerLink]="['/blog', post.slug]"
-        class="group rounded-[2rem] border border-black/10 bg-white/60 overflow-hidden hover:bg-white hover:border-black/20 hover:-translate-y-0.5 transition-all no-underline text-ink"
+        class="group rounded-[1rem] border border-black/10 bg-white/60 overflow-hidden hover:bg-white hover:border-black/20 hover:-translate-y-0.5 transition-all no-underline text-ink"
       >
         <!-- Image -->
         <div class="relative overflow-hidden">

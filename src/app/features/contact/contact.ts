@@ -7,6 +7,7 @@ import { Header } from '../../core/components/header/header';
 import { Footer } from '../../core/components/footer/footer';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
+import { SeoService } from '../../shared/services/seo-service';
 
 @Component({
   selector: 'app-contact',
@@ -30,6 +31,7 @@ export class Contact implements OnInit, OnDestroy {
     private meta: Meta,
     private translate: TranslateService,
     private sanitizer: DomSanitizer,
+    private seo: SeoService,
   ) {
     this.title.setTitle("Contact — Diocletian's Dream VR Museum | Split");
     this.meta.updateTag({
@@ -71,6 +73,7 @@ export class Contact implements OnInit, OnDestroy {
         : 'Plan your visit to Diocletian’s Dream in Split. Book your VR experience or contact us for group and school visit arrangements. Advance booking recommended.';
 
     this.title.setTitle(metaTitle);
+    this.seo.setCanonical('https://diocletiansdream.com/visit');
 
     this.meta.updateTag({ name: 'description', content: metaDescription });
     this.meta.updateTag({ name: 'robots', content: 'index,follow' });
