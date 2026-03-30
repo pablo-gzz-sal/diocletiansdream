@@ -3,7 +3,7 @@
    ══════════════════════════════════════════ */
 
 .visit {
-  padding: clamp(4rem, 9vw, 8rem) 0;
+  padding: clamp(3.5rem, 7.5vw, 6.5rem) 0;
   background: var(--color-sand);
 }
 
@@ -166,7 +166,7 @@
    ══════════════════════════════════════════ */
 
 .location {
-  padding: clamp(4rem, 9vw, 8rem) 0;
+  padding: clamp(3.5rem, 7.5vw, 6.5rem) 0;
 }
 
 .location-inner {

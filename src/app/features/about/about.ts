@@ -5,6 +5,7 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { DomSanitizer, Meta, SafeHtml, Title } from '@angular/platform-browser';
 import { Subscription } from 'rxjs';
 import { BlogInvite } from '../../shared/components/blog-invite/blog-invite';
+import { SeoService } from '../../shared/services/seo-service';
 
 @Component({
   selector: 'app-about',
@@ -22,7 +23,8 @@ export class About implements OnInit{
     private title: Title,
     private meta: Meta,
     private translate: TranslateService,
-    private sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer,
+    private seo: SeoService,
   ) {}
   ngOnInit(): void {
     window.scroll(0, 0);
@@ -50,6 +52,7 @@ export class About implements OnInit{
         : 'Learn about Diocletian’s Dream, a virtual reality museum in Split presenting Diocletian’s Palace through immersive 3D reconstruction and historical research.';
 
     this.title.setTitle(metaTitle);
+    this.seo.setCanonical('https://diocletiansdream.com/about');
 
     // Description
     this.meta.updateTag({ name: 'description', content: metaDescription });

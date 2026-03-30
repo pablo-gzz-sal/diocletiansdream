@@ -39,15 +39,6 @@
         </a>
 
         <a
-          routerLink="/about"
-          routerLinkActive="is-active"
-          class="nav-link text-[0.78rem] font-medium rounded-[0.625rem] px-3.5 py-2 transition-colors no-underline"
-          style="color: var(--color-ink-60)"
-        >
-          {{ 'header.nav.about' | translate }}
-        </a>
-
-        <a
           routerLink="/experience"
           routerLinkActive="is-active"
           class="nav-link text-[0.78rem] font-medium rounded-[0.625rem] px-3.5 py-2 transition-colors no-underline"
@@ -57,21 +48,30 @@
         </a>
 
         <a
-          routerLink="/blog"
-          routerLinkActive="is-active"
-          class="nav-link text-[0.78rem] font-medium rounded-[0.625rem] px-3.5 py-2 transition-colors no-underline"
-          style="color: var(--color-ink-60)"
-        >
-          {{ 'header.nav.blog' | translate }}
-        </a>
-
-        <a
           routerLink="/visit"
           routerLinkActive="is-active"
           class="nav-link text-[0.78rem] font-medium rounded-[0.625rem] px-3.5 py-2 transition-colors no-underline"
           style="color: var(--color-ink-60)"
         >
           {{ 'header.nav.visit' | translate }}
+        </a>
+
+        <a
+          routerLink="/about"
+          routerLinkActive="is-active"
+          class="nav-link text-[0.78rem] font-medium rounded-[0.625rem] px-3.5 py-2 transition-colors no-underline"
+          style="color: var(--color-ink-60)"
+        >
+          {{ 'header.nav.about' | translate }}
+        </a>
+
+        <a
+          routerLink="/blog"
+          routerLinkActive="is-active"
+          class="nav-link text-[0.78rem] font-medium rounded-[0.625rem] px-3.5 py-2 transition-colors no-underline"
+          style="color: var(--color-ink-60)"
+        >
+          {{ 'header.nav.blog' | translate }}
         </a>
       </nav>
 
@@ -150,7 +150,7 @@
 
   <!-- ── Slide panel ── -->
   <div
-    class="absolute top-3 bottom-3 right-3 w-[82%] max-w-xs rounded-[2rem] bg-cream shadow-[0_32px_80px_rgba(26,24,20,0.22)] border border-black/8 overflow-hidden flex flex-col transition-all duration-[350ms]"
+    class="absolute top-3 bottom-3 right-3 w-[82%] max-w-xs rounded-[1rem] bg-cream shadow-[0_32px_80px_rgba(26,24,20,0.22)] border border-black/8 overflow-hidden flex flex-col transition-all duration-[350ms]"
     style="transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1)"
     [ngClass]="menuOpen() ? 'translate-x-0 opacity-100' : 'translate-x-[110%] opacity-0'"
   >
@@ -212,14 +212,29 @@
       </a>
 
       <a
-        routerLink="/booking"
+        routerLink="/experience"
         routerLinkActive="bg-ink text-warm"
         (click)="closeMenu()"
         class="group flex items-center justify-between rounded-[1rem] px-4 py-3.5 hover:bg-black/5 transition-colors no-underline"
       >
         <span
           class="font-[family-name:var(--font-serif)] text-[1.4rem] font-light tracking-[-0.01em] text-ink"
-          >{{ 'header.cta.tickets' | translate }}</span
+          >{{ 'header.nav.experience' | translate }}</span
+        >
+        <span class="text-[0.7rem] text-ink-60 group-hover:translate-x-1 transition-transform"
+          >→</span
+        >
+      </a>
+
+      <a
+        routerLink="/visit"
+        routerLinkActive="bg-ink text-warm"
+        (click)="closeMenu()"
+        class="group flex items-center justify-between rounded-[1rem] px-4 py-3.5 hover:bg-black/5 transition-colors no-underline"
+      >
+        <span
+          class="font-[family-name:var(--font-serif)] text-[1.4rem] font-light tracking-[-0.01em] text-ink"
+          >{{ 'header.nav.visit' | translate }}</span
         >
         <span class="text-[0.7rem] text-ink-60 group-hover:translate-x-1 transition-transform"
           >→</span
@@ -242,21 +257,6 @@
       </a>
 
       <a
-        routerLink="/experience"
-        routerLinkActive="bg-ink text-warm"
-        (click)="closeMenu()"
-        class="group flex items-center justify-between rounded-[1rem] px-4 py-3.5 hover:bg-black/5 transition-colors no-underline"
-      >
-        <span
-          class="font-[family-name:var(--font-serif)] text-[1.4rem] font-light tracking-[-0.01em] text-ink"
-          >{{ 'header.nav.experience' | translate }}</span
-        >
-        <span class="text-[0.7rem] text-ink-60 group-hover:translate-x-1 transition-transform"
-          >→</span
-        >
-      </a>
-
-      <a
         routerLink="/blog"
         routerLinkActive="bg-ink text-warm"
         (click)="closeMenu()"
@@ -265,21 +265,6 @@
         <span
           class="font-[family-name:var(--font-serif)] text-[1.4rem] font-light tracking-[-0.01em] text-ink"
           >{{ 'header.nav.blog' | translate }}</span
-        >
-        <span class="text-[0.7rem] text-ink-60 group-hover:translate-x-1 transition-transform"
-          >→</span
-        >
-      </a>
-
-      <a
-        routerLink="/visit"
-        routerLinkActive="bg-ink text-warm"
-        (click)="closeMenu()"
-        class="group flex items-center justify-between rounded-[1rem] px-4 py-3.5 hover:bg-black/5 transition-colors no-underline"
-      >
-        <span
-          class="font-[family-name:var(--font-serif)] text-[1.4rem] font-light tracking-[-0.01em] text-ink"
-          >{{ 'header.nav.visit' | translate }}</span
         >
         <span class="text-[0.7rem] text-ink-60 group-hover:translate-x-1 transition-transform"
           >→</span

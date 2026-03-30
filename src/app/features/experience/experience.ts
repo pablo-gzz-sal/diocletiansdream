@@ -7,6 +7,7 @@ import { Subscription } from 'rxjs';
 import { Meta, Title } from '@angular/platform-browser';
 import { RouterLink } from '@angular/router';
 import { BlogInvite } from '../../shared/components/blog-invite/blog-invite';
+import { SeoService } from '../../shared/services/seo-service';
 
 @Component({
   selector: 'app-experience',
@@ -22,7 +23,8 @@ export class Experience implements OnInit, OnDestroy {
   constructor(
     private title: Title,
     private meta: Meta,
-    private translate: TranslateService
+    private translate: TranslateService,
+    private seo: SeoService,
   ) {}
 
   ngOnInit(): void {
@@ -55,6 +57,7 @@ export class Experience implements OnInit, OnDestroy {
         : 'Explore Diocletian’s Palace as it stood in 305 AD through a 15-minute virtual reality journey in Split. A visually reconstructed chapter of Roman history. Book your session.';
 
     this.title.setTitle(metaTitle);
+    this.seo.setCanonical('https://diocletiansdream.com/experience');
 
     this.meta.updateTag({ name: 'description', content: metaDescription });
     this.meta.updateTag({ name: 'robots', content: 'index,follow' });

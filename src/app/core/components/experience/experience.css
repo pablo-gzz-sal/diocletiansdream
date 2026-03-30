@@ -3,7 +3,7 @@
    ══════════════════════════════════════════ */
 
 .experience {
-  padding: clamp(4rem, 9vw, 8rem) 0;
+  padding: clamp(3.5rem, 7.5vw, 6.5rem) 0;
 }
 
 .experience-inner {
@@ -15,7 +15,7 @@
 /* ─── Heading ─── */
 .experience-heading {
   max-width: 640px;
-  margin-bottom: clamp(2rem, 4vw, 3.5rem);
+  margin-bottom: clamp(1.75rem, 3.2vw, 2.75rem);
 }
 
 .experience-heading .eyebrow {
@@ -30,7 +30,7 @@
 .experience-h2 {
   font-family: var(--font-serif);
   font-weight: 300;
-  font-size: clamp(2.8rem, 7vw, 7rem);
+  font-size: clamp(2.625rem, 4.5vw, 3.25rem);
   line-height: 0.92;
   letter-spacing: -0.025em;
   margin-top: 0.75rem;
