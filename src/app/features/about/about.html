@@ -47,7 +47,7 @@
 
     <div class="relative mx-auto max-w-7xl">
       <p
-        class="mb-5 font-[family-name:var(--font-sans)] text-[0.65rem] font-medium tracking-[0.2em] uppercase text-ink-60"
+        class="eyebrow mb-5"
       >
         VR Museum · Diocletian’s Palace · Split
       </p>
@@ -86,14 +86,14 @@
           <div class="mt-10 flex flex-wrap gap-3">
             <a
               routerLink="/experience"
-              class="inline-flex items-center justify-center rounded-full px-6 py-3 font-[family-name:var(--font-sans)] text-[0.8rem] font-medium bg-ink text-warm hover:opacity-85 transition-opacity no-underline"
+              class="btn btn--dark"
             >
               {{ 'aboutPage.mission.linkText' | translate }}
             </a>
 
             <a
               routerLink="/visit"
-              class="inline-flex items-center justify-center rounded-full px-6 py-3 font-[family-name:var(--font-sans)] text-[0.8rem] font-medium border border-black/10 bg-white/50 text-ink hover:bg-white transition-colors no-underline"
+              class="btn btn--ghost"
             >
               {{ 'aboutPage.culturalLandscape.visitLinkText' | translate }}
             </a>
@@ -135,7 +135,7 @@
     <div class="mx-auto max-w-7xl grid gap-14 lg:grid-cols-12">
       <div class="lg:col-span-4">
         <p
-          class="font-[family-name:var(--font-sans)] text-[0.65rem] font-medium tracking-[0.2em] uppercase text-ink-60"
+          class="eyebrow"
         >
           {{ 'aboutPage.mission.title' | translate }}
         </p>
@@ -166,7 +166,7 @@
                 {{ 'aboutPage.mission.linkSentence' | translate }}
                 <a
                   routerLink="/experience"
-                  class="ml-2 underline underline-offset-4 font-medium text-ink hover:opacity-60 transition-opacity"
+                  class="inline-link ml-2"
                 >
                   {{ 'aboutPage.mission.linkText' | translate }} →
                 </a>
@@ -183,7 +183,7 @@
     <div class="mx-auto max-w-7xl grid gap-12 lg:grid-cols-12 items-start">
       <div class="lg:col-span-5">
         <p
-          class="font-[family-name:var(--font-sans)] text-[0.65rem] font-medium tracking-[0.2em] uppercase text-ink-60"
+          class="eyebrow"
         >
           {{ 'aboutPage.whyVr.title' | translate }}
         </p>
@@ -231,7 +231,7 @@
     <div class="mx-auto max-w-7xl grid gap-12 lg:grid-cols-12 items-start">
       <div class="lg:col-span-4">
         <p
-          class="font-[family-name:var(--font-sans)] text-[0.65rem] font-medium tracking-[0.2em] uppercase text-ink-60"
+          class="eyebrow"
         >
           {{ 'aboutPage.origin.title' | translate }}
         </p>
@@ -276,7 +276,7 @@
     <div class="mx-auto max-w-7xl grid gap-12 lg:grid-cols-12 items-start">
       <div class="lg:col-span-4">
         <p
-          class="font-[family-name:var(--font-sans)] text-[0.65rem] font-medium tracking-[0.2em] uppercase text-ink-60"
+          class="eyebrow"
         >
           {{ 'aboutPage.languages.title' | translate }}
         </p>
@@ -313,7 +313,7 @@
       <div class="flex items-end justify-between gap-6 mb-12">
         <div class="max-w-2xl">
           <p
-            class="font-[family-name:var(--font-sans)] text-[0.65rem] font-medium tracking-[0.2em] uppercase text-ink-60 mb-3"
+            class="eyebrow mb-3"
           >
             {{ 'aboutPage.media.title' | translate }}
           </p>
@@ -372,7 +372,7 @@
     <div class="mx-auto max-w-7xl grid gap-12 lg:grid-cols-12 items-start">
       <div class="lg:col-span-5">
         <p
-          class="font-[family-name:var(--font-sans)] text-[0.65rem] font-medium tracking-[0.2em] uppercase text-ink-60"
+          class="eyebrow"
         >
           {{ 'aboutPage.culturalLandscape.title' | translate }}
         </p>
@@ -410,7 +410,7 @@
               {{ 'aboutPage.culturalLandscape.visitSentence' | translate }}
               <a
                 routerLink="/visit"
-                class="ml-2 underline underline-offset-4 font-medium text-ink hover:opacity-60 transition-opacity"
+                class="inline-link ml-2"
               >
                 {{ 'aboutPage.culturalLandscape.visitLinkText' | translate }} →
               </a>
@@ -422,7 +422,7 @@
               {{ 'aboutPage.culturalLandscape.experienceSentence' | translate }}
               <a
                 routerLink="/experience"
-                class="ml-2 underline underline-offset-4 font-medium text-ink hover:opacity-60 transition-opacity"
+                class="inline-link ml-2"
               >
                 {{ 'aboutPage.culturalLandscape.experienceLinkText' | translate }} →
               </a>
@@ -447,7 +447,7 @@
 
       <div class="relative z-10 px-10 py-14 lg:px-20 grid gap-10 lg:grid-cols-[1fr_auto] lg:items-center">
         <div>
-          <p class="font-[family-name:var(--font-sans)] text-[0.65rem] font-medium tracking-[0.2em] uppercase text-warm/50 mb-3">
+          <p class="eyebrow eyebrow--light mb-3">
             Next
           </p>
           <h2 class="font-[family-name:var(--font-serif)] font-light text-[clamp(2.3rem,6vw,4.2rem)] leading-[0.95] tracking-[-0.01em] text-warm">
@@ -461,13 +461,13 @@
         <div class="flex flex-col gap-3 lg:items-end shrink-0">
           <a
             routerLink="/experience"
-            class="inline-flex items-center justify-center rounded-full px-8 py-3.5 font-[family-name:var(--font-sans)] text-[0.8rem] font-medium bg-warm text-ink hover:opacity-90 transition-opacity no-underline whitespace-nowrap"
+            class="btn whitespace-nowrap" style="background: var(--dd-gold); color: var(--color-ink)"
           >
             {{ 'aboutPage.mission.linkText' | translate }}
           </a>
           <a
             routerLink="/visit"
-            class="inline-flex items-center justify-center rounded-full px-8 py-3.5 font-[family-name:var(--font-sans)] text-[0.8rem] font-medium border border-white/20 text-warm/80 hover:bg-white/8 transition-colors no-underline whitespace-nowrap"
+            class="btn btn--ghost-light whitespace-nowrap"
           >
             {{ 'aboutPage.culturalLandscape.visitLinkText' | translate }}
           </a>
