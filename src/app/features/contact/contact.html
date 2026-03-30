@@ -45,7 +45,7 @@
     </div>
 
     <div class="relative mx-auto max-w-7xl">
-      <p class="mb-5 font-[family-name:var(--font-sans)] text-[0.65rem] font-medium tracking-[0.2em] uppercase text-ink-60">
+      <p class="eyebrow mb-5">
         Visit Diocletian’s Dream Split · Golden Gate · scheduled time slots
       </p>
 
@@ -126,7 +126,7 @@
   <section id="map" class="bg-sand px-6 lg:px-8 py-24">
     <div class="mx-auto max-w-7xl grid gap-12 lg:grid-cols-12 items-start">
       <div class="lg:col-span-5">
-        <p class="font-[family-name:var(--font-sans)] text-[0.65rem] font-medium tracking-[0.2em] uppercase text-ink-60">
+        <p class="eyebrow">
           Location
         </p>
         <h2 class="mt-3 font-[family-name:var(--font-serif)] font-light text-[clamp(2.5rem,6vw,4.4rem)] leading-[0.92] tracking-[-0.02em] text-ink">
@@ -185,7 +185,7 @@
       <div class="grid gap-3 lg:grid-cols-3">
         <!-- Individual -->
         <article class="rounded-[1.125rem] border border-black/10 bg-white/55 p-8 sm:p-10 lg:p-12">
-          <p class="font-[family-name:var(--font-sans)] text-[0.65rem] font-medium tracking-[0.2em] uppercase text-ink-60">
+          <p class="eyebrow">
             {{ 'visitPage.individual.title' | translate }}
           </p>
           <h2 class="mt-3 font-[family-name:var(--font-serif)] font-light text-[clamp(2.0rem,4vw,3.0rem)] leading-[0.95] tracking-[-0.02em] text-ink">
@@ -217,7 +217,7 @@
 
         <!-- Groups -->
         <article class="rounded-[1.125rem] border border-black/10 bg-white/55 p-8 sm:p-10 lg:p-12">
-          <p class="font-[family-name:var(--font-sans)] text-[0.65rem] font-medium tracking-[0.2em] uppercase text-ink-60">
+          <p class="eyebrow">
             {{ 'visitPage.groups.title' | translate }}
           </p>
           <h2 class="mt-3 font-[family-name:var(--font-serif)] font-light text-[clamp(2.0rem,4vw,3.0rem)] leading-[0.95] tracking-[-0.02em] text-ink">
@@ -232,7 +232,7 @@
               {{ 'visitPage.groups.p2' | translate }}
             </p>
 
-            <div class="rounded-[1.75rem] border border-black/10 bg-sand px-6 py-4">
+            <div class="rounded-[0.75rem] border border-black/10 bg-sand px-6 py-4">
               <p class="font-[family-name:var(--font-sans)] text-[0.82rem] leading-[1.7] text-ink-60">
                 {{ 'visitPage.groups.note' | translate }}
               </p>
@@ -258,7 +258,7 @@
 
         <!-- Schools -->
         <article class="rounded-[1.125rem] border border-black/10 bg-white/55 p-8 sm:p-10 lg:p-12">
-          <p class="font-[family-name:var(--font-sans)] text-[0.65rem] font-medium tracking-[0.2em] uppercase text-ink-60">
+          <p class="eyebrow">
             {{ 'visitPage.schools.title' | translate }}
           </p>
           <h2 class="mt-3 font-[family-name:var(--font-serif)] font-light text-[clamp(2.0rem,4vw,3.0rem)] leading-[0.95] tracking-[-0.02em] text-ink">
@@ -304,7 +304,7 @@
   <section id="hours" class="bg-sand px-6 lg:px-8 py-24">
     <div class="mx-auto max-w-7xl grid gap-12 lg:grid-cols-12 items-start">
       <div class="lg:col-span-5">
-        <p class="font-[family-name:var(--font-sans)] text-[0.65rem] font-medium tracking-[0.2em] uppercase text-ink-60">
+        <p class="eyebrow">
           {{ 'visitPage.hours.title' | translate }}
         </p>
         <h2 class="mt-3 font-[family-name:var(--font-serif)] font-light text-[clamp(2.5rem,6vw,4.6rem)] leading-[0.92] tracking-[-0.02em] text-ink">
@@ -335,14 +335,14 @@
             {{ 'visitPage.hours.note' | translate }}
           </p>
 
-          <div class="mt-6 rounded-[1.75rem] border border-black/10 bg-cream px-6 py-4">
+          <div class="mt-6 rounded-[0.75rem] border border-black/10 bg-cream px-6 py-4">
             <p class="font-[family-name:var(--font-sans)] text-[0.92rem] leading-[1.8] text-ink-60">
               {{ 'visitPage.hours.google' | translate }}
               <a
                 href="https://share.google/jvFVjRA7cMSPI9ib7"
                 target="_blank"
                 rel="noopener"
-                class="ml-2 underline underline-offset-4 font-medium text-ink hover:opacity-60 transition-opacity"
+                class="inline-link ml-2"
               >
                 {{ 'visitPage.hours.googleLinkText' | translate }} →
               </a>
@@ -376,7 +376,7 @@
   <section class="bg-cream px-6 lg:px-8 py-24">
     <div class="mx-auto max-w-7xl grid gap-12 lg:grid-cols-12 items-start">
       <div class="lg:col-span-4">
-        <p class="font-[family-name:var(--font-sans)] text-[0.65rem] font-medium tracking-[0.2em] uppercase text-ink-60">
+        <p class="eyebrow">
           {{ 'visitPage.seasonal.title' | translate }}
         </p>
         <h2 class="mt-3 font-[family-name:var(--font-serif)] font-light text-[clamp(2.5rem,6vw,4.5rem)] leading-[0.92] tracking-[-0.02em] text-ink">
@@ -397,7 +397,7 @@
               {{ 'visitPage.seasonal.p3' | translate }}
               <a
                 routerLink="/booking"
-                class="ml-2 underline underline-offset-4 font-medium text-ink hover:opacity-60 transition-opacity"
+                class="inline-link ml-2"
               >
                 {{ 'visitPage.seasonal.bookNowLinkText' | translate }} →
               </a>
@@ -414,7 +414,7 @@
   <section class="bg-sand px-6 lg:px-8 py-24">
     <div class="mx-auto max-w-7xl grid gap-12 lg:grid-cols-12 items-start">
       <div class="lg:col-span-5">
-        <p class="font-[family-name:var(--font-sans)] text-[0.65rem] font-medium tracking-[0.2em] uppercase text-ink-60">
+        <p class="eyebrow">
           {{ 'visitPage.bookingInfo.title' | translate }}
         </p>
         <h2 class="mt-3 font-[family-name:var(--font-serif)] font-light text-[clamp(2.5rem,6vw,4.6rem)] leading-[0.92] tracking-[-0.02em] text-ink">
@@ -468,7 +468,7 @@
   <section class="bg-cream px-6 lg:px-8 py-24">
     <div class="mx-auto max-w-7xl grid gap-12 lg:grid-cols-12 items-start">
       <div class="lg:col-span-4">
-        <p class="font-[family-name:var(--font-sans)] text-[0.65rem] font-medium tracking-[0.2em] uppercase text-ink-60">
+        <p class="eyebrow">
           {{ 'visitPage.faq.title' | translate }}
         </p>
         <h2 class="mt-3 font-[family-name:var(--font-serif)] font-light text-[clamp(2.5rem,6vw,4.5rem)] leading-[0.92] tracking-[-0.02em] text-ink">
@@ -485,7 +485,7 @@
           <div class="grid gap-3">
             <details
               *ngFor="let item of ('visitPage.faq.items' | translate)"
-              class="group rounded-[1.75rem] border border-black/10 bg-white/60 open:bg-white transition-colors px-6 py-5"
+              class="group rounded-[1rem] border border-black/10 bg-white/60 open:bg-white transition-colors px-6 py-5"
             >
               <summary class="cursor-pointer list-none flex items-start justify-between gap-4">
                 <span class="font-[family-name:var(--font-serif)] text-[1.1rem] leading-[1.35] text-ink">
