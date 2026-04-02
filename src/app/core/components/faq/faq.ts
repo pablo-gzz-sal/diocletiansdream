@@ -29,12 +29,12 @@ export class Faq implements AfterViewInit {
     },
     {
       q: 'Is it suitable for kids?',
-      a: 'Yes, it's family-friendly (you can specify a minimum age if you want).',
+      a: "Yes, it's family-friendly (you can specify a minimum age if you want).",
       open: false,
     },
     {
       q: 'Is it near the Palace?',
-      a: 'Yes — it's designed to pair perfectly with a walk around Diocletian's Palace.',
+      a: "Yes — it's designed to pair perfectly with a walk around Diocletian's Palace.",
       open: false,
     },
   ];

@@ -24,7 +24,7 @@ export class Hero {
   visitCards = [
     {
       title: 'Location',
-      text: 'Right by Diocletian’s Palace — easy to combine with your Old Town walk.',
+      text: "Right by Diocletian’s Palace — easy to combine with your Old Town walk.",
       cta: 'Get tickets',
       link: '/booking',
     },
