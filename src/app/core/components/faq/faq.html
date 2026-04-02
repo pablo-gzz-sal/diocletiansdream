@@ -2,14 +2,14 @@
   <div class="faq-inner">
 
     <!-- Left: heading + hint -->
-    <div class="faq-left">
+    <div class="faq-left" revealOnScroll [revealDelay]="0">
       <p class="eyebrow">{{ 'home.newsletter.submit' | translate }}</p>
       <h2 class="section-h2">{{ 'home.newsletter.title' | translate }}</h2>
       <p class="faq-hint">{{ 'home.newsletter.text' | translate }}</p>
     </div>
 
     <!-- Right: newsletter + FAQ accordion -->
-    <div class="faq-list">
+    <div class="faq-list" revealOnScroll [revealDelay]="0.15">
 
       <!-- Newsletter form item -->
       <div class="faq-item faq-item--open">
@@ -53,7 +53,6 @@
         </button>
         <div
           class="faq-a"
-          [style.maxHeight]="item.open ? '300px' : '0'"
           role="region"
         >
           <p>{{ item.a }}</p>

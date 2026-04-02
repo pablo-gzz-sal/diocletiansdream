@@ -8,11 +8,12 @@ import { Meta, Title } from '@angular/platform-browser';
 import { RouterLink } from '@angular/router';
 import { BlogInvite } from '../../shared/components/blog-invite/blog-invite';
 import { SeoService } from '../../shared/services/seo-service';
+import { RevealOnScrollDirective } from '../../shared/animations/reveal-on-scroll-directive';
 
 @Component({
   selector: 'app-experience',
   standalone: true,
-  imports: [Header, Footer, CommonModule, TranslateModule, RouterLink, BlogInvite],
+  imports: [Header, Footer, CommonModule, TranslateModule, RouterLink, BlogInvite, RevealOnScrollDirective],
   templateUrl: './experience.html',
   styleUrl: './experience.css',
 })

@@ -6,11 +6,12 @@ import { DomSanitizer, Meta, SafeHtml, Title } from '@angular/platform-browser';
 import { Subscription } from 'rxjs';
 import { BlogInvite } from '../../shared/components/blog-invite/blog-invite';
 import { SeoService } from '../../shared/services/seo-service';
+import { RevealOnScrollDirective } from '../../shared/animations/reveal-on-scroll-directive';
 
 @Component({
   selector: 'app-about',
   standalone: true,
-  imports: [Header, Footer, TranslateModule, BlogInvite],
+  imports: [Header, Footer, TranslateModule, BlogInvite, RevealOnScrollDirective],
   templateUrl: './about.html',
   styleUrl: './about.css',
 })

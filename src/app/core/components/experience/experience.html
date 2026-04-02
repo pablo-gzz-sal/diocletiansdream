@@ -1,7 +1,7 @@
 <section id="experience" class="experience">
   <div class="experience-inner">
 
-    <div class="experience-heading">
+    <div class="experience-heading" revealOnScroll [revealDelay]="0">
       <p class="eyebrow">{{ 'home.experience.cta' | translate }}</p>
       <h2 class="experience-h2">
         {{ 'home.experience.title' | translate }}
@@ -11,17 +11,17 @@
     <div class="bento">
 
       <!-- Tall image A -->
-      <div class="bento-cell bento-cell--imgA">
+      <div class="bento-cell bento-cell--imgA" revealOnScroll [revealDelay]="0.1" [revealY]="40">
         <div class="bento-img-placeholder">Palace reconstruction still</div>
       </div>
 
       <!-- Tall image B -->
-      <div class="bento-cell bento-cell--imgB">
+      <div class="bento-cell bento-cell--imgB" revealOnScroll [revealDelay]="0.2" [revealY]="40">
         <div class="bento-img-placeholder">Visitors in VR headsets</div>
       </div>
 
       <!-- Text block -->
-      <div class="bento-cell bento-cell--text">
+      <div class="bento-cell bento-cell--text" revealOnScroll [revealDelay]="0.15">
         <p class="bento-copy">{{ 'home.experience.p1' | translate }}</p>
         <p class="bento-copy">{{ 'home.experience.p2' | translate }}</p>
         <p class="bento-copy">{{ 'home.experience.p3' | translate }}</p>

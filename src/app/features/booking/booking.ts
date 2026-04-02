@@ -5,11 +5,12 @@ import { BlogInvite } from '../../shared/components/blog-invite/blog-invite';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { DomSanitizer, Meta, Title } from '@angular/platform-browser';
 import { SeoService } from '../../shared/services/seo-service';
+import { RevealOnScrollDirective } from '../../shared/animations/reveal-on-scroll-directive';
 
 @Component({
   selector: 'app-booking',
   standalone: true,
-  imports: [Header, Footer, BlogInvite, TranslateModule],
+  imports: [Header, Footer, BlogInvite, TranslateModule, RevealOnScrollDirective],
   templateUrl: './booking.html',
   styleUrl: './booking.css',
 })

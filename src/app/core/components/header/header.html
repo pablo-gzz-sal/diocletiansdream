@@ -33,7 +33,7 @@
           routerLinkActive="is-active"
           [routerLinkActiveOptions]="{ exact: true }"
           class="nav-link text-[0.78rem] font-medium rounded-[0.625rem] px-3.5 py-2 transition-colors no-underline"
-          style="color: var(--color-ink-60)"
+          [style.color]="scrolled() ? 'var(--color-ink-60)' : 'var(--color-ink)'"
         >
           {{ 'header.nav.home' | translate }}
         </a>
@@ -42,7 +42,7 @@
           routerLink="/experience"
           routerLinkActive="is-active"
           class="nav-link text-[0.78rem] font-medium rounded-[0.625rem] px-3.5 py-2 transition-colors no-underline"
-          style="color: var(--color-ink-60)"
+          [style.color]="scrolled() ? 'var(--color-ink-60)' : 'var(--color-ink)'"
         >
           {{ 'header.nav.experience' | translate }}
         </a>
@@ -51,7 +51,7 @@
           routerLink="/visit"
           routerLinkActive="is-active"
           class="nav-link text-[0.78rem] font-medium rounded-[0.625rem] px-3.5 py-2 transition-colors no-underline"
-          style="color: var(--color-ink-60)"
+          [style.color]="scrolled() ? 'var(--color-ink-60)' : 'var(--color-ink)'"
         >
           {{ 'header.nav.visit' | translate }}
         </a>
@@ -60,7 +60,7 @@
           routerLink="/about"
           routerLinkActive="is-active"
           class="nav-link text-[0.78rem] font-medium rounded-[0.625rem] px-3.5 py-2 transition-colors no-underline"
-          style="color: var(--color-ink-60)"
+          [style.color]="scrolled() ? 'var(--color-ink-60)' : 'var(--color-ink)'"
         >
           {{ 'header.nav.about' | translate }}
         </a>
@@ -69,7 +69,7 @@
           routerLink="/blog"
           routerLinkActive="is-active"
           class="nav-link text-[0.78rem] font-medium rounded-[0.625rem] px-3.5 py-2 transition-colors no-underline"
-          style="color: var(--color-ink-60)"
+          [style.color]="scrolled() ? 'var(--color-ink-60)' : 'var(--color-ink)'"
         >
           {{ 'header.nav.blog' | translate }}
         </a>
