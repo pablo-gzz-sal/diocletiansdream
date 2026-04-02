@@ -8,12 +8,13 @@ import { Header } from '../../../core/components/header/header';
 import { TranslateModule } from '@ngx-translate/core';
 import { SeoService } from '../../../shared/services/seo-service';
 import { CtaBlock } from '../../../shared/components/cta-block/cta-block';
+import { RevealOnScrollDirective } from '../../../shared/animations/reveal-on-scroll-directive';
 
 type CategoryTab = { id: number | null; slug: string; labelKey?: string; fallback: string };
 
 @Component({
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterModule, Header, Footer, TranslateModule, CtaBlock],
+  imports: [CommonModule, FormsModule, RouterModule, Header, Footer, TranslateModule, CtaBlock, RevealOnScrollDirective],
   selector: 'app-blog-list-page',
   templateUrl: './blog-list-page.html',
 })
@@ -146,8 +147,8 @@ export class BlogListPage implements OnInit {
   }
 
   private applySeo(): void {
-  const title = 'Diocletian’s Dream Blog | Roman History & Things to Do in Split'
-  const description = 'Read articles about Diocletian’s Palace, Roman history, and things to do in Split. Explore Split travel guides and cultural insights connected to the immersive VR experience.'
+  const title = "Diocletian's Dream Blog | Roman History & Things to Do in Split"
+  const description = "Read articles about Diocletian's Palace, Roman history, and things to do in Split. Explore Split travel guides and cultural insights connected to the immersive VR experience."
 
   const url = `${this.SITE_URL}/blog`;
 
@@ -171,7 +172,7 @@ export class BlogListPage implements OnInit {
     url: url,
     isPartOf: {
       '@type': 'WebSite',
-      name: 'Diocletian’s Dream',
+      name: "Diocletian's Dream",
       url: this.SITE_URL
     }
   });

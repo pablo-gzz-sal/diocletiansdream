@@ -1,7 +1,7 @@
 <section class="reviews">
   <div class="reviews-inner">
 
-    <div class="reviews-header">
+    <div class="reviews-header" revealOnScroll [revealDelay]="0">
       <div>
         <p class="eyebrow">{{ 'home.reviews.selected' | translate }}</p>
         <h2 class="section-h2">{{ 'home.reviews.title' | translate }}</h2>
@@ -14,7 +14,7 @@
     <div class="bento reviews-bento">
 
       <!-- Quote / text cell -->
-      <div class="bento-cell bento-cell--text">
+      <div class="bento-cell bento-cell--text" revealOnScroll [revealDelay]="0.1">
 
         <!-- Star rating — gold micro-detail -->
         <div class="reviews-stars" aria-label="5 out of 5 stars">
@@ -57,7 +57,7 @@
       </div>
 
       <!-- Testimonial card / image -->
-      <div class="bento-cell bento-cell--imgB">
+      <div class="bento-cell bento-cell--imgB" revealOnScroll [revealDelay]="0.2" [revealY]="40">
         <div class="bento-img-placeholder">Selected testimonials · rating card</div>
       </div>
 

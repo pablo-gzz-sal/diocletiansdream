@@ -1,36 +1,47 @@
 import { Directive, ElementRef, Input, OnDestroy, OnInit } from '@angular/core';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 @Directive({
   selector: '[revealOnScroll]',
   standalone: true,
 })
 export class RevealOnScrollDirective implements OnInit, OnDestroy {
-  @Input() revealClass = 'reveal-in';
+  @Input() revealDelay = 0;
+  @Input() revealY = 28;
 
-  private io?: IntersectionObserver;
+  private st?: ScrollTrigger;
+  private anim?: gsap.core.Tween;
 
   constructor(private el: ElementRef<HTMLElement>) {}
 
   ngOnInit(): void {
-    const node = this.el.nativeElement;
-    node.classList.add('reveal-base');
+    const el = this.el.nativeElement;
 
-    this.io = new IntersectionObserver(
-      (entries) => {
-        for (const e of entries) {
-          if (e.isIntersecting) {
-            node.classList.add(this.revealClass);
-            this.io?.unobserve(node);
-          }
-        }
-      },
-      { threshold: 0.15 }
-    );
+    gsap.set(el, { opacity: 0, y: this.revealY, willChange: 'opacity, transform' });
 
-    this.io.observe(node);
+    this.anim = gsap.to(el, {
+      opacity: 1,
+      y: 0,
+      duration: 0.85,
+      delay: this.revealDelay,
+      ease: 'power3.out',
+      paused: true,
+      clearProps: 'willChange',
+    });
+
+    this.st = ScrollTrigger.create({
+      trigger: el,
+      start: 'top 88%',
+      once: true,
+      onEnter: () => this.anim?.play(),
+    });
   }
 
   ngOnDestroy(): void {
-    this.io?.disconnect();
+    this.st?.kill();
+    this.anim?.kill();
   }
 }

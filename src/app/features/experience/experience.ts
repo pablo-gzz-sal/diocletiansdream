@@ -8,11 +8,12 @@ import { Meta, Title } from '@angular/platform-browser';
 import { RouterLink } from '@angular/router';
 import { BlogInvite } from '../../shared/components/blog-invite/blog-invite';
 import { SeoService } from '../../shared/services/seo-service';
+import { RevealOnScrollDirective } from '../../shared/animations/reveal-on-scroll-directive';
 
 @Component({
   selector: 'app-experience',
   standalone: true,
-  imports: [Header, Footer, CommonModule, TranslateModule, RouterLink, BlogInvite],
+  imports: [Header, Footer, CommonModule, TranslateModule, RouterLink, BlogInvite, RevealOnScrollDirective],
   templateUrl: './experience.html',
   styleUrl: './experience.css',
 })
@@ -47,14 +48,14 @@ export class Experience implements OnInit, OnDestroy {
     // META TITLE (exactly from your notes)
     const metaTitle =
       lang === 'hr'
-        ? 'VR iskustvo Dioklecijanove palače u Splitu | Diocletian’s Dream'
-        : 'Diocletian’s Palace Virtual Reality in Split | Diocletian’s Dream';
+        ? "VR iskustvo Dioklecijanove palače u Splitu | Diocletian's Dream"
+        : "Diocletian's Palace Virtual Reality in Split | Diocletian's Dream";
 
     // META DESCRIPTION (exactly from your notes)
     const metaDescription =
       lang === 'hr'
         ? 'Doživite Dioklecijanovu palaču onako kako je izgledala 305. godine kroz 15-minutno VR putovanje u Splitu. Suvremena interpretacija rimske povijesti. Rezervirajte posjet.'
-        : 'Explore Diocletian’s Palace as it stood in 305 AD through a 15-minute virtual reality journey in Split. A visually reconstructed chapter of Roman history. Book your session.';
+        : "Explore Diocletian's Palace as it stood in 305 AD through a 15-minute virtual reality journey in Split. A visually reconstructed chapter of Roman history. Book your session.";
 
     this.title.setTitle(metaTitle);
     this.seo.setCanonical('https://diocletiansdream.com/experience');

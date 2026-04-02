@@ -1,7 +1,7 @@
 <section class="about">
   <div class="about-inner">
 
-    <div class="about-heading">
+    <div class="about-heading" revealOnScroll [revealDelay]="0">
       <p class="eyebrow">{{ 'home.story.cta' | translate }}</p>
       <h2 class="about-h2">{{ 'home.story.title' | translate }}</h2>
     </div>
@@ -9,12 +9,12 @@
     <div class="bento">
 
       <!-- Production still / team photo -->
-      <div class="bento-cell bento-cell--imgA">
+      <div class="bento-cell bento-cell--imgA" revealOnScroll [revealDelay]="0.1" [revealY]="40">
         <div class="bento-img-placeholder">Project / team / production still</div>
       </div>
 
       <!-- Story text + CTA -->
-      <div class="bento-cell bento-cell--text">
+      <div class="bento-cell bento-cell--text" revealOnScroll [revealDelay]="0.2">
         <p class="bento-copy">{{ 'home.story.p1' | translate }}</p>
         <p class="bento-copy">{{ 'home.story.p2' | translate }}</p>
         <a routerLink="/about" class="btn btn--dark">

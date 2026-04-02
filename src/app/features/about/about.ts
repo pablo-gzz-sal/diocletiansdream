@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Header } from '../../core/components/header/header';
 import { Footer } from '../../core/components/footer/footer';
@@ -6,11 +7,12 @@ import { DomSanitizer, Meta, SafeHtml, Title } from '@angular/platform-browser';
 import { Subscription } from 'rxjs';
 import { BlogInvite } from '../../shared/components/blog-invite/blog-invite';
 import { SeoService } from '../../shared/services/seo-service';
+import { RevealOnScrollDirective } from '../../shared/animations/reveal-on-scroll-directive';
 
 @Component({
   selector: 'app-about',
   standalone: true,
-  imports: [Header, Footer, TranslateModule, BlogInvite],
+  imports: [CommonModule, Header, Footer, TranslateModule, BlogInvite, RevealOnScrollDirective],
   templateUrl: './about.html',
   styleUrl: './about.css',
 })
@@ -42,14 +44,14 @@ export class About implements OnInit{
     // META TITLE (from your notes)
     const metaTitle =
       lang === 'hr'
-        ? 'O Diocletian’s Dream – VR muzej u Splitu'
-        : 'About Diocletian’s Dream – Virtual Reality Museum in Split';
+        ? "O Diocletian's Dream – VR muzej u Splitu"
+        : "About Diocletian's Dream – Virtual Reality Museum in Split";
 
     // META DESCRIPTION (from your notes)
     const metaDescription =
       lang === 'hr'
-        ? 'Saznajte više o Diocletian’s Dreamu, VR muzeju u Splitu koji kroz 3D rekonstrukciju i povijesna istraživanja prikazuje Dioklecijanovu palaču.'
-        : 'Learn about Diocletian’s Dream, a virtual reality museum in Split presenting Diocletian’s Palace through immersive 3D reconstruction and historical research.';
+        ? "Saznajte više o Diocletian's Dreamu, VR muzeju u Splitu koji kroz 3D rekonstrukciju i povijesna istraživanja prikazuje Dioklecijanovu palaču."
+        : "Learn about Diocletian's Dream, a virtual reality museum in Split presenting Diocletian's Palace through immersive 3D reconstruction and historical research.";
 
     this.title.setTitle(metaTitle);
     this.seo.setCanonical('https://diocletiansdream.com/about');

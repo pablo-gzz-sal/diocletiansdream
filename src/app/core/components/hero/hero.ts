@@ -1,11 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
+import { RevealOnScrollDirective } from '../../../shared/animations/reveal-on-scroll-directive';
 
 @Component({
   selector: 'app-hero',
   standalone: true,
-  imports: [CommonModule, TranslateModule],
+  imports: [CommonModule, TranslateModule, RevealOnScrollDirective],
   templateUrl: './hero.html',
   styleUrl: './hero.css',
 })
@@ -23,7 +24,7 @@ export class Hero {
   visitCards = [
     {
       title: 'Location',
-      text: 'Right by Diocletian’s Palace — easy to combine with your Old Town walk.',
+      text: "Right by Diocletian's Palace — easy to combine with your Old Town walk.",
       cta: 'Get tickets',
       link: '/booking',
     },
