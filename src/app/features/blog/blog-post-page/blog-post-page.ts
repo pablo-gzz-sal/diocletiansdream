@@ -22,9 +22,9 @@ export class BlogPostPage implements OnInit, OnDestroy {
   private sub?: Subscription;
 
   // Set once (or move to environment.ts)
-  private readonly SITE_NAME = "Diocletian’s Dream";
+  private readonly SITE_NAME = "Diocletian's Dream";
   private readonly SITE_URL = "https://diocletiansdream.com"; // change to your real domain
-  private readonly ORG_NAME = "Diocletian’s Dream";
+  private readonly ORG_NAME = "Diocletian's Dream";
   private readonly ORG_LOGO = "https://diocletiansdream.com/assets/images/ddLogo.png"; // use an absolute URL
 
   constructor(

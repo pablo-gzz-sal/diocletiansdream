@@ -147,8 +147,8 @@ export class BlogListPage implements OnInit {
   }
 
   private applySeo(): void {
-  const title = "Diocletian’s Dream Blog | Roman History & Things to Do in Split"
-  const description = "Read articles about Diocletian’s Palace, Roman history, and things to do in Split. Explore Split travel guides and cultural insights connected to the immersive VR experience."
+  const title = "Diocletian's Dream Blog | Roman History & Things to Do in Split"
+  const description = "Read articles about Diocletian's Palace, Roman history, and things to do in Split. Explore Split travel guides and cultural insights connected to the immersive VR experience."
 
   const url = `${this.SITE_URL}/blog`;
 
@@ -172,7 +172,7 @@ export class BlogListPage implements OnInit {
     url: url,
     isPartOf: {
       '@type': 'WebSite',
-      name: "Diocletian’s Dream",
+      name: "Diocletian's Dream",
       url: this.SITE_URL
     }
   });

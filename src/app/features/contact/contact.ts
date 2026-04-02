@@ -62,15 +62,15 @@ export class Contact implements OnInit, OnDestroy {
   private applySeo(lang: string) {
     // META TITLE (exactly your notes)
     const metaTitle =
-      lang === ‘hr’
-        ? "Posjetite Diocletian’s Dream u Splitu | Ulaznice i grupni posjeti"
-        : "Visit Diocletian’s Dream in Split | Tickets & Group Visits";
+      lang === 'hr'
+        ? "Posjetite Diocletian's Dream u Splitu | Ulaznice i grupni posjeti"
+        : "Visit Diocletian's Dream in Split | Tickets & Group Visits";
 
     // META DESCRIPTION (exactly your notes)
     const metaDescription =
-      lang === ‘hr’
-        ? "Planirajte posjet Diocletian’s Dream u Splitu. Rezervirajte VR iskustvo ili pošaljite upit za grupne i školske posjete. Preporučuje se rezervacija unaprijed."
-        : ‘Plan your visit to Diocletian\’s Dream in Split. Book your VR experience or contact us for group and school visit arrangements. Advance booking recommended.’;
+      lang === 'hr'
+        ? "Planirajte posjet Diocletian's Dream u Splitu. Rezervirajte VR iskustvo ili pošaljite upit za grupne i školske posjete. Preporučuje se rezervacija unaprijed."
+        : 'Plan your visit to Diocletian\'s Dream in Split. Book your VR experience or contact us for group and school visit arrangements. Advance booking recommended.';
 
     this.title.setTitle(metaTitle);
     this.seo.setCanonical('https://diocletiansdream.com/visit');

@@ -67,15 +67,15 @@ export class Booking implements OnInit {
   private applySeo(lang: string) {
     // META TITLE (exactly your notes)
     const metaTitle =
-      lang === ‘hr’
-        ? "Rezervirajte VR ulaznice za Dioklecijanovu palaču | Diocletian’s Dream Split"
-        : "Book Diocletian’s Palace VR Tickets | Diocletian’s Dream Split";
+      lang === 'hr'
+        ? "Rezervirajte VR ulaznice za Dioklecijanovu palaču | Diocletian's Dream Split"
+        : "Book Diocletian's Palace VR Tickets | Diocletian's Dream Split";
 
     // META DESCRIPTION (exactly your notes)
     const metaDescription =
-      lang === ‘hr’
-        ? ‘Rezervirajte 15-minutno VR iskustvo Dioklecijanove palače u Splitu. Odaberite termin i osigurajte ulaznice online.’
-        : "Reserve your 15-minute Diocletian’s Palace VR experience in Split. Choose your time slot and secure your tickets online.";
+      lang === 'hr'
+        ? 'Rezervirajte 15-minutno VR iskustvo Dioklecijanove palače u Splitu. Odaberite termin i osigurajte ulaznice online.'
+        : "Reserve your 15-minute Diocletian's Palace VR experience in Split. Choose your time slot and secure your tickets online.";
 
     this.title.setTitle(metaTitle);
     this.seo.setCanonical('https://diocletiansdream.com/booking');

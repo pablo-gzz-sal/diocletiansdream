@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Header } from '../../core/components/header/header';
 import { Footer } from '../../core/components/footer/footer';
@@ -11,7 +12,7 @@ import { RevealOnScrollDirective } from '../../shared/animations/reveal-on-scrol
 @Component({
   selector: 'app-about',
   standalone: true,
-  imports: [Header, Footer, TranslateModule, BlogInvite, RevealOnScrollDirective],
+  imports: [CommonModule, Header, Footer, TranslateModule, BlogInvite, RevealOnScrollDirective],
   templateUrl: './about.html',
   styleUrl: './about.css',
 })
@@ -42,15 +43,15 @@ export class About implements OnInit{
   private applySeo(lang: string) {
     // META TITLE (from your notes)
     const metaTitle =
-      lang === ‘hr’
-        ? "O Diocletian’s Dream – VR muzej u Splitu"
-        : "About Diocletian’s Dream – Virtual Reality Museum in Split";
+      lang === 'hr'
+        ? "O Diocletian's Dream – VR muzej u Splitu"
+        : "About Diocletian's Dream – Virtual Reality Museum in Split";
 
     // META DESCRIPTION (from your notes)
     const metaDescription =
-      lang === ‘hr’
-        ? "Saznajte više o Diocletian’s Dreamu, VR muzeju u Splitu koji kroz 3D rekonstrukciju i povijesna istraživanja prikazuje Dioklecijanovu palaču."
-        : "Learn about Diocletian’s Dream, a virtual reality museum in Split presenting Diocletian’s Palace through immersive 3D reconstruction and historical research.";
+      lang === 'hr'
+        ? "Saznajte više o Diocletian's Dreamu, VR muzeju u Splitu koji kroz 3D rekonstrukciju i povijesna istraživanja prikazuje Dioklecijanovu palaču."
+        : "Learn about Diocletian's Dream, a virtual reality museum in Split presenting Diocletian's Palace through immersive 3D reconstruction and historical research.";
 
     this.title.setTitle(metaTitle);
     this.seo.setCanonical('https://diocletiansdream.com/about');
