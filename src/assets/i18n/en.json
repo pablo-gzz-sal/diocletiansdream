@@ -472,6 +472,18 @@
       "a4": "Yes, walk-in visitors are welcome when availability allows. However, because sessions operate in fixed time slots with limited seating, we strongly recommend booking in advance. If your preferred time slot is already fully booked upon arrival, our staff will offer you the next available session.",
       "q5": "In which languages is the experience available?",
       "a5": "The VR experience is available in English, German, Italian, French, Croatian, Spanish, Polish and Portuguese. Visitors choose their preferred language before the session begins."
+    },
+    "heroCard": {
+      "eyebrow": "VR Experience",
+      "subtitle": "305 AD · Split, Croatia",
+      "sessionsLabel": "Sessions",
+      "sessionsValue": "Every 30 min",
+      "languagesLabel": "Languages",
+      "languagesValue": "8 available",
+      "incl1": "Instant booking confirmation",
+      "incl2": "Free cancellation up to 24h",
+      "incl3": "Wheelchair accessible venue",
+      "cta": "Book a session"
     }
   }
 }

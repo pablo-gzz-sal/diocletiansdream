@@ -76,29 +76,30 @@
       </nav>
 
       <!-- ── Desktop language toggle ── -->
-      <button
-        type="button"
-        (click)="toggleLang()"
-        class="hidden lg:flex items-center gap-1.5 rounded-xl bg-card px-3 py-2 text-xs font-medium text-fg ring-1 ring-border hover:bg-white/10 transition-colors"
+      <div
+        class="hidden lg:flex items-center rounded-full p-[3px]"
+        style="background: rgba(26,24,20,0.07); border: 1px solid rgba(26,24,20,0.1)"
         [attr.aria-label]="'header.ui.toggleLanguage' | translate"
       >
-        <img
-          [src]="
-            currentLang() === 'en'
-              ? 'https://flagcdn.com/w20/hr.png'
-              : 'https://flagcdn.com/w20/gb.png'
-          "
-          [alt]="
-            currentLang() === 'en'
-              ? ('header.lang.switchToHr' | translate)
-              : ('header.lang.switchToEn' | translate)
-          "
-          width="20"
-          height="14"
-          class="rounded-sm object-cover"
-        />
-        <span>{{ currentLang() === 'en' ? 'HR' : 'EN' }}</span>
-      </button>
+        <button
+          type="button"
+          (click)="currentLang() !== 'en' && toggleLang()"
+          class="flex items-center gap-1.5 rounded-full px-3 py-[5px] text-[0.72rem] font-medium transition-all duration-200 cursor-pointer border-none"
+          [style]="currentLang() === 'en' ? 'background: var(--color-ink); color: var(--color-warm)' : 'background: transparent; color: rgba(26,24,20,0.42)'"
+        >
+          <img src="https://flagcdn.com/w20/gb.png" width="14" height="10" class="rounded-[2px] object-cover shrink-0" alt="EN" />
+          EN
+        </button>
+        <button
+          type="button"
+          (click)="currentLang() !== 'hr' && toggleLang()"
+          class="flex items-center gap-1.5 rounded-full px-3 py-[5px] text-[0.72rem] font-medium transition-all duration-200 cursor-pointer border-none"
+          [style]="currentLang() === 'hr' ? 'background: var(--color-ink); color: var(--color-warm)' : 'background: transparent; color: rgba(26,24,20,0.42)'"
+        >
+          <img src="https://flagcdn.com/w20/hr.png" width="14" height="10" class="rounded-[2px] object-cover shrink-0" alt="HR" />
+          HR
+        </button>
+      </div>
 
       <!-- ── Desktop Book CTA ── -->
       <a
@@ -271,29 +272,30 @@
         >
       </a>
 
-      <button
-        type="button"
-        (click)="toggleLang()"
-        class="lg:hidden flex justify-center items-center text-center gap-1.5 rounded-xl bg-card px-3 py-2 text-xs font-medium text-fg ring-1 ring-border hover:bg-white/10 transition-colors"
+      <div
+        class="flex items-center self-start rounded-full p-[3px] mt-2 mx-1"
+        style="background: rgba(26,24,20,0.06); border: 1px solid rgba(26,24,20,0.09)"
         [attr.aria-label]="'header.ui.toggleLanguage' | translate"
       >
-        <img
-          [src]="
-            currentLang() === 'en'
-              ? 'https://flagcdn.com/w20/hr.png'
-              : 'https://flagcdn.com/w20/gb.png'
-          "
-          [alt]="
-            currentLang() === 'en'
-              ? ('header.lang.switchToHr' | translate)
-              : ('header.lang.switchToEn' | translate)
-          "
-          width="20"
-          height="14"
-          class="rounded-sm object-cover"
-        />
-        <span>{{ currentLang() === 'en' ? 'HR' : 'EN' }}</span>
-      </button>
+        <button
+          type="button"
+          (click)="currentLang() !== 'en' && toggleLang()"
+          class="flex items-center gap-1.5 rounded-full px-3 py-[5px] text-[0.72rem] font-medium transition-all duration-200 cursor-pointer border-none"
+          [style]="currentLang() === 'en' ? 'background: var(--color-ink); color: var(--color-warm)' : 'background: transparent; color: rgba(26,24,20,0.42)'"
+        >
+          <img src="https://flagcdn.com/w20/gb.png" width="14" height="10" class="rounded-[2px] object-cover shrink-0" alt="EN" />
+          EN
+        </button>
+        <button
+          type="button"
+          (click)="currentLang() !== 'hr' && toggleLang()"
+          class="flex items-center gap-1.5 rounded-full px-3 py-[5px] text-[0.72rem] font-medium transition-all duration-200 cursor-pointer border-none"
+          [style]="currentLang() === 'hr' ? 'background: var(--color-ink); color: var(--color-warm)' : 'background: transparent; color: rgba(26,24,20,0.42)'"
+        >
+          <img src="https://flagcdn.com/w20/hr.png" width="14" height="10" class="rounded-[2px] object-cover shrink-0" alt="HR" />
+          HR
+        </button>
+      </div>
     </nav>
 
     <!-- bottom section -->

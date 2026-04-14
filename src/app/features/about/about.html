@@ -1,4 +1,4 @@
-<app-header></app-header>
+﻿<app-header></app-header>
 
 <main class="overflow-x-hidden bg-cream">
   <!-- ════════ HERO ════════ -->
@@ -46,84 +46,59 @@
     </div>
 
     <div class="relative mx-auto max-w-7xl">
-      <p
-        class="eyebrow mb-5"
-        revealOnScroll [revealDelay]="0"
-      >
-        VR Museum · Diocletian’s Palace · Split
-      </p>
+      <div class="grid gap-12 lg:grid-cols-[1fr_420px] lg:items-center">
+        <!-- Left: eyebrow + H1 + text -->
+        <div revealOnScroll [revealDelay]="0.1">
+          <p class="eyebrow mb-5">
+            VR Museum · Diocletian's Palace · Split
+          </p>
 
-      <!-- H1: primary keyword in EN translations -->
-      <h1
-        class="font-[family-name:var(--font-serif)] font-light leading-[0.9] tracking-[-0.02em] text-ink"
-      >
-        <span
-          class="block text-[clamp(3.2rem,8.6vw,7.2rem)] opacity-0 translate-y-9 animate-[revealLine_0.9s_cubic-bezier(0.16,1,0.3,1)_0.05s_forwards]"
-        >
-          {{ 'aboutPage.hero.title' | translate }}
-        </span>
-      </h1>
+          <!-- H1: primary keyword in EN translations -->
+          <h1 class="font-[family-name:var(--font-serif)] font-light leading-[0.88] tracking-[-0.02em] text-ink">
+            <span
+              class="block text-[clamp(2.75rem,7vw,5.5rem)] opacity-0 translate-y-9 animate-[revealLine_0.9s_cubic-bezier(0.16,1,0.3,1)_0.05s_forwards]"
+            >
+              {{ 'aboutPage.hero.title' | translate }}
+            </span>
+          </h1>
 
-      <div
-        class="mt-10 grid gap-12 lg:grid-cols-[1fr_420px] lg:items-start"
-      >
-        <!-- Intro text -->
-        <div class="max-w-2xl">
-          <p
-            class="font-[family-name:var(--font-serif)] text-[clamp(1.35rem,2.5vw,1.75rem)] font-light leading-[1.6] text-ink"
-          >
+          <p class="mt-10 font-[family-name:var(--font-serif)] text-[clamp(1rem,1.5vw,1.1rem)] font-light leading-[1.65] text-ink">
             {{ 'aboutPage.hero.p1' | translate }}
           </p>
 
-          <div class="my-8 h-px bg-black/10"></div>
+          <div class="my-6 h-px bg-black/10"></div>
 
-          <p
-            class="font-[family-name:var(--font-sans)] text-[0.95rem] leading-[1.8] text-ink-60"
-          >
+          <p class="font-[family-name:var(--font-sans)] text-[clamp(0.875rem,1.4vw,1rem)] leading-[1.7] text-ink-60">
             {{ 'aboutPage.hero.p2' | translate }}
           </p>
 
           <!-- Internal linking (Experience + Visit) -->
-          <div class="mt-10 flex flex-wrap gap-3">
-            <a
-              routerLink="/experience"
-              class="btn btn--dark"
-            >
+          <div class="mt-8 flex flex-wrap gap-3">
+            <a routerLink="/experience" class="btn btn--dark">
               {{ 'aboutPage.mission.linkText' | translate }}
             </a>
-
-            <a
-              routerLink="/visit"
-              class="btn btn--ghost"
-            >
+            <a routerLink="/visit" class="btn btn--ghost">
               {{ 'aboutPage.culturalLandscape.visitLinkText' | translate }}
             </a>
           </div>
         </div>
 
-        <!-- Side card -->
+        <!-- Right: side card -->
         <div
+          revealOnScroll [revealDelay]="0.25" [revealY]="30"
           class="rounded-[1.125rem] border border-black/10 bg-white/60 overflow-hidden shadow-[0_12px_60px_rgba(26,24,20,0.07)]"
         >
-          <div
-            class="aspect-[4/5] bg-gradient-to-b from-sand to-cream grid place-items-center"
-          >
-            <p
-              class="font-[family-name:var(--font-sans)] text-[0.75rem] text-ink-60 text-center px-6"
-            >
+          <div class="aspect-[4/5] bg-gradient-to-b from-sand to-cream grid place-items-center">
+            <p class="font-[family-name:var(--font-sans)] text-[0.75rem] text-ink-60 text-center px-6">
               Replace with a strong museum / VR still
             </p>
           </div>
           <div class="p-6">
-            <p
-              class="font-[family-name:var(--font-serif)] italic text-[1.1rem] text-ink"
-            >
+            <p class="font-[family-name:var(--font-serif)] italic text-[1.1rem] text-ink">
               VR museum Split
             </p>
-            <p
-              class="mt-1 font-[family-name:var(--font-sans)] text-[0.78rem] text-ink-60"
-            >
-              Diocletian’s Palace reconstruction · UNESCO Old Town Split
+            <p class="mt-1 font-[family-name:var(--font-sans)] text-[0.78rem] text-ink-60">
+              Diocletian's Palace reconstruction · UNESCO Old Town Split
             </p>
           </div>
         </div>

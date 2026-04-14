@@ -472,6 +472,18 @@
       "a4": "Da, ako ima slobodnih mjesta. Ipak, budući da se projekcije održavaju u fiksnim terminima s ograničenim brojem posjetitelja, preporučujemo rezervaciju unaprijed. Ako je željeni termin po dolasku popunjen, ponudit ćemo vam prvi sljedeći slobodan termin.",
       "q5": "Na kojim je jezicima dostupno iskustvo?",
       "a5": "Iskustvo je dostupno na engleskom, njemačkom, talijanskom, francuskom, hrvatskom, španjolskom, poljskom i portugalskom jeziku. Prije početka projekcije možete odabrati željeni jezik."
+    },
+    "heroCard": {
+      "eyebrow": "VR Iskustvo",
+      "subtitle": "305. n.e. · Split, Hrvatska",
+      "sessionsLabel": "Termini",
+      "sessionsValue": "Svakih 30 min",
+      "languagesLabel": "Jezici",
+      "languagesValue": "8 dostupnih",
+      "incl1": "Trenutna potvrda rezervacije",
+      "incl2": "Besplatno otkazivanje do 24h",
+      "incl3": "Prostor prilagođen osobama s invaliditetom",
+      "cta": "Rezervirajte termin"
     }
   }
 }
