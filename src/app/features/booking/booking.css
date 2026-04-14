@@ -3,66 +3,21 @@
    Matches landing page tokens & aesthetic
    ================================================ */
 
-/* ─── Tokens (keep in one global stylesheet if already declared) ─── */
-:root {
-  --cream:  #f5f0e8;
-  --sand:   #ede7d9;
-  --ink:    #1a1814;
-  --ink-60: rgba(26, 24, 20, 0.6);
-  --ink-20: rgba(26, 24, 20, 0.12);
-  --ink-08: rgba(26, 24, 20, 0.06);
-  --white:  #faf8f4;
-  --serif:  'Cormorant Garamond', Georgia, serif;
-  --sans:   'DM Sans', sans-serif;
-}
-
 /* ─── Shared ─── */
 .booking-root {
   overflow-x: hidden;
-  background: var(--cream);
+  background: var(--color-cream);
+  /* Scoped aliases → global tokens (keeps rest of CSS readable) */
+  --cream:  var(--color-cream);
+  --sand:   var(--color-sand);
+  --ink:    var(--color-ink);
+  --ink-60: var(--color-ink-60);
+  --ink-20: var(--color-ink-20);
+  --ink-08: var(--color-ink-08);
+  --white:  var(--color-warm);
+  --serif:  var(--font-serif);
+  --sans:   var(--font-sans);
 }
-
-.eyebrow {
-  font-family: var(--font-sans);
-  font-size: 0.65rem;
-  font-weight: 500;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--dd-gold);
-  display: inline-block;
-  border-bottom: 1px solid var(--dd-gold-30);
-  padding-bottom: 0.5rem;
-}
-
-.btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 100px;
-  padding: 0.7rem 1.6rem;
-  font-family: var(--sans);
-  font-size: 0.8rem;
-  font-weight: 500;
-  letter-spacing: 0.03em;
-  text-decoration: none;
-  transition: opacity 0.2s, background 0.2s;
-  white-space: nowrap;
-  cursor: pointer;
-  border: none;
-}
-
-.btn--dark {
-  background: var(--ink);
-  color: var(--white);
-}
-.btn--dark:hover { opacity: 0.85; }
-
-.btn--ghost {
-  border: 1px solid var(--ink-20);
-  background: rgba(255, 255, 255, 0.5);
-  color: var(--ink);
-}
-.btn--ghost:hover { background: #fff; }
 
 
 /* ══════════════════════════════════════════
@@ -135,9 +90,9 @@
 /* stacked headline */
 .booking-hero__h1 {
   font-family: var(--serif);
-  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-size: clamp(3rem, 7.6vw, 6.8rem);
   font-weight: 300;
-  line-height: 0.95;
+  line-height: 0.92;
   letter-spacing: -0.02em;
 }
 
@@ -239,7 +194,7 @@
 
 .booking-context__h2 {
   font-family: var(--serif);
-  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-size: clamp(2.625rem, 4.5vw, 3.25rem);
   font-weight: 300;
   line-height: 0.95;
   letter-spacing: -0.02em;

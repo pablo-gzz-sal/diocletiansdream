@@ -59,7 +59,13 @@
 
       <div class="booking-facts">
         <div class="booking-fact">
-          <span class="fact-icon">⏱</span>
+          <span class="fact-icon">
+            <!-- Clock / duration -->
+            <svg width="16" height="16" viewBox="0 0 20 20" fill="none" style="color:var(--dd-gold)" aria-hidden="true">
+              <circle cx="10" cy="10" r="8.25" stroke="currentColor" stroke-width="1.5"/>
+              <path d="M10 6v4l2.5 2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
           <div>
             <p class="fact-label">{{ 'bookingPage.facts.durationLabel' | translate }}</p>
             <p class="fact-value">{{ 'bookingPage.facts.durationValue' | translate }}</p>
@@ -67,7 +73,12 @@
         </div>
 
         <div class="booking-fact">
-          <span class="fact-icon">📍</span>
+          <span class="fact-icon">
+            <!-- Location pin -->
+            <svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor" style="color:var(--dd-gold)" aria-hidden="true">
+              <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/>
+            </svg>
+          </span>
           <div>
             <p class="fact-label">{{ 'bookingPage.facts.locationLabel' | translate }}</p>
             <p class="fact-value">{{ 'bookingPage.facts.locationValue' | translate }}</p>
@@ -75,7 +86,12 @@
         </div>
 
         <div class="booking-fact">
-          <span class="fact-icon">🎟</span>
+          <span class="fact-icon">
+            <!-- Ticket -->
+            <svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor" style="color:var(--dd-gold)" aria-hidden="true">
+              <path d="M2 6a2 2 0 012-2h12a2 2 0 012 2v2a2 2 0 000 4v2a2 2 0 01-2 2H4a2 2 0 01-2-2v-2a2 2 0 000-4V6z"/>
+            </svg>
+          </span>
           <div>
             <p class="fact-label">{{ 'bookingPage.facts.bookingLabel' | translate }}</p>
             <p class="fact-value">{{ 'bookingPage.facts.bookingValue' | translate }}</p>
