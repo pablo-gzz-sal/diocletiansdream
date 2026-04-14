@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Header } from '../../core/components/header/header';
 import { Footer } from '../../core/components/footer/footer';
-import { BlogInvite } from '../../shared/components/blog-invite/blog-invite';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { DomSanitizer, Meta, Title } from '@angular/platform-browser';
 import { SeoService } from '../../shared/services/seo-service';
@@ -10,7 +9,7 @@ import { RevealOnScrollDirective } from '../../shared/animations/reveal-on-scrol
 @Component({
   selector: 'app-booking',
   standalone: true,
-  imports: [Header, Footer, BlogInvite, TranslateModule, RevealOnScrollDirective],
+  imports: [Header, Footer, TranslateModule, RevealOnScrollDirective],
   templateUrl: './booking.html',
   styleUrl: './booking.css',
 })

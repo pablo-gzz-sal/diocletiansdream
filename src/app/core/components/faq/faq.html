@@ -16,6 +16,10 @@
         <div class="faq-a" [style.maxHeight]="'none'" [style.opacity]="'1'">
           <form class="newsletter-form" (ngSubmit)="onSubscribe()" #f="ngForm">
             <div class="newsletter-pill">
+              <svg class="newsletter-icon" width="16" height="16" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                <rect x="2" y="4" width="16" height="12" rx="2" stroke="currentColor" stroke-width="1.3"/>
+                <path d="M2 7l8 5.5 8-5.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
               <input
                 class="newsletter-input"
                 type="email"
@@ -49,7 +53,11 @@
           [attr.aria-expanded]="item.open"
         >
           <span>{{ item.q }}</span>
-          <span class="faq-icon" aria-hidden="true">{{ item.open ? '−' : '+' }}</span>
+          <span class="faq-icon" aria-hidden="true">
+            <svg class="faq-chevron" width="11" height="11" viewBox="0 0 11 11" fill="none">
+              <path d="M1.5 3.5l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
         </button>
         <div
           class="faq-a"

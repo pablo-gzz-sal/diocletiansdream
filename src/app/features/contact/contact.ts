@@ -8,11 +8,12 @@ import { Footer } from '../../core/components/footer/footer';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
 import { SeoService } from '../../shared/services/seo-service';
+import { RevealOnScrollDirective } from '../../shared/animations/reveal-on-scroll-directive';
 
 @Component({
   selector: 'app-contact',
   standalone: true,
-  imports: [CommonModule, RouterLink, Header, Footer, TranslateModule],
+  imports: [CommonModule, RouterLink, Header, Footer, TranslateModule, RevealOnScrollDirective],
   templateUrl: './contact.html',
   styleUrl: './contact.css',
 })

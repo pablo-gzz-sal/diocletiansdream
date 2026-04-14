@@ -1,0 +1,22 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(sed -i 's/rounded-\\\\[2\\\\.5rem\\\\]/rounded-[1.125rem]/g' src/app/features/experience/experience.html)",
+      "Bash(sed -i 's/rounded-\\\\[2rem\\\\]/rounded-[1rem]/g' src/app/features/experience/experience.html)",
+      "Bash(sed -i 's/rounded-\\\\[1\\\\.5rem\\\\]/rounded-[0.75rem]/g' src/app/features/experience/experience.html)",
+      "Bash(grep -rn RevealOnScroll C:UsersBOOKDocumentsProjectsdiocletiansdream.claudeworktreesreverent-shirleysrc --include=*.ts)",
+      "Bash(grep -rn \"revealOnScroll\\\\|reveal-on-scroll\\\\|\\\\[reveal\" C:UsersBOOKDocumentsProjectsdiocletiansdream.claudeworktreesreverent-shirleysrc --include=*.html)",
+      "Bash(where gh:*)",
+      "Bash(where gh.exe)",
+      "Bash(grep -rn $u2019 C:UsersBOOKDocumentsProjectsdiocletiansdream.claudeworktreesreverent-shirleysrc --include=*.ts)",
+      "Bash(python3 -c \":*)",
+      "Bash(node -e \":*)",
+      "Bash(npm run:*)",
+      "Bash(node -e \"const d = require\\('./src/assets/i18n/en.json'\\); console.log\\(JSON.stringify\\(d.bookingPage, null, 2\\)\\)\")",
+      "Bash(node -e \"const d = require\\('./src/assets/i18n/hr.json'\\); console.log\\(JSON.stringify\\(d.bookingPage, null, 2\\)\\)\")",
+      "Bash(powershell -Command \"\\(Get-Content 'src/app/features/about/about.html' -Encoding UTF8\\) -replace '\\\\u2018|\\\\u2019', \\\\\"'\\\\\" | Set-Content 'src/app/features/about/about.html' -Encoding UTF8\")",
+      "Bash(powershell -Command \"\\(Get-Content 'src/app/features/contact/contact.html' -Encoding UTF8\\) -replace '\\\\u2018|\\\\u2019', \\\\\"'\\\\\" | Set-Content 'src/app/features/contact/contact.html' -Encoding UTF8\")",
+      "Bash(powershell -Command \"\\(Get-Content 'src/app/features/experience/experience.html' -Encoding UTF8\\) -replace '\\\\u2018|\\\\u2019', \\\\\"'\\\\\" | Set-Content 'src/app/features/experience/experience.html' -Encoding UTF8\")"
+    ]
+  }
+}

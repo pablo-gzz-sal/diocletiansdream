@@ -45,64 +45,128 @@
     <div class="booking-hero__blob booking-hero__blob--2"></div>
 
     <div class="booking-hero__inner">
-      <div class="booking-hero__text" revealOnScroll [revealDelay]="0.1">
-        <p class="eyebrow">{{ 'bookingPage.booking.eyebrow' | translate }}</p>
+      <!-- Left: text + quick facts -->
+      <div class="booking-hero__left">
+        <div class="booking-hero__text" revealOnScroll [revealDelay]="0.1">
+          <p class="eyebrow">{{ 'bookingPage.booking.eyebrow' | translate }}</p>
 
-        <h1 class="booking-hero__h1">
-          {{ 'bookingPage.hero.title' | translate }}
-        </h1>
+          <h1 class="booking-hero__h1">
+            {{ 'bookingPage.hero.title' | translate }}
+          </h1>
 
-        <p class="booking-hero__sub">
-          {{ 'bookingPage.hero.text' | translate }}
-        </p>
+          <p class="booking-hero__sub">
+            {{ 'bookingPage.hero.text' | translate }}
+          </p>
+        </div>
+
+        <div class="booking-facts">
+          <div class="booking-fact">
+            <span class="fact-icon">
+              <!-- Clock / duration -->
+              <svg width="16" height="16" viewBox="0 0 20 20" fill="none" style="color:var(--dd-gold)" aria-hidden="true">
+                <circle cx="10" cy="10" r="8.25" stroke="currentColor" stroke-width="1.5"/>
+                <path d="M10 6v4l2.5 2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+            <div>
+              <p class="fact-label">{{ 'bookingPage.facts.durationLabel' | translate }}</p>
+              <p class="fact-value">{{ 'bookingPage.facts.durationValue' | translate }}</p>
+            </div>
+          </div>
+
+          <div class="booking-fact">
+            <span class="fact-icon">
+              <!-- Location pin -->
+              <svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor" style="color:var(--dd-gold)" aria-hidden="true">
+                <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/>
+              </svg>
+            </span>
+            <div>
+              <p class="fact-label">{{ 'bookingPage.facts.locationLabel' | translate }}</p>
+              <p class="fact-value">{{ 'bookingPage.facts.locationValue' | translate }}</p>
+            </div>
+          </div>
+
+          <div class="booking-fact">
+            <span class="fact-icon">
+              <!-- Ticket -->
+              <svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor" style="color:var(--dd-gold)" aria-hidden="true">
+                <path d="M2 6a2 2 0 012-2h12a2 2 0 012 2v2a2 2 0 000 4v2a2 2 0 01-2 2H4a2 2 0 01-2-2v-2a2 2 0 000-4V6z"/>
+              </svg>
+            </span>
+            <div>
+              <p class="fact-label">{{ 'bookingPage.facts.bookingLabel' | translate }}</p>
+              <p class="fact-value">{{ 'bookingPage.facts.bookingValue' | translate }}</p>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <div class="booking-facts">
-        <div class="booking-fact">
-          <span class="fact-icon">
-            <!-- Clock / duration -->
-            <svg width="16" height="16" viewBox="0 0 20 20" fill="none" style="color:var(--dd-gold)" aria-hidden="true">
-              <circle cx="10" cy="10" r="8.25" stroke="currentColor" stroke-width="1.5"/>
-              <path d="M10 6v4l2.5 2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </span>
-          <div>
-            <p class="fact-label">{{ 'bookingPage.facts.durationLabel' | translate }}</p>
-            <p class="fact-value">{{ 'bookingPage.facts.durationValue' | translate }}</p>
+      <!-- Right: experience summary card -->
+      <div class="booking-hero__card" revealOnScroll [revealDelay]="0.25" [revealY]="30">
+        <!-- Purple gradient top -->
+        <div class="bhc-top">
+          <div class="bhc-top__orb" aria-hidden="true"></div>
+          <p class="bhc-top__eyebrow">{{ 'bookingPage.heroCard.eyebrow' | translate }}</p>
+          <h3 class="bhc-top__title">Diocletian's Dream</h3>
+          <p class="bhc-top__sub">{{ 'bookingPage.heroCard.subtitle' | translate }}</p>
+        </div>
+
+        <!-- 2×2 stats grid -->
+        <div class="bhc-stats">
+          <div class="bhc-stat">
+            <p class="bhc-stat__label">{{ 'bookingPage.facts.durationLabel' | translate }}</p>
+            <p class="bhc-stat__value">{{ 'bookingPage.facts.durationValue' | translate }}</p>
+          </div>
+          <div class="bhc-stat">
+            <p class="bhc-stat__label">{{ 'bookingPage.heroCard.sessionsLabel' | translate }}</p>
+            <p class="bhc-stat__value">{{ 'bookingPage.heroCard.sessionsValue' | translate }}</p>
+          </div>
+          <div class="bhc-stat">
+            <p class="bhc-stat__label">{{ 'bookingPage.heroCard.languagesLabel' | translate }}</p>
+            <p class="bhc-stat__value">{{ 'bookingPage.heroCard.languagesValue' | translate }}</p>
+          </div>
+          <div class="bhc-stat">
+            <p class="bhc-stat__label">{{ 'bookingPage.facts.ageLabel' | translate }}</p>
+            <p class="bhc-stat__value">{{ 'bookingPage.facts.ageValue' | translate }}</p>
           </div>
         </div>
 
-        <div class="booking-fact">
-          <span class="fact-icon">
-            <!-- Location pin -->
-            <svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor" style="color:var(--dd-gold)" aria-hidden="true">
-              <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/>
+        <!-- Includes -->
+        <div class="bhc-includes">
+          <div class="bhc-incl">
+            <svg class="bhc-incl__icon" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+              <circle cx="7" cy="7" r="6" stroke="currentColor" stroke-width="1.2" opacity="0.4"/>
+              <path d="M4.5 7l2 2 3-3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
-          </span>
-          <div>
-            <p class="fact-label">{{ 'bookingPage.facts.locationLabel' | translate }}</p>
-            <p class="fact-value">{{ 'bookingPage.facts.locationValue' | translate }}</p>
+            <span>{{ 'bookingPage.heroCard.incl1' | translate }}</span>
+          </div>
+          <div class="bhc-incl">
+            <svg class="bhc-incl__icon" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+              <circle cx="7" cy="7" r="6" stroke="currentColor" stroke-width="1.2" opacity="0.4"/>
+              <path d="M4.5 7l2 2 3-3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span>{{ 'bookingPage.heroCard.incl2' | translate }}</span>
+          </div>
+          <div class="bhc-incl">
+            <svg class="bhc-incl__icon" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+              <circle cx="7" cy="7" r="6" stroke="currentColor" stroke-width="1.2" opacity="0.4"/>
+              <path d="M4.5 7l2 2 3-3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span>{{ 'bookingPage.heroCard.incl3' | translate }}</span>
           </div>
         </div>
 
-        <div class="booking-fact">
-          <span class="fact-icon">
-            <!-- Ticket -->
-            <svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor" style="color:var(--dd-gold)" aria-hidden="true">
-              <path d="M2 6a2 2 0 012-2h12a2 2 0 012 2v2a2 2 0 000 4v2a2 2 0 01-2 2H4a2 2 0 01-2-2v-2a2 2 0 000-4V6z"/>
-            </svg>
-          </span>
-          <div>
-            <p class="fact-label">{{ 'bookingPage.facts.bookingLabel' | translate }}</p>
-            <p class="fact-value">{{ 'bookingPage.facts.bookingValue' | translate }}</p>
-          </div>
+        <!-- CTA -->
+        <div class="bhc-footer">
+          <a href="#booking-widget" class="bhc-cta">{{ 'bookingPage.heroCard.cta' | translate }}</a>
         </div>
       </div>
     </div>
   </section>
 
   <!-- ── BOOKING WIDGET ── -->
-  <section class="booking-widget-section">
+  <section class="booking-widget-section" id="booking-widget">
     <div class="booking-widget-inner">
       <div class="booking-context">
         <p class="eyebrow">{{ 'bookingPage.booking.eyebrow' | translate }}</p>

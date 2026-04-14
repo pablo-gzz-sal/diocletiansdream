@@ -76,10 +76,21 @@
   z-index: 1;
   max-width: 1280px;
   margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+  align-items: center;
+}
+
+@media (min-width: 1024px) {
+  .booking-hero__inner {
+    grid-template-columns: 1fr 400px;
+    gap: 5rem;
+  }
 }
 
 .booking-hero__text {
-  max-width: 700px;
+  max-width: 600px;
 }
 
 .booking-hero__text .eyebrow {
@@ -90,9 +101,9 @@
 /* stacked headline */
 .booking-hero__h1 {
   font-family: var(--serif);
-  font-size: clamp(3rem, 7.6vw, 6.8rem);
+  font-size: clamp(2.75rem, 7vw, 5.5rem);
   font-weight: 300;
-  line-height: 0.92;
+  line-height: 0.88;
   letter-spacing: -0.02em;
 }
 
@@ -543,4 +554,155 @@
   font-size: 0.83rem;
   line-height: 1.7;
   color: var(--ink-60);
+}
+
+
+/* ══════════════════════════════════════════
+   HERO EXPERIENCE CARD
+══════════════════════════════════════════ */
+
+.booking-hero__card {
+  background: var(--ink);
+  border-radius: 2rem;
+  overflow: hidden;
+  box-shadow: 0 24px 80px rgba(26, 24, 20, 0.22);
+  flex-shrink: 0;
+}
+
+/* ── Top band (purple gradient) ── */
+.bhc-top {
+  position: relative;
+  padding: 1.75rem 1.75rem 1.5rem;
+  overflow: hidden;
+  background: linear-gradient(135deg, #1a0240 0%, var(--dd-purple) 60%, #3d1470 100%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.bhc-top__orb {
+  position: absolute;
+  top: -50px;
+  right: -40px;
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(194, 154, 89, 0.4) 0%, transparent 65%);
+  pointer-events: none;
+}
+
+.bhc-top__eyebrow {
+  font-family: var(--sans);
+  font-size: 0.58rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--dd-gold);
+  margin-bottom: 0.5rem;
+}
+
+.bhc-top__title {
+  font-family: var(--serif);
+  font-size: 1.55rem;
+  font-weight: 300;
+  color: rgba(250, 248, 244, 0.96);
+  line-height: 1.1;
+  margin-bottom: 0.3rem;
+}
+
+.bhc-top__sub {
+  font-family: var(--sans);
+  font-size: 0.72rem;
+  color: rgba(250, 248, 244, 0.45);
+  letter-spacing: 0.04em;
+}
+
+/* ── 2×2 stats grid ── */
+.bhc-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.bhc-stat {
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  border-right: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.bhc-stat:nth-child(even) {
+  border-right: none;
+}
+
+.bhc-stat:nth-last-child(-n+2) {
+  border-bottom: none;
+}
+
+.bhc-stat__label {
+  font-family: var(--sans);
+  font-size: 0.54rem;
+  font-weight: 600;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: rgba(250, 248, 244, 0.35);
+  margin-bottom: 0.25rem;
+}
+
+.bhc-stat__value {
+  font-family: var(--serif);
+  font-size: 0.98rem;
+  font-weight: 400;
+  color: rgba(250, 248, 244, 0.88);
+  line-height: 1.2;
+}
+
+/* ── Includes list ── */
+.bhc-includes {
+  padding: 1.1rem 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.bhc-incl {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+}
+
+.bhc-incl__icon {
+  flex-shrink: 0;
+  color: var(--dd-gold);
+}
+
+.bhc-incl span {
+  font-family: var(--sans);
+  font-size: 0.78rem;
+  color: rgba(250, 248, 244, 0.65);
+  line-height: 1.3;
+}
+
+/* ── Footer CTA ── */
+.bhc-footer {
+  padding: 1.1rem 1.5rem 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.bhc-cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 0.85rem 1.5rem;
+  background: var(--dd-gold);
+  color: var(--ink);
+  border-radius: 100px;
+  font-family: var(--sans);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+
+.bhc-cta:hover {
+  opacity: 0.82;
 }

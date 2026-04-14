@@ -59,31 +59,36 @@ export class Faq implements AfterViewInit {
 
   toggleFaq(i: number): void {
     const isOpening = !this.faqs[i].open;
-
-    // Update data
-    this.faqs = this.faqs.map((x, idx) =>
-      idx === i ? { ...x, open: !x.open } : x
-    );
-
-    // Panel index is offset by 1 (newsletter is at 0)
     const panels = this.el.nativeElement.querySelectorAll<HTMLElement>('.faq-a');
+
+    // Mutate open flag directly — keeps *ngFor DOM nodes stable so GSAP
+    // references remain valid (spread/map creates new objects, Angular
+    // recreates elements, and the animation targets detached nodes).
+    if (isOpening) {
+      this.faqs.forEach((faq, idx) => {
+        if (idx !== i && faq.open) {
+          faq.open = false;
+          const p = panels[idx + 1];
+          if (p) gsap.to(p, { height: 0, opacity: 0, duration: 0.28, ease: 'power2.in' });
+        }
+      });
+      this.faqs[i].open = true;
+    } else {
+      this.faqs[i].open = false;
+    }
+
+    // Panel index offset by 1 (newsletter occupies slot 0)
     const panel = panels[i + 1];
     if (!panel) return;
 
     if (isOpening) {
-      gsap.to(panel, {
-        height: 'auto',
-        opacity: 1,
-        duration: 0.5,
-        ease: 'power3.out',
-      });
+      // GSAP natively handles height:'auto' — measures, animates, cleans up
+      gsap.fromTo(panel,
+        { height: 0, opacity: 0 },
+        { height: 'auto', opacity: 1, duration: 0.42, ease: 'power2.out' }
+      );
     } else {
-      gsap.to(panel, {
-        height: 0,
-        opacity: 0,
-        duration: 0.38,
-        ease: 'power3.in',
-      });
+      gsap.to(panel, { height: 0, opacity: 0, duration: 0.28, ease: 'power2.in' });
     }
   }
 

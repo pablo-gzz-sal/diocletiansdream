@@ -59,18 +59,18 @@
 :root {
  
   /* ─── Neutrals ─── */
-  --color-cream:   #f5f0e8;
-  --color-sand:    #ede7d9;
+  --color-cream:   #ede7da;
+  --color-sand:    #e5dfd2;
   --color-ink:     #1a1814;
   --color-warm:    #faf8f4;
- 
+
   --color-ink-70:  rgba(26, 24, 20, 0.70);
   --color-ink-60:  rgba(26, 24, 20, 0.60);
   --color-ink-20:  rgba(26, 24, 20, 0.12);
   --color-ink-08:  rgba(26, 24, 20, 0.06);
- 
-  --cream-85:      rgba(245, 240, 232, 0.85);
-  --cream-95:      rgba(245, 240, 232, 0.95);
+
+  --cream-85:      rgba(237, 231, 218, 0.85);
+  --cream-95:      rgba(237, 231, 218, 0.95);
  
   /* ─── Brand accents ─── */
   /* Purple — primary accent: buttons, hover states, links, active nav */
@@ -123,6 +123,64 @@
  
 }
 
+/* ═══════════════════════════════════════════════════════════
+   GLOBAL MUSEUM ATMOSPHERE
+   Two fixed layers added to app.html before <router-outlet>.
+   z:998 atmosphere + z:999 grain sit above all page sections
+   (z:auto) but below the fixed header (z:999, later DOM order
+   so it paints on top at equal z-index).
+   pointer-events:none — all clicks pass through.
+════════════════════════════════════════════════════════════ */
+
+/* Ambient lighting — purple studio spot (top-left) + gold warm fill (bottom-right) */
+.dd-atm {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 998;
+  overflow: hidden;
+  mix-blend-mode: multiply;
+}
+
+/* Purple ceiling fixture — cool, directional, gallery-style */
+.dd-atm::before {
+  content: '';
+  position: absolute;
+  width: 85vmax;
+  height: 85vmax;
+  border-radius: 50%;
+  top: -40vmax;
+  left: -30vmax;
+  background: radial-gradient(circle, rgba(45, 4, 106, 0.10) 0%, transparent 60%);
+  animation: float1 18s ease-in-out infinite;
+}
+
+/* Gold warm fill — ambient museum warmth from bottom-right */
+.dd-atm::after {
+  content: '';
+  position: absolute;
+  width: 75vmax;
+  height: 75vmax;
+  border-radius: 50%;
+  bottom: -35vmax;
+  right: -25vmax;
+  background: radial-gradient(circle, rgba(194, 154, 89, 0.08) 0%, transparent 58%);
+  animation: float2 24s ease-in-out infinite;
+}
+
+/* Global film grain — multiply blend adds parchment / quality-print texture */
+.dd-grain-global {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 999;
+  mix-blend-mode: multiply;
+  opacity: 0.055;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23g)' opacity='1'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
+}
+
+/* ── Section-level grain (hero areas, booking, etc.) — extra richness on top ── */
 /* Soft grain texture (very subtle) */
 .dd-grain::before {
   content: '';
@@ -130,7 +188,7 @@
   inset: 0;
   pointer-events: none;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='.22'/%3E%3C/svg%3E");
-  opacity: 0.06;
+  opacity: 0.08;
   mix-blend-mode: overlay;
 }
 
@@ -236,7 +294,11 @@ html {
 }
 body {
   font-family: var(--font-sans);
-  background: var(--color-cream);
+  background-color: var(--color-cream);
+  /* Subtle directional warmth — visible in gaps & before sections load */
+  background-image:
+    radial-gradient(ellipse 70% 55% at -5% -5%, rgba(45, 4, 106, 0.04) 0%, transparent 55%),
+    radial-gradient(ellipse 55% 65% at 106% 106%, rgba(194, 154, 89, 0.035) 0%, transparent 55%);
   -webkit-font-smoothing: antialiased;
 }
 /* ────────────────────────────────────────────
