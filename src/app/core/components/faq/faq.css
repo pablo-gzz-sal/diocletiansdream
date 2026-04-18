@@ -55,20 +55,32 @@
 .newsletter-pill {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
-  padding: 0.5rem 0.5rem 0.5rem 1.1rem;
+  gap: 0.625rem;
+  padding: 0.45rem 0.45rem 0.45rem 1rem;
   border-radius: var(--radius-pill);
-  background: rgba(255, 255, 255, 0.75);
-  border: 1px solid var(--border-soft);
-  box-shadow: var(--shadow-soft);
-  backdrop-filter: blur(10px);
-  /* Gold ring on focus-within */
-  transition: border-color 0.2s, box-shadow 0.2s;
+  background: #fff;
+  border: 1.5px solid rgba(26, 24, 20, 0.13);
+  box-shadow: 0 2px 12px rgba(26, 24, 20, 0.06);
+  transition: border-color 0.22s, box-shadow 0.22s;
+}
+
+.newsletter-pill:hover {
+  border-color: rgba(26, 24, 20, 0.22);
 }
 
 .newsletter-pill:focus-within {
   border-color: var(--dd-gold-60);
-  box-shadow: var(--shadow-soft), 0 0 0 3px var(--dd-gold-12);
+  box-shadow: 0 2px 12px rgba(26, 24, 20, 0.06), 0 0 0 3px var(--dd-gold-12);
+}
+
+.newsletter-icon {
+  flex-shrink: 0;
+  color: var(--color-ink-60);
+  transition: color 0.22s;
+}
+
+.newsletter-pill:focus-within .newsletter-icon {
+  color: var(--dd-gold);
 }
 
 .newsletter-input {
@@ -78,13 +90,13 @@
   outline: none;
   background: transparent;
   font-family: var(--font-sans);
-  font-size: clamp(0.875rem, 1.3vw, 0.95rem);
+  font-size: clamp(0.875rem, 1.3vw, 0.92rem);
   color: var(--color-ink);
-  padding: 0.6rem 0;
+  padding: 0.65rem 0;
 }
 
 .newsletter-input::placeholder {
-  color: var(--color-ink-60);
+  color: rgba(26, 24, 20, 0.38);
 }
 
 /* Submit — purple primary button */
@@ -181,11 +193,18 @@
   background: rgba(255, 255, 255, 0.6);
   display: grid;
   place-items: center;
-  font-size: 1.1rem;
-  line-height: 1;
   flex-shrink: 0;
   color: var(--color-ink-60);
-  transition: background 0.2s, color 0.2s, border-color 0.2s;
+  transition: background 0.25s, color 0.25s, border-color 0.25s;
+}
+
+.faq-chevron {
+  display: block;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.faq-item--open .faq-chevron {
+  transform: rotate(180deg);
 }
 
 .faq-q:hover .faq-icon {
