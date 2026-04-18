@@ -21,7 +21,6 @@
 .experience-heading .eyebrow {
   display: inline-block;
   padding-bottom: 0.6rem;
-  /* Gold rule — section separator micro-detail */
   border-bottom: 1px solid var(--dd-gold-30);
   color: var(--dd-gold);
   letter-spacing: 0.22em;
@@ -39,32 +38,74 @@
 /* ─── Bento grid ─── */
 .bento {
   display: grid;
-  gap: clamp(0.5rem, 1vw, 0.75rem);
+  gap: clamp(0.5rem, 0.75vw, 0.65rem);
   grid-template-columns: repeat(12, 1fr);
 }
 
+/* ─── Base cell ─── */
 .bento-cell {
   border-radius: var(--radius-xl);
   overflow: hidden;
-  border: 1px solid var(--border-soft);
-  background: rgba(255, 255, 255, 0.55);
+  border: 1px solid rgba(26, 24, 20, 0.07);
+  background: var(--color-warm);
   transition:
     transform 0.4s var(--ease-out),
     box-shadow 0.4s var(--ease-out),
     border-color 0.25s;
 }
 
-/* Purple hover — primary brand interaction */
-.bento-cell:hover {
-  transform: translateY(-3px);
-  box-shadow: var(--shadow-hover), var(--shadow-purple);
-  border-color: var(--dd-purple-20);
-}
-
 /* ─── Cell positions ─── */
 .bento-cell--imgA { grid-column: 1 / 5; grid-row: 1 / 3; aspect-ratio: 3 / 5; }
 .bento-cell--imgB { grid-column: 5 / 8; grid-row: 1 / 2; aspect-ratio: 4 / 5; }
+.bento-cell--imgC { grid-column: 1 / 13; aspect-ratio: 16 / 5; }
 
+/* ─── Image cells — warm cream placeholders ─── */
+.bento-cell--imgA,
+.bento-cell--imgB,
+.bento-cell--imgC {
+  border-color: rgba(26, 24, 20, 0.08);
+}
+
+.bento-cell--imgA:hover,
+.bento-cell--imgB:hover,
+.bento-cell--imgC:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 36px rgba(26, 24, 20, 0.10);
+  border-color: rgba(194, 154, 89, 0.30);
+}
+
+.bento-img-placeholder {
+  width: 100%;
+  height: 100%;
+  min-height: 220px;
+  display: flex;
+  align-items: flex-end;
+  padding: 1rem 1.25rem;
+  font-family: var(--font-sans);
+  font-size: 0.65rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+/* Tall portrait — Palace reconstruction */
+.bento-cell--imgA .bento-img-placeholder {
+  background: linear-gradient(170deg, #ede5d5 0%, #e5dccb 50%, #ddd4be 100%);
+  color: rgba(26, 24, 20, 0.28);
+}
+
+/* Portrait — Visitors in headsets */
+.bento-cell--imgB .bento-img-placeholder {
+  background: linear-gradient(160deg, #e9e3d8 0%, #e1d9cc 55%, #d9d1c4 100%);
+  color: rgba(26, 24, 20, 0.26);
+}
+
+/* Wide panorama — cinematic landscape */
+.bento-cell--imgC .bento-img-placeholder {
+  background: linear-gradient(175deg, #ece6d6 0%, #e4dccb 40%, #ddd5c2 100%);
+  color: rgba(26, 24, 20, 0.24);
+}
+
+/* ─── Text cell — warm editorial card ─── */
 .bento-cell--text {
   grid-column: 8 / 13;
   grid-row: 1 / 2;
@@ -72,60 +113,58 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background: var(--color-sand);
-  /* Gold left border — identity accent on content cell */
-  border-left: 2px solid var(--dd-gold-30);
+  background: var(--color-warm);
+  border-color: rgba(26, 24, 20, 0.07);
+  /* Subtle gold top accent */
+  border-top: 2px solid rgba(194, 154, 89, 0.40);
+}
+
+.bento-cell--text:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 40px rgba(45, 4, 106, 0.10);
+  border-color: rgba(45, 4, 106, 0.16);
 }
 
 .bento-copy {
-  font-size: clamp(0.95rem, 1.4vw, 1.05rem);
+  font-size: clamp(0.875rem, 1.3vw, 1rem);
   line-height: 1.75;
-  color: var(--color-ink-60);
+  color: rgba(26, 24, 20, 0.68);
 }
 
 .bento-copy + .bento-copy {
-  margin-top: 1rem;
+  margin-top: 0.875rem;
 }
 
-/* ─── CTAs inside bento text cell ─── */
-
-/* Primary button — purple fill */
+/* Purple CTA on light card */
 .bento-cell--text .btn--dark {
   margin-top: 2rem;
-  background: var(--dd-purple);
-  color: var(--color-warm);
-  box-shadow: 0 8px 28px var(--dd-purple-10);
+  align-self: flex-start;
 }
 
-.bento-cell--text .btn--dark:hover {
-  background: color-mix(in srgb, var(--dd-purple) 88%, #000);
-  box-shadow: var(--shadow-purple);
-  transform: translateY(-2px);
-}
-
-/* Inline link — purple with gold underline on hover */
+/* Inline link on light background */
 .bento-cell--text .inline-link {
   display: inline-flex;
   align-items: center;
   gap: 0.3rem;
   margin-top: 1rem;
-  color: var(--dd-purple);
+  color: rgba(26, 24, 20, 0.50);
   text-decoration: none;
-  font-size: 0.82rem;
+  font-size: 0.78rem;
   font-weight: 500;
-  letter-spacing: 0.02em;
-  border-bottom: 1px solid var(--dd-purple-20);
+  letter-spacing: 0.04em;
+  border-bottom: 1px solid rgba(26, 24, 20, 0.15);
   padding-bottom: 0.1rem;
-  transition: border-color 0.2s, color 0.2s, gap 0.2s;
+  transition: color 0.2s, border-color 0.2s, gap 0.2s;
 }
 
 .bento-cell--text .inline-link:hover {
-  border-color: var(--dd-gold);
-  color: color-mix(in srgb, var(--dd-purple) 80%, #000);
+  color: var(--dd-purple);
+  border-color: rgba(45, 4, 106, 0.28);
   gap: 0.5rem;
 }
 
-/* ─── Stat cells ─── */
+/* ─── Stat cell A — 15' duration ─── */
+/* Cream with very subtle purple tint */
 .bento-cell--stat {
   grid-column: 5 / 8;
   grid-row: 2 / 3;
@@ -133,81 +172,68 @@
   flex-direction: column;
   justify-content: flex-end;
   padding: clamp(1.25rem, 2.5vw, 1.75rem);
-  background: var(--color-ink);
-  color: var(--color-warm);
-  transition:
-    transform 0.4s var(--ease-out),
-    box-shadow 0.4s var(--ease-out),
-    border-color 0.25s;
+  background: linear-gradient(148deg,
+    rgba(45, 4, 106, 0.05) 0%,
+    rgba(45, 4, 106, 0.02) 100%);
+  border-color: rgba(45, 4, 106, 0.10);
+  border-top: 2px solid rgba(45, 4, 106, 0.14);
 }
 
 .bento-cell--stat:hover {
-  transform: translateY(-3px);
-  box-shadow: var(--shadow-purple);
-  border-color: var(--dd-purple-20);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 36px rgba(45, 4, 106, 0.12);
+  border-color: rgba(45, 4, 106, 0.22);
 }
 
+/* ─── Stat cell B — 305 AD year ─── */
+/* Cream with very subtle gold tint */
 .bento-cell--statB {
   grid-column: 8 / 13;
   grid-row: 2 / 3;
-  background: var(--color-sand);
-  color: var(--color-ink);
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
   padding: clamp(1.25rem, 2.5vw, 1.75rem);
+  background: linear-gradient(148deg,
+    rgba(194, 154, 89, 0.10) 0%,
+    rgba(194, 154, 89, 0.04) 100%);
+  border-color: rgba(194, 154, 89, 0.20);
+  border-top: 2px solid rgba(194, 154, 89, 0.32);
 }
 
-/* Gold gradient tail on stat numbers */
+.bento-cell--statB:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 36px rgba(194, 154, 89, 0.16);
+  border-color: rgba(194, 154, 89, 0.35);
+}
+
+/* ─── Stat numbers ─── */
+/* Purple → gold gradient — elegant on light backgrounds */
 .stat-num {
   font-family: var(--font-serif);
-  font-size: clamp(2.2rem, 4.5vw, 4rem);
+  font-size: clamp(2.4rem, 5vw, 4.5rem);
   font-weight: 300;
   line-height: 1;
-  background: linear-gradient(135deg, currentColor 55%, var(--dd-gold) 100%);
+  background: linear-gradient(135deg, var(--dd-purple) 20%, color-mix(in oklab, var(--dd-purple), var(--dd-gold) 55%) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
-/* Plain cream on dark cell — no gradient override needed */
-.bento-cell--stat .stat-num {
-  background: linear-gradient(135deg, var(--color-warm) 55%, var(--dd-gold-60) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+.stat-unit {
+  font-size: 0.55em;
+  vertical-align: super;
 }
 
 .stat-label {
-  font-size: 0.7rem;
-  letter-spacing: 0.14em;
+  font-family: var(--font-sans);
+  font-size: 0.68rem;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
-  margin-top: 0.5rem;
-  opacity: 0.55;
-}
-
-/* Gold rule above stat label on light cell */
-.bento-cell--statB .stat-label {
-  padding-top: 0.6rem;
-  margin-top: 0.6rem;
-  border-top: 1px solid var(--dd-gold-30);
-  opacity: 1;
-  color: var(--color-ink-60);
-}
-
-/* ─── Wide image cell ─── */
-.bento-cell--imgC { grid-column: 1 / 13; aspect-ratio: 16 / 5; }
-
-.bento-img-placeholder {
-  width: 100%;
-  height: 100%;
-  min-height: 220px;
-  background: linear-gradient(135deg, var(--color-sand) 0%, #e5ddd0 100%);
-  display: grid;
-  place-items: center;
-  font-size: 0.75rem;
-  color: var(--color-ink-60);
-  letter-spacing: 0.06em;
+  margin-top: 0.65rem;
+  padding-top: 0.65rem;
+  border-top: 1px solid rgba(26, 24, 20, 0.12);
+  color: rgba(26, 24, 20, 0.48);
 }
 
 /* ─── Tablet ─── */
@@ -240,8 +266,6 @@
 
 /* ─── Reduced motion ─── */
 @media (prefers-reduced-motion: reduce) {
-  .bento-cell,
-  .bento-cell--stat { transition: none; }
-  .bento-cell:hover,
-  .bento-cell--stat:hover { transform: none; box-shadow: none; }
+  .bento-cell { transition: none; }
+  .bento-cell:hover { transform: none; box-shadow: none; filter: none; }
 }

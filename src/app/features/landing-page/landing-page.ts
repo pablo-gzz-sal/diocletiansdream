@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Header } from '../../core/components/header/header';
 import { Footer } from '../../core/components/footer/footer';
 import { RouterLink } from '@angular/router';
@@ -17,6 +17,10 @@ import { Reviews } from '../../core/components/reviews/reviews';
 import { Faq } from '../../core/components/faq/faq';
 import { AboutProject } from '../../core/components/about-project/about-project';
 import { Highlights } from '../../core/components/highlights/highlights';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 @Component({
   selector: 'app-landing-page',
@@ -41,9 +45,13 @@ import { Highlights } from '../../core/components/highlights/highlights';
   templateUrl: './landing-page.html',
   styleUrl: './landing-page.css',
 })
-export class LandingPage implements OnInit {
+export class LandingPage implements OnInit, AfterViewInit, OnDestroy {
+  @ViewChild('spotlight', { static: true }) spotRef!: ElementRef<HTMLElement>;
+
   marqueeItems: string[] = [];
   blogCards!: any;
+
+  private cleanups: Array<() => void> = [];
 
   constructor(
     private seo: SeoService,
@@ -58,6 +66,46 @@ export class LandingPage implements OnInit {
       this.marqueeItems = items;
     });
     this.getBlogs();
+  }
+
+  ngAfterViewInit(): void {
+    if (typeof window === 'undefined') return;
+
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // ── ScrollTrigger global refresh ─────────────────────────────
+    // After Angular finishes rendering all child components, recalculate
+    // all trigger positions so nothing fires at the wrong scroll offset.
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        ScrollTrigger.refresh();
+      });
+    });
+
+    if (reduced) return;
+
+    // ── Cursor spotlight: smooth GSAP lag behind the mouse ──────
+    const spot = this.spotRef.nativeElement;
+    const qx = gsap.quickTo(spot, 'x', { duration: 0.45, ease: 'power2.out' });
+    const qy = gsap.quickTo(spot, 'y', { duration: 0.45, ease: 'power2.out' });
+
+    let entered = false;
+    const onMove = (e: MouseEvent) => {
+      if (!entered) {
+        spot.style.opacity = '1';
+        entered = true;
+      }
+      qx(e.clientX);
+      qy(e.clientY);
+    };
+
+    document.addEventListener('mousemove', onMove, { passive: true });
+    this.cleanups.push(() => document.removeEventListener('mousemove', onMove));
+  }
+
+  ngOnDestroy(): void {
+    this.cleanups.forEach(fn => fn());
+    this.cleanups = [];
   }
 
   getBlogs() {

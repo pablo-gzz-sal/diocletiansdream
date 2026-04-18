@@ -124,6 +124,33 @@
 }
 
 /* ═══════════════════════════════════════════════════════════
+   CURSOR SPOTLIGHT — Gisou-inspired ambient glow
+   Follows mouse pointer with a smooth GSAP lag.
+   Very subtle — adds depth without distraction.
+════════════════════════════════════════════════════════════ */
+
+.dd-spotlight {
+  position: fixed;
+  pointer-events: none;
+  width: 560px;
+  height: 560px;
+  margin-left: -280px;
+  margin-top: -280px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at center,
+    rgba(45, 4, 106, 0.042) 0%,
+    rgba(194, 154, 89, 0.022) 38%,
+    transparent 68%
+  );
+  z-index: 996; /* below dd-atm (998) and dd-grain (999) */
+  opacity: 0;
+  will-change: transform;
+  mix-blend-mode: multiply;
+  transition: opacity 0.4s ease;
+}
+
+/* ═══════════════════════════════════════════════════════════
    GLOBAL MUSEUM ATMOSPHERE
    Two fixed layers added to app.html before <router-outlet>.
    z:998 atmosphere + z:999 grain sit above all page sections
@@ -166,6 +193,24 @@
   right: -25vmax;
   background: radial-gradient(circle, rgba(194, 154, 89, 0.08) 0%, transparent 58%);
   animation: float2 24s ease-in-out infinite;
+}
+
+/* Third blob — warm mid-screen gold accent, completes the triangular lighting */
+.dd-atm__blob3 {
+  position: absolute;
+  width: 65vmax;
+  height: 65vmax;
+  border-radius: 50%;
+  top: 25vh;
+  right: -18vmax;
+  background: radial-gradient(circle, rgba(194, 154, 89, 0.045) 0%, transparent 62%);
+  animation: float3 32s ease-in-out infinite;
+}
+
+@keyframes float3 {
+  0%, 100% { transform: translate(0, 0); }
+  33%       { transform: translate(-18px, 22px); }
+  66%       { transform: translate(12px, -16px); }
 }
 
 /* Global film grain — multiply blend adds parchment / quality-print texture */
@@ -473,77 +518,92 @@ body {
   }
 }
 
+/* ══════════════════════════════════════════════════════
+   BUTTON SYSTEM
+   Hierarchy:
+     .btn--dark       Purple  — primary action (Book, Reserve)
+     .btn--cream      Gold    — secondary action (Contact, Directions)
+     .btn--ghost      Glass   — tertiary on light backgrounds
+     .btn--ghost-light Glass  — tertiary on dark/ink backgrounds
+══════════════════════════════════════════════════════ */
+
 .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   border-radius: 100px;
-  padding: 1.125rem 1.75rem;
-  font-family: var(--sans);
+  padding: 0.875rem 1.75rem;
+  font-family: var(--font-sans);
   font-size: 0.8rem;
   font-weight: 500;
   letter-spacing: 0.03em;
   text-decoration: none;
   white-space: nowrap;
   cursor: pointer;
-  border: none;
-
+  border: 1px solid transparent;
   transition:
-    transform 0.35s var(--ease-out),
-    box-shadow 0.35s var(--ease-out),
+    transform 0.3s var(--ease-out),
+    box-shadow 0.3s var(--ease-out),
+    filter 0.2s,
     background 0.2s,
-    opacity 0.2s,
     border-color 0.2s;
   will-change: transform;
 }
 
-.btn:hover {
-  transform: translateY(-1px);
+.btn:hover  { transform: translateY(-1px); }
+.btn:active { transform: translateY(0); }
+
+.btn:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px #fff, 0 0 0 5px var(--dd-purple-20);
 }
 
+/* ── Purple — primary ── */
 .btn--dark {
-  background: var(--ink);
-  color: var(--white);
-  box-shadow: 0 8px 30px rgba(26, 24, 20, 0.10);
+  background: var(--dd-purple);
+  border-color: color-mix(in oklab, var(--dd-purple), black 10%);
+  color: #fff;
+  box-shadow: 0 4px 20px rgba(45, 4, 106, 0.28);
 }
-
 .btn--dark:hover {
-  opacity: 0.95;
-  box-shadow: var(--shadow-hover), var(--glow-purple);
+  box-shadow: 0 8px 32px rgba(45, 4, 106, 0.38);
+  filter: brightness(1.10);
 }
 
-.btn--ghost {
-  border: 1px solid var(--border-soft);
-  background: rgba(255, 255, 255, 0.45);
-  color: var(--ink);
-}
-
-.btn--ghost:hover {
-  background: rgba(255, 255, 255, 0.8);
-  border-color: rgba(194, 154, 89, 0.35);
-  box-shadow: var(--shadow-soft), var(--glow-gold);
-}
-
+/* ── Gold — secondary ── */
 .btn--cream {
-  background: var(--white);
-  color: var(--ink);
-  border: 1px solid rgba(26, 24, 20, 0.08);
+  background: var(--dd-gold);
+  border-color: color-mix(in oklab, var(--dd-gold), black 14%);
+  color: var(--color-ink);
+  box-shadow: 0 4px 18px rgba(194, 154, 89, 0.24);
 }
-
 .btn--cream:hover {
-  box-shadow: var(--shadow-hover), var(--glow-gold);
-  border-color: rgba(194, 154, 89, 0.35);
+  box-shadow: 0 8px 28px rgba(194, 154, 89, 0.34);
+  filter: brightness(1.06);
 }
 
+/* ── Ghost — tertiary on light sections ── */
+.btn--ghost {
+  background: rgba(255, 255, 255, 0.55);
+  border-color: rgba(26, 24, 20, 0.12);
+  color: var(--color-ink);
+}
+.btn--ghost:hover {
+  background: rgba(255, 255, 255, 0.90);
+  border-color: rgba(45, 4, 106, 0.22);
+  box-shadow: 0 0 0 4px var(--dd-purple-06);
+}
+
+/* ── Ghost light — tertiary on dark/ink sections ── */
 .btn--ghost-light {
-  border: 1px solid rgba(245, 240, 232, 0.28);
-  color: rgba(245, 240, 232, 0.85);
+  background: rgba(255, 255, 255, 0.07);
+  border-color: rgba(250, 248, 244, 0.22);
+  color: rgba(250, 248, 244, 0.88);
 }
-
 .btn--ghost-light:hover {
-  background: rgba(255, 255, 255, 0.08);
-  box-shadow: 0 18px 55px rgba(0, 0, 0, 0.25);
-  border-color: rgba(194, 154, 89, 0.35);
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(194, 154, 89, 0.42);
+  box-shadow: 0 0 0 4px rgba(194, 154, 89, 0.10);
 }
 
 .bento {
@@ -792,75 +852,7 @@ body {
     color 220ms ease, opacity 220ms ease;
 }
 
-.btn:hover {
-  transform: translateY(-1px);
-}
-
-.btn:active {
-  transform: translateY(0px);
-}
-
-/* Focus ring (subtle, premium) */
-.btn:focus-visible {
-  outline: none;
-  box-shadow:
-    0 0 0 2px rgba(255,255,255,0.9),
-    0 0 0 6px var(--dd-purple-10);
-}
-
-/* ===== Primary CTA = Purple ===== */
-.btn--dark {
-  background: var(--dd-purple) !important;
-  border: 1px solid color-mix(in oklab, var(--dd-purple), black 12%) !important;
-  color: white !important;
-  box-shadow: 0 12px 34px rgba(0,0,0,0.12);
-}
-
-.btn--dark:hover {
-  box-shadow: 0 16px 46px rgba(0,0,0,0.16);
-  filter: saturate(1.05);
-}
-
-/* ===== Gold CTA = Cream style ===== */
-.btn--cream {
-  background: var(--dd-gold) !important;
-  border: 1px solid color-mix(in oklab, var(--dd-gold), black 18%) !important;
-  color: var(--ink, #14110f) !important;
-  box-shadow: 0 12px 34px rgba(0,0,0,0.10);
-}
-
-.btn--cream:hover {
-  box-shadow: 0 16px 46px rgba(0,0,0,0.14);
-  filter: saturate(1.03);
-}
-
-/* ===== Ghost buttons (neutral with brand accents on hover) ===== */
-.btn--ghost {
-  background: rgba(255,255,255,0.55) !important;
-  border: 1px solid rgba(20,17,15,0.12) !important;
-  color: var(--ink, #14110f) !important;
-}
-
-.btn--ghost:hover {
-  border-color: color-mix(in oklab, var(--dd-purple), rgba(20,17,15,0.12) 60%) !important;
-  box-shadow: 0 0 0 6px var(--dd-purple-10);
-}
-
-/* For dark sections (your final CTA banner) */
-.btn--ghost-light {
-  background: rgba(255,255,255,0.06) !important;
-  border: 1px solid rgba(255,255,255,0.18) !important;
-  color: rgba(255,255,255,0.86) !important;
-}
-
-.btn--ghost-light:hover {
-  border-color: rgba(255,255,255,0.28) !important;
-  box-shadow: 0 0 0 6px color-mix(in oklab, var(--dd-gold), transparent 85%);
-}
-
-/* ===== Inline link brand accent — see primary definition above ===== */
-
-/* ===== Optional: make primary hero CTA feel “special” ===== */
+/* Hero primary CTA — subtle shimmer on hover */
 .hero-actions .btn--dark::after {
   content: "";
   position: absolute;
@@ -989,6 +981,26 @@ body {
     animation: none !important;
     transform: none !important;
     opacity: 1 !important;
+  }
+
+  /* Disable new atmosphere animations and spotlight */
+  .dd-atm::before,
+  .dd-atm::after,
+  .dd-atm__blob3 {
+    animation: none !important;
+  }
+
+  .dd-spotlight {
+    display: none !important;
+  }
+
+  /* Ensure any GSAP clip-path targets start visible */
+  .about-h2,
+  .experience-h2,
+  .section-h2 {
+    clip-path: none !important;
+    opacity: 1 !important;
+    transform: none !important;
   }
 }
 
