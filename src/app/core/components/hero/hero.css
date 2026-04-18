@@ -51,22 +51,26 @@
   z-index: 0;
 }
 
-/* Ambient colour blobs — use brand tokens */
-.hero-blob {
+/* Blob wrappers — GSAP moves these for mouse parallax */
+.hero-blob-wrap {
   pointer-events: none;
   position: absolute;
+  z-index: 0;
+}
+.hero-blob-wrap--1 { top: -120px; left: -120px; }
+.hero-blob-wrap--2 { bottom: 0; right: -100px; }
+
+/* Ambient colour blobs — CSS float animation stays on the inner blob */
+.hero-blob {
   border-radius: 50%;
   filter: blur(80px);
   opacity: 0.4;
-  z-index: 0;
 }
 
 .hero-blob--1 {
   width: clamp(240px, 38vw, 500px);
   height: clamp(240px, 38vw, 500px);
   background: radial-gradient(circle, var(--dd-gold-12), transparent 70%);
-  top: -120px;
-  left: -120px;
   animation: var(--animate-float1);
 }
 
@@ -74,8 +78,6 @@
   width: clamp(180px, 28vw, 400px);
   height: clamp(180px, 28vw, 400px);
   background: radial-gradient(circle, var(--dd-purple-06), transparent 70%);
-  bottom: 0;
-  right: -100px;
   animation: var(--animate-float2);
 }
 
@@ -213,7 +215,7 @@
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   box-shadow: var(--shadow-soft);
-  animation: cardIn 1s cubic-bezier(0.16, 1, 0.3, 1) 0.4s both;
+  /* entrance handled by revealOnScroll directive — no CSS cardIn needed */
   max-width: 440px;
   width: 100%;
   margin-left: auto;
@@ -394,12 +396,13 @@
 
 /* ─── Reduced motion ─── */
 @media (prefers-reduced-motion: reduce) {
-  .h1-line      { opacity: 1; transform: none; animation: none; }
-  .hero-card    { opacity: 1; transform: none; animation: none; }
+  .h1-line         { opacity: 1; transform: none; animation: none; }
+  .hero-card       { opacity: 1; transform: none; animation: none; }
   .hero-blob--1,
-  .hero-blob--2 { animation: none; }
+  .hero-blob--2    { animation: none; }
+  .hero-blob-wrap  { transform: none !important; }
   .hero-card,
-  .tile         { transition: background 0.2s, border-color 0.2s; }
+  .tile            { transition: background 0.2s, border-color 0.2s; }
   .hero-card:hover,
-  .tile:hover   { transform: none; box-shadow: none; }
+  .tile:hover      { transform: none; box-shadow: none; }
 }

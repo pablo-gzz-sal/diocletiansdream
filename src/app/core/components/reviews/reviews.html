@@ -1,12 +1,19 @@
 <section class="reviews">
   <div class="reviews-inner">
 
-    <div class="reviews-header" revealOnScroll [revealDelay]="0">
+    <div class="reviews-header">
       <div>
-        <p class="eyebrow">{{ 'home.reviews.selected' | translate }}</p>
-        <h2 class="section-h2">{{ 'home.reviews.title' | translate }}</h2>
+        <p class="eyebrow" revealOnScroll [revealDelay]="0">{{ 'home.reviews.selected' | translate }}</p>
+        <h2 class="section-h2" revealOnScroll [revealDelay]="0.12" [revealClip]="true">{{ 'home.reviews.title' | translate }}</h2>
       </div>
-      <a routerLink="/reviews" class="inline-link hide-mobile">
+      <a
+        href="https://www.tripadvisor.com/Attraction_Review-g295370-d20921353"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-link hide-mobile"
+        revealOnScroll
+        [revealDelay]="0.2"
+      >
         {{ 'home.reviews.cta' | translate }} →
       </a>
     </div>
@@ -50,7 +57,12 @@
         </div>
 
         <!-- CTA -->
-        <a routerLink="/reviews" class="inline-link">
+        <a
+          href="https://www.tripadvisor.com/Attraction_Review-g295370-d20921353"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-link"
+        >
           {{ 'home.reviews.cta' | translate }} →
         </a>
 

@@ -65,27 +65,11 @@
           </p>
 
           <div class="mt-8 flex flex-wrap gap-3">
-            <a
-              routerLink="/booking"
-              class="inline-flex items-center justify-center rounded-full px-6 py-3 font-[family-name:var(--font-sans)] text-[0.8rem] font-medium text-white hover:opacity-90 transition-opacity no-underline"
-              style="background: var(--dd-purple)"
-            >
+            <a routerLink="/booking" class="btn btn--dark">
               {{ 'visitPage.hero.ctaPrimary' | translate }}
             </a>
-
-            <a
-              href="#map"
-              class="inline-flex items-center justify-center rounded-full px-6 py-3 font-[family-name:var(--font-sans)] text-[0.8rem] font-medium border border-black/10 bg-white/50 text-ink hover:bg-white transition-colors no-underline"
-            >
-              Map & directions
-            </a>
-
-            <a
-              href="#hours"
-              class="inline-flex items-center justify-center rounded-full px-6 py-3 font-[family-name:var(--font-sans)] text-[0.8rem] font-medium border border-black/10 bg-white/50 text-ink hover:bg-white transition-colors no-underline"
-            >
-              Opening hours
-            </a>
+            <a href="#map" class="btn btn--ghost">Map & directions</a>
+            <a href="#hours" class="btn btn--ghost">Opening hours</a>
           </div>
 
           <div class="mt-8 flex flex-wrap items-center gap-3 text-ink-60">
@@ -146,16 +130,11 @@
             [href]="directionsUrl"
             target="_blank"
             rel="noopener"
-            class="inline-flex items-center justify-center rounded-full px-6 py-3 font-[family-name:var(--font-sans)] text-[0.8rem] font-medium text-white hover:opacity-90 transition-opacity no-underline"
-            style="background: var(--dd-purple)"
+            class="btn btn--dark"
           >
             Get directions
           </a>
-          <a
-            routerLink="/booking"
-            class="inline-flex items-center justify-center rounded-full px-6 py-3 font-[family-name:var(--font-sans)] text-[0.8rem] font-medium text-ink hover:opacity-90 transition-opacity no-underline"
-            style="background: var(--dd-gold)"
-          >
+          <a routerLink="/booking" class="btn btn--cream">
             {{ 'visitPage.hero.ctaPrimary' | translate }}
           </a>
         </div>
@@ -208,11 +187,7 @@
             </p>
 
             <div class="pt-4 border-t border-black/10">
-              <a
-                routerLink="/booking"
-                class="inline-flex items-center justify-center rounded-full px-7 py-3 font-[family-name:var(--font-sans)] text-[0.8rem] font-medium text-white hover:opacity-90 transition-opacity no-underline"
-                style="background: var(--dd-purple)"
-              >
+              <a routerLink="/booking" class="btn btn--dark">
                 {{ 'visitPage.individual.cta' | translate }}
               </a>
             </div>
@@ -244,14 +219,14 @@
 
             <div class="pt-4 border-t border-black/10 flex flex-wrap gap-3">
               <a
-                routerLink="/contact"
+                href="mailto:contact@diocletiansdream.com"
                 class="inline-flex items-center justify-center rounded-full px-7 py-3 font-[family-name:var(--font-sans)] text-[0.8rem] font-medium text-ink hover:opacity-90 transition-opacity no-underline"
                 style="background: var(--dd-gold)"
               >
                 {{ 'visitPage.groups.cta' | translate }}
               </a>
               <a
-                routerLink="/contact"
+                href="mailto:contact@diocletiansdream.com"
                 class="inline-flex items-center gap-2 font-[family-name:var(--font-sans)] text-[0.8rem] font-medium text-ink underline underline-offset-4 hover:opacity-60 transition-opacity"
               >
                 {{ 'visitPage.groups.ctaLinkText' | translate }} →
@@ -282,7 +257,7 @@
 
             <div class="pt-4 border-t border-black/10 flex flex-wrap gap-3">
               <a
-                routerLink="/contact"
+                href="mailto:contact@diocletiansdream.com"
                 class="inline-flex items-center justify-center rounded-full px-7 py-3 font-[family-name:var(--font-sans)] text-[0.8rem] font-medium text-white hover:opacity-90 transition-opacity no-underline"
                 style="background: var(--dd-purple)"
               >
@@ -290,7 +265,7 @@
               </a>
 
               <a
-                routerLink="/contact"
+                href="mailto:contact@diocletiansdream.com"
                 class="inline-flex items-center gap-2 font-[family-name:var(--font-sans)] text-[0.8rem] font-medium text-ink underline underline-offset-4 hover:opacity-60 transition-opacity"
               >
                 {{ 'visitPage.schools.ctaLinkText' | translate }} →
@@ -354,20 +329,8 @@
           </div>
 
           <div class="mt-8 flex flex-wrap gap-3">
-            <a
-              routerLink="/booking"
-              class="inline-flex items-center justify-center rounded-full px-7 py-3 font-[family-name:var(--font-sans)] text-[0.8rem] font-medium text-white hover:opacity-90 transition-opacity no-underline"
-              style="background: var(--dd-purple)"
-            >
-              Book now
-            </a>
-            <a
-              routerLink="/contact"
-              class="inline-flex items-center justify-center rounded-full px-7 py-3 font-[family-name:var(--font-sans)] text-[0.8rem] font-medium text-ink hover:opacity-90 transition-opacity no-underline"
-              style="background: var(--dd-gold)"
-            >
-              Contact
-            </a>
+            <a routerLink="/booking" class="btn btn--dark">Book now</a>
+            <a href="mailto:contact@diocletiansdream.com" class="btn btn--cream">Contact us</a>
           </div>
         </div>
       </div>
@@ -444,19 +407,10 @@
             </p>
 
             <div class="pt-4 border-t border-black/10 flex flex-wrap gap-3">
-              <a
-                routerLink="/booking"
-                class="inline-flex items-center justify-center rounded-full px-7 py-3 font-[family-name:var(--font-sans)] text-[0.8rem] font-medium text-white hover:opacity-90 transition-opacity no-underline"
-                style="background: var(--dd-purple)"
-              >
+              <a routerLink="/booking" class="btn btn--dark">
                 {{ 'visitPage.bookingInfo.ctaPrimary' | translate }}
               </a>
-
-              <a
-                routerLink="/contact"
-                class="inline-flex items-center justify-center rounded-full px-7 py-3 font-[family-name:var(--font-sans)] text-[0.8rem] font-medium text-ink hover:opacity-90 transition-opacity no-underline"
-                style="background: var(--dd-gold)"
-              >
+              <a href="mailto:contact@diocletiansdream.com" class="btn btn--cream">
                 {{ 'visitPage.bookingInfo.ctaSecondary' | translate }}
               </a>
             </div>

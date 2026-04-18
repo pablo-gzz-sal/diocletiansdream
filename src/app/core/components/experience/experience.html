@@ -1,9 +1,9 @@
 <section id="experience" class="experience">
   <div class="experience-inner">
 
-    <div class="experience-heading" revealOnScroll [revealDelay]="0">
-      <p class="eyebrow">{{ 'home.experience.cta' | translate }}</p>
-      <h2 class="experience-h2">
+    <div class="experience-heading">
+      <p class="eyebrow" revealOnScroll [revealDelay]="0">{{ 'home.experience.cta' | translate }}</p>
+      <h2 class="experience-h2" revealOnScroll [revealDelay]="0.12" [revealClip]="true">
         {{ 'home.experience.title' | translate }}
       </h2>
     </div>
@@ -35,19 +35,19 @@
       </div>
 
       <!-- Stat: duration -->
-      <div class="bento-cell bento-cell--stat">
-        <span class="stat-num">15<span class="stat-unit">'</span></span>
+      <div class="bento-cell bento-cell--stat" revealOnScroll [revealDelay]="0.25" [revealY]="30">
+        <span class="stat-num"><span class="stat-count" data-target="15">15</span><span class="stat-unit">'</span></span>
         <span class="stat-label">{{ 'home.experience.statDuration' | translate }}</span>
       </div>
 
       <!-- Stat: year -->
-      <div class="bento-cell bento-cell--stat bento-cell--statB">
-        <span class="stat-num">305</span>
+      <div class="bento-cell bento-cell--stat bento-cell--statB" revealOnScroll [revealDelay]="0.3" [revealY]="30">
+        <span class="stat-num"><span class="stat-count" data-target="305">305</span></span>
         <span class="stat-label">{{ 'home.experience.statYear' | translate }}</span>
       </div>
 
       <!-- Wide panorama image -->
-      <div class="bento-cell bento-cell--imgC">
+      <div class="bento-cell bento-cell--imgC" revealOnScroll [revealDelay]="0.35" [revealY]="40">
         <div class="bento-img-placeholder">Wide palace panorama</div>
       </div>
 

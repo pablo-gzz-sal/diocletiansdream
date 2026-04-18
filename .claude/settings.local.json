@@ -16,7 +16,21 @@
       "Bash(node -e \"const d = require\\('./src/assets/i18n/hr.json'\\); console.log\\(JSON.stringify\\(d.bookingPage, null, 2\\)\\)\")",
       "Bash(powershell -Command \"\\(Get-Content 'src/app/features/about/about.html' -Encoding UTF8\\) -replace '\\\\u2018|\\\\u2019', \\\\\"'\\\\\" | Set-Content 'src/app/features/about/about.html' -Encoding UTF8\")",
       "Bash(powershell -Command \"\\(Get-Content 'src/app/features/contact/contact.html' -Encoding UTF8\\) -replace '\\\\u2018|\\\\u2019', \\\\\"'\\\\\" | Set-Content 'src/app/features/contact/contact.html' -Encoding UTF8\")",
-      "Bash(powershell -Command \"\\(Get-Content 'src/app/features/experience/experience.html' -Encoding UTF8\\) -replace '\\\\u2018|\\\\u2019', \\\\\"'\\\\\" | Set-Content 'src/app/features/experience/experience.html' -Encoding UTF8\")"
+      "Bash(powershell -Command \"\\(Get-Content 'src/app/features/experience/experience.html' -Encoding UTF8\\) -replace '\\\\u2018|\\\\u2019', \\\\\"'\\\\\" | Set-Content 'src/app/features/experience/experience.html' -Encoding UTF8\")",
+      "Bash(python3 -c ':*)",
+      "Bash(where py:*)",
+      "Bash(py --version)",
+      "Bash(where python3.exe)",
+      "Bash(py -c ':*)",
+      "Bash(py -c \"from pypdf import PdfReader; print\\('pypdf ok'\\)\")",
+      "Bash(py -m pip install pdfplumber)",
+      "Bash(find /c/Users/BOOK/Documents/Projects/diocletiansdream/.claude/worktrees/reverent-shirley/src -name \"*.html\" -type f -exec grep -l \"style=\" {} \\\\;)",
+      "Bash(find src:*)",
+      "Bash(ls src/assets/)",
+      "Bash(ls src/i18n/)",
+      "Bash(python \"C:\\\\Users\\\\BOOK\\\\.claude\\\\skills\\\\ui-ux-pro-max\\\\scripts\\\\search.py\" \"luxury museum VR heritage tourism immersive editorial premium\" --design-system -p \"Diocletian's Dream\" -f markdown)",
+      "Bash(python3 \"C:\\\\Users\\\\BOOK\\\\.claude\\\\skills\\\\ui-ux-pro-max\\\\scripts\\\\search.py\" \"luxury museum VR heritage tourism immersive editorial premium\" --design-system -p \"Diocletian's Dream\" -f markdown)",
+      "Bash(npx ng *)"
     ]
   }
 }

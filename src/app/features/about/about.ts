@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { Header } from '../../core/components/header/header';
 import { Footer } from '../../core/components/footer/footer';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
@@ -12,7 +13,7 @@ import { RevealOnScrollDirective } from '../../shared/animations/reveal-on-scrol
 @Component({
   selector: 'app-about',
   standalone: true,
-  imports: [CommonModule, Header, Footer, TranslateModule, BlogInvite, RevealOnScrollDirective],
+  imports: [CommonModule, RouterLink, Header, Footer, TranslateModule, BlogInvite, RevealOnScrollDirective],
   templateUrl: './about.html',
   styleUrl: './about.css',
 })

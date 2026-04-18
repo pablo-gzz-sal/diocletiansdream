@@ -2,8 +2,13 @@
   <!-- Background layers -->
   <div class="grain"></div>
   <div class="hero-accent-line"></div>
-  <div class="hero-blob hero-blob--1"></div>
-  <div class="hero-blob hero-blob--2"></div>
+  <!-- Blob wrappers handle GSAP mouse parallax; inner blobs retain CSS float -->
+  <div class="hero-blob-wrap hero-blob-wrap--1" aria-hidden="true">
+    <div class="hero-blob hero-blob--1"></div>
+  </div>
+  <div class="hero-blob-wrap hero-blob-wrap--2" aria-hidden="true">
+    <div class="hero-blob hero-blob--2"></div>
+  </div>
   <div
     class="pointer-events-none absolute -top-24 -left-24 h-[420px] w-[420px] rounded-full blur-3xl opacity-25 dd-float"
     style="background: radial-gradient(circle at 30% 30%, var(--dd-purple), transparent 60%)"
@@ -21,7 +26,8 @@
     <div class="hero-text">
       <p class="eyebrow" revealOnScroll [revealDelay]="0">{{ 'home.hero.title' | translate }}</p>
 
-      <h1 class="hero-h1" revealOnScroll [revealDelay]="0.1">
+      <!-- H1 lines animate via CSS keyframes — no GSAP wrapper needed -->
+      <h1 class="hero-h1">
         <!-- Screen-reader full title -->
         <span class="sr-only">{{ 'home.hero.title' | translate }}</span>
         <!-- Visual split lines -->

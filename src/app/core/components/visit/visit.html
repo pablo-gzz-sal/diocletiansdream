@@ -2,19 +2,20 @@
 <section class="visit">
   <div class="visit-inner">
 
-    <div class="visit-header" revealOnScroll [revealDelay]="0">
+    <!-- No wrapper revealOnScroll — children animate independently to avoid nested opacity conflicts -->
+    <div class="visit-header">
       <div>
-        <p class="eyebrow">{{ 'home.unique.cta' | translate }}</p>
-        <h2 class="section-h2">{{ 'home.unique.title' | translate }}</h2>
+        <p class="eyebrow" revealOnScroll [revealDelay]="0">{{ 'home.unique.cta' | translate }}</p>
+        <h2 class="section-h2" revealOnScroll [revealDelay]="0.12" [revealClip]="true">{{ 'home.unique.title' | translate }}</h2>
       </div>
-      <a routerLink="/visit" class="inline-link hide-mobile">
+      <a routerLink="/visit" class="inline-link hide-mobile" revealOnScroll [revealDelay]="0.2">
         {{ 'home.unique.cta' | translate }} →
       </a>
     </div>
 
     <div class="visit-cards">
-
-      <div class="vcard" revealOnScroll [revealDelay]="0.1">
+      <!-- No revealOnScroll on vcards — GSAP in visit.ts handles directional stagger -->
+      <div class="vcard">
         <span class="vcard-num">01</span>
         <p class="vcard-title">{{ 'home.unique.reconstruction.title' | translate }}</p>
         <p class="vcard-text">{{ 'home.unique.reconstruction.text' | translate }}</p>
@@ -23,7 +24,7 @@
         </a>
       </div>
 
-      <div class="vcard" revealOnScroll [revealDelay]="0.2">
+      <div class="vcard">
         <span class="vcard-num">02</span>
         <p class="vcard-title">{{ 'home.unique.journey.title' | translate }}</p>
         <p class="vcard-text">{{ 'home.unique.journey.text' | translate }}</p>
@@ -32,7 +33,7 @@
         </a>
       </div>
 
-      <div class="vcard" revealOnScroll [revealDelay]="0.3">
+      <div class="vcard">
         <span class="vcard-num">03</span>
         <p class="vcard-title">{{ 'home.unique.educational.title' | translate }}</p>
         <p class="vcard-text">{{ 'home.unique.educational.text' | translate }}</p>
@@ -50,9 +51,9 @@
 <section class="location">
   <div class="location-inner">
 
-    <div class="location-heading" revealOnScroll [revealDelay]="0">
-      <p class="eyebrow">{{ 'home.location.cta' | translate }}</p>
-      <h2 class="location-h2">{{ 'home.location.title' | translate }}</h2>
+    <div class="location-heading">
+      <p class="eyebrow" revealOnScroll [revealDelay]="0">{{ 'home.location.cta' | translate }}</p>
+      <h2 class="location-h2" revealOnScroll [revealDelay]="0.12" [revealClip]="true">{{ 'home.location.title' | translate }}</h2>
     </div>
 
     <div class="bento location-bento">
