@@ -1,6 +1,6 @@
 import { NgClass } from '@angular/common';
 import { AfterViewInit, Component, HostListener, inject, OnDestroy, OnInit, signal } from '@angular/core';
-import { NavigationStart, Router, RouterLink, RouterLinkActive } from '@angular/router';
+import { NavigationEnd, NavigationStart, Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { filter } from 'rxjs';
 import { I18nService } from '../../i18n/i18n.service';
 import { TranslateModule } from '@ngx-translate/core';
@@ -15,6 +15,7 @@ import { TranslateModule } from '@ngx-translate/core';
 export class Header implements OnInit, OnDestroy, AfterViewInit {
   menuOpen = signal(false);
   scrolled = signal(false);
+  homeRoute = signal(false);
 
   private i18n = inject(I18nService);
   private removeOverflow = () => document.body.classList.remove('overflow-hidden');
@@ -22,9 +23,15 @@ export class Header implements OnInit, OnDestroy, AfterViewInit {
   constructor(private router: Router) {}
 
   ngOnInit() {
+    this.updateRouteState();
+
     this.router.events
       .pipe(filter((e) => e instanceof NavigationStart))
       .subscribe(() => this.closeMenu());
+
+    this.router.events
+      .pipe(filter((e) => e instanceof NavigationEnd))
+      .subscribe(() => this.updateRouteState());
   }
 
   ngAfterViewInit() {
@@ -57,5 +64,10 @@ export class Header implements OnInit, OnDestroy, AfterViewInit {
 
   currentLang() {
     return this.i18n.current();
+  }
+
+  private updateRouteState() {
+    const path = this.router.url.split('?')[0].split('#')[0];
+    this.homeRoute.set(path === '/' || path === '');
   }
 }

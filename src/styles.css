@@ -1022,4 +1022,713 @@ body {
   border: 0 !important;
 }
 
+/* ==========================================================================
+   UI/UX ELEVATION LAYER
+   Styling-only polish: keeps palette, copy, assets, routes, and i18n unchanged.
+   ========================================================================== */
+
+:root {
+  --dd-container: 1280px;
+  --dd-page-x: clamp(1rem, 4vw, 2.5rem);
+  --dd-section-y: clamp(4.5rem, 8vw, 7rem);
+  --dd-surface: rgba(255, 255, 255, 0.62);
+  --dd-surface-strong: rgba(255, 255, 255, 0.78);
+  --dd-surface-dark: rgba(26, 24, 20, 0.92);
+  --dd-border-hairline: rgba(26, 24, 20, 0.095);
+  --dd-border-hover: rgba(45, 4, 106, 0.22);
+  --dd-blur: blur(18px) saturate(1.05);
+  --dd-shadow-rest: 0 1px 0 rgba(26, 24, 20, 0.04), 0 18px 55px rgba(26, 24, 20, 0.07);
+  --dd-shadow-lift: 0 1px 0 rgba(26, 24, 20, 0.06), 0 26px 78px rgba(26, 24, 20, 0.13);
+  --dd-ease: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+html,
+body {
+  overflow-x: clip;
+}
+
+body {
+  color: var(--color-ink);
+  text-rendering: optimizeLegibility;
+  background-attachment: fixed;
+  background-image:
+    radial-gradient(ellipse 70% 55% at -5% -5%, rgba(45, 4, 106, 0.05) 0%, transparent 58%),
+    radial-gradient(ellipse 55% 65% at 106% 106%, rgba(194, 154, 89, 0.045) 0%, transparent 58%),
+    linear-gradient(rgba(26, 24, 20, 0.028) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(26, 24, 20, 0.024) 1px, transparent 1px);
+  background-size:
+    auto,
+    auto,
+    72px 72px,
+    72px 72px;
+}
+
+img,
+iframe,
+svg {
+  max-width: 100%;
+}
+
+main {
+  isolation: isolate;
+  position: relative;
+}
+
+main::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.58;
+  background:
+    radial-gradient(circle at 15% 20%, var(--dd-purple-06), transparent 34%),
+    radial-gradient(circle at 85% 78%, var(--dd-gold-12), transparent 38%);
+}
+
+::selection {
+  background: var(--dd-purple-20);
+  color: var(--color-ink);
+}
+
+/* Floating editorial header */
+.dd-site-header {
+  top: clamp(0.625rem, 1.5vw, 1rem) !important;
+  left: var(--dd-page-x) !important;
+  right: var(--dd-page-x) !important;
+  border: 1px solid rgba(26, 24, 20, 0.08);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--color-cream) 84%, white 16%);
+  box-shadow: 0 16px 45px rgba(26, 24, 20, 0.09);
+  -webkit-backdrop-filter: var(--dd-blur);
+  backdrop-filter: var(--dd-blur);
+}
+
+.dd-site-header.dd-header-home-top {
+  border-color: transparent;
+  background: transparent !important;
+  box-shadow: none !important;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+}
+
+.dd-site-header.dd-header-home-top img {
+  background: rgba(245, 240, 232, 0.88);
+  box-shadow:
+    0 0 0 1px rgba(250, 248, 244, 0.4),
+    0 16px 40px rgba(0, 0, 0, 0.18);
+}
+
+.dd-site-header.dd-header-home-top a[routerlink="/"] span,
+.dd-site-header.dd-header-home-top a[ng-reflect-router-link="/"] span {
+  color: rgba(250, 248, 244, 0.9);
+  text-shadow: 0 1px 18px rgba(0, 0, 0, 0.35);
+}
+
+.dd-site-header.dd-header-home-top .nav-link:hover,
+.dd-site-header.dd-header-home-top .nav-link.is-active {
+  color: var(--color-warm) !important;
+  border-color: rgba(250, 248, 244, 0.18);
+  background: rgba(250, 248, 244, 0.1) !important;
+  box-shadow: inset 0 0 0 1px rgba(250, 248, 244, 0.08);
+}
+
+.dd-site-header.dd-header-home-top [aria-label*="Language"],
+.dd-site-header.dd-header-home-top div[aria-label] {
+  background: rgba(250, 248, 244, 0.13) !important;
+  border-color: rgba(250, 248, 244, 0.18) !important;
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+}
+
+.dd-site-header > div {
+  max-width: var(--dd-container);
+  padding-inline: clamp(0.75rem, 2vw, 1.25rem) !important;
+}
+
+.dd-site-header .h-16 {
+  height: clamp(3.25rem, 6vw, 3.75rem);
+}
+
+.dd-site-header img {
+  box-shadow: 0 0 0 1px rgba(26, 24, 20, 0.08);
+}
+
+.dd-site-header .nav-link {
+  position: relative;
+  border: 1px solid transparent;
+  letter-spacing: 0.035em;
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+}
+
+.dd-site-header .nav-link:hover,
+.dd-site-header .nav-link.is-active {
+  border-color: rgba(26, 24, 20, 0.08);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.34);
+}
+
+.dd-site-header a[routerlink="/booking"],
+.dd-site-header a[ng-reflect-router-link="/booking"] {
+  box-shadow: 0 12px 34px rgba(26, 24, 20, 0.13);
+  transition:
+    transform 220ms var(--dd-ease),
+    box-shadow 220ms var(--dd-ease),
+    opacity 220ms var(--dd-ease);
+}
+
+.dd-site-header a[routerlink="/booking"]:hover,
+.dd-site-header a[ng-reflect-router-link="/booking"]:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 16px 44px rgba(26, 24, 20, 0.17);
+  opacity: 1 !important;
+}
+
+.dd-site-header.dd-header-home-top a[routerlink="/booking"],
+.dd-site-header.dd-header-home-top a[ng-reflect-router-link="/booking"] {
+  background: rgba(250, 248, 244, 0.9) !important;
+  color: var(--color-ink) !important;
+}
+
+@media (max-width: 767px) {
+  .dd-site-header {
+    left: 0.75rem !important;
+    right: 0.75rem !important;
+  }
+
+  .dd-site-header > div {
+    padding-inline: 0.6rem !important;
+  }
+
+  .dd-site-header .h-16 {
+    gap: 0.75rem !important;
+    min-width: 0;
+  }
+
+  .dd-site-header a[routerlink="/"],
+  .dd-site-header a[ng-reflect-router-link="/"] {
+    min-width: 0;
+    flex: 0 1 auto;
+  }
+
+  .dd-site-header button[aria-expanded] {
+    position: absolute;
+    top: 50%;
+    right: 0.6rem;
+    margin-left: auto;
+    display: inline-flex !important;
+    flex: 0 0 2.25rem;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.38) !important;
+    border: 1px solid rgba(26, 24, 20, 0.08) !important;
+  }
+
+  .dd-site-header.dd-header-home-top button[aria-expanded] {
+    background: rgba(26, 24, 20, 0.24) !important;
+    border-color: rgba(250, 248, 244, 0.22) !important;
+    box-shadow: 0 12px 34px rgba(0, 0, 0, 0.18);
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+  }
+
+  .dd-site-header.dd-header-home-top button[aria-expanded] span {
+    background: var(--color-warm) !important;
+  }
+
+  .dd-site-header::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: 1.25rem;
+    z-index: 3;
+    width: 1rem;
+    height: 1px;
+    pointer-events: none;
+    background: var(--color-ink);
+    box-shadow:
+      0 -5px 0 var(--color-ink),
+      0 5px 0 var(--color-ink);
+    transform: translateY(-50%);
+  }
+
+  .dd-site-header.dd-header-home-top::after {
+    background: var(--color-warm);
+    box-shadow:
+      0 -5px 0 var(--color-warm),
+      0 5px 0 var(--color-warm);
+  }
+
+  .dd-site-header:has(button[aria-expanded="true"])::after {
+    opacity: 0;
+  }
+}
+
+.dd-mobile-menu-layer {
+  z-index: 1000 !important;
+}
+
+.dd-mobile-menu-panel {
+  border-radius: 1.35rem !important;
+  background: color-mix(in srgb, var(--color-cream) 90%, white 10%) !important;
+  border-color: rgba(26, 24, 20, 0.12) !important;
+  box-shadow: 0 34px 90px rgba(26, 24, 20, 0.26);
+  -webkit-backdrop-filter: var(--dd-blur);
+  backdrop-filter: var(--dd-blur);
+}
+
+.dd-mobile-menu-panel::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.45;
+  background:
+    radial-gradient(circle at 12% 5%, var(--dd-gold-12), transparent 32%),
+    radial-gradient(circle at 100% 90%, var(--dd-purple-06), transparent 38%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.38), transparent 34%);
+}
+
+.dd-mobile-menu-nav {
+  flex: 1 1 auto;
+  min-height: 0;
+  justify-content: flex-start !important;
+}
+
+.dd-mobile-menu-panel nav a {
+  border: 1px solid transparent;
+  min-height: 3.75rem;
+  transform: translateY(0);
+  transition:
+    background 220ms var(--dd-ease),
+    border-color 220ms var(--dd-ease),
+    transform 220ms var(--dd-ease);
+}
+
+.dd-mobile-menu-panel nav a:hover {
+  border-color: rgba(26, 24, 20, 0.08);
+}
+
+.dd-mobile-menu-panel nav a.is-active {
+  background: rgba(26, 24, 20, 0.06);
+  border-color: rgba(26, 24, 20, 0.08);
+}
+
+.dd-mobile-menu-panel nav a.is-active span:first-child {
+  color: var(--color-ink);
+}
+
+.dd-mobile-menu-panel nav a:hover {
+  transform: translateX(2px);
+}
+
+.dd-mobile-menu-panel nav a span:last-child {
+  color: var(--dd-purple);
+}
+
+/* Editorial rhythm and surfaces */
+.hero,
+.booking-hero,
+main > section:first-child {
+  padding-top: clamp(7.25rem, 12vw, 10rem) !important;
+}
+
+section {
+  scroll-margin-top: 6rem;
+}
+
+.experience,
+.visit,
+.location,
+.booking-widget-section,
+.booking-faq,
+.map-section,
+main > section:not(:first-child) {
+  padding-block: var(--dd-section-y) !important;
+}
+
+.hero-inner,
+.tile-grid,
+.experience-inner,
+.visit-inner,
+.location-inner,
+.booking-hero__inner,
+.booking-widget-inner,
+.booking-faq__inner,
+.map-section__inner,
+main .max-w-7xl {
+  max-width: var(--dd-container) !important;
+}
+
+.hero-inner,
+.experience-inner,
+.visit-inner,
+.location-inner,
+.booking-hero__inner,
+.booking-widget-inner,
+.booking-faq__inner,
+.map-section__inner {
+  padding-inline: var(--dd-page-x);
+}
+
+.eyebrow {
+  position: relative;
+  letter-spacing: 0.22em !important;
+}
+
+.section-h2,
+.experience-h2,
+.location-h2,
+.booking-context__h2,
+.booking-faq__h2,
+.map-header__h2,
+.booking-hero__h1,
+.hero-h1 {
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+.hero-sub,
+.bento-copy,
+.vcard-text,
+.booking-context__copy,
+.map-header__copy,
+.bfaq-a,
+.blog-prose p {
+  line-height: 1.78;
+}
+
+/* Shared premium card behavior */
+.hero-card,
+.tile,
+.vcard,
+.bento-cell,
+.turitop-card,
+.booking-hero__card,
+.booking-fact,
+.bfaq-item,
+.map-address-card,
+.map-embed-wrap,
+.blog-card,
+.blog-skeleton__card,
+.blog-prose blockquote,
+.footer-social,
+main article,
+main details,
+main [class*="rounded-[1rem]"][class*="border"],
+main [class*="rounded-[1.125rem]"][class*="border"],
+main [class*="rounded-[2rem]"][class*="border"] {
+  border-color: var(--dd-border-hairline) !important;
+}
+
+.hero-card,
+.vcard,
+.bento-cell,
+.turitop-card,
+.bfaq-item,
+.map-address-card,
+.blog-card,
+main article,
+main details,
+main [class*="bg-white/55"],
+main [class*="bg-white/60"],
+main [class*="bg-white/65"] {
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+  box-shadow: var(--dd-shadow-rest);
+}
+
+.hero-card,
+.vcard,
+.bento-cell,
+.tile,
+.bfaq-item,
+.blog-card,
+main article,
+main details {
+  transition:
+    transform 240ms var(--dd-ease),
+    box-shadow 240ms var(--dd-ease),
+    border-color 220ms var(--dd-ease),
+    background 220ms var(--dd-ease),
+    opacity 220ms var(--dd-ease);
+}
+
+.hero-card:hover,
+.vcard:hover,
+.bento-cell:hover,
+.tile:hover,
+.bfaq-item:hover,
+.blog-card:hover,
+main article:hover,
+main details:hover {
+  border-color: var(--dd-border-hover) !important;
+  box-shadow: var(--dd-shadow-lift);
+}
+
+.hero-card,
+.turitop-card,
+.map-embed-wrap,
+.booking-hero__card,
+main [class*="rounded-[3rem]"] {
+  border-radius: clamp(1.25rem, 2vw, 2rem) !important;
+}
+
+.vcard,
+.bento-cell,
+.bfaq-item,
+main article,
+main details,
+main [class*="rounded-[1.125rem]"] {
+  border-radius: clamp(1rem, 1.5vw, 1.35rem) !important;
+}
+
+/* Make placeholder panels feel like deliberate exhibit frames */
+.bento-img-placeholder,
+[class*="bg-gradient-to-b"][class*="from-sand"],
+[class*="bg-gradient-to-b"][class*="from-cream"],
+[class*="bg-gradient-to-br"][class*="from-sand"] {
+  position: relative;
+  overflow: hidden;
+}
+
+.bento-img-placeholder::before,
+[class*="bg-gradient-to-b"][class*="from-sand"]::before,
+[class*="bg-gradient-to-b"][class*="from-cream"]::before,
+[class*="bg-gradient-to-br"][class*="from-sand"]::before {
+  content: "";
+  position: absolute;
+  inset: 0.75rem;
+  border: 1px solid rgba(26, 24, 20, 0.08);
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+.bento-img-placeholder::after,
+[class*="bg-gradient-to-b"][class*="from-sand"]::after,
+[class*="bg-gradient-to-b"][class*="from-cream"]::after,
+[class*="bg-gradient-to-br"][class*="from-sand"]::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.12;
+  pointer-events: none;
+  background:
+    linear-gradient(120deg, transparent 0 42%, rgba(255, 255, 255, 0.42) 50%, transparent 58%),
+    radial-gradient(circle at 25% 20%, var(--dd-gold-12), transparent 40%),
+    radial-gradient(circle at 80% 85%, var(--dd-purple-06), transparent 38%);
+}
+
+.bento-img-placeholder > *,
+[class*="bg-gradient-to-b"][class*="from-sand"] > *,
+[class*="bg-gradient-to-b"][class*="from-cream"] > *,
+[class*="bg-gradient-to-br"][class*="from-sand"] > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Buttons, links, and form controls */
+.btn,
+button,
+a,
+summary,
+input {
+  -webkit-tap-highlight-color: transparent;
+}
+
+a,
+button,
+summary {
+  cursor: pointer;
+}
+
+.btn,
+a[class*="rounded-full"],
+button[class*="rounded-full"],
+input {
+  min-height: 2.65rem;
+}
+
+.btn,
+a[class*="rounded-full"],
+button[class*="rounded-full"] {
+  transition:
+    transform 220ms var(--dd-ease),
+    box-shadow 220ms var(--dd-ease),
+    background 220ms var(--dd-ease),
+    border-color 220ms var(--dd-ease),
+    opacity 220ms var(--dd-ease);
+}
+
+.inline-link {
+  text-underline-offset: 0.28em;
+}
+
+input {
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.48);
+}
+
+input:focus {
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.65),
+    0 0 0 4px var(--dd-purple-10);
+}
+
+:where(a, button, input, summary, [tabindex]):focus-visible {
+  outline: none !important;
+  box-shadow:
+    0 0 0 2px color-mix(in srgb, var(--color-cream) 85%, white 15%),
+    0 0 0 6px var(--dd-purple-10),
+    var(--dd-shadow-rest);
+}
+
+/* Blog/cards grids: slightly more refined editorial density */
+.blog-card,
+a.group[class*="rounded-[1rem]"] {
+  min-height: 100%;
+}
+
+.blog-card__img,
+a.group img {
+  transform-origin: center;
+}
+
+a.group:hover img {
+  filter: saturate(1.03) contrast(1.02);
+}
+
+details summary::-webkit-details-marker {
+  display: none;
+}
+
+details[open] {
+  background: var(--dd-surface-strong) !important;
+}
+
+/* Footer polish */
+footer {
+  position: relative;
+  overflow: hidden;
+}
+
+footer::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.18;
+  background:
+    radial-gradient(circle at 15% 0%, var(--dd-purple-20), transparent 32%),
+    radial-gradient(circle at 95% 75%, var(--dd-gold-12), transparent 36%);
+}
+
+footer > div {
+  position: relative;
+  z-index: 1;
+}
+
+.footer-social:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 12px 34px rgba(0, 0, 0, 0.2);
+}
+
+.footer-nav-link {
+  text-underline-offset: 0.25em;
+}
+
+/* Responsive tightening */
+@media (max-width: 1023px) {
+  .hero-inner,
+  .booking-hero__inner,
+  main .grid {
+    gap: clamp(1.75rem, 5vw, 3rem);
+  }
+
+  .hero-card {
+    margin-inline: auto;
+  }
+}
+
+@media (max-width: 640px) {
+  :root {
+    --dd-section-y: clamp(3.5rem, 14vw, 4.75rem);
+  }
+
+  .hero,
+  .booking-hero,
+  main > section:first-child {
+    padding-top: 6.75rem !important;
+  }
+
+  .hero-inner,
+  .tile-grid,
+  .experience-inner,
+  .visit-inner,
+  .location-inner,
+  .booking-hero__inner,
+  .booking-widget-inner,
+  .booking-faq__inner,
+  .map-section__inner {
+    padding-inline: 1rem;
+  }
+
+  .btn,
+  a[class*="rounded-full"],
+  button[class*="rounded-full"] {
+    min-height: 2.75rem;
+  }
+
+  main [class*="px-10"] {
+    padding-inline: 1.5rem !important;
+  }
+
+  main [class*="py-14"] {
+    padding-block: 2.25rem !important;
+  }
+}
+
+@media (hover: none) {
+  .hero-card:hover,
+  .vcard:hover,
+  .bento-cell:hover,
+  .tile:hover,
+  .bfaq-item:hover,
+  .blog-card:hover,
+  main article:hover,
+  main details:hover,
+  a.group:hover img {
+    transform: none !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dd-atm::before,
+  .dd-atm::after,
+  .dd-float,
+  .floaty,
+  .floaty2,
+  .floaty3,
+  .booking-hero__blob,
+  .hero-blob,
+  .marquee-track {
+    animation: none !important;
+  }
+
+  .hero-card,
+  .vcard,
+  .bento-cell,
+  .tile,
+  .bfaq-item,
+  .blog-card,
+  main article,
+  main details,
+  .btn,
+  a,
+  button {
+    transition-duration: 1ms !important;
+  }
+}
+
 
