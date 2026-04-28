@@ -171,7 +171,11 @@
       class="relative z-10 flex items-center justify-between px-5 pt-5 pb-4 border-b border-black/8"
     >
       <a routerLink="/" (click)="closeMenu()" class="flex items-center gap-2 no-underline">
-        <span class="block w-6 h-6 rounded-[0.4rem] bg-ink shrink-0"></span>
+        <img
+          src="assets/images/ddLogo.png"
+          class="w-7 h-7 rounded-[0.45rem] shrink-0"
+          [alt]="'header.brand' | translate"
+        />
         <span
           class="font-[family-name:var(--font-serif)] text-[0.95rem] font-medium text-ink leading-none"
         >
@@ -308,7 +312,7 @@
         (click)="closeMenu()"
         class="flex items-center justify-center rounded-full bg-ink text-warm py-3 text-[0.8rem] font-medium hover:opacity-85 transition-opacity no-underline"
       >
-        {{ 'header.cta.bookTickets' | translate }}
+        {{ 'header.cta.bookNow' | translate }}
       </a>
 
       <!-- info strip -->

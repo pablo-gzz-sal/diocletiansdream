@@ -1268,6 +1268,8 @@ main::after {
 }
 
 .dd-mobile-menu-panel {
+  display: grid !important;
+  grid-template-rows: auto minmax(0, 1fr) auto;
   border-radius: 1.35rem !important;
   background: color-mix(in srgb, var(--color-cream) 90%, white 10%) !important;
   border-color: rgba(26, 24, 20, 0.12) !important;
@@ -1289,19 +1291,42 @@ main::after {
 }
 
 .dd-mobile-menu-nav {
-  flex: 1 1 auto;
+  display: grid !important;
+  grid-auto-rows: minmax(3.3rem, auto);
+  align-content: start;
+  gap: 0.25rem;
+  padding: 0.75rem;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  flex: none !important;
   min-height: 0;
   justify-content: flex-start !important;
 }
 
 .dd-mobile-menu-panel nav a {
+  display: flex !important;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
   border: 1px solid transparent;
-  min-height: 3.75rem;
+  min-height: 3.3rem;
+  padding: 0.7rem 1rem;
+  border-radius: 0.9rem;
+  text-decoration: none;
   transform: translateY(0);
   transition:
     background 220ms var(--dd-ease),
     border-color 220ms var(--dd-ease),
     transform 220ms var(--dd-ease);
+}
+
+.dd-mobile-menu-panel nav a span:first-child {
+  font-family: var(--font-serif);
+  font-size: clamp(1.15rem, 6vw, 1.45rem);
+  font-weight: 300;
+  letter-spacing: -0.01em;
+  line-height: 1.1;
+  color: var(--color-ink);
 }
 
 .dd-mobile-menu-panel nav a:hover {
@@ -1323,6 +1348,45 @@ main::after {
 
 .dd-mobile-menu-panel nav a span:last-child {
   color: var(--dd-purple);
+}
+
+.dd-mobile-menu-panel nav > div {
+  margin: 0.7rem 0.25rem 0 !important;
+}
+
+.dd-mobile-menu-panel nav > div button {
+  min-height: 2rem;
+}
+
+.dd-mobile-menu-panel > div:last-child {
+  padding: 1rem 1.25rem 1.25rem !important;
+  border-top: 1px solid rgba(26, 24, 20, 0.08) !important;
+  background: rgba(237, 231, 218, 0.42);
+}
+
+.dd-mobile-menu-panel > div:last-child > a {
+  width: 100%;
+  min-height: 2.85rem;
+  background: var(--dd-purple) !important;
+  color: var(--color-warm) !important;
+  box-shadow: 0 12px 32px rgba(45, 4, 106, 0.2);
+}
+
+@media (max-height: 700px) {
+  .dd-mobile-menu-panel {
+    top: 0.5rem !important;
+    right: 0.5rem !important;
+    bottom: 0.5rem !important;
+  }
+
+  .dd-mobile-menu-panel nav a {
+    min-height: 2.8rem;
+    padding-block: 0.45rem;
+  }
+
+  .dd-mobile-menu-panel nav a span:first-child {
+    font-size: 1.08rem;
+  }
 }
 
 /* Editorial rhythm and surfaces */
