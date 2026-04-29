@@ -1,6 +1,6 @@
-# Diocletian's Dream VR Museum
+# Diocletians Dream VR Museum
 
-Website for **Diocletian's Dream** — a 15-minute virtual reality museum experience that brings Diocletian's Palace back to life in 305 AD, located just outside the palace walls near the Golden Gate in Split, Croatia.
+Website for **Diocletians Dream** — a 15-minute virtual reality museum experience that brings Diocletians Palace back to life in 305 AD, located just outside the palace walls near the Golden Gate in Split, Croatia.
 
 **Live site:** https://diocletiansdream.com
 

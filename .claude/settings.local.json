@@ -28,8 +28,8 @@
       "Bash(find src:*)",
       "Bash(ls src/assets/)",
       "Bash(ls src/i18n/)",
-      "Bash(python \"C:\\\\Users\\\\BOOK\\\\.claude\\\\skills\\\\ui-ux-pro-max\\\\scripts\\\\search.py\" \"luxury museum VR heritage tourism immersive editorial premium\" --design-system -p \"Diocletian's Dream\" -f markdown)",
-      "Bash(python3 \"C:\\\\Users\\\\BOOK\\\\.claude\\\\skills\\\\ui-ux-pro-max\\\\scripts\\\\search.py\" \"luxury museum VR heritage tourism immersive editorial premium\" --design-system -p \"Diocletian's Dream\" -f markdown)",
+      "Bash(python \"C:\\\\Users\\\\BOOK\\\\.claude\\\\skills\\\\ui-ux-pro-max\\\\scripts\\\\search.py\" \"luxury museum VR heritage tourism immersive editorial premium\" --design-system -p \"Diocletians Dream\" -f markdown)",
+      "Bash(python3 \"C:\\\\Users\\\\BOOK\\\\.claude\\\\skills\\\\ui-ux-pro-max\\\\scripts\\\\search.py\" \"luxury museum VR heritage tourism immersive editorial premium\" --design-system -p \"Diocletians Dream\" -f markdown)",
       "Bash(npx ng *)"
     ]
   }

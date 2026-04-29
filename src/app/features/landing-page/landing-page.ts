@@ -115,8 +115,8 @@ export class LandingPage implements OnInit, AfterViewInit, OnDestroy {
   }
 
   private applySeo(): void {
-    const title = "Diocletian's Dream VR Museum | Step back into 305 AD";
-    const description = "A 15-minute VR museum experience in Split that brings Diocletian's Palace back to life in 305 AD. Located just outside the palace walls near the Golden Gate. Book tickets online.";
+    const title = "Diocletians Dream VR Museum | Step back into 305 AD";
+    const description = "A 15-minute VR museum experience in Split that brings Diocletians Palace back to life in 305 AD. Located just outside the palace walls near the Golden Gate. Book tickets online.";
 
     this.seo.setTitle(title);
     this.seo.setDescription(description);
@@ -131,7 +131,7 @@ export class LandingPage implements OnInit, AfterViewInit, OnDestroy {
     this.seo.setJsonLd('ld-local-business', {
       '@context': 'https://schema.org',
       '@type': ['LocalBusiness', 'TouristAttraction'],
-      name: "Diocletian's Dream VR Museum",
+      name: "Diocletians Dream VR Museum",
       description,
       url: 'https://diocletiansdream.com',
       telephone: '+38521886015',

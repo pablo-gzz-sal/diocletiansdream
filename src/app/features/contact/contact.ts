@@ -34,11 +34,11 @@ export class Contact implements OnInit, OnDestroy {
     private sanitizer: DomSanitizer,
     private seo: SeoService,
   ) {
-    this.title.setTitle("Contact — Diocletian's Dream VR Museum | Split");
+    this.title.setTitle("Contact — Diocletians Dream VR Museum | Split");
     this.meta.updateTag({
       name: 'description',
       content:
-        "Get in touch with Diocletian's Dream. Find our address in Split's Old Town, opening hours, ticket prices, and contact details.",
+        "Get in touch with Diocletians Dream. Find our address in Split's Old Town, opening hours, ticket prices, and contact details.",
     });
   }
 
@@ -64,13 +64,13 @@ export class Contact implements OnInit, OnDestroy {
     // META TITLE (exactly your notes)
     const metaTitle =
       lang === 'hr'
-        ? "Posjetite Diocletian's Dream u Splitu | Ulaznice i grupni posjeti"
-        : "Visit Diocletian's Dream in Split | Tickets & Group Visits";
+        ? "Posjetite Diocletians Dream u Splitu | Ulaznice i grupni posjeti"
+        : "Visit Diocletians Dream in Split | Tickets & Group Visits";
 
     // META DESCRIPTION (exactly your notes)
     const metaDescription =
       lang === 'hr'
-        ? "Planirajte posjet Diocletian's Dream u Splitu. Rezervirajte VR iskustvo ili pošaljite upit za grupne i školske posjete. Preporučuje se rezervacija unaprijed."
+        ? "Planirajte posjet Diocletians Dream u Splitu. Rezervirajte VR iskustvo ili pošaljite upit za grupne i školske posjete. Preporučuje se rezervacija unaprijed."
         : 'Plan your visit to Diocletian\'s Dream in Split. Book your VR experience or contact us for group and school visit arrangements. Advance booking recommended.';
 
     this.title.setTitle(metaTitle);

@@ -45,14 +45,14 @@ export class About implements OnInit{
     // META TITLE (from your notes)
     const metaTitle =
       lang === 'hr'
-        ? "O Diocletian's Dream – VR muzej u Splitu"
-        : "About Diocletian's Dream – Virtual Reality Museum in Split";
+        ? "O Diocletians Dream – VR muzej u Splitu"
+        : "About Diocletians Dream – Virtual Reality Museum in Split";
 
     // META DESCRIPTION (from your notes)
     const metaDescription =
       lang === 'hr'
-        ? "Saznajte više o Diocletian's Dreamu, VR muzeju u Splitu koji kroz 3D rekonstrukciju i povijesna istraživanja prikazuje Dioklecijanovu palaču."
-        : "Learn about Diocletian's Dream, a virtual reality museum in Split presenting Diocletian's Palace through immersive 3D reconstruction and historical research.";
+        ? "Saznajte više o Diocletians Dreamu, VR muzeju u Splitu koji kroz 3D rekonstrukciju i povijesna istraživanja prikazuje Dioklecijanovu palaču."
+        : "Learn about Diocletians Dream, a virtual reality museum in Split presenting Diocletians Palace through immersive 3D reconstruction and historical research.";
 
     this.title.setTitle(metaTitle);
     this.seo.setCanonical('https://diocletiansdream.com/about');
@@ -90,7 +90,7 @@ export class About implements OnInit{
     const organization = {
       '@context': 'https://schema.org',
       '@type': 'Organization',
-      name: "Diocletian's Dream",
+      name: "Diocletians Dream",
       url: 'https://diocletiansdream.com/',
       foundingDate: '2020',
       sameAs,
@@ -99,7 +99,7 @@ export class About implements OnInit{
     const localBusiness = {
       '@context': 'https://schema.org',
       '@type': 'LocalBusiness',
-      name: "Diocletian's Dream",
+      name: "Diocletians Dream",
       url: 'https://diocletiansdream.com/',
       foundingDate: '2020',
       image: 'https://diocletiansdream.com/wp-content/uploads/2023/10/cropped-cropped-gold-logo-1.png', // optional

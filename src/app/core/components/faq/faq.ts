@@ -34,7 +34,7 @@ export class Faq implements AfterViewInit {
     },
     {
       q: 'Is it near the Palace?',
-      a: "Yes — it's designed to pair perfectly with a walk around Diocletian's Palace.",
+      a: "Yes — it's designed to pair perfectly with a walk around Diocletians Palace.",
       open: false,
     },
   ];
