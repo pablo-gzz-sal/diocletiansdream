@@ -41,7 +41,7 @@ export class BlogListPage implements OnInit {
   constructor(private wp: WpService, private seo: SeoService) {}
 
   ngOnInit(): void {
-    window.scroll(0, 0);
+    this.applySeo();
     this.loadPosts();
 
     this.wp.getCategories().subscribe({
@@ -150,10 +150,11 @@ export class BlogListPage implements OnInit {
   const title = "Diocletians Dream Blog | Roman History & Things to Do in Split"
   const description = "Read articles about Diocletians Palace, Roman history, and things to do in Split. Explore Split travel guides and cultural insights connected to the immersive VR experience."
 
-  const url = `${this.SITE_URL}/blog`;
+  const url = `${this.SITE_URL}/blog/`;
 
   this.seo.setTitle(title);
   this.seo.setDescription(description);
+  this.seo.setRobots();
   this.seo.setCanonical(url);
 
   this.seo.setOpenGraph({

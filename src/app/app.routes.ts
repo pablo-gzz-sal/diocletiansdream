@@ -9,6 +9,7 @@ import { Privacy } from './features/legal/privacy/privacy';
 import { Terms } from './features/legal/terms/terms';
 import { Cookies } from './features/legal/cookies/cookies';
 import { Experience } from './features/experience/experience';
+import { NotFound } from './features/not-found/not-found';
 
 export const routes: Routes = [
   { path: '', component: LandingPage },
@@ -16,10 +17,15 @@ export const routes: Routes = [
   { path: 'visit', component: Contact },
   { path: 'about', component: About },
   { path: 'blog', component: BlogListPage },
-  { path: 'blog/:slug', component: BlogPostPage },
+  // Legacy /blog/:slug URLs now live at the root — redirect to the new location.
+  { path: 'blog/:slug', redirectTo: (r) => `/${r.params['slug']}` },
   { path: 'privacy', component: Privacy },
   { path: 'terms', component: Terms },
   { path: 'cookies', component: Cookies },
   { path: 'experience', component: Experience },
-  { path: '**', redirectTo: '' },
+  // Root-level blog posts, e.g. /what-to-do-in-split. Must stay AFTER all
+  // fixed routes so it only catches single-segment slugs that nothing else owns.
+  { path: ':slug', component: BlogPostPage },
+  // Anything else is a real 404 (renders the NotFound page, not the homepage).
+  { path: '**', component: NotFound },
 ];

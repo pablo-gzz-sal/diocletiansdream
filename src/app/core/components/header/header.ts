@@ -1,5 +1,5 @@
-import { NgClass } from '@angular/common';
-import { AfterViewInit, Component, HostListener, inject, OnDestroy, OnInit, signal } from '@angular/core';
+import { DOCUMENT, isPlatformBrowser, NgClass } from '@angular/common';
+import { AfterViewInit, Component, HostListener, inject, OnDestroy, OnInit, PLATFORM_ID, signal } from '@angular/core';
 import { NavigationEnd, NavigationStart, Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { filter } from 'rxjs';
 import { I18nService } from '../../i18n/i18n.service';
@@ -18,7 +18,9 @@ export class Header implements OnInit, OnDestroy, AfterViewInit {
   homeRoute = signal(false);
 
   private i18n = inject(I18nService);
-  private removeOverflow = () => document.body.classList.remove('overflow-hidden');
+  private doc = inject(DOCUMENT);
+  private isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
+  private removeOverflow = () => this.doc.body.classList.remove('overflow-hidden');
 
   constructor(private router: Router) {}
 
@@ -35,6 +37,7 @@ export class Header implements OnInit, OnDestroy, AfterViewInit {
   }
 
   ngAfterViewInit() {
+    if (!this.isBrowser) return;
     this.scrolled.set((window.scrollY || 0) > 8);
   }
 
@@ -46,7 +49,7 @@ export class Header implements OnInit, OnDestroy, AfterViewInit {
 
   toggleMenu() {
     this.menuOpen.update((v) => !v);
-    document.body.classList.toggle('overflow-hidden', this.menuOpen());
+    this.doc.body.classList.toggle('overflow-hidden', this.menuOpen());
   }
 
   closeMenu() {

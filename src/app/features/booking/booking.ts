@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
+import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 import { Header } from '../../core/components/header/header';
 import { Footer } from '../../core/components/footer/footer';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
@@ -48,19 +49,24 @@ export class Booking implements OnInit {
     private translate: TranslateService,
     private sanitizer: DomSanitizer,
     private seo: SeoService,
+    @Inject(DOCUMENT) private doc: Document,
+    @Inject(PLATFORM_ID) private platformId: Object,
   ) {}
 
   ngOnInit(): void {
-    // existing title/meta code...
-    window.scroll(0, 0);
-    // Load Turitop after component renders
-    const script = document.createElement('script');
-    script.id = 'js-turitop';
-    script.src = 'https://app.turitop.com/js/load-turitop.min.js'; // your full src URL
-    script.async = true;
-    document.body.appendChild(script);
-
+    // SEO tags are set on both server and browser so crawlers see them.
     this.applySeo(this.translate.currentLang || 'en');
+
+    // The Turitop widget and scroll reset are browser-only.
+    if (isPlatformBrowser(this.platformId)) {
+      window.scroll(0, 0);
+      // Load Turitop after component renders
+      const script = this.doc.createElement('script');
+      script.id = 'js-turitop';
+      script.src = 'https://app.turitop.com/js/load-turitop.min.js'; // your full src URL
+      script.async = true;
+      this.doc.body.appendChild(script);
+    }
   }
 
   private applySeo(lang: string) {
@@ -80,13 +86,13 @@ export class Booking implements OnInit {
     this.seo.setCanonical('https://diocletiansdream.com/booking');
 
     this.meta.updateTag({ name: 'description', content: metaDescription });
-    this.meta.updateTag({ name: 'robots', content: 'index,follow' });
+    this.seo.setRobots();
 
     // Open Graph
     this.meta.updateTag({ property: 'og:title', content: metaTitle });
     this.meta.updateTag({ property: 'og:description', content: metaDescription });
     this.meta.updateTag({ property: 'og:type', content: 'website' });
-    this.meta.updateTag({ property: 'og:url', content: 'https://diocletiansdream.com/booking' });
+    this.meta.updateTag({ property: 'og:url', content: 'https://diocletiansdream.com/booking/' });
 
     // Twitter
     this.meta.updateTag({ name: 'twitter:title', content: metaTitle });

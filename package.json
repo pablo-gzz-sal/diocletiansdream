@@ -6,7 +6,8 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "serve:ssr:diocletiansdream": "node dist/diocletiansdream/server/server.mjs"
   },
   "prettier": {
     "printWidth": 100,
@@ -22,25 +23,30 @@
   },
   "private": true,
   "dependencies": {
-    "@angular/common": "^20.3.0",
-    "@angular/compiler": "^20.3.0",
-    "@angular/core": "^20.3.0",
-    "@angular/forms": "^20.3.0",
-    "@angular/platform-browser": "^20.3.0",
-    "@angular/router": "^20.3.0",
+    "@angular/common": "20.3.16",
+    "@angular/compiler": "20.3.16",
+    "@angular/core": "20.3.16",
+    "@angular/forms": "20.3.16",
+    "@angular/platform-browser": "20.3.16",
+    "@angular/platform-server": "20.3.16",
+    "@angular/router": "20.3.16",
+    "@angular/ssr": "20.3.16",
     "@ngx-translate/core": "^17.0.0",
     "@ngx-translate/http-loader": "^17.0.0",
     "@tailwindcss/postcss": "^4.2.0",
+    "express": "^5.1.0",
     "gsap": "^3.14.2",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.15.0"
   },
   "devDependencies": {
-    "@angular/build": "^20.3.7",
-    "@angular/cli": "^20.3.7",
-    "@angular/compiler-cli": "^20.3.0",
+    "@angular/build": "20.3.16",
+    "@angular/cli": "20.3.16",
+    "@angular/compiler-cli": "20.3.16",
+    "@types/express": "^5.0.1",
     "@types/jasmine": "~5.1.0",
+    "@types/node": "^20.17.19",
     "jasmine-core": "~5.9.0",
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.2.0",
@@ -48,5 +54,12 @@
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
     "typescript": "~5.9.2"
+  },
+  "allowScripts": {
+    "esbuild@0.25.9": true,
+    "@parcel/watcher@2.5.6": true,
+    "lmdb@3.4.2": true,
+    "msgpackr-extract@3.0.3": true,
+    "fsevents@2.3.3": true
   }
 }

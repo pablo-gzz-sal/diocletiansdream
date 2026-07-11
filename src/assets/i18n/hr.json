@@ -412,6 +412,12 @@
       "cta": "Rezerviraj iskustvo"
     }
   },
+  "pageNotFound": {
+    "code": "404",
+    "title": "Stranica nije pronađena",
+    "text": "Stranica koju tražite ne postoji ili je premještena.",
+    "cta": "Natrag na početnu"
+  },
   "blogInvite": {
     "title": "Istražite rimsku povijest i vodiče kroz Split",
     "text": "Otkrijte članke o Dioklecijanovoj palači, rimskoj baštini i aktivnostima u Splitu. Saznajte više kroz sadržaj povezan s VR iskustvom.",

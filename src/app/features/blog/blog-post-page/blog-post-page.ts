@@ -35,7 +35,6 @@ export class BlogPostPage implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    window.scroll(0, 0);
 
     this.sub = this.route.paramMap.subscribe(params => {
       const slug = params.get('slug');
@@ -60,20 +59,31 @@ export class BlogPostPage implements OnInit, OnDestroy {
         this.loading = false;
 
         if (this.post) this.applySeo(this.post);
+        else this.applyNotFoundSeo();
       },
       error: () => {
         this.post = null;
         this.loading = false;
-
-        // Optional: set a simple noindex meta on 404 state if you render it
-        // this.seo.meta.updateTag({ name: 'robots', content: 'noindex,follow' });
+        this.applyNotFoundSeo();
       },
     });
   }
 
+  /** Unknown slug: render the not-found state as a real, noindex 404. */
+  private applyNotFoundSeo(): void {
+    this.seo.setTitle('Page not found | Diocletians Dream');
+    this.seo.setRobots(true);
+    this.seo.setHttpStatus(404);
+    this.seo.clearJsonLd('ld-blogposting');
+    this.seo.clearJsonLd('ld-breadcrumb');
+  }
+
   /** --- SEO core --- */
   private applySeo(post: any) {
-    const url = this.absoluteUrl(`/blog/${post?.slug ?? ''}`);
+    // Posts live at the site root with a trailing slash, e.g. /what-to-do-in-split/
+    const url = this.absoluteUrl(`/${post?.slug ?? ''}/`);
+    this.seo.clearHttpStatus();
+    this.seo.setRobots();
 
     // If you add SEO fields in WP (Yoast/RankMath/AIOSEO or ACF),
     // map them here. Fallback to title/excerpt.
@@ -165,8 +175,8 @@ export class BlogPostPage implements OnInit, OnDestroy {
       '@context': 'https://schema.org',
       '@type': 'BreadcrumbList',
       itemListElement: [
-        { '@type': 'ListItem', position: 1, name: 'Home', item: this.SITE_URL },
-        { '@type': 'ListItem', position: 2, name: 'Blog', item: this.absoluteUrl('/blog') },
+        { '@type': 'ListItem', position: 1, name: 'Home', item: this.absoluteUrl('/') },
+        { '@type': 'ListItem', position: 2, name: 'Blog', item: this.absoluteUrl('/blog/') },
         { '@type': 'ListItem', position: 3, name: this.titleText(post), item: url }
       ]
     };

@@ -43,7 +43,6 @@ export class Contact implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    window.scroll(0, 0);
 
     // ✅ Keep your map: paste your existing embed URL here (the SAME one from your current contact page)
     const mapEmbedUrl = 'PASTE_YOUR_EXISTING_GOOGLE_MAPS_EMBED_URL_HERE';
@@ -77,13 +76,13 @@ export class Contact implements OnInit, OnDestroy {
     this.seo.setCanonical('https://diocletiansdream.com/visit');
 
     this.meta.updateTag({ name: 'description', content: metaDescription });
-    this.meta.updateTag({ name: 'robots', content: 'index,follow' });
+    this.seo.setRobots();
 
     // Open Graph
     this.meta.updateTag({ property: 'og:title', content: metaTitle });
     this.meta.updateTag({ property: 'og:description', content: metaDescription });
     this.meta.updateTag({ property: 'og:type', content: 'website' });
-    this.meta.updateTag({ property: 'og:url', content: 'https://diocletiansdream.com/visit' });
+    this.meta.updateTag({ property: 'og:url', content: 'https://diocletiansdream.com/visit/' });
 
     // Twitter
     this.meta.updateTag({ name: 'twitter:title', content: metaTitle });

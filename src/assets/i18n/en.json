@@ -412,6 +412,12 @@
       "cta": "Book an experience"
     }
   },
+  "pageNotFound": {
+    "code": "404",
+    "title": "Page not found",
+    "text": "The page you’re looking for doesn’t exist or may have moved.",
+    "cta": "Back to home"
+  },
   "blogInvite": {
     "title": "Explore Roman History & Split Travel Guides",
     "text": "Discover articles about Diocletian’s Palace, Roman heritage, and things to do in Split. Get deeper cultural context connected to the immersive VR experience.",

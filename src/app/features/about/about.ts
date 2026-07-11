@@ -30,8 +30,7 @@ export class About implements OnInit{
     private seo: SeoService,
   ) {}
   ngOnInit(): void {
-    window.scroll(0, 0);
-        this.applySeo(this.translate.currentLang || 'en');
+    this.applySeo(this.translate.currentLang || 'en');
     this.sub = this.translate.onLangChange.subscribe((e) => {
       this.applySeo(e.lang);
     });

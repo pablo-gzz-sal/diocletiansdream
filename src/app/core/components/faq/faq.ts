@@ -42,6 +42,8 @@ export class Faq implements AfterViewInit {
   constructor(private el: ElementRef<HTMLElement>) {}
 
   ngAfterViewInit(): void {
+    if (typeof window === 'undefined') return;
+
     // Panel at index 0 is the newsletter (always open) — skip it.
     // Panels at indices 1…N correspond to faqs[0…N-1].
     const panels = this.el.nativeElement.querySelectorAll<HTMLElement>('.faq-a');
