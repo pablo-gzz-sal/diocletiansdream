@@ -128,6 +128,20 @@
   letter-spacing: 0.06em;
 }
 
+/* Real production still — taller than the cell so the scroll parallax
+   (y: 22 → -22) never exposes an edge gap. */
+.bento-cell--imgA {
+  overflow: hidden;
+  min-height: clamp(240px, 35vw, 400px);
+}
+.bento-cell--imgA .bento-img {
+  width: 100%;
+  height: calc(100% + 64px);
+  margin-top: -32px;
+  object-fit: cover;
+  display: block;
+}
+
 /* ─── Responsive ─── */
 @media (max-width: 1023px) {
   .bento { grid-template-columns: 1fr; }

@@ -32,7 +32,7 @@ export class AboutProject implements AfterViewInit, OnDestroy {
       // ── Image cell: subtle scroll parallax ───────────────────
       const imgCell = root.querySelector<HTMLElement>('.bento-cell--imgA');
       if (imgCell) {
-        const inner = imgCell.querySelector<HTMLElement>('.bento-img-placeholder');
+        const inner = imgCell.querySelector<HTMLElement>('.bento-img');
         if (inner) {
           gsap.fromTo(
             inner,

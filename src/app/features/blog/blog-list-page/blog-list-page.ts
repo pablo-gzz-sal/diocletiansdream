@@ -161,7 +161,7 @@ export class BlogListPage implements OnInit {
     url,
     title,
     description,
-    image: `${this.SITE_URL}/assets/images/heroAnimation.jpg`,
+    image: `${this.SITE_URL}/assets/images/vr/peristyle-crowd.jpg`,
     type: 'website'
   });
 

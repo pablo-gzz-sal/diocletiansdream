@@ -11,6 +11,7 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { FormsModule } from '@angular/forms';
 import { BlogInvite } from '../../shared/components/blog-invite/blog-invite';
 import { Hero } from '../../core/components/hero/hero';
+import { Trailer } from '../../core/components/trailer/trailer';
 import { Experience } from '../../core/components/experience/experience';
 import { Visit } from '../../core/components/visit/visit';
 import { Reviews } from '../../core/components/reviews/reviews';
@@ -35,6 +36,7 @@ gsap.registerPlugin(ScrollTrigger);
     TranslateModule,
     BlogInvite,
     Hero,
+    Trailer,
     Experience,
     Visit,
     Reviews,

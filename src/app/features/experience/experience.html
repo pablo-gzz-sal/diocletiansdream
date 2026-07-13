@@ -110,12 +110,15 @@
           [revealDelay]="0.25"
           [revealY]="30"
         >
-          <div class="aspect-[4/5] bg-gradient-to-b from-sand to-cream grid place-items-center">
-            <p
-              class="font-[family-name:var(--font-sans)] text-[0.75rem] text-ink-60 text-center px-6"
-            >
-              Replace with VR headset / palace reconstruction still
-            </p>
+          <div class="aspect-[4/5] bg-gradient-to-b from-sand to-cream overflow-hidden">
+            <img
+              src="assets/images/vr/imperial-chamber.jpg"
+              alt="Reconstructed interior chamber of Diocletian's Palace rendered in VR"
+              width="1200"
+              height="1500"
+              class="w-full h-full object-cover"
+              loading="lazy"
+            />
           </div>
           <div class="p-6 border-t border-black/8">
             <p class="font-[family-name:var(--font-serif)] italic text-[1.1rem] text-ink">
@@ -593,14 +596,18 @@
           </div>
         </div>
 
-        <!-- Map placeholder -->
-        <div class="mt-3 rounded-[1.125rem] border border-black/10 bg-white/60 overflow-hidden">
-          <div class="aspect-[16/9] grid place-items-center bg-gradient-to-b from-cream to-sand">
-            <p
-              class="font-[family-name:var(--font-sans)] text-[0.75rem] text-ink-60 px-6 text-center"
-            >
-              Optional: embed a map here (Google / OpenStreetMap)
-            </p>
+        <!-- Map -->
+        <div class="mt-3 rounded-[1.125rem] border border-black/10 bg-white/60 overflow-hidden shadow-[0_12px_60px_rgba(26,24,20,0.07)]">
+          <div class="aspect-[16/9] overflow-hidden">
+            <iframe
+              class="w-full h-full border-none block"
+              title="Diocletians Dream — Zagrebačka ulica 1, Split"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d720.7837!2d16.43997!3d43.50831!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x13355df883e58f93%3A0x5d2f8c929c408e3!2sZagreba%C4%8Dka%20ul.%201%2C%2021000%2C%20Split%2C%20Croatia!5e0!3m2!1sen!2shr!4v1700000000000!5m2!1sen!2shr"
+              allowfullscreen
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              style="filter:saturate(0.9) brightness(1.02)"
+            ></iframe>
           </div>
         </div>
       </div>
@@ -693,13 +700,19 @@
         <div
           class="rounded-[1.125rem] border border-black/10 bg-white/60 overflow-hidden shadow-[0_12px_60px_rgba(26,24,20,0.07)]"
         >
-          <div class="aspect-video grid place-items-center bg-gradient-to-b from-cream to-sand">
-            <p
-              class="font-[family-name:var(--font-sans)] text-[0.75rem] text-ink-60 px-6 text-center"
+          <div class="aspect-video bg-ink overflow-hidden">
+            <video
+              class="w-full h-full object-cover"
+              controls
+              preload="none"
+              playsinline
+              poster="assets/images/vr/market-pottery.jpg"
             >
-              {{ 'experiencePage.trailer.embedLabel' | translate }}
-              — insert YouTube/Vimeo iframe here
-            </p>
+              <source
+                src="https://diocletiansdream.com/wp-content/uploads/2026/07/Sizzle-Reel-Diocletians-Dream.mp4"
+                type="video/mp4"
+              />
+            </video>
           </div>
         </div>
       </div>

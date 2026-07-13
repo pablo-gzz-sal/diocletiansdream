@@ -1,0 +1,262 @@
+/* ═══════════════════════════════════════════════════════════
+   TRAILER — cinematic sizzle-reel section
+   Poster frame with a gold-ringed play button; native controls
+   appear only after the visitor chooses to play.
+════════════════════════════════════════════════════════════ */
+
+.trailer {
+  position: relative;
+  overflow: hidden;
+  margin-block: clamp(2.5rem, 6vw, 5rem);
+}
+
+/* Soft purple→gold bloom sitting behind the frame for depth */
+.trailer-glow {
+  position: absolute;
+  top: 42%;
+  left: 50%;
+  width: min(78vw, 980px);
+  aspect-ratio: 16 / 10;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(
+    ellipse at center,
+    rgba(45, 4, 106, 0.16) 0%,
+    rgba(194, 154, 89, 0.10) 42%,
+    transparent 70%
+  );
+  filter: blur(30px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.trailer-inner {
+  position: relative;
+  z-index: 1;
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 clamp(1rem, 5vw, 2.5rem);
+}
+
+/* ── Heading ─────────────────────────────────────────────── */
+.trailer-heading {
+  max-width: 640px;
+  margin: 0 auto clamp(2rem, 4vw, 3rem);
+  text-align: center;
+}
+
+.trailer-heading .eyebrow {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.trailer-h2 {
+  margin-top: 0.35rem;
+}
+
+.trailer-sub {
+  margin-top: 1rem;
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--color-ink-60);
+}
+
+/* ── The cinematic frame ─────────────────────────────────── */
+.reel {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  background: var(--color-ink);
+  border: 1px solid var(--dd-gold-30);
+  box-shadow:
+    0 30px 80px rgba(26, 24, 20, 0.28),
+    0 8px 24px rgba(45, 4, 106, 0.14),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+  cursor: pointer;
+}
+
+.reel-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Darkening veil so the play button and text read cleanly over the poster */
+.reel-veil {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at center, rgba(26, 24, 20, 0.15) 0%, rgba(26, 24, 20, 0.55) 100%),
+    linear-gradient(to top, rgba(26, 24, 20, 0.45), transparent 55%);
+  transition: opacity 0.5s var(--ease-out);
+  z-index: 1;
+}
+
+/* ── Corner ticks (film-frame detailing) ─────────────────── */
+.reel-corner {
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  border: 1.5px solid var(--dd-gold-60);
+  z-index: 2;
+  opacity: 0.7;
+  transition: opacity 0.4s var(--ease-out);
+}
+.reel-corner--tl { top: 14px; left: 14px; border-right: none; border-bottom: none; }
+.reel-corner--tr { top: 14px; right: 14px; border-left: none; border-bottom: none; }
+.reel-corner--bl { bottom: 14px; left: 14px; border-right: none; border-top: none; }
+.reel-corner--br { bottom: 14px; right: 14px; border-left: none; border-top: none; }
+
+/* ── Play button ─────────────────────────────────────────── */
+.reel-play {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 92px;
+  height: 92px;
+  border: none;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+  z-index: 3;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+}
+
+/* The visible disc */
+.reel-play__disc {
+  position: relative;
+  z-index: 2;
+  width: 78px;
+  height: 78px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  color: var(--color-ink);
+  background: linear-gradient(155deg, #f4ead4 0%, var(--dd-gold) 100%);
+  box-shadow:
+    0 10px 30px rgba(26, 24, 20, 0.35),
+    0 0 0 1px rgba(255, 255, 255, 0.5) inset;
+  padding-left: 4px; /* optically centre the play triangle */
+  transition:
+    transform 0.28s var(--ease-out),
+    box-shadow 0.28s var(--ease-out);
+}
+
+.reel-play:hover .reel-play__disc {
+  transform: scale(1.06);
+  box-shadow:
+    0 16px 40px rgba(194, 154, 89, 0.4),
+    0 0 0 1px rgba(255, 255, 255, 0.6) inset;
+}
+
+.reel-play:active .reel-play__disc {
+  transform: scale(0.97);
+}
+
+.reel-play:focus-visible {
+  outline: none;
+}
+.reel-play:focus-visible .reel-play__disc {
+  box-shadow:
+    0 0 0 3px var(--color-warm),
+    0 0 0 6px var(--dd-purple-20),
+    0 10px 30px rgba(26, 24, 20, 0.35);
+}
+
+/* Expanding rings that echo out from the disc */
+.reel-play__pulse {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border-radius: 50%;
+  border: 1.5px solid var(--dd-gold-60);
+  animation: reel-pulse 3s ease-out infinite;
+}
+.reel-play__pulse--2 {
+  animation-delay: 1.5s;
+}
+
+@keyframes reel-pulse {
+  0% {
+    transform: scale(0.8);
+    opacity: 0.7;
+  }
+  100% {
+    transform: scale(1.7);
+    opacity: 0;
+  }
+}
+
+/* ── Duration chip ───────────────────────────────────────── */
+.reel-meta {
+  position: absolute;
+  left: 16px;
+  bottom: 16px;
+  z-index: 3;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 0.85rem;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-sans);
+  font-size: 0.62rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(245, 240, 232, 0.9);
+  background: rgba(26, 24, 20, 0.4);
+  border: 1px solid rgba(245, 240, 232, 0.18);
+  backdrop-filter: blur(8px);
+}
+
+.reel-meta__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--dd-gold);
+  box-shadow: 0 0 8px var(--dd-gold);
+}
+
+/* ── Playing state ───────────────────────────────────────── */
+.reel--playing {
+  cursor: default;
+}
+.reel--playing .reel-corner {
+  opacity: 0;
+}
+
+/* ── Small screens ───────────────────────────────────────── */
+@media (max-width: 640px) {
+  .reel-play {
+    width: 76px;
+    height: 76px;
+  }
+  .reel-play__disc {
+    width: 64px;
+    height: 64px;
+  }
+  .reel-corner {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+/* ── Reduced motion: no pulsing, no float ────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .reel-play__pulse {
+    animation: none;
+    opacity: 0;
+  }
+  .reel-play__disc,
+  .reel-veil,
+  .reel-corner {
+    transition: none;
+  }
+}

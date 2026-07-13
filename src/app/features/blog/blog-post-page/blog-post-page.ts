@@ -89,7 +89,7 @@ export class BlogPostPage implements OnInit, OnDestroy {
     // map them here. Fallback to title/excerpt.
     const title = this.pickSeoTitle(post);
     const description = this.pickSeoDescription(post);
-    const image = this.featuredImage(post) ?? this.absoluteUrl('/assets/images/heroAnimation.jpg');
+    const image = this.featuredImage(post) ?? this.absoluteUrl('/assets/images/vr/peristyle-crowd.jpg');
 
     this.seo.setTitle(title);
     this.seo.setDescription(description);
