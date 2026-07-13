@@ -87,6 +87,21 @@
   text-transform: uppercase;
 }
 
+/* Real imagery filling the bento cells */
+.bento-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.7s var(--ease-out);
+}
+
+.bento-cell--imgA:hover .bento-img,
+.bento-cell--imgB:hover .bento-img,
+.bento-cell--imgC:hover .bento-img {
+  transform: scale(1.04);
+}
+
 /* Tall portrait — Palace reconstruction */
 .bento-cell--imgA .bento-img-placeholder {
   background: linear-gradient(170deg, #ede5d5 0%, #e5dccb 50%, #ddd4be 100%);

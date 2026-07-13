@@ -1,0 +1,62 @@
+<section id="trailer" class="trailer">
+  <!-- Ambient glow bloom behind the frame -->
+  <div class="trailer-glow" aria-hidden="true"></div>
+
+  <div class="trailer-inner">
+    <header class="trailer-heading">
+      <p class="eyebrow" revealOnScroll [revealDelay]="0">{{ 'home.trailer.eyebrow' | translate }}</p>
+      <h2 class="section-h2 trailer-h2" revealOnScroll [revealDelay]="0.08" [revealClip]="true">
+        {{ 'home.trailer.title' | translate }}
+      </h2>
+      <p class="trailer-sub" revealOnScroll [revealDelay]="0.16">
+        {{ 'home.trailer.subtitle' | translate }}
+      </p>
+    </header>
+
+    <!-- Cinematic 16:9 frame -->
+    <div class="reel" [class.reel--playing]="activated">
+      <!-- Corner ticks — film-frame detailing -->
+      <span class="reel-corner reel-corner--tl" aria-hidden="true"></span>
+      <span class="reel-corner reel-corner--tr" aria-hidden="true"></span>
+      <span class="reel-corner reel-corner--bl" aria-hidden="true"></span>
+      <span class="reel-corner reel-corner--br" aria-hidden="true"></span>
+
+      <video
+        #video
+        class="reel-video"
+        [poster]="poster"
+        preload="none"
+        playsinline
+        [controls]="activated"
+        [attr.aria-label]="'home.trailer.title' | translate"
+      >
+        <source [src]="src" type="video/mp4" />
+      </video>
+
+      <!-- Poster veil + play affordance (removed once activated) -->
+      @if (!activated) {
+        <div class="reel-veil" aria-hidden="true"></div>
+
+        <button
+          type="button"
+          class="reel-play"
+          (click)="play()"
+          [attr.aria-label]="'home.trailer.play' | translate"
+        >
+          <span class="reel-play__pulse" aria-hidden="true"></span>
+          <span class="reel-play__pulse reel-play__pulse--2" aria-hidden="true"></span>
+          <span class="reel-play__disc">
+            <svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true">
+              <path d="M8 5.5v13a1 1 0 0 0 1.53.85l10-6.5a1 1 0 0 0 0-1.7l-10-6.5A1 1 0 0 0 8 5.5Z" fill="currentColor" />
+            </svg>
+          </span>
+        </button>
+
+        <div class="reel-meta" aria-hidden="true">
+          <span class="reel-meta__dot"></span>
+          {{ 'home.trailer.duration' | translate }}
+        </div>
+      }
+    </div>
+  </div>
+</section>

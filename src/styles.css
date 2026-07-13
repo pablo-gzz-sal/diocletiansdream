@@ -334,8 +334,11 @@
 }
 
 /* ── Base ── */
+/* NOTE: no `scroll-behavior: smooth` here — it breaks GSAP ScrollTrigger's
+   scrub (used by the intro-reveal overlay), leaving the fixed overlay stuck
+   over the page. Smooth anchor scrolling is handled in JS where needed. */
 html {
-  scroll-behavior: smooth;
+  scroll-behavior: auto;
 }
 body {
   font-family: var(--font-sans);

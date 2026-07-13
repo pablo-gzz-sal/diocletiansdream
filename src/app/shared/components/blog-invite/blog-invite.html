@@ -30,7 +30,7 @@
         </a>
 
         <!-- Optional extra links -->
-        <ng-container *ngIf="showSecondaryLinks">
+        @if (showSecondaryLinks) {
           <a routerLink="/experience" class="btn btn--ghost">
             {{ 'blogInvite.ctaExperience' | translate }} →
           </a>
@@ -38,7 +38,7 @@
           <a routerLink="/visit" class="btn btn--ghost">
             {{ 'blogInvite.ctaVisit' | translate }} →
           </a>
-        </ng-container>
+        }
       </div>
     </div>
 
