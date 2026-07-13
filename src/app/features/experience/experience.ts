@@ -29,7 +29,6 @@ export class Experience implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    window.scroll(0, 0);
 
     // Apply SEO on initial load
     this.applySeo(this.translate.currentLang || 'en');
@@ -61,13 +60,13 @@ export class Experience implements OnInit, OnDestroy {
     this.seo.setCanonical('https://diocletiansdream.com/experience');
 
     this.meta.updateTag({ name: 'description', content: metaDescription });
-    this.meta.updateTag({ name: 'robots', content: 'index,follow' });
+    this.seo.setRobots();
 
     // Open Graph
     this.meta.updateTag({ property: 'og:title', content: metaTitle });
     this.meta.updateTag({ property: 'og:description', content: metaDescription });
     this.meta.updateTag({ property: 'og:type', content: 'website' });
-    this.meta.updateTag({ property: 'og:url', content: 'https://diocletiansdream.com/experience' });
+    this.meta.updateTag({ property: 'og:url', content: 'https://diocletiansdream.com/experience/' });
 
     // Twitter
     this.meta.updateTag({ name: 'twitter:title', content: metaTitle });

@@ -60,7 +60,6 @@ export class LandingPage implements OnInit, AfterViewInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    window.scroll(0, 0);
     this.applySeo();
     this.translate.get('home.marquee.items').subscribe((items: string[]) => {
       this.marqueeItems = items;

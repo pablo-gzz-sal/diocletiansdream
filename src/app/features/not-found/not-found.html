@@ -1,0 +1,21 @@
+<app-header></app-header>
+
+<main class="mx-auto max-w-4xl px-6 lg:px-8 py-28 text-center">
+  <p class="font-[family-name:var(--font-sans)] text-[0.8rem] tracking-[0.2em] uppercase text-ink-60">
+    {{ 'pageNotFound.code' | translate }}
+  </p>
+  <h1 class="mt-4 font-[family-name:var(--font-serif)] font-light text-[2.75rem] leading-[0.95] text-ink">
+    {{ 'pageNotFound.title' | translate }}
+  </h1>
+  <p class="mt-4 font-[family-name:var(--font-sans)] text-[0.95rem] leading-[1.65] text-ink-60">
+    {{ 'pageNotFound.text' | translate }}
+  </p>
+  <a
+    routerLink="/"
+    class="inline-block mt-8 font-[family-name:var(--font-sans)] text-[0.8rem] underline underline-offset-4 text-ink hover:opacity-50 transition-opacity"
+  >
+    {{ 'pageNotFound.cta' | translate }}
+  </a>
+</main>
+
+<app-footer></app-footer>

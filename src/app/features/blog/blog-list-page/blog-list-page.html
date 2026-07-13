@@ -100,7 +100,7 @@
     >
       <a
         *ngFor="let post of filteredPosts(); trackBy: trackById"
-        [routerLink]="['/blog', post.slug]"
+        [routerLink]="['/', post.slug]"
         class="group rounded-[1rem] border border-black/10 bg-white/60 overflow-hidden hover:bg-white hover:border-black/20 hover:-translate-y-0.5 transition-all no-underline text-ink"
       >
         <!-- Image -->

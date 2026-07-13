@@ -13,7 +13,5 @@ export class PolicyPageComponent implements OnInit {
   @Input({ required: true }) title!: string;
   @Input({ required: true }) updatedAt?: string;
 
-  ngOnInit() {
-    window.scroll(0, 0);
-  }
+  ngOnInit() {}
 }

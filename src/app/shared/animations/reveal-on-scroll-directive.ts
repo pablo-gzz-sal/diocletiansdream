@@ -1,4 +1,5 @@
-import { Directive, ElementRef, Input, OnDestroy, OnInit } from '@angular/core';
+import { Directive, ElementRef, inject, Input, OnDestroy, OnInit, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -16,10 +17,15 @@ export class RevealOnScrollDirective implements OnInit, OnDestroy {
 
   private st?: ScrollTrigger;
   private anim?: gsap.core.Tween;
+  private isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
 
   constructor(private el: ElementRef<HTMLElement>) {}
 
   ngOnInit(): void {
+    // Skip animations on the server so content renders fully visible in the
+    // SSR HTML (crawlers see it) and no browser-only GSAP/ScrollTrigger runs.
+    if (!this.isBrowser) return;
+
     const el = this.el.nativeElement;
 
     if (this.revealClip) {
