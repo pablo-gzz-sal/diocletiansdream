@@ -20,9 +20,20 @@ DirectoryIndex index.html
   RewriteCond %{REQUEST_URI} !\.[a-zA-Z0-9]+$
   RewriteCond %{REQUEST_URI} !/$
   RewriteRule ^(.*)$ /$1/ [R=301,L]
+
+  # SPA fallback: a trailing-slash route with no prerendered folder (e.g. a blog
+  # post published after the last build) is served the client-render shell so
+  # the Angular app boots, reads the slug, and fetches the post live from
+  # WordPress. Real files/dirs and asset URLs are excluded, so they still serve
+  # directly or 404 normally. Unknown-but-invalid slugs render the in-app
+  # not-found state (noindex). Rebuilding bakes real posts into static files.
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{REQUEST_URI} /$
+  RewriteRule ^ /index.csr.html [L]
 </IfModule>
 
-# Unknown URLs (no prerendered file) return a real 404 with the NotFound page.
+# Fallback 404 for non-route requests (e.g. a missing asset with an extension).
 ErrorDocument 404 /404/index.html
 
 # Long-lived caching for fingerprinted build assets.
