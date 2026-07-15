@@ -1,0 +1,37 @@
+# Diocletians Dream — static (prerendered Angular) hosting on Apache/SiteGround.
+# The build in dist/diocletiansdream/browser/ is uploaded to the domain's
+# document root. These rules reproduce the routing that used to live in the
+# Node SSR server (src/server.ts).
+
+Options -MultiViews
+DirectoryIndex index.html
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # Legacy /blog/<slug> URLs now live at the root — permanent redirect.
+  # (Does not match the blog index "/blog/" itself.)
+  RewriteRule ^blog/([^/]+)/?$ /$1/ [R=301,L]
+
+  # Canonical trailing slash: add a slash to any non-file request that lacks
+  # one, so /experience -> /experience/ (matches the prerendered folder URLs).
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{REQUEST_URI} !\.[a-zA-Z0-9]+$
+  RewriteCond %{REQUEST_URI} !/$
+  RewriteRule ^(.*)$ /$1/ [R=301,L]
+</IfModule>
+
+# Unknown URLs (no prerendered file) return a real 404 with the NotFound page.
+ErrorDocument 404 /404/index.html
+
+# Long-lived caching for fingerprinted build assets.
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType text/css "access plus 1 year"
+  ExpiresByType application/javascript "access plus 1 year"
+  ExpiresByType image/jpeg "access plus 1 year"
+  ExpiresByType image/png "access plus 1 year"
+  ExpiresByType image/webp "access plus 1 year"
+  ExpiresByType image/svg+xml "access plus 1 year"
+</IfModule>

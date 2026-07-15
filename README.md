@@ -145,8 +145,8 @@ The site supports **English (en)** and **Croatian (hr)**.
 - **`SeoService`** (`src/app/shared/services/seo-service.ts`) manages title, description, canonical URL, Open Graph tags, and JSON-LD structured data
 - Each feature page calls `seo.setTitle()`, `seo.setDescription()`, `seo.setCanonical()`, and `seo.setOpenGraph()` in `ngOnInit`
 - The landing page adds JSON-LD for `LocalBusiness` + `TouristAttraction` schema
-- Static files: `public/robots.txt` and `public/sitemap.xml`
-- Base meta/OG tags in `src/index.html` serve as fallback for crawlers before Angular hydrates
+- `robots.txt` is a static file in `public/`; `sitemap.xml` is generated at build time by `scripts/generate-sitemap.mjs`
+- Because pages are prerendered, crawlers receive fully-rendered HTML (title, meta, canonical, OG, JSON-LD) with no need to execute JS
 
 ---
 
@@ -164,4 +164,21 @@ Ticket booking is handled by the **Turitop** widget. The script is loaded in `sr
 
 ## Deployment
 
-The app builds to `dist/diocletiansdream/browser/` as a static SPA. All routes must redirect to `index.html` on your hosting provider (Nginx, Netlify, Vercel, etc.).
+The app is **prerendered (static site generation)** — `npm run build` renders every
+public page to static HTML at build time, so it can be hosted on any static host
+(SiteGround/Apache, Netlify, Cloudflare Pages…) with **no Node server**.
+
+- **Build:** `npm run build` runs `ng build` (`outputMode: static`, see `angular.json`)
+  then `scripts/generate-sitemap.mjs`. Output is `dist/diocletiansdream/browser/`.
+- **Prerendered routes:** all static pages plus one file per blog post. Post slugs are
+  fetched from WordPress at build time in `src/app/app.routes.server.ts`
+  (`getPrerenderParams`). **Publishing a new post requires a rebuild + redeploy**
+  (trigger via a WordPress publish webhook or a scheduled build).
+- **Upload:** copy the **contents** of `dist/diocletiansdream/browser/` into the
+  domain's document root (e.g. SiteGround `public_html`). The included `.htaccess`
+  handles trailing-slash canonicalization, the legacy `/blog/<slug>` → `/<slug>`
+  301s, and `ErrorDocument 404` → the prerendered `/404/` page.
+- **WordPress** runs as a headless CMS on its own subdomain
+  (`cms.diocletiansdream.com`); see `wpBaseUrl` in `src/environments/environment.ts`.
+- **Sitemap:** `sitemap.xml` is generated into the output at build time (static pages +
+  every WordPress post). `robots.txt` is a static file in `public/`.
