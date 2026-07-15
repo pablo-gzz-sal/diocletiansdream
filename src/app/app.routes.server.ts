@@ -41,13 +41,16 @@ export const serverRoutes: ServerRoute[] = [
   { path: 'cookies', renderMode: RenderMode.Prerender },
   { path: '404', renderMode: RenderMode.Prerender },
 
-  // Blog posts at the root, one prerendered file per known slug. Unknown slugs
-  // get NO file (fallback None) so the host returns a real 404 instead of a
-  // stale 200 shell.
+  // Blog posts at the root, one prerendered file per known slug (full SEO).
+  // Unknown slugs (e.g. a post published after the last build) fall back to
+  // CLIENT rendering: the app boots via the SPA-fallback rule in .htaccess,
+  // reads the slug, and fetches the post live from WordPress. This means a new
+  // post is reachable by direct URL immediately, and gets upgraded to a
+  // prerendered file at the next scheduled rebuild.
   {
     path: ':slug',
     renderMode: RenderMode.Prerender,
-    fallback: PrerenderFallback.None,
+    fallback: PrerenderFallback.Client,
     async getPrerenderParams() {
       const slugs = await fetchAllPostSlugs();
       return slugs.map((slug) => ({ slug }));
