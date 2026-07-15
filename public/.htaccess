@@ -1,4 +1,4 @@
-# Diocletian's Dream — static (prerendered Angular) hosting on Apache/SiteGround.
+# Diocletians Dream — static (prerendered Angular) hosting on Apache/SiteGround.
 # The build in dist/diocletiansdream/browser/ is uploaded to the domain's
 # document root. These rules reproduce the routing that used to live in the
 # Node SSR server (src/server.ts).
