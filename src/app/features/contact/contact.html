@@ -300,12 +300,32 @@
         </p>
 
         <div class="mt-8 rounded-[1rem] border border-black/10 bg-white/60 p-7">
-          <p class="font-[family-name:var(--font-sans)] text-[0.75rem] tracking-[0.12em] uppercase text-ink-60">
-            {{ 'visitPage.hours.schedule.days' | translate }}
-          </p>
-          <p class="mt-2 font-[family-name:var(--font-serif)] italic text-[1.15rem] text-ink">
-            {{ 'visitPage.hours.schedule.time' | translate }}
-          </p>
+          <div class="flex items-baseline justify-between gap-4">
+            <p class="font-[family-name:var(--font-sans)] text-[0.75rem] tracking-[0.12em] uppercase text-ink-60">
+              {{ 'visitPage.hours.schedule.season1' | translate }}
+            </p>
+            <p class="font-[family-name:var(--font-serif)] italic text-[1.05rem] text-ink whitespace-nowrap">
+              {{ 'visitPage.hours.schedule.time1' | translate }}
+            </p>
+          </div>
+
+          <div class="mt-3 flex items-baseline justify-between gap-4 border-t border-black/5 pt-3">
+            <p class="font-[family-name:var(--font-sans)] text-[0.75rem] tracking-[0.12em] uppercase text-ink-60">
+              {{ 'visitPage.hours.schedule.season2' | translate }}
+            </p>
+            <p class="font-[family-name:var(--font-serif)] italic text-[1.05rem] text-ink whitespace-nowrap">
+              {{ 'visitPage.hours.schedule.time2' | translate }}
+            </p>
+          </div>
+
+          <div class="mt-3 flex items-baseline justify-between gap-4 border-t border-black/5 pt-3">
+            <p class="font-[family-name:var(--font-sans)] text-[0.75rem] tracking-[0.12em] uppercase text-ink-60">
+              {{ 'visitPage.hours.schedule.season3' | translate }}
+            </p>
+            <p class="font-[family-name:var(--font-serif)] italic text-[1.05rem] text-ink whitespace-nowrap">
+              {{ 'visitPage.hours.schedule.time3' | translate }}
+            </p>
+          </div>
 
           <p class="mt-4 font-[family-name:var(--font-sans)] text-[0.92rem] leading-[1.8] text-ink-60">
             {{ 'visitPage.hours.sessions' | translate }}

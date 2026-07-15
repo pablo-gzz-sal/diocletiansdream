@@ -22,7 +22,9 @@
       "p1": "Diocletians Dream is a 15-minute virtual reality experience located just steps from Diocletians Palace in Split. Through carefully designed 3D reconstruction and immersive VR technology, it presents the palace complex as it appeared in 305 AD.",
       "p2": "You stand inside spaces that no longer exist in their original form and witness scenes inspired by historical sources, offering a rare visual interpretation of the palace at the height of Diocletians reign.",
       "p3": "The experience focuses on atmosphere, scale, and visual storytelling, allowing visitors to better understand how the palace functioned within the life of the emperor and the city that grew around it.",
-      "cta": "The Experience"
+      "cta": "The Experience",
+      "statDuration": "Minutes of immersive VR",
+      "statYear": "The year brought to life"
     },
     "unique": {
       "title": "What Makes This VR Experience Unique in Croatia",
@@ -35,7 +37,7 @@
         "text": "The experience is designed to be powerful, focused, and memorable. In just 15 minutes, visitors gain a deeper understanding of Split’s origins and the legacy of Emperor Diocletian."
       },
       "educational": {
-        "title": "Educational, Engaging, and Suitable for All Ages",
+        "title": "Educational, Engaging, and Suitable for All Ages Above 8 Years Old",
         "text": "Whether you are visiting as a tourist, a family, or a school group, Diocletians Dream offers an accessible and engaging way to understand Roman heritage and the story of Split."
       },
       "cta": "Plan Your Visit"
@@ -43,7 +45,7 @@
     "location": {
       "title": "Located in the Heart of Split",
       "p1": "Diocletians Dream is located near the Golden Gate entrance of Diocletians Palace, within the UNESCO World Heritage Site.",
-      "p2": "It is an ideal indoor activity in Split, perfect in any season and especially suitable when exploring the Old Town. Full details about opening hours, ticket prices, and directions are available on our Visit Us page.",
+      "p2": "It is an ideal indoor activity in Split, perfect in any season and especially suitable when exploring the Old Town. Ticket prices and directions are available on our Visit Us page. For our up-to-date opening hours, please check Google Maps.",
       "cta": "Visit Us"
     },
     "reviews": {
@@ -157,7 +159,7 @@
         },
         {
           "q": "Is it suitable for children?",
-          "a": "The experience is suitable for children aged 8 and above. Younger visitors should be accompanied by an adult.\n\nAs this is a fully immersive 360° virtual reality experience, participants should feel comfortable using VR headsets and engaging with digital environments. Individuals who are sensitive to motion simulation, virtual heights, or immersive visual effects may wish to consider this before participating.\n\nIf you are unsure, our staff will be happy to provide guidance before the session."
+          "a": "The experience is only suitable for children aged 8 years old and above. Younger visitors should be accompanied by an adult.\n\nAs this is a fully immersive 360° virtual reality experience, participants should feel comfortable using VR headsets and engaging with digital environments. Individuals who are sensitive to motion simulation, virtual heights, or immersive visual effects may wish to consider this before participating.\n\nIf you are unsure, our staff will be happy to provide guidance before the session."
         },
         {
           "q": "Do I need to book in advance?",
@@ -214,12 +216,16 @@
     },
     "hours": {
       "title": "Opening Hours",
-      "intro": "Diocletians Dream is currently open:",
+      "intro": "Opening hours are subject to change. Diocletians Dream is currently open:",
       "schedule": {
-        "days": "Monday – Saturday",
-        "time": "11:00 AM – 4:00 PM"
+        "season1": "November – March",
+        "time1": "11:00 AM – 4:00 PM",
+        "season2": "April – May",
+        "time2": "10:00 AM – 6:00 PM",
+        "season3": "May – October",
+        "time3": "10:00 AM – 8:00 PM"
       },
-      "sessions": "VR sessions begin every 30 minutes throughout the day, with the final session starting at 3:30 PM.",
+      "sessions": "VR sessions begin every 30 minutes throughout the day, with the final session starting 30 minutes before closing. Please check Google for the most up-to-date times.",
       "note": "Please note that opening hours may vary during holidays, special events, or seasonal adjustments.",
       "google": "For the most accurate and up-to-date information, we recommend checking our official Google Business profile, which is regularly updated.",
       "googleLinkText": "Google Business profile"
@@ -270,7 +276,7 @@
         },
         {
           "q": "Is the experience suitable for families with children?",
-          "a": "Yes. The experience is recommended for children aged 8 and above. Younger children should be accompanied by an adult. Additional details can be found in the Experience section.",
+          "a": "Yes, but only for children aged 8 years old and above. Younger children should be accompanied by an adult. Additional details can be found in the Experience section.",
           "linkText": "Experience"
         }
       ]

@@ -22,7 +22,9 @@
       "p1": "Diocletians Dream je 15-minutno iskustvo virtualne stvarnosti smješteno svega nekoliko koraka od Dioklecijanove palače u Splitu. Kroz pažljivo izrađenu 3D rekonstrukciju i suvremenu VR tehnologiju prikazuje palaču onako kako je izgledala 305. godine.",
       "p2": "Posjetitelji ulaze u prostore koji danas više ne postoje u izvornom obliku te promatraju prizore inspirirane povijesnim izvorima, dobivajući jedinstvenu vizualnu interpretaciju palače u vrijeme vladavine cara Dioklecijana.",
       "p3": "Iskustvo je usmjereno na atmosferu, proporcije i vizualno pripovijedanje, omogućujući bolje razumijevanje načina na koji je palača funkcionirala u kontekstu života cara i razvoja grada Splita.",
-      "cta": "VR Iskustvo"
+      "cta": "VR Iskustvo",
+      "statDuration": "Minuta uronjenog VR-a",
+      "statYear": "Godina koju oživljavamo"
     },
     "unique": {
       "title": "Što ovo VR iskustvo čini jedinstvenim u Hrvatskoj",
@@ -35,7 +37,7 @@
         "text": "Iskustvo je osmišljeno tako da u kratkom vremenu pruži jasan i dojmljiv uvid u povijest. U samo 15 minuta posjetitelji dobivaju cjelovitiju sliku o nastanku Splita i ulozi cara Dioklecijana u njegovu razvoju."
       },
       "educational": {
-        "title": "Edukativno, zanimljivo i prilagođeno svim generacijama",
+        "title": "Edukativno, zanimljivo i prilagođeno svim uzrastima starijima od 8 godina",
         "text": "Bilo da dolazite kao turist, obitelj ili školska grupa, Diocletians Dream pruža pristupačan i zanimljiv način upoznavanja rimske baštine i povijesti Splita."
       },
       "cta": "Planiraj posjet"
@@ -43,7 +45,7 @@
     "location": {
       "title": "Smješteno u samom srcu Splita",
       "p1": "Diocletians Dream nalazi se u neposrednoj blizini Zlatnih vrata Dioklecijanove palače, unutar UNESCO-ove zaštićene povijesne jezgre grada Splita.",
-      "p2": "Riječ je o idealnoj aktivnosti u zatvorenom prostoru, prikladnoj tijekom cijele godine, osobito prilikom razgledavanja stare gradske jezgre. Sve informacije o radnom vremenu, cijenama ulaznica i lokaciji dostupne su na stranici Planiraj posjet.",
+      "p2": "Riječ je o idealnoj aktivnosti u zatvorenom prostoru, prikladnoj tijekom cijele godine, osobito prilikom razgledavanja stare gradske jezgre. Cijene ulaznica i lokacija dostupne su na stranici Planiraj posjet. Za aktualno radno vrijeme provjerite Google Maps.",
       "cta": "Posjetite nas"
     },
     "reviews": {
@@ -157,7 +159,7 @@
         },
         {
           "q": "Je li iskustvo prikladno za djecu?",
-          "a": "Iskustvo je prikladno za djecu stariju od 8 godina. Mlađa djeca trebaju biti u pratnji odrasle osobe.\n\nBudući da je riječ o 360° VR iskustvu, sudionici bi se trebali osjećati ugodno pri korištenju VR naočala i boravku u virtualnom prostoru. Osobe osjetljive na simulaciju kretanja ili intenzivne vizualne efekte trebaju to uzeti u obzir.\n\nAko niste sigurni, naše osoblje rado će vam pomoći prije početka projekcije."
+          "a": "Iskustvo je prikladno samo za djecu stariju od 8 godina. Mlađa djeca trebaju biti u pratnji odrasle osobe.\n\nBudući da je riječ o 360° VR iskustvu, sudionici bi se trebali osjećati ugodno pri korištenju VR naočala i boravku u virtualnom prostoru. Osobe osjetljive na simulaciju kretanja ili intenzivne vizualne efekte trebaju to uzeti u obzir.\n\nAko niste sigurni, naše osoblje rado će vam pomoći prije početka projekcije."
         },
         {
           "q": "Je li potrebna rezervacija?",
@@ -214,12 +216,16 @@
     },
     "hours": {
       "title": "Radno vrijeme",
-      "intro": "Diocletians Dream trenutno je otvoren:",
+      "intro": "Radno vrijeme podložno je promjenama. Diocletians Dream trenutno je otvoren:",
       "schedule": {
-        "days": "Ponedjeljak – Subota",
-        "time": "11:00 – 16:00"
+        "season1": "Studeni – ožujak",
+        "time1": "11:00 – 16:00",
+        "season2": "Travanj – svibanj",
+        "time2": "10:00 – 18:00",
+        "season3": "Svibanj – listopad",
+        "time3": "10:00 – 20:00"
       },
-      "sessions": "VR projekcije započinju svakih 30 minuta tijekom dana, a posljednja projekcija počinje u 15:30.",
+      "sessions": "VR projekcije započinju svakih 30 minuta tijekom dana, a posljednja projekcija počinje 30 minuta prije zatvaranja. Za najažurnije vrijeme provjerite Google.",
       "note": "Radno vrijeme može se prilagoditi tijekom blagdana, posebnih događanja ili sezonskih promjena.",
       "google": "Za najtočnije i ažurne informacije preporučujemo provjeru našeg službenog Google Business profila, koji redovito ažuriramo.",
       "googleLinkText": "Google Business profil"
@@ -270,7 +276,7 @@
         },
         {
           "q": "Je li iskustvo prikladno za obitelji s djecom?",
-          "a": "Da. Iskustvo preporučujemo djeci starijoj od 8 godina. Mlađa djeca trebaju biti u pratnji odrasle osobe. Više informacija dostupno je na stranici Iskustvo.",
+          "a": "Da, ali samo za djecu stariju od 8 godina. Mlađa djeca trebaju biti u pratnji odrasle osobe. Više informacija dostupno je na stranici Iskustvo.",
           "linkText": "Iskustvo"
         }
       ]
