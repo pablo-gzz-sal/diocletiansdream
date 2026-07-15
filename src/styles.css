@@ -1303,7 +1303,6 @@ main::after {
   overscroll-behavior: contain;
   flex: none !important;
   min-height: 0;
-  justify-content: flex-start !important;
 }
 
 .dd-mobile-menu-panel nav a {
