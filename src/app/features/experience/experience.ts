@@ -3,80 +3,57 @@ import { Header } from '../../core/components/header/header';
 import { Footer } from '../../core/components/footer/footer';
 import { CommonModule } from '@angular/common';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
-import { Subscription } from 'rxjs';
-import { Meta, Title } from '@angular/platform-browser';
 import { RouterLink } from '@angular/router';
 import { BlogInvite } from '../../shared/components/blog-invite/blog-invite';
+import { OG_DEFAULT_IMAGE, PageSeoService } from '../../shared/services/page-seo';
 import { SeoService } from '../../shared/services/seo-service';
+import { I18nService } from '../../core/i18n/i18n.service';
 import { RevealOnScrollDirective } from '../../shared/animations/reveal-on-scroll-directive';
+import { environment } from '../../../environments/environment';
+import { LocalePathPipe } from '../../core/i18n/locale-path.pipe';
 
 @Component({
   selector: 'app-experience',
   standalone: true,
-  imports: [Header, Footer, CommonModule, TranslateModule, RouterLink, BlogInvite, RevealOnScrollDirective],
+  imports: [Header, Footer, CommonModule, TranslateModule, RouterLink, BlogInvite, RevealOnScrollDirective, LocalePathPipe],
   templateUrl: './experience.html',
   styleUrl: './experience.css',
 })
 export class Experience implements OnInit, OnDestroy {
-  schemaJsonLd = '';
-  private sub?: Subscription;
+  /** Sizzle reel served from the headless WordPress host (root domain is the
+   * static site now and has no /wp-content). */
+  readonly videoSrc = `${environment.wpBaseUrl.replace(/\/+$/, '')}/wp-content/uploads/2026/07/Sizzle-Reel-Diocletians-Dream.mp4`;
+
+  private static readonly JSON_LD_IDS = ['ld-experience-faq', 'ld-experience-video'];
 
   constructor(
-    private title: Title,
-    private meta: Meta,
     private translate: TranslateService,
+    private pageSeo: PageSeoService,
     private seo: SeoService,
+    private i18n: I18nService,
   ) {}
 
   ngOnInit(): void {
+    this.pageSeo.applyLocalized('experiencePage', '/experience');
 
-    // Apply SEO on initial load
-    this.applySeo(this.translate.currentLang || 'en');
-
-    // Re-apply SEO + schema whenever language changes
-    this.sub = this.translate.onLangChange.subscribe((e) => {
-      this.applySeo(e.lang);
-    });
+    const lang = this.i18n.current();
+    const [faqSchema, videoSchema] = this.buildSchemas(
+      this.translate.instant('experiencePage.seo.metaDescription'),
+      lang,
+    );
+    // Injected into <head> via SeoService, NOT via a <script> in the template:
+    // Angular's compiler strips <script> from templates, so a template tag
+    // silently emits nothing at all.
+    this.seo.setJsonLd('ld-experience-faq', faqSchema);
+    this.seo.setJsonLd('ld-experience-video', videoSchema);
   }
 
   ngOnDestroy(): void {
-    this.sub?.unsubscribe();
+    // <script> tags survive client-side navigation — drop them on the way out.
+    for (const id of Experience.JSON_LD_IDS) this.seo.clearJsonLd(id);
   }
 
-  private applySeo(lang: string) {
-    // META TITLE (exactly from your notes)
-    const metaTitle =
-      lang === 'hr'
-        ? "VR iskustvo Dioklecijanove palače u Splitu | Diocletians Dream"
-        : "Diocletians Palace Virtual Reality in Split | Diocletians Dream";
-
-    // META DESCRIPTION (exactly from your notes)
-    const metaDescription =
-      lang === 'hr'
-        ? 'Doživite Dioklecijanovu palaču onako kako je izgledala 305. godine kroz 15-minutno VR putovanje u Splitu. Suvremena interpretacija rimske povijesti. Rezervirajte posjet.'
-        : "Explore Diocletians Palace as it stood in 305 AD through a 15-minute virtual reality journey in Split. A visually reconstructed chapter of Roman history. Book your session.";
-
-    this.title.setTitle(metaTitle);
-    this.seo.setCanonical('https://diocletiansdream.com/experience');
-
-    this.meta.updateTag({ name: 'description', content: metaDescription });
-    this.seo.setRobots();
-
-    // Open Graph
-    this.meta.updateTag({ property: 'og:title', content: metaTitle });
-    this.meta.updateTag({ property: 'og:description', content: metaDescription });
-    this.meta.updateTag({ property: 'og:type', content: 'website' });
-    this.meta.updateTag({ property: 'og:url', content: 'https://diocletiansdream.com/experience/' });
-
-    // Twitter
-    this.meta.updateTag({ name: 'twitter:title', content: metaTitle });
-    this.meta.updateTag({ name: 'twitter:description', content: metaDescription });
-
-    // JSON-LD (FAQPage + VideoObject)
-    this.schemaJsonLd = this.buildSchemaJsonLd(metaTitle, metaDescription, lang);
-  }
-
-  private buildSchemaJsonLd(metaTitle: string, metaDescription: string, lang: string): string {
+  private buildSchemas(metaDescription: string, lang: string): [unknown, unknown] {
     // Pull localized FAQ items from i18n.
     // Your HTML uses: ('experiencePage.faq.items' | translate)
     // This assumes items are an array of { q: string, a: string, linkText?: string }
@@ -103,9 +80,6 @@ export class Experience implements OnInit, OnDestroy {
         : [],
     };
 
-    // Trailer / VideoObject:
-    // If you later have a real URL, just swap these placeholders.
-    // Keep it language-aware.
     const trailerName =
       this.translate.instant('experiencePage.trailer.title') || 'Experience trailer';
 
@@ -118,19 +92,17 @@ export class Experience implements OnInit, OnDestroy {
       name: trailerName,
       description: trailerText,
       inLanguage: lang === 'hr' ? 'hr' : 'en',
-      // Replace these when you have real assets:
-      thumbnailUrl: 'https://diocletiansdream.com/assets/images/experience-trailer-thumb.jpg',
-      uploadDate: '2020-01-01',
-      embedUrl: 'https://www.youtube.com/embed/REPLACE_WITH_VIDEO_ID',
-      contentUrl: 'https://www.youtube.com/watch?v=REPLACE_WITH_VIDEO_ID',
+      thumbnailUrl: this.pageSeo.absolute(OG_DEFAULT_IMAGE),
+      // Date the sizzle reel was published to WordPress (from its upload path).
+      uploadDate: '2026-07-01',
+      contentUrl: this.videoSrc,
       publisher: {
         '@type': 'Organization',
-        name: "Diocletians Dream",
-        url: 'https://diocletiansdream.com/',
+        name: 'Diocletians Dream',
+        url: environment.siteUrl,
       },
     };
 
-    // You can output multiple JSON-LD blocks as an array:
-    return JSON.stringify([faqSchema, videoSchema]);
+    return [faqSchema, videoSchema];
   }
 }

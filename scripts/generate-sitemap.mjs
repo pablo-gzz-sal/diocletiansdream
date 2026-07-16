@@ -31,17 +31,50 @@ async function main() {
   const SITE_URL = (readEnvValue(envSource, 'siteUrl') ?? 'https://diocletiansdream.com').replace(/\/+$/, '');
   const WP_BASE_URL = (readEnvValue(envSource, 'wpBaseUrl') ?? '').replace(/\/+$/, '');
 
-  const staticPages = [
+  // Pages that exist in BOTH locales. Must mirror TRANSLATED_PATHS in
+  // src/app/core/i18n/locale-url.ts — this script parses environment.ts by
+  // regex rather than importing TypeScript, so it cannot import that list.
+  const translatedPages = [
     { path: '/', changefreq: 'weekly', priority: '1.0' },
     { path: '/experience/', changefreq: 'monthly', priority: '0.9' },
     { path: '/visit/', changefreq: 'monthly', priority: '0.9' },
     { path: '/booking/', changefreq: 'weekly', priority: '0.9' },
     { path: '/about/', changefreq: 'monthly', priority: '0.7' },
+  ];
+
+  // English-only: no Croatian content exists, so no hreflang alternates.
+  // /dd-thankyou/ is deliberately absent — it is noindex.
+  const enOnlyPages = [
     { path: '/blog/', changefreq: 'weekly', priority: '0.8' },
     { path: '/privacy/', changefreq: 'yearly', priority: '0.2' },
     { path: '/terms/', changefreq: 'yearly', priority: '0.2' },
     { path: '/cookies/', changefreq: 'yearly', priority: '0.2' },
   ];
+
+  // English path -> Croatian slug. Mirrors HR_SLUGS in
+  // src/app/core/i18n/locale-url.ts — update both together.
+  const HR_SLUGS = {
+    '/experience/': '/iskustvo/',
+    '/visit/': '/posjet/',
+    '/about/': '/o-nama/',
+    '/booking/': '/rezervacija/',
+  };
+
+  const hrPath = (p) => (p === '/' ? '/hr/' : `/hr${HR_SLUGS[p] ?? p}`);
+
+  /** Reciprocal alternates. Both members of a pair emit the SAME three tags —
+   *  Google ignores one-way hreflang annotations. */
+  const altBlock = (p) =>
+    [
+      `    <xhtml:link rel="alternate" hreflang="en" href="${SITE_URL}${p}"/>`,
+      `    <xhtml:link rel="alternate" hreflang="hr" href="${SITE_URL}${hrPath(p)}"/>`,
+      `    <xhtml:link rel="alternate" hreflang="x-default" href="${SITE_URL}${p}"/>`,
+    ].join('\n');
+
+  const entry = (loc, { changefreq, priority }, alternatesFor) =>
+    `  <url>\n    <loc>${loc}</loc>\n` +
+    (alternatesFor ? `${altBlock(alternatesFor)}\n` : '') +
+    `    <changefreq>${changefreq}</changefreq>\n    <priority>${priority}</priority>\n  </url>`;
 
   let posts = [];
   if (WP_BASE_URL) {
@@ -54,11 +87,25 @@ async function main() {
     }
   }
 
+  // A blog slug colliding with a routing prefix would silently break that
+  // route: ':slug' is a single-segment wildcard, so a post slugged "hr" or
+  // "dd-thankyou" would fight the real page. Fail the build loudly instead.
+  const RESERVED = ['hr', 'dd-thankyou'];
+  const collisions = posts.map((p) => p.slug).filter((s) => RESERVED.includes(s));
+  if (collisions.length) {
+    console.error(
+      `[sitemap] FATAL: WordPress post slug(s) collide with reserved routes: ${collisions.join(', ')}. ` +
+        `Rename the post(s) in WordPress — these URLs belong to the site's own pages.`,
+    );
+    process.exit(1);
+  }
+
   const urls = [
-    ...staticPages.map(
-      (p) =>
-        `  <url>\n    <loc>${SITE_URL}${p.path}</loc>\n    <changefreq>${p.changefreq}</changefreq>\n    <priority>${p.priority}</priority>\n  </url>`,
+    ...translatedPages.map((p) => entry(`${SITE_URL}${p.path}`, p, p.path)),
+    ...translatedPages.map((p) =>
+      entry(`${SITE_URL}${hrPath(p.path)}`, { ...p, priority: '0.8' }, p.path),
     ),
+    ...enOnlyPages.map((p) => entry(`${SITE_URL}${p.path}`, p, null)),
     ...posts.map((post) => {
       const lastmod = post.modified
         ? `\n    <lastmod>${new Date(post.modified).toISOString()}</lastmod>`
@@ -67,7 +114,12 @@ async function main() {
     }),
   ];
 
-  const xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.join('\n')}\n</urlset>\n`;
+  // The xmlns:xhtml declaration is mandatory once xhtml:link is used — without
+  // it the whole sitemap fails to parse.
+  const xml =
+    `<?xml version="1.0" encoding="UTF-8"?>\n` +
+    `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n` +
+    `${urls.join('\n')}\n</urlset>\n`;
 
   await writeFile(join(OUT_DIR, 'sitemap.xml'), xml, 'utf8');
   console.log(`[sitemap] Wrote sitemap.xml with ${urls.length} URLs (${posts.length} posts).`);

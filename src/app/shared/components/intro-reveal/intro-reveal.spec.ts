@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { IntroReveal } from './intro-reveal';
+import { commonTestImports, commonTestProviders } from '../../../../testing/test-setup';
 
 describe('IntroReveal', () => {
   let component: IntroReveal;
@@ -8,7 +9,8 @@ describe('IntroReveal', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [IntroReveal]
+      imports: [IntroReveal, ...commonTestImports],
+      providers: [...commonTestProviders]
     })
     .compileComponents();
 

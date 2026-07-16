@@ -4,11 +4,14 @@ import { NavigationEnd, NavigationStart, Router, RouterLink, RouterLinkActive } 
 import { filter } from 'rxjs';
 import { I18nService } from '../../i18n/i18n.service';
 import { TranslateModule } from '@ngx-translate/core';
+import { DEFAULT_LANG, SupportedLang } from '../../i18n/i18n.config';
+import { hasCounterpart, stripLocale, withLocale } from '../../i18n/locale-url';
+import { LocalePathPipe } from '../../i18n/locale-path.pipe';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [RouterLink, RouterLinkActive, NgClass, TranslateModule],
+  imports: [RouterLink, RouterLinkActive, NgClass, TranslateModule, LocalePathPipe],
   templateUrl: './header.html',
   styleUrl: './header.css',
 })
@@ -61,8 +64,21 @@ export class Header implements OnInit, OnDestroy, AfterViewInit {
     this.removeOverflow();
   }
 
-  toggleLang() {
-    this.i18n.toggle();
+  /**
+   * Switching language is a navigation, not an in-memory flip: the URL is the
+   * source of truth for language. Pages that exist only in English (the blog,
+   * a post) have no Croatian counterpart, so switching to Croatian from one
+   * lands on the Croatian home page instead.
+   */
+  switchTo(target: SupportedLang) {
+    if (target === this.currentLang()) return;
+    const { path } = stripLocale(this.router.url);
+    const dest = hasCounterpart(path)
+      ? withLocale(path, target)
+      : target === DEFAULT_LANG
+        ? path
+        : withLocale('/', target);
+    this.router.navigateByUrl(dest);
   }
 
   currentLang() {
@@ -70,7 +86,8 @@ export class Header implements OnInit, OnDestroy, AfterViewInit {
   }
 
   private updateRouteState() {
-    const path = this.router.url.split('?')[0].split('#')[0];
-    this.homeRoute.set(path === '/' || path === '');
+    // Compare the locale-stripped path so /hr/ counts as home too.
+    const { path } = stripLocale(this.router.url);
+    this.homeRoute.set(path === '/');
   }
 }

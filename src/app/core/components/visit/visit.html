@@ -8,7 +8,7 @@
         <p class="eyebrow" revealOnScroll [revealDelay]="0">{{ 'home.unique.cta' | translate }}</p>
         <h2 class="section-h2" revealOnScroll [revealDelay]="0.12" [revealClip]="true">{{ 'home.unique.title' | translate }}</h2>
       </div>
-      <a routerLink="/visit" class="inline-link hide-mobile" revealOnScroll [revealDelay]="0.2">
+      <a [routerLink]="'/visit' | locPath" class="inline-link hide-mobile" revealOnScroll [revealDelay]="0.2">
         {{ 'home.unique.cta' | translate }} →
       </a>
     </div>
@@ -19,7 +19,7 @@
         <span class="vcard-num">01</span>
         <p class="vcard-title">{{ 'home.unique.reconstruction.title' | translate }}</p>
         <p class="vcard-text">{{ 'home.unique.reconstruction.text' | translate }}</p>
-        <a routerLink="/experience" class="btn btn--ghost vcard-btn">
+        <a [routerLink]="'/experience' | locPath" class="btn btn--ghost vcard-btn">
           {{ 'home.experience.cta' | translate }}
         </a>
       </div>
@@ -28,7 +28,7 @@
         <span class="vcard-num">02</span>
         <p class="vcard-title">{{ 'home.unique.journey.title' | translate }}</p>
         <p class="vcard-text">{{ 'home.unique.journey.text' | translate }}</p>
-        <a routerLink="/booking" class="btn btn--ghost vcard-btn">
+        <a [routerLink]="'/booking' | locPath" class="btn btn--dark vcard-btn">
           {{ 'home.hero.ctaPrimary' | translate }}
         </a>
       </div>
@@ -37,7 +37,7 @@
         <span class="vcard-num">03</span>
         <p class="vcard-title">{{ 'home.unique.educational.title' | translate }}</p>
         <p class="vcard-text">{{ 'home.unique.educational.text' | translate }}</p>
-        <a routerLink="/visit" class="btn btn--ghost vcard-btn">
+        <a [routerLink]="'/visit' | locPath" class="btn btn--ghost vcard-btn">
           {{ 'home.unique.cta' | translate }}
         </a>
       </div>
@@ -71,11 +71,11 @@
           </svg>
           <p class="location-address-text">
             Zagrebačka ulica 1<br>
-            21000 Split, Croatia
+            {{ 'home.location.addressCity' | translate }}
           </p>
         </div>
 
-        <a routerLink="/visit" class="btn btn--dark">
+        <a [routerLink]="'/visit' | locPath" class="btn btn--dark">
           {{ 'home.location.cta' | translate }}
         </a>
       </div>

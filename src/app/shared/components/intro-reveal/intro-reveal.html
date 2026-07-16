@@ -30,11 +30,11 @@
           {{ 'home.hero.subtitle' | translate }}
         </p>
 
-        <div class="intro-scroll" aria-label="Scroll down">
+        <div class="intro-scroll" [attr.aria-label]="'home.intro.scrollAria' | translate">
           <div class="mouse" aria-hidden="true">
             <span class="wheel"></span>
           </div>
-          <span class="scroll-label">Scroll</span>
+          <span class="scroll-label">{{ 'home.intro.scroll' | translate }}</span>
         </div>
       </div>
     </div>

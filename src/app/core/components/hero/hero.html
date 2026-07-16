@@ -48,7 +48,7 @@
       <p class="hero-sub" revealOnScroll [revealDelay]="0.2">{{ 'home.hero.subtitle' | translate }}</p>
 
       <div class="hero-actions" revealOnScroll [revealDelay]="0.3">
-        <a routerLink="/booking" class="btn btn--dark">
+        <a [routerLink]="'/booking' | locPath" class="btn btn--dark">
           {{ 'home.hero.ctaPrimary' | translate }}
         </a>
         <a href="#trailer" class="btn btn--ghost">
@@ -81,7 +81,7 @@
           <p class="card-title">{{ 'home.experience.title' | translate }}</p>
           <p class="card-sub">{{ 'home.unique.reconstruction.text' | translate }}</p>
         </div>
-        <a routerLink="/booking" class="inline-link">
+        <a [routerLink]="'/booking' | locPath" class="inline-link">
           {{ 'home.hero.ctaPrimary' | translate }} →
         </a>
       </div>

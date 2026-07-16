@@ -4,13 +4,14 @@ import { TranslateModule } from '@ngx-translate/core';
 import { RevealOnScrollDirective } from '../../../shared/animations/reveal-on-scroll-directive';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { LocalePathPipe } from '../../../core/i18n/locale-path.pipe';
 
 gsap.registerPlugin(ScrollTrigger);
 
 @Component({
   selector: 'app-visit',
   standalone: true,
-  imports: [RouterLink, TranslateModule, RevealOnScrollDirective],
+  imports: [RouterLink, TranslateModule, RevealOnScrollDirective, LocalePathPipe],
   templateUrl: './visit.html',
   styleUrl: './visit.css',
 })

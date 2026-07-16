@@ -18,7 +18,7 @@
       <div class="bento-cell bento-cell--text" revealOnScroll [revealDelay]="0.2">
         <p class="bento-copy">{{ 'home.story.p1' | translate }}</p>
         <p class="bento-copy">{{ 'home.story.p2' | translate }}</p>
-        <a routerLink="/about" class="btn btn--dark">
+        <a [routerLink]="'/about' | locPath" class="btn btn--dark">
           {{ 'home.story.cta' | translate }}
         </a>
       </div>

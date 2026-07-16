@@ -49,7 +49,7 @@
         <!-- Left: eyebrow + H1 + text -->
         <div revealOnScroll [revealDelay]="0.1">
           <p class="eyebrow mb-5">
-            Visit Diocletians Dream Split · Golden Gate · scheduled time slots
+            {{ 'visitPage.hero.eyebrow' | translate }}
           </p>
 
           <h1 class="font-[family-name:var(--font-serif)] font-light leading-[0.88] tracking-[-0.02em] text-ink">
@@ -65,22 +65,22 @@
           </p>
 
           <div class="mt-8 flex flex-wrap gap-3">
-            <a routerLink="/booking" class="btn btn--dark">
+            <a [routerLink]="'/booking' | locPath" class="btn btn--dark">
               {{ 'visitPage.hero.ctaPrimary' | translate }}
             </a>
-            <a href="#map" class="btn btn--ghost">Map & directions</a>
-            <a href="#hours" class="btn btn--ghost">Opening hours</a>
+            <a href="#map" class="btn btn--ghost">{{ 'visitPage.hero.ctaMap' | translate }}</a>
+            <a href="#hours" class="btn btn--ghost">{{ 'visitPage.hero.ctaHours' | translate }}</a>
           </div>
 
           <div class="mt-8 flex flex-wrap items-center gap-3 text-ink-60">
             <span class="rounded-full border border-black/10 bg-white/50 px-4 py-2 font-[family-name:var(--font-sans)] text-[0.7rem] tracking-[0.12em] uppercase">
-              historic centre
+              {{ 'visitPage.hero.chipHistoricCentre' | translate }}
             </span>
             <span class="rounded-full border border-black/10 bg-white/50 px-4 py-2 font-[family-name:var(--font-sans)] text-[0.7rem] tracking-[0.12em] uppercase">
-              Golden Gate
+              {{ 'visitPage.hero.chipGoldenGate' | translate }}
             </span>
             <span class="rounded-full border border-black/10 bg-white/50 px-4 py-2 font-[family-name:var(--font-sans)] text-[0.7rem] tracking-[0.12em] uppercase">
-              30-min time slots
+              {{ 'visitPage.hero.chipTimeSlots' | translate }}
             </span>
           </div>
         </div>
@@ -102,10 +102,10 @@
           </div>
           <div class="p-6">
             <p class="font-[family-name:var(--font-serif)] italic text-[1.1rem] text-ink">
-              Tickets & group visits
+              {{ 'visitPage.sideCard.title' | translate }}
             </p>
             <p class="mt-1 font-[family-name:var(--font-sans)] text-[0.78rem] text-ink-60">
-              VR experience Split booking · school trip Split · group activity Split
+              {{ 'visitPage.sideCard.text' | translate }}
             </p>
           </div>
         </div>
@@ -120,14 +120,14 @@
     <div class="mx-auto max-w-7xl grid gap-12 lg:grid-cols-12 items-start">
       <div class="lg:col-span-5">
         <p class="eyebrow">
-          Location
+          {{ 'visitPage.location.eyebrow' | translate }}
         </p>
         <h2 class="mt-3 font-[family-name:var(--font-serif)] font-light text-[clamp(2.5rem,6vw,4.4rem)] leading-[0.92] tracking-[-0.02em] text-ink">
-          Split historic centre
+          {{ 'visitPage.location.title' | translate }}
         </h2>
 
         <p class="mt-6 font-[family-name:var(--font-sans)] text-[0.95rem] leading-[1.85] text-ink-60">
-          Zagrebačka ul. 1 — just outside the walls of Diocletians Palace near the Golden Gate.
+          {{ 'visitPage.location.address' | translate }}
         </p>
 
         <div class="mt-8 flex flex-wrap gap-3">
@@ -135,11 +135,11 @@
             [href]="directionsUrl"
             target="_blank"
             rel="noopener"
-            class="btn btn--dark"
+            class="btn btn--cream"
           >
-            Get directions
+            {{ 'visitPage.location.ctaDirections' | translate }}
           </a>
-          <a routerLink="/booking" class="btn btn--cream">
+          <a [routerLink]="'/booking' | locPath" class="btn btn--dark">
             {{ 'visitPage.hero.ctaPrimary' | translate }}
           </a>
         </div>
@@ -159,7 +159,7 @@
         </div>
 
         <p class="mt-4 font-[family-name:var(--font-sans)] text-[0.82rem] leading-[1.6] text-ink-60">
-          Tip: arrive a few minutes early for briefing before your scheduled time slot.
+          {{ 'visitPage.map.tip' | translate }}
         </p>
       </div>
     </div>
@@ -192,7 +192,7 @@
             </p>
 
             <div class="pt-4 border-t border-black/10">
-              <a routerLink="/booking" class="btn btn--dark">
+              <a [routerLink]="'/booking' | locPath" class="btn btn--dark">
                 {{ 'visitPage.individual.cta' | translate }}
               </a>
             </div>
@@ -354,8 +354,8 @@
           </div>
 
           <div class="mt-8 flex flex-wrap gap-3">
-            <a routerLink="/booking" class="btn btn--dark">Book now</a>
-            <a href="mailto:contact@diocletiansdream.com" class="btn btn--cream">Contact us</a>
+            <a [routerLink]="'/booking' | locPath" class="btn btn--dark">{{ 'visitPage.bookingInfo.ctaPrimary' | translate }}</a>
+            <a href="mailto:contact@diocletiansdream.com" class="btn btn--cream">{{ 'visitPage.bookingInfo.ctaSecondary' | translate }}</a>
           </div>
         </div>
       </div>
@@ -388,7 +388,7 @@
             <p class="font-[family-name:var(--font-sans)] text-[0.95rem] leading-[1.85] text-ink-60">
               {{ 'visitPage.seasonal.p3' | translate }}
               <a
-                routerLink="/booking"
+                [routerLink]="'/booking' | locPath"
                 class="inline-link ml-2"
               >
                 {{ 'visitPage.seasonal.bookNowLinkText' | translate }} →
@@ -432,7 +432,7 @@
             </p>
 
             <div class="pt-4 border-t border-black/10 flex flex-wrap gap-3">
-              <a routerLink="/booking" class="btn btn--dark">
+              <a [routerLink]="'/booking' | locPath" class="btn btn--dark">
                 {{ 'visitPage.bookingInfo.ctaPrimary' | translate }}
               </a>
               <a href="mailto:contact@diocletiansdream.com" class="btn btn--cream">
@@ -484,7 +484,7 @@
 
                 <a
                   *ngIf="item.linkText"
-                  routerLink="/experience"
+                  [routerLink]="'/experience' | locPath"
                   class="mt-4 inline-flex items-center gap-2 font-[family-name:var(--font-sans)] text-[0.8rem] font-medium text-ink underline underline-offset-4 hover:opacity-60 transition-opacity"
                 >
                   {{ item.linkText }} →
@@ -521,7 +521,7 @@
 
         <div class="flex flex-col gap-3 lg:items-end shrink-0">
           <a
-            routerLink="/booking"
+            [routerLink]="'/booking' | locPath"
             class="inline-flex items-center justify-center rounded-full px-8 py-3.5 font-[family-name:var(--font-sans)] text-[0.8rem] font-medium text-white hover:opacity-90 transition-opacity no-underline whitespace-nowrap"
             style="background: var(--dd-purple)"
           >
@@ -539,8 +539,6 @@
     </div>
   </section> -->
 
-  <!-- JSON-LD hook -->
-  <script type="application/ld+json" [innerHTML]="schemaJsonLd"></script>
 </main>
 
 <app-footer></app-footer>y

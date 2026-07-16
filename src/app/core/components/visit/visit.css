@@ -139,16 +139,21 @@
   flex: 1;
 }
 
-/* Ghost button — purple identity */
+/* Layout only — the .btn--* variant owns the colours, so a card can carry the
+   purple .btn--dark primary without this rule flattening it back to an outline. */
 .vcard-btn {
   margin-top: 1.5rem;
   align-self: flex-start;
+}
+
+/* Ghost button — purple identity */
+.vcard-btn.btn--ghost {
   color: var(--dd-purple);
   border: 1px solid var(--dd-purple-20);
   background: transparent;
 }
 
-.vcard-btn:hover {
+.vcard-btn.btn--ghost:hover {
   background: var(--dd-purple-06);
   border-color: var(--dd-purple);
   box-shadow: var(--shadow-purple);

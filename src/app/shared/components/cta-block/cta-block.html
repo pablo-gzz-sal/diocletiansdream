@@ -9,15 +9,15 @@
         </p>
 
         <div class="mt-7 flex flex-wrap gap-3">
-          <a routerLink="/experience" class="btn btn--ghost">
+          <a [routerLink]="'/experience' | locPath" class="btn btn--ghost">
             {{ 'blogPage.cta.experience' | translate }} →
           </a>
 
-          <a routerLink="/visit" class="btn btn--ghost">
+          <a [routerLink]="'/visit' | locPath" class="btn btn--ghost">
             {{ 'blogPage.cta.visit' | translate }} →
           </a>
 
-          <a routerLink="/booking" class="btn btn--dark">
+          <a [routerLink]="'/booking' | locPath" class="btn btn--dark">
             {{ 'blogPage.cta.book' | translate }} →
           </a>
         </div>

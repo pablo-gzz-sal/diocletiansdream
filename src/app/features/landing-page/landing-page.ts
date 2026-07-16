@@ -20,14 +20,15 @@ import { AboutProject } from '../../core/components/about-project/about-project'
 import { Highlights } from '../../core/components/highlights/highlights';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { OG_DEFAULT_IMAGE, PageSeoService } from '../../shared/services/page-seo';
+import { I18nService } from '../../core/i18n/i18n.service';
 
 gsap.registerPlugin(ScrollTrigger);
 
 @Component({
   selector: 'app-landing-page',
   standalone: true,
-  imports: [
-    RouterLink,
+  imports: [RouterLink,
     Header,
     Footer,
     FormsModule,
@@ -42,8 +43,7 @@ gsap.registerPlugin(ScrollTrigger);
     Reviews,
     Faq,
     AboutProject,
-    Highlights
-  ],
+    Highlights],
   templateUrl: './landing-page.html',
   styleUrl: './landing-page.css',
 })
@@ -59,6 +59,8 @@ export class LandingPage implements OnInit, AfterViewInit, OnDestroy {
     private seo: SeoService,
     private wpService: WpService,
     private translate: TranslateService,
+    private pageSeo: PageSeoService,
+    private i18n: I18nService,
   ) {}
 
   ngOnInit(): void {
@@ -116,25 +118,19 @@ export class LandingPage implements OnInit, AfterViewInit, OnDestroy {
   }
 
   private applySeo(): void {
-    const title = "Diocletians Dream VR Museum | Step back into 305 AD";
-    const description = "A 15-minute VR museum experience in Split that brings Diocletians Palace back to life in 305 AD. Located just outside the palace walls near the Golden Gate. Book tickets online.";
+    this.pageSeo.applyLocalized('home', '/');
 
-    this.seo.setTitle(title);
-    this.seo.setDescription(description);
-    this.seo.setCanonical('https://diocletiansdream.com/');
-    this.seo.setOpenGraph({
-      title,
-      description,
-      url: 'https://diocletiansdream.com/',
-      type: 'website',
-    });
+    const description = this.translate.instant('home.seo.metaDescription') as string;
+    const lang = this.i18n.current();
 
     this.seo.setJsonLd('ld-local-business', {
       '@context': 'https://schema.org',
       '@type': ['LocalBusiness', 'TouristAttraction'],
       name: "Diocletians Dream VR Museum",
       description,
-      url: 'https://diocletiansdream.com',
+      inLanguage: lang,
+      image: this.pageSeo.absolute(OG_DEFAULT_IMAGE),
+      url: this.pageSeo.urlFor('/'),
       telephone: '+38521886015',
       email: 'contact@diocletiansdream.com',
       address: {

@@ -6,14 +6,15 @@ import { RouterLink } from '@angular/router';
 import { Header } from '../../core/components/header/header';
 import { Footer } from '../../core/components/footer/footer';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
-import { Subscription } from 'rxjs';
+import { PageSeoService } from '../../shared/services/page-seo';
 import { SeoService } from '../../shared/services/seo-service';
 import { RevealOnScrollDirective } from '../../shared/animations/reveal-on-scroll-directive';
+import { LocalePathPipe } from '../../core/i18n/locale-path.pipe';
 
 @Component({
   selector: 'app-contact',
   standalone: true,
-  imports: [CommonModule, RouterLink, Header, Footer, TranslateModule, RevealOnScrollDirective],
+  imports: [CommonModule, RouterLink, Header, Footer, TranslateModule, RevealOnScrollDirective, LocalePathPipe],
   templateUrl: './contact.html',
   styleUrl: './contact.css',
 })
@@ -21,29 +22,19 @@ export class Contact implements OnInit, OnDestroy {
   submitting = false;
   submitted = false;
 
-  schemaJsonLd = '';
   mapEmbedSafeUrl!: SafeResourceUrl;
   directionsUrl = '';
 
-  private sub?: Subscription;
+  private static readonly JSON_LD_ID = 'ld-visit-faq';
 
   constructor(
-    private title: Title,
-    private meta: Meta,
-    private translate: TranslateService,
     private sanitizer: DomSanitizer,
+    private pageSeo: PageSeoService,
     private seo: SeoService,
-  ) {
-    this.title.setTitle("Contact — Diocletians Dream VR Museum | Split");
-    this.meta.updateTag({
-      name: 'description',
-      content:
-        "Get in touch with Diocletians Dream. Find our address in Split's Old Town, opening hours, ticket prices, and contact details.",
-    });
-  }
+    private translate: TranslateService,
+  ) {}
 
   ngOnInit(): void {
-
     // ✅ Keep your map: paste your existing embed URL here (the SAME one from your current contact page)
     const mapEmbedUrl = 'PASTE_YOUR_EXISTING_GOOGLE_MAPS_EMBED_URL_HERE';
     this.mapEmbedSafeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(mapEmbedUrl);
@@ -51,46 +42,41 @@ export class Contact implements OnInit, OnDestroy {
     // Directions link (replace with your real place link or query)
     this.directionsUrl = 'https://www.google.com/maps?q=Diocletian%27s%20Dream%20Split';
 
-    this.applySeo(this.translate.currentLang || 'en');
-    this.sub = this.translate.onLangChange.subscribe((e) => this.applySeo(e.lang));
+    this.pageSeo.applyLocalized('visitPage', '/visit');
+
+    // Injected into <head> via SeoService, NOT via a <script> in the template:
+    // Angular's compiler strips <script> from templates, so a template tag
+    // silently emits nothing at all.
+    this.seo.setJsonLd(Contact.JSON_LD_ID, this.buildFaqSchema());
   }
 
   ngOnDestroy(): void {
-    this.sub?.unsubscribe();
+    // <script> tags survive client-side navigation — drop it on the way out.
+    this.seo.clearJsonLd(Contact.JSON_LD_ID);
   }
 
-  private applySeo(lang: string) {
-    // META TITLE (exactly your notes)
-    const metaTitle =
-      lang === 'hr'
-        ? "Posjetite Diocletians Dream u Splitu | Ulaznice i grupni posjeti"
-        : "Visit Diocletians Dream in Split | Tickets & Group Visits";
+  /** FAQPage built from the localized visitPage.faq.items the template renders. */
+  private buildFaqSchema(): unknown {
+    const items = this.translate.instant('visitPage.faq.items') as Array<{
+      q: string;
+      a: string;
+    }>;
 
-    // META DESCRIPTION (exactly your notes)
-    const metaDescription =
-      lang === 'hr'
-        ? "Planirajte posjet Diocletians Dream u Splitu. Rezervirajte VR iskustvo ili pošaljite upit za grupne i školske posjete. Preporučuje se rezervacija unaprijed."
-        : 'Plan your visit to Diocletian\'s Dream in Split. Book your VR experience or contact us for group and school visit arrangements. Advance booking recommended.';
-
-    this.title.setTitle(metaTitle);
-    this.seo.setCanonical('https://diocletiansdream.com/visit');
-
-    this.meta.updateTag({ name: 'description', content: metaDescription });
-    this.seo.setRobots();
-
-    // Open Graph
-    this.meta.updateTag({ property: 'og:title', content: metaTitle });
-    this.meta.updateTag({ property: 'og:description', content: metaDescription });
-    this.meta.updateTag({ property: 'og:type', content: 'website' });
-    this.meta.updateTag({ property: 'og:url', content: 'https://diocletiansdream.com/visit/' });
-
-    // Twitter
-    this.meta.updateTag({ name: 'twitter:title', content: metaTitle });
-    this.meta.updateTag({ name: 'twitter:description', content: metaDescription });
-
-    // Optional JSON-LD later if you want (LocalBusiness already on About per Pablo note)
-    // this.schemaJsonLd = JSON.stringify({...});
+    return {
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: Array.isArray(items)
+        ? items
+            .filter((x) => !!x?.q && !!x?.a)
+            .map((x) => ({
+              '@type': 'Question',
+              name: x.q,
+              acceptedAnswer: { '@type': 'Answer', text: x.a },
+            }))
+        : [],
+    };
   }
+
 
   onSubmit() {
     this.submitting = true;

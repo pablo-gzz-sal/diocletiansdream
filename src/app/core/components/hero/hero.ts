@@ -5,13 +5,14 @@ import { TranslateModule } from '@ngx-translate/core';
 import { RevealOnScrollDirective } from '../../../shared/animations/reveal-on-scroll-directive';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { LocalePathPipe } from '../../../core/i18n/locale-path.pipe';
 
 gsap.registerPlugin(ScrollTrigger);
 
 @Component({
   selector: 'app-hero',
   standalone: true,
-  imports: [CommonModule, RouterLink, TranslateModule, RevealOnScrollDirective],
+  imports: [CommonModule, RouterLink, TranslateModule, RevealOnScrollDirective, LocalePathPipe],
   templateUrl: './hero.html',
   styleUrl: './hero.css',
 })

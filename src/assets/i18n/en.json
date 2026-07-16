@@ -46,14 +46,17 @@
       "title": "Located in the Heart of Split",
       "p1": "Diocletians Dream is located near the Golden Gate entrance of Diocletians Palace, within the UNESCO World Heritage Site.",
       "p2": "It is an ideal indoor activity in Split, perfect in any season and especially suitable when exploring the Old Town. Ticket prices and directions are available on our Visit Us page. For our up-to-date opening hours, please check Google Maps.",
-      "cta": "Visit Us"
+      "cta": "Visit Us",
+      "addressCity": "21000 Split, Croatia"
     },
     "reviews": {
       "title": "Trusted by Thousands of Visitors",
       "p1": "Over 50,000 visitors have experienced Diocletians Dream and described it as one of the most unique cultural experiences in Split.",
       "p2": "With hundreds of five-star reviews, the experience consistently stands out for its storytelling, historical depth, and immersive technology.",
       "selected": "Selected testimonials:",
-      "cta": "Read More Reviews"
+      "cta": "Read More Reviews",
+      "authorName": "Diocletians Dream visitors",
+      "authorMeta": "Hundreds of five-star reviews · Google & Tripadvisor"
     },
     "story": {
       "title": "The Story Behind Diocletians Dream",
@@ -72,6 +75,29 @@
       "emailPlaceholder": "Your email address",
       "submit": "Subscribe"
     },
+    "faq": {
+      "eyebrow": "FAQ",
+      "title": "Frequently Asked Questions",
+      "text": "Everything you need to know before your visit — how long the experience takes, booking, age suitability, and how to find us.",
+      "items": {
+        "duration": {
+          "q": "How long is the experience?",
+          "a": "The VR museum experience lasts about 15 minutes."
+        },
+        "booking": {
+          "q": "Do I need to book in advance?",
+          "a": "Booking is recommended so you get your preferred time slot."
+        },
+        "age": {
+          "q": "Is it suitable for kids?",
+          "a": "Yes — it is family-friendly and suitable for visitors aged 8 and over."
+        },
+        "location": {
+          "q": "Is it near Diocletians Palace?",
+          "a": "Yes — we are at Zagrebačka ul. 1, just outside the palace walls near the Golden Gate, so it pairs perfectly with a walk around Diocletians Palace."
+        }
+      }
+    },
     "marquee": {
       "items": [
         "Diocletians Palace VR experience",
@@ -81,6 +107,14 @@
         "educational VR experience",
         "Diocletian Palace virtual reality"
       ]
+    },
+    "seo": {
+      "metaTitle": "Diocletians Dream VR Museum | Step back into 305 AD",
+      "metaDescription": "A 15-minute VR museum experience in Split that brings Diocletians Palace back to life in 305 AD. Located just outside the palace walls near the Golden Gate. Book tickets online."
+    },
+    "intro": {
+      "scroll": "Scroll",
+      "scrollAria": "Scroll down"
     }
   },
   "experiencePage": {
@@ -88,7 +122,11 @@
       "title": "The Diocletians Palace Virtual Reality Experience",
       "p1": "Diocletians Dream is a 15-minute immersive virtual reality experience in Split that reconstructs Diocletians Palace as it appeared in 305 AD. Through historically informed 3D modelling and spatial design, visitors are placed inside the architectural environment of the late Roman Empire.",
       "p2": "Diocletians Dream is located just outside the walls of Diocletians Palace, adjacent to Split’s historic centre, at Zagrebačka ul. 1.",
-      "ctaTrailer": "Watch the Trailer"
+      "ctaTrailer": "Watch the Trailer",
+      "eyebrow": "Diocletians dream · VR experience Split · 305 AD",
+      "chipDuration": "15 min",
+      "chip3d": "3D reconstruction",
+      "chipUnesco": "UNESCO Old Town"
     },
     "whatYouWillSee": {
       "title": "What You Will See",
@@ -117,7 +155,10 @@
     },
     "accuracy": {
       "title": "Historical Reconstruction and Accuracy",
-      "p1": "The digital reconstruction is based on archaeological research, historical references, and architectural analysis of the palace remains. Where original structures are partially preserved today, the VR experience presents a complete visual interpretation of their former appearance. The aim is to provide historical context through immersive spatial presentation rather than abstract explanation."
+      "p1": "The digital reconstruction is based on archaeological research, historical references, and architectural analysis of the palace remains. Where original structures are partially preserved today, the VR experience presents a complete visual interpretation of their former appearance. The aim is to provide historical context through immersive spatial presentation rather than abstract explanation.",
+      "label": "Semantic",
+      "archaeological": "Archaeological research",
+      "architectural": "Architectural analysis"
     },
     "audience": {
       "title": "Who Is This Experience For",
@@ -170,26 +211,46 @@
           "q": "Is the experience physically demanding?",
           "a": "No. The experience is seated. Visitors remain comfortably seated throughout the 15-minute VR session."
         }
-      ],
-      "schemaNote": "Implement FAQ schema here."
+      ]
     },
     "trailer": {
       "title": "Watch the Trailer",
       "text": "Preview selected scenes from the reconstruction and see how Diocletians Palace has been digitally restored.",
-      "embedLabel": "Embedded Video",
-      "schemaNote": "Implement VideoObject schema."
+      "embedLabel": "Embedded Video"
     },
     "booking": {
       "title": "Book Your VR Experience in Split",
       "text": "Experience Diocletians Palace in its original architectural form. Secure your ticket and step inside a reconstructed chapter of Roman history.",
-      "cta": "Book Now"
+      "cta": "Book Now",
+      "chipRomanEmpire": "Roman Empire",
+      "chip3d": "3D reconstruction",
+      "chipUnesco": "UNESCO Old Town"
+    },
+    "seo": {
+      "metaTitle": "Diocletians Palace Virtual Reality in Split | Diocletians Dream",
+      "metaDescription": "Explore Diocletians Palace as it stood in 305 AD through a 15-minute virtual reality journey in Split. A visually reconstructed chapter of Roman history. Book your session."
+    },
+    "sideCard": {
+      "title": "Diocletian Palace reconstruction",
+      "text": "Roman history VR · historical VR experience Croatia"
+    },
+    "stats": {
+      "duration": "Duration",
+      "sessionCycle": "Session cycle",
+      "adSetting": "AD setting"
     }
   },
   "visitPage": {
     "hero": {
       "title": "Visit Diocletians Dream in Split",
       "text": "Diocletians Dream is located in the historic centre of Split, just steps from the Golden Gate of Diocletians Palace. Whether you are visiting independently, with family, as part of a tour, or organising a school group, our virtual reality experience offers a structured and memorable way to explore Roman heritage.",
-      "ctaPrimary": "Book Now"
+      "ctaPrimary": "Book Now",
+      "eyebrow": "Visit Diocletians Dream Split · Golden Gate · scheduled time slots",
+      "ctaMap": "Map & directions",
+      "ctaHours": "Opening hours",
+      "chipHistoricCentre": "historic centre",
+      "chipGoldenGate": "Golden Gate",
+      "chipTimeSlots": "30-min time slots"
     },
     "individual": {
       "title": "Individual Visits",
@@ -248,7 +309,6 @@
     },
     "faq": {
       "title": "FAQ",
-      "schemaNote": "Implement FAQPage schema here.",
       "items": [
         {
           "q": "Do I need to book in advance?",
@@ -280,13 +340,31 @@
           "linkText": "Experience"
         }
       ]
+    },
+    "seo": {
+      "metaTitle": "Visit Diocletians Dream in Split | Tickets & Group Visits",
+      "metaDescription": "Plan your visit to Diocletian's Dream in Split. Book your VR experience or contact us for group and school visit arrangements. Advance booking recommended."
+    },
+    "sideCard": {
+      "title": "Tickets & group visits",
+      "text": "VR experience Split booking · school trip Split · group activity Split"
+    },
+    "location": {
+      "eyebrow": "Location",
+      "title": "Split historic centre",
+      "address": "Zagrebačka ul. 1 — just outside the walls of Diocletians Palace near the Golden Gate.",
+      "ctaDirections": "Get directions"
+    },
+    "map": {
+      "tip": "Tip: arrive a few minutes early for briefing before your scheduled time slot."
     }
   },
   "aboutPage": {
     "hero": {
       "title": "About Diocletians Dream",
       "p1": "Diocletians Dream is a specialised virtual reality heritage experience and VR museum located in the historic centre of Split, Croatia. Developed to present Diocletians Palace through immersive 3D reconstruction, the project combines archaeological interpretation, architectural analysis, and contemporary VR technology.",
-      "p2": "It is one of the first dedicated virtual reality museum concepts in Croatia and a distinct cultural experience within Split’s UNESCO-listed Old Town."
+      "p2": "It is one of the first dedicated virtual reality museum concepts in Croatia and a distinct cultural experience within Split’s UNESCO-listed Old Town.",
+      "eyebrow": "VR Museum · Diocletians dream · Split"
     },
     "mission": {
       "title": "Our Mission",
@@ -328,7 +406,9 @@
       "p2": "Articles have highlighted the experience as an innovative approach to Roman heritage, a modern complement to walking tours of Split, a distinctive indoor cultural activity within the Old Town, and much more.",
       "pressLogosPlaceholder": "Insert press logos here",
       "linksPlaceholder": "Insert featured article links here",
-      "note": "Add article links and logos when ready."
+      "note": "Add article links and logos when ready.",
+      "pressLogosLabel": "Press logos",
+      "articleLinksLabel": "Article links"
     },
     "culturalLandscape": {
       "title": "Part of Split’s Cultural Landscape",
@@ -344,6 +424,20 @@
       "visitSentence": "To plan your visit, see Visit Us.",
       "experienceLinkText": "The Experience",
       "experienceSentence": "To explore the reconstruction in detail, visit The Experience."
+    },
+    "seo": {
+      "metaTitle": "About Diocletians Dream – Virtual Reality Museum in Split",
+      "metaDescription": "Learn about Diocletians Dream, a virtual reality museum in Split presenting Diocletians Palace through immersive 3D reconstruction and historical research."
+    },
+    "sideCard": {
+      "title": "VR museum Split",
+      "text": "Diocletians Palace reconstruction · UNESCO Old Town Split"
+    },
+    "cta": {
+      "eyebrow": "Next",
+      "titleLine1": "Explore the reconstruction",
+      "titleLine2": "or plan your visit.",
+      "text": "VR museum Split · Diocletian Palace reconstruction · UNESCO Old Town Split"
     }
   },
   "header": {
@@ -376,6 +470,32 @@
       "en": "English",
       "switchToHr": "Switch to Croatian",
       "switchToEn": "Switch to English"
+    }
+  },
+  "footer": {
+    "tagline": "A 15-minute VR experience bringing Diocletians Palace back to life in 305 AD, located just outside the palace walls near the Golden Gate in Split.",
+    "explore": {
+      "heading": "Explore",
+      "home": "Home",
+      "experience": "Experience",
+      "visit": "Visit",
+      "about": "About",
+      "blog": "Blog",
+      "booking": "Booking"
+    },
+    "company": {
+      "heading": "Company",
+      "aboutUs": "About us",
+      "contact": "Contact"
+    },
+    "getInTouch": {
+      "heading": "Get in touch"
+    },
+    "legal": {
+      "rights": "All rights reserved.",
+      "privacy": "Privacy",
+      "terms": "Terms",
+      "cookies": "Cookies"
     }
   },
   "blogPage": {
@@ -429,7 +549,11 @@
     "code": "404",
     "title": "Page not found",
     "text": "The page you’re looking for doesn’t exist or may have moved.",
-    "cta": "Back to home"
+    "cta": "Back to home",
+    "seo": {
+      "metaTitle": "Page not found | Diocletians Dream",
+      "metaDescription": "The page you are looking for does not exist."
+    }
   },
   "blogInvite": {
     "title": "Explore Roman History & Split Travel Guides",
@@ -504,6 +628,10 @@
       "incl2": "Free cancellation up to 24h",
       "incl3": "Wheelchair accessible venue",
       "cta": "Book a session"
+    },
+    "seo": {
+      "metaTitle": "Book Diocletians dream VR Tickets | Diocletians Dream Split",
+      "metaDescription": "Reserve your 15-minute Diocletians dream VR experience in Split. Choose your time slot and secure your tickets online."
     }
   }
 }
