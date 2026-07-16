@@ -1,6 +1,5 @@
 import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { I18nService } from './core/i18n/i18n.service';
 
 @Component({
   selector: 'app-root',
@@ -11,7 +10,7 @@ import { I18nService } from './core/i18n/i18n.service';
 })
 export class App {
   protected readonly title = signal('diocletiansdream');
-  constructor(i18n: I18nService){
-    i18n.init();
-  }
+  // Language is set by languageResolver from the route, not here: App is
+  // constructed before route resolution, so initialising i18n at this point
+  // would apply the wrong language and fight the resolver.
 }

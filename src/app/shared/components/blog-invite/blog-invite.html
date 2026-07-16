@@ -31,11 +31,11 @@
 
         <!-- Optional extra links -->
         @if (showSecondaryLinks) {
-          <a routerLink="/experience" class="btn btn--ghost">
+          <a [routerLink]="'/experience' | locPath" class="btn btn--ghost">
             {{ 'blogInvite.ctaExperience' | translate }} →
           </a>
 
-          <a routerLink="/visit" class="btn btn--ghost">
+          <a [routerLink]="'/visit' | locPath" class="btn btn--ghost">
             {{ 'blogInvite.ctaVisit' | translate }} →
           </a>
         }

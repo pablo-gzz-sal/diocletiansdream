@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { PolicyPageComponent } from './policy-page-component';
+import { commonTestImports, commonTestProviders } from '../../../../testing/test-setup';
 
 describe('PolicyPageComponent', () => {
   let component: PolicyPageComponent;
@@ -8,7 +9,8 @@ describe('PolicyPageComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [PolicyPageComponent]
+      imports: [PolicyPageComponent, ...commonTestImports],
+      providers: [...commonTestProviders]
     })
     .compileComponents();
 

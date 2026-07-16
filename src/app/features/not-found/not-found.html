@@ -11,7 +11,7 @@
     {{ 'pageNotFound.text' | translate }}
   </p>
   <a
-    routerLink="/"
+    [routerLink]="'/' | locPath"
     class="inline-block mt-8 font-[family-name:var(--font-sans)] text-[0.8rem] underline underline-offset-4 text-ink hover:opacity-50 transition-opacity"
   >
     {{ 'pageNotFound.cta' | translate }}

@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { LandingPage } from './landing-page';
+import { commonTestImports, commonTestProviders } from '../../../testing/test-setup';
 
 describe('LandingPage', () => {
   let component: LandingPage;
@@ -8,7 +9,8 @@ describe('LandingPage', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [LandingPage]
+      imports: [LandingPage, ...commonTestImports],
+      providers: [...commonTestProviders]
     })
     .compileComponents();
 

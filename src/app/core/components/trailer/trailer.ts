@@ -12,6 +12,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { RevealOnScrollDirective } from '../../../shared/animations/reveal-on-scroll-directive';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { environment } from '../../../../environments/environment';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -25,8 +26,12 @@ gsap.registerPlugin(ScrollTrigger);
 export class Trailer implements AfterViewInit, OnDestroy {
   @ViewChild('video') videoRef?: ElementRef<HTMLVideoElement>;
 
-  /** Served over https to avoid mixed-content blocking on the https site. */
-  readonly src = 'https://diocletiansdream.com/wp-content/uploads/2026/07/Sizzle-Reel-Diocletians-Dream.mp4';
+  /**
+   * Served from the headless WordPress host (CMS subdomain) over https to avoid
+   * mixed-content blocking. The root domain is the static Angular site now and
+   * has no /wp-content, so the file must be fetched from wpBaseUrl.
+   */
+  readonly src = `${environment.wpBaseUrl.replace(/\/+$/, '')}/wp-content/uploads/2026/07/Sizzle-Reel-Diocletians-Dream.mp4`;
   readonly poster = 'assets/images/vr/emperor-peristyle.jpg';
 
   /** Once true, the mp4 is loaded, native controls appear and the poster fades out. */

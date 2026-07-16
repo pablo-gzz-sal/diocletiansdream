@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CtaBlock } from './cta-block';
+import { commonTestImports, commonTestProviders } from '../../../../testing/test-setup';
 
 describe('CtaBlock', () => {
   let component: CtaBlock;
@@ -8,7 +9,8 @@ describe('CtaBlock', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [CtaBlock]
+      imports: [CtaBlock, ...commonTestImports],
+      providers: [...commonTestProviders]
     })
     .compileComponents();
 

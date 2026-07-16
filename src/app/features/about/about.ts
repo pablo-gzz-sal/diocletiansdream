@@ -1,76 +1,48 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { Header } from '../../core/components/header/header';
 import { Footer } from '../../core/components/footer/footer';
-import { TranslateModule, TranslateService } from '@ngx-translate/core';
-import { DomSanitizer, Meta, SafeHtml, Title } from '@angular/platform-browser';
-import { Subscription } from 'rxjs';
+import { TranslateModule } from '@ngx-translate/core';
 import { BlogInvite } from '../../shared/components/blog-invite/blog-invite';
+import { PageSeoService } from '../../shared/services/page-seo';
 import { SeoService } from '../../shared/services/seo-service';
+import { environment } from '../../../environments/environment';
 import { RevealOnScrollDirective } from '../../shared/animations/reveal-on-scroll-directive';
+import { LocalePathPipe } from '../../core/i18n/locale-path.pipe';
 
 @Component({
   selector: 'app-about',
   standalone: true,
-  imports: [CommonModule, RouterLink, Header, Footer, TranslateModule, BlogInvite, RevealOnScrollDirective],
+  imports: [CommonModule, RouterLink, Header, Footer, TranslateModule, BlogInvite, RevealOnScrollDirective, LocalePathPipe],
   templateUrl: './about.html',
   styleUrl: './about.css',
 })
-export class About implements OnInit{
+export class About implements OnInit, OnDestroy {
+  private static readonly JSON_LD_IDS = ['ld-about-organization', 'ld-about-local-business'];
 
-    schemaJsonLd: SafeHtml = '';
-  private sub?: Subscription;
-
-    constructor(
-    private title: Title,
-    private meta: Meta,
-    private translate: TranslateService,
-    private sanitizer: DomSanitizer,
+  constructor(
+    private pageSeo: PageSeoService,
     private seo: SeoService,
   ) {}
+
   ngOnInit(): void {
-    this.applySeo(this.translate.currentLang || 'en');
-    this.sub = this.translate.onLangChange.subscribe((e) => {
-      this.applySeo(e.lang);
-    });
+    this.pageSeo.applyLocalized('aboutPage', '/about');
+
+    // Injected into <head> via SeoService, NOT via a <script> in the template:
+    // Angular's compiler strips <script> from templates, so a template tag
+    // silently emits nothing at all.
+    const [organization, localBusiness] = this.buildSchemas();
+    this.seo.setJsonLd('ld-about-organization', organization);
+    this.seo.setJsonLd('ld-about-local-business', localBusiness);
   }
 
   ngOnDestroy(): void {
-    this.sub?.unsubscribe();
+    // <script> tags survive client-side navigation — drop them on the way out.
+    for (const id of About.JSON_LD_IDS) this.seo.clearJsonLd(id);
   }
 
-  private applySeo(lang: string) {
-    // META TITLE (from your notes)
-    const metaTitle =
-      lang === 'hr'
-        ? "O Diocletians Dream – VR muzej u Splitu"
-        : "About Diocletians Dream – Virtual Reality Museum in Split";
-
-    // META DESCRIPTION (from your notes)
-    const metaDescription =
-      lang === 'hr'
-        ? "Saznajte više o Diocletians Dreamu, VR muzeju u Splitu koji kroz 3D rekonstrukciju i povijesna istraživanja prikazuje Dioklecijanovu palaču."
-        : "Learn about Diocletians Dream, a virtual reality museum in Split presenting Diocletians Palace through immersive 3D reconstruction and historical research.";
-
-    this.title.setTitle(metaTitle);
-    this.seo.setCanonical('https://diocletiansdream.com/about');
-
-    // Description
-    this.meta.updateTag({ name: 'description', content: metaDescription });
-
-    // Optional: canonical-ish social meta
-    this.meta.updateTag({ property: 'og:title', content: metaTitle });
-    this.meta.updateTag({ property: 'og:description', content: metaDescription });
-    this.meta.updateTag({ name: 'twitter:title', content: metaTitle });
-    this.meta.updateTag({ name: 'twitter:description', content: metaDescription });
-
-    // JSON-LD schemas (Organization + LocalBusiness)
-    const jsonLd = this.buildSchema();
-    this.schemaJsonLd = this.sanitizer.bypassSecurityTrustHtml(jsonLd);
-  }
-
-  private buildSchema(): string {
+  private buildSchemas(): [unknown, unknown] {
     // NOTE: Replace googleBusinessUrl with the real one when you have it.
     // sameAs links we can already confirm:
     // Instagram: https://www.instagram.com/diocletiansdream/ :contentReference[oaicite:2]{index=2}
@@ -101,7 +73,7 @@ export class About implements OnInit{
       name: "Diocletians Dream",
       url: 'https://diocletiansdream.com/',
       foundingDate: '2020',
-      image: 'https://diocletiansdream.com/wp-content/uploads/2023/10/cropped-cropped-gold-logo-1.png', // optional
+      image: `${environment.siteUrl.replace(/\/+$/, '')}/assets/images/ddLogo.png`,
       address: {
         '@type': 'PostalAddress',
         streetAddress: 'Zagrebačka ul. 1',
@@ -112,8 +84,6 @@ export class About implements OnInit{
       sameAs,
     };
 
-    // You can either output two separate <script> tags,
-    // or a single array as below:
-    return JSON.stringify([organization, localBusiness]);
+    return [organization, localBusiness];
   }
 }

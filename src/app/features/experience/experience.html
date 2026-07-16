@@ -46,7 +46,7 @@
       <div class="grid gap-12 lg:grid-cols-[1fr_420px] lg:items-center">
         <!-- Left: all text -->
         <div revealOnScroll [revealDelay]="0.1">
-          <p class="eyebrow mb-5">Diocletians dream · VR experience Split · 305 AD</p>
+          <p class="eyebrow mb-5">{{ 'experiencePage.hero.eyebrow' | translate }}</p>
 
           <h1
             class="font-[family-name:var(--font-serif)] font-light leading-[0.88] tracking-[-0.02em] text-ink"
@@ -73,13 +73,13 @@
           </p>
 
           <div class="mt-8 flex flex-wrap gap-3">
-            <a routerLink="/booking" class="btn btn--dark">
+            <a [routerLink]="'/booking' | locPath" class="btn btn--dark">
               {{ 'experiencePage.whatYouWillSee.ctaBook' | translate }}
             </a>
             <a href="#trailer" class="btn btn--ghost">
               {{ 'experiencePage.hero.ctaTrailer' | translate }}
             </a>
-            <a routerLink="/visit" class="btn btn--ghost">
+            <a [routerLink]="'/visit' | locPath" class="btn btn--ghost">
               {{ 'experiencePage.howItWorks.visitUsLinkText' | translate }}
             </a>
           </div>
@@ -88,17 +88,17 @@
             <span
               class="rounded-full border border-black/10 bg-white/50 px-4 py-2 font-[family-name:var(--font-sans)] text-[0.7rem] tracking-[0.12em] uppercase text-ink-60"
             >
-              15 min
+              {{ 'experiencePage.hero.chipDuration' | translate }}
             </span>
             <span
               class="rounded-full border border-black/10 bg-white/50 px-4 py-2 font-[family-name:var(--font-sans)] text-[0.7rem] tracking-[0.12em] uppercase text-ink-60"
             >
-              3D reconstruction
+              {{ 'experiencePage.hero.chip3d' | translate }}
             </span>
             <span
               class="rounded-full border border-black/10 bg-white/50 px-4 py-2 font-[family-name:var(--font-sans)] text-[0.7rem] tracking-[0.12em] uppercase text-ink-60"
             >
-              UNESCO Old Town
+              {{ 'experiencePage.hero.chipUnesco' | translate }}
             </span>
           </div>
         </div>
@@ -122,10 +122,10 @@
           </div>
           <div class="p-6 border-t border-black/8">
             <p class="font-[family-name:var(--font-serif)] italic text-[1.1rem] text-ink">
-              Diocletian Palace reconstruction
+              {{ 'experiencePage.sideCard.title' | translate }}
             </p>
             <p class="mt-1 font-[family-name:var(--font-sans)] text-[0.78rem] text-ink-60">
-              Roman history VR · historical VR experience Croatia
+              {{ 'experiencePage.sideCard.text' | translate }}
             </p>
           </div>
         </div>
@@ -173,7 +173,7 @@
           </p>
 
           <div class="mt-7 flex flex-wrap gap-3">
-            <a routerLink="/booking" class="btn btn--dark">
+            <a [routerLink]="'/booking' | locPath" class="btn btn--dark">
               {{ 'experiencePage.whatYouWillSee.ctaBook' | translate }}
             </a>
             <a href="#how" class="btn btn--ghost">
@@ -221,7 +221,7 @@
               class="font-[family-name:var(--font-sans)] text-[0.95rem] leading-[1.85] text-ink-60"
             >
               {{ 'experiencePage.howItWorks.p4' | translate }}
-              <a routerLink="/visit" class="inline-link ml-2">
+              <a [routerLink]="'/visit' | locPath" class="inline-link ml-2">
                 {{ 'experiencePage.howItWorks.visitUsLinkText' | translate }} →
               </a>
             </p>
@@ -237,7 +237,7 @@
               <p
                 class="mt-2 font-[family-name:var(--font-sans)] text-[0.72rem] tracking-[0.1em] uppercase text-ink-60"
               >
-                Duration
+                {{ 'experiencePage.stats.duration' | translate }}
               </p>
             </div>
 
@@ -250,7 +250,7 @@
               <p
                 class="mt-2 font-[family-name:var(--font-sans)] text-[0.72rem] tracking-[0.1em] uppercase text-ink-60"
               >
-                Session cycle
+                {{ 'experiencePage.stats.sessionCycle' | translate }}
               </p>
             </div>
 
@@ -263,7 +263,7 @@
               <p
                 class="mt-2 font-[family-name:var(--font-sans)] text-[0.72rem] tracking-[0.1em] uppercase text-ink-60"
               >
-                AD setting
+                {{ 'experiencePage.stats.adSetting' | translate }}
               </p>
             </div>
           </div>
@@ -442,24 +442,24 @@
             <p
               class="font-[family-name:var(--font-sans)] text-[0.72rem] tracking-[0.1em] uppercase text-ink-60"
             >
-              Semantic
+              {{ 'experiencePage.accuracy.label' | translate }}
             </p>
             <p
               class="mt-2 font-[family-name:var(--font-serif)] italic text-[1.1rem] text-ink leading-[1.35]"
             >
-              Archaeological research
+              {{ 'experiencePage.accuracy.archaeological' | translate }}
             </p>
           </div>
           <div class="rounded-[1rem] border border-black/10 bg-white/60 p-7">
             <p
               class="font-[family-name:var(--font-sans)] text-[0.72rem] tracking-[0.1em] uppercase text-ink-60"
             >
-              Semantic
+              {{ 'experiencePage.accuracy.label' | translate }}
             </p>
             <p
               class="mt-2 font-[family-name:var(--font-serif)] italic text-[1.1rem] text-ink leading-[1.35]"
             >
-              Architectural analysis
+              {{ 'experiencePage.accuracy.architectural' | translate }}
             </p>
           </div>
         </div>
@@ -494,7 +494,7 @@
           >
             {{ 'experiencePage.audience.individual.text' | translate }}
           </p>
-          <a routerLink="/visit" class="inline-link mt-6">
+          <a [routerLink]="'/visit' | locPath" class="inline-link mt-6">
             {{ 'experiencePage.audience.individual.linkText' | translate }} →
           </a>
         </div>
@@ -511,7 +511,7 @@
           >
             {{ 'experiencePage.audience.families.text' | translate }}
           </p>
-          <a routerLink="/visit" class="inline-link mt-6">
+          <a [routerLink]="'/visit' | locPath" class="inline-link mt-6">
             {{ 'experiencePage.audience.families.linkText' | translate }} →
           </a>
         </div>
@@ -528,7 +528,7 @@
           >
             {{ 'experiencePage.audience.schools.text' | translate }}
           </p>
-          <a routerLink="/visit" class="inline-link mt-6">
+          <a [routerLink]="'/visit' | locPath" class="inline-link mt-6">
             {{ 'experiencePage.audience.schools.linkText' | translate }} →
           </a>
         </div>
@@ -545,7 +545,7 @@
           >
             {{ 'experiencePage.audience.privateGroups.text' | translate }}
           </p>
-          <a routerLink="/visit" class="inline-link mt-6">
+          <a [routerLink]="'/visit' | locPath" class="inline-link mt-6">
             {{ 'experiencePage.audience.privateGroups.linkText' | translate }} →
           </a>
         </div>
@@ -589,7 +589,7 @@
               class="font-[family-name:var(--font-sans)] text-[0.95rem] leading-[1.85] text-ink-60"
             >
               {{ 'experiencePage.locationAccessibility.p4' | translate }}
-              <a routerLink="/visit" class="inline-link ml-2">
+              <a [routerLink]="'/visit' | locPath" class="inline-link ml-2">
                 {{ 'experiencePage.locationAccessibility.visitUsLinkText' | translate }} →
               </a>
             </p>
@@ -626,12 +626,6 @@
         >
           {{ 'experiencePage.faq.title' | translate }}
         </h2>
-
-        <p
-          class="mt-6 font-[family-name:var(--font-sans)] text-[0.85rem] leading-[1.7] text-ink-60"
-        >
-          {{ 'experiencePage.faq.schemaNote' | translate }}
-        </p>
       </div>
 
       <div class="lg:col-span-8">
@@ -660,7 +654,7 @@
                   {{ item.a }}
                 </p>
 
-                <a *ngIf="item.linkText" routerLink="/booking" class="inline-link mt-4">
+                <a *ngIf="item.linkText" [routerLink]="'/booking' | locPath" class="inline-link mt-4">
                   {{ item.linkText }} →
                 </a>
               </div>
@@ -688,12 +682,6 @@
         >
           {{ 'experiencePage.trailer.text' | translate }}
         </p>
-
-        <p
-          class="mt-6 font-[family-name:var(--font-sans)] text-[0.85rem] leading-[1.7] text-ink-60"
-        >
-          {{ 'experiencePage.trailer.schemaNote' | translate }}
-        </p>
       </div>
 
       <div class="lg:col-span-7">
@@ -709,7 +697,7 @@
               poster="assets/images/vr/market-pottery.jpg"
             >
               <source
-                src="https://diocletiansdream.com/wp-content/uploads/2026/07/Sizzle-Reel-Diocletians-Dream.mp4"
+                [src]="videoSrc"
                 type="video/mp4"
               />
             </video>
@@ -752,30 +740,30 @@
             <span
               class="rounded-full border border-white/15 bg-white/5 px-4 py-2 font-[family-name:var(--font-sans)] text-[0.7rem] tracking-[0.12em] uppercase"
             >
-              Roman Empire
+              {{ 'experiencePage.booking.chipRomanEmpire' | translate }}
             </span>
             <span
               class="rounded-full border border-white/15 bg-white/5 px-4 py-2 font-[family-name:var(--font-sans)] text-[0.7rem] tracking-[0.12em] uppercase"
             >
-              3D reconstruction
+              {{ 'experiencePage.booking.chip3d' | translate }}
             </span>
             <span
               class="rounded-full border border-white/15 bg-white/5 px-4 py-2 font-[family-name:var(--font-sans)] text-[0.7rem] tracking-[0.12em] uppercase"
             >
-              UNESCO Old Town
+              {{ 'experiencePage.booking.chipUnesco' | translate }}
             </span>
           </div>
         </div>
 
         <div class="flex flex-col gap-3 lg:items-end shrink-0">
           <a
-            routerLink="/booking"
+            [routerLink]="'/booking' | locPath"
             class="inline-flex items-center justify-center rounded-full px-8 py-3.5 font-[family-name:var(--font-sans)] text-[0.8rem] font-medium bg-[color:var(--dd-gold)] text-ink hover:opacity-90 transition-opacity no-underline whitespace-nowrap"
           >
             {{ 'experiencePage.booking.cta' | translate }}
           </a>
           <a
-            routerLink="/visit"
+            [routerLink]="'/visit' | locPath"
             class="inline-flex items-center justify-center rounded-full px-8 py-3.5 font-[family-name:var(--font-sans)] text-[0.8rem] font-medium border border-white/25 text-white/80 hover:bg-white/10 bg-[color:var(--dd-purple)] transition-colors no-underline whitespace-nowrap"
           >
             {{ 'experiencePage.howItWorks.visitUsLinkText' | translate }}
@@ -786,8 +774,6 @@
     <app-blog-invite [showSecondaryLinks]="true"></app-blog-invite>
   </section>
 
-  <!-- JSON-LD hook (set in TS) -->
-  <script type="application/ld+json" [innerHTML]="schemaJsonLd"></script>
 </main>
 
 <app-footer></app-footer>

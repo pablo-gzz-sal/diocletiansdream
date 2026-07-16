@@ -8,10 +8,11 @@ import { Footer } from '../../../core/components/footer/footer';
 import { TranslateModule } from '@ngx-translate/core';
 import { SeoService } from '../../../shared/services/seo-service';
 import { CtaBlock } from '../../../shared/components/cta-block/cta-block';
+import { LocalePathPipe } from '../../../core/i18n/locale-path.pipe';
 
 @Component({
   standalone: true,
-  imports: [CommonModule, RouterModule, Header, Footer, TranslateModule, CtaBlock],
+  imports: [CommonModule, RouterModule, Header, Footer, TranslateModule, CtaBlock, LocalePathPipe],
   selector: 'app-blog-post-page',
   templateUrl: './blog-post-page.html',
 })
@@ -84,6 +85,8 @@ export class BlogPostPage implements OnInit, OnDestroy {
     const url = this.absoluteUrl(`/${post?.slug ?? ''}/`);
     this.seo.clearHttpStatus();
     this.seo.setRobots();
+    // Posts are English-only (WordPress has no Croatian translations).
+    this.seo.clearAlternates();
 
     // If you add SEO fields in WP (Yoast/RankMath/AIOSEO or ACF),
     // map them here. Fallback to title/excerpt.

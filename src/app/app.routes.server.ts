@@ -29,6 +29,22 @@ async function fetchAllPostSlugs(): Promise<string[]> {
 }
 
 export const serverRoutes: ServerRoute[] = [
+  // Croatian pages. MUST stay ahead of ':slug' below — the bare `hr` path is a
+  // single segment that ':slug' would otherwise claim, silently prerendering
+  // /hr/ as a (nonexistent) blog post. Prerendered to `hr/<route>/index.html`.
+  // Croatian slugs are native (/hr/posjet/, not /hr/visit/) — see HR_SLUGS in
+  // core/i18n/locale-url.ts, which is the source of truth for this list.
+  { path: 'hr', renderMode: RenderMode.Prerender },
+  { path: 'hr/iskustvo', renderMode: RenderMode.Prerender },
+  { path: 'hr/posjet', renderMode: RenderMode.Prerender },
+  { path: 'hr/o-nama', renderMode: RenderMode.Prerender },
+  { path: 'hr/rezervacija', renderMode: RenderMode.Prerender },
+  { path: 'hr/404', renderMode: RenderMode.Prerender },
+  { path: 'hr/**', renderMode: RenderMode.Prerender },
+
+  // TuriTop booking confirmation (noindex). Also ahead of ':slug'.
+  { path: 'dd-thankyou', renderMode: RenderMode.Prerender },
+
   // Static pages — prerendered to `<route>/index.html`.
   { path: '', renderMode: RenderMode.Prerender },
   { path: 'experience', renderMode: RenderMode.Prerender },

@@ -1,12 +1,13 @@
 import { Component, Input } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
+import { LocalePathPipe } from '../../../core/i18n/locale-path.pipe';
 export type CtaVariant = 'light' | 'dark';
 
 @Component({
   selector: 'app-cta-block',
   standalone: true,
-  imports: [RouterLink, TranslateModule],
+  imports: [RouterLink, TranslateModule, LocalePathPipe],
   templateUrl: './cta-block.html',
   styleUrl: './cta-block.css',
 })

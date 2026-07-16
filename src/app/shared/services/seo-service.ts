@@ -2,6 +2,7 @@ import { DOCUMENT } from '@angular/common';
 import { Inject, Injectable, Renderer2, RendererFactory2 } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 import { environment } from '../../../environments/environment';
+import { withLocale } from '../../core/i18n/locale-url';
 
 /**
  * Ensure page URLs end with a trailing slash (the site's canonical form),
@@ -74,17 +75,55 @@ export class SeoService {
     this.meta.removeTag('name="ssr-status-code"');
   }
 
+  /**
+   * Reciprocal hreflang set for a page that exists in both locales. Google
+   * ignores one-way annotations, so both members of a pair must emit the same
+   * three tags. Pass the ENGLISH path — both sides are derived from it.
+   */
+  setLocaleAlternates(pathEn: string) {
+    const base = environment.siteUrl.replace(/\/+$/, '');
+    const en = `${base}${withLocale(pathEn, 'en')}`;
+    const hr = `${base}${withLocale(pathEn, 'hr')}`;
+    this.setAlternates([
+      { hreflang: 'en', href: en },
+      { hreflang: 'hr', href: hr },
+      { hreflang: 'x-default', href: en },
+    ]);
+  }
+
+  setAlternates(alts: Array<{ hreflang: string; href: string }>) {
+    this.clearAlternates();
+    for (const alt of alts) {
+      const link = this.renderer.createElement('link');
+      link.setAttribute('rel', 'alternate');
+      link.setAttribute('hreflang', alt.hreflang);
+      link.setAttribute('href', withTrailingSlash(alt.href));
+      this.renderer.appendChild(this.doc.head, link);
+    }
+  }
+
+  /**
+   * English-only pages (blog, posts, legal, 404) must call this: <link> tags
+   * survive client-side navigation, so alternates from a previous page would
+   * otherwise leak onto a page that has no Croatian counterpart.
+   */
+  clearAlternates() {
+    this.doc.querySelectorAll('link[rel="alternate"][hreflang]').forEach((el) => el.remove());
+  }
+
   setOpenGraph(tags: {
     url?: string;
     title?: string;
     description?: string;
     image?: string;
     type?: string;
+    locale?: string;
   }) {
     if (tags.title) this.meta.updateTag({ property: 'og:title', content: tags.title });
     if (tags.description) this.meta.updateTag({ property: 'og:description', content: tags.description });
     if (tags.url) this.meta.updateTag({ property: 'og:url', content: withTrailingSlash(tags.url) });
     if (tags.image) this.meta.updateTag({ property: 'og:image', content: tags.image });
+    if (tags.locale) this.meta.updateTag({ property: 'og:locale', content: tags.locale });
     this.meta.updateTag({ property: 'og:type', content: tags.type ?? 'article' });
 
     // Twitter (basic)

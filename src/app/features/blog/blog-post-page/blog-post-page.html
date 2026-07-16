@@ -86,7 +86,7 @@
           {{ 'blogPostPage.footer.headline' | translate }}
         </p>
         <a
-          routerLink="/booking"
+          [routerLink]="'/booking' | locPath"
           class="inline-flex items-center justify-center rounded-full border border-ink px-6 py-3 font-[family-name:var(--font-sans)] text-[0.68rem] font-medium tracking-[0.15em] uppercase text-ink hover:bg-ink hover:text-warm transition-colors no-underline whitespace-nowrap"
         >
           {{ 'blogPostPage.footer.cta' | translate }}

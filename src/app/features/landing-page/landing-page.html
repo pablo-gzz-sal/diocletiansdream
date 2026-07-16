@@ -42,10 +42,10 @@
     <p class="cta-sub">{{ 'home.finalCta.text' | translate }}</p>
 
     <div class="cta-actions">
-      <a routerLink="/booking" class="btn btn--cream">
+      <a [routerLink]="'/booking' | locPath" class="btn btn--cream">
         {{ 'home.finalCta.cta' | translate }}
       </a>
-      <a routerLink="/experience" class="btn btn--ghost-light">
+      <a [routerLink]="'/experience' | locPath" class="btn btn--ghost-light">
         {{ 'home.experience.cta' | translate }}
       </a>
     </div>

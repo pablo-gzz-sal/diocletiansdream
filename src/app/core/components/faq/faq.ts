@@ -5,6 +5,14 @@ import { TranslateModule } from '@ngx-translate/core';
 import gsap from 'gsap';
 import { RevealOnScrollDirective } from '../../../shared/animations/reveal-on-scroll-directive';
 
+interface FaqItem {
+  /** i18n key */
+  q: string;
+  /** i18n key */
+  a: string;
+  open: boolean;
+}
+
 @Component({
   selector: 'app-faq',
   standalone: true,
@@ -16,52 +24,42 @@ export class Faq implements AfterViewInit {
   newsletterEmail: string = '';
   isSubmitting: boolean = false;
 
-  faqs: any[] = [
-    {
-      q: 'How long is the experience?',
-      a: 'The VR museum experience lasts about 15 minutes.',
-      open: true,
-    },
-    {
-      q: 'Do I need to book in advance?',
-      a: 'Booking is recommended so you get your preferred time slot.',
-      open: false,
-    },
-    {
-      q: 'Is it suitable for kids?',
-      a: "Yes, it's family-friendly (you can specify a minimum age if you want).",
-      open: false,
-    },
-    {
-      q: 'Is it near the Palace?',
-      a: "Yes — it's designed to pair perfectly with a walk around Diocletians Palace.",
-      open: false,
-    },
+  /** q/a hold i18n keys, resolved by the translate pipe — see home.faq.items. */
+  faqs: FaqItem[] = [
+    { q: 'home.faq.items.duration.q', a: 'home.faq.items.duration.a', open: true },
+    { q: 'home.faq.items.booking.q', a: 'home.faq.items.booking.a', open: false },
+    { q: 'home.faq.items.age.q', a: 'home.faq.items.age.a', open: false },
+    { q: 'home.faq.items.location.q', a: 'home.faq.items.location.a', open: false },
   ];
 
   constructor(private el: ElementRef<HTMLElement>) {}
 
+  /**
+   * Scoped to [data-faq-item] so panels[i] always pairs with faqs[i] — the
+   * newsletter panel is also a .faq-a and would otherwise shift every index.
+   *
+   * Queried fresh on each use rather than cached in a @ViewChildren: hydration
+   * swaps these nodes after ngAfterViewInit, so cached ElementRefs go stale and
+   * the tweens end up animating detached elements.
+   */
+  private panels(): HTMLElement[] {
+    return Array.from(
+      this.el.nativeElement.querySelectorAll<HTMLElement>('[data-faq-item] .faq-a'),
+    );
+  }
+
   ngAfterViewInit(): void {
     if (typeof window === 'undefined') return;
 
-    // Panel at index 0 is the newsletter (always open) — skip it.
-    // Panels at indices 1…N correspond to faqs[0…N-1].
-    const panels = this.el.nativeElement.querySelectorAll<HTMLElement>('.faq-a');
-
-    panels.forEach((panel, i) => {
-      if (i === 0) {
-        // Newsletter panel — always visible
-        gsap.set(panel, { height: 'auto', opacity: 1 });
-      } else {
-        const faq = this.faqs[i - 1];
-        gsap.set(panel, { height: faq?.open ? 'auto' : 0, opacity: faq?.open ? 1 : 0 });
-      }
+    this.panels().forEach((panel, i) => {
+      const faq = this.faqs[i];
+      gsap.set(panel, { height: faq?.open ? 'auto' : 0, opacity: faq?.open ? 1 : 0 });
     });
   }
 
   toggleFaq(i: number): void {
     const isOpening = !this.faqs[i].open;
-    const panels = this.el.nativeElement.querySelectorAll<HTMLElement>('.faq-a');
+    const panels = this.panels();
 
     // Mutate open flag directly — keeps *ngFor DOM nodes stable so GSAP
     // references remain valid (spread/map creates new objects, Angular
@@ -70,7 +68,7 @@ export class Faq implements AfterViewInit {
       this.faqs.forEach((faq, idx) => {
         if (idx !== i && faq.open) {
           faq.open = false;
-          const p = panels[idx + 1];
+          const p = panels[idx];
           if (p) gsap.to(p, { height: 0, opacity: 0, duration: 0.28, ease: 'power2.in' });
         }
       });
@@ -79,8 +77,7 @@ export class Faq implements AfterViewInit {
       this.faqs[i].open = false;
     }
 
-    // Panel index offset by 1 (newsletter occupies slot 0)
-    const panel = panels[i + 1];
+    const panel = panels[i];
     if (!panel) return;
 
     if (isOpening) {

@@ -156,6 +156,9 @@ export class BlogListPage implements OnInit {
   this.seo.setDescription(description);
   this.seo.setRobots();
   this.seo.setCanonical(url);
+  // English-only: no Croatian counterpart to advertise, and <link> tags
+  // survive client-side navigation from a page that had them.
+  this.seo.clearAlternates();
 
   this.seo.setOpenGraph({
     url,
