@@ -11,6 +11,23 @@
     Your booking is confirmed. A confirmation email with your tickets and arrival
     details is on its way to you.
   </p>
+  <!--
+    Filled in at runtime by the TuriTop snippet (src/assets/vendor/turitop-thankyou.js,
+    injected by ThankYou) with the booking reference numbers and Download/Print
+    ticket links. The ids and class names are the vendor's — fill_tickets()
+    looks them up by id, so they cannot be renamed.
+
+    It writes via insertAdjacentHTML, so its nodes never get Angular's
+    _ngcontent attribute and component-scoped CSS would not reach them: the
+    .turitop_* styles live in src/styles.css instead.
+
+    Empty until then, and stays empty for anyone opening this page without a
+    booking in the query string.
+  -->
+  <div class="turitop_thank_you_page_wrap">
+    <div id="turitop_thank_you_page_tickets" class="turitop_thank_you_page_tickets"></div>
+  </div>
+
   <p class="mt-4 font-[family-name:var(--font-sans)] text-[0.95rem] leading-[1.65] text-ink-60">
     We are just outside the palace walls near the Golden Gate. Please arrive five
     minutes before your slot.
@@ -21,15 +38,6 @@
   >
     How to find us
   </a>
-
-  <!--
-    TODO: TuriTop conversion tracking — paste the contents of
-    turitop-dd-thankyou.html here.
-
-    Until this block is filled in, BOOKINGS ARE NOT BEING TRACKED: the GA4 and
-    Google Ads tags in src/index.html fire a pageview for this URL, but no
-    purchase/conversion event with booking value is sent.
-  -->
 </main>
 
 <app-footer></app-footer>

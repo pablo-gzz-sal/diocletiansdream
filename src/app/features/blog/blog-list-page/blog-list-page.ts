@@ -9,6 +9,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { SeoService } from '../../../shared/services/seo-service';
 import { CtaBlock } from '../../../shared/components/cta-block/cta-block';
 import { RevealOnScrollDirective } from '../../../shared/animations/reveal-on-scroll-directive';
+import { htmlToText } from '../../../shared/utils/html-text';
 
 type CategoryTab = { id: number | null; slug: string; labelKey?: string; fallback: string };
 
@@ -102,11 +103,9 @@ export class BlogListPage implements OnInit {
     return cat?.name ?? null;
   }
 
+  /** Decodes entities as well as stripping tags — see htmlToText. */
   stripHtml(html: string): string {
-    return (html ?? '')
-      .replace(/<[^>]*>/g, '')
-      .replace(/\s+/g, ' ')
-      .trim();
+    return htmlToText(html);
   }
 
   excerptText(post: any): string {

@@ -21,10 +21,15 @@
           {{ 'home.hero.title' | translate }}
         </p>
 
-        <h1 class="intro-title">
+        <!--
+          Not an <h1>: this overlay is a decorative wordmark that scrolls away,
+          and the page's real heading is the hero's translated <h1> below it.
+          Two <h1>s on one page is the SEO defect this avoids.
+        -->
+        <p class="intro-title">
           Diocletians<br />
           Dream
-        </h1>
+        </p>
 
         <p class="intro-sub">
           {{ 'home.hero.subtitle' | translate }}

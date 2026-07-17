@@ -9,6 +9,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { SeoService } from '../../../shared/services/seo-service';
 import { CtaBlock } from '../../../shared/components/cta-block/cta-block';
 import { LocalePathPipe } from '../../../core/i18n/locale-path.pipe';
+import { htmlToText } from '../../../shared/utils/html-text';
 
 @Component({
   standalone: true,
@@ -195,8 +196,13 @@ export class BlogPostPage implements OnInit, OnDestroy {
     return post?._embedded?.['wp:featuredmedia']?.[0]?.source_url ?? null;
   }
 
+  /**
+   * Decodes entities as well as stripping tags. Yoast returns titles like
+   * "Who was Diocletian? - Diocletian&#039;s Dream"; left encoded, Title/Meta
+   * escape the ampersand and the page ships "Diocletian&amp;#039;s Dream".
+   */
   stripHtml(html: string): string {
-    return (html ?? '').replace(/<[^>]*>/g, '').replace(/\s+/g, ' ').trim();
+    return htmlToText(html);
   }
 
   titleText(post: any): string {

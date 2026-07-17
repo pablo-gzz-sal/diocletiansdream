@@ -44,3 +44,6 @@ Thumbs.db
 
 # Local Claude Code tooling (never part of the build)
 .claude/
+
+# Deploy bundle produced from dist/ for the SiteGround upload
+site.zip
