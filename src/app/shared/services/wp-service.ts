@@ -1,8 +1,23 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { environment } from '../../../environments/environment';
-import { catchError, map, Observable, of, switchMap } from 'rxjs';
+import { catchError, map, Observable, of, retry, switchMap, timer } from 'rxjs';
 import { AltById, attachmentIdsIn, WpContentService } from './wp-content';
+
+/**
+ * Retry a WordPress request a few times with backoff.
+ *
+ * The stakes are asymmetric: BlogPostPage turns any fetch error into
+ * "Post not found" + noindex, so a single blip while prerendering silently
+ * deindexes that post — the build still reports success. One flaky request out
+ * of 29 is exactly what took a post out on a CI build, and the CMS sits behind
+ * a WAF that can reject a burst from an unfamiliar IP.
+ *
+ * Cheap insurance: at build time these run once per page, not per visitor.
+ */
+function retryTransient<T>() {
+  return retry<T>({ count: 3, delay: (_err, attempt) => timer(300 * 2 ** (attempt - 1)) });
+}
 
 @Injectable({ providedIn: 'root' })
 export class WpService {
@@ -51,7 +66,12 @@ export class WpService {
 
     return this.http
       .get<any[]>(`${this.api}/posts`, { params })
-      .pipe(map((posts) => this.normalizeMedia(posts)));
+      .pipe(
+        // A blip here prerenders an empty blog index — which the build canary
+        // cannot flag, since an empty list page is still validly indexable.
+        retryTransient(),
+        map((posts) => this.normalizeMedia(posts)),
+      );
   }
 
   /**
@@ -62,6 +82,7 @@ export class WpService {
   getPostBySlug(slug: string) {
     const params = new HttpParams().set('slug', slug).set('_embed', 'true');
     return this.http.get<any[]>(`${this.api}/posts`, { params }).pipe(
+      retryTransient(),
       map((posts) => this.normalizeMedia(posts)),
       switchMap((posts) => this.withCleanContent(posts)),
     );
