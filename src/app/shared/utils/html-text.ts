@@ -13,7 +13,10 @@ const NAMED_ENTITIES: Record<string, string> = {
   gt: '>',
   quot: '"',
   apos: "'",
-  nbsp: ' ',
+  // Escaped, not a literal: a bare U+00A0 in source is invisible and reads as
+  // a plain space. htmlToText's \s+ collapse covers U+00A0, so callers that
+  // want it flattened still get that.
+  nbsp: '\u00a0',
   hellip: '…',
   ndash: '–',
   mdash: '—',

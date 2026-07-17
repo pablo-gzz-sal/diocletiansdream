@@ -18,6 +18,10 @@ describe('decodeEntities', () => {
     expect(decodeEntities('&amp;#039;')).toBe('&#039;');
   });
 
+  it('decodes &nbsp; to a real non-breaking space', () => {
+    expect(decodeEntities('Cruise&nbsp;Visitors')).toBe('Cruise Visitors');
+  });
+
   it('leaves unknown entities alone rather than dropping them', () => {
     expect(decodeEntities('&notarealentity; &#zz;')).toBe('&notarealentity; &#zz;');
   });
