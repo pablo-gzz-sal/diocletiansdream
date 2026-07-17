@@ -1797,4 +1797,80 @@ footer > div {
   }
 }
 
+/* ---------------------------------------------------------------------------
+   TuriTop booking confirmation (/dd-thankyou/)
+
+   The vendor snippet builds this markup at runtime with insertAdjacentHTML, so
+   the nodes never receive Angular's _ngcontent-* attribute and a component
+   stylesheet could not match them — these have to be global.
+
+   Class names are the vendor's and are not ours to rename; the styling is ours,
+   replacing TuriTop's stock grey box with the site's tokens.
+   --------------------------------------------------------------------------- */
+.turitop_thank_you_page_wrap {
+  display: block;
+  width: 100%;
+  text-align: center;
+}
+
+.turitop_thank_you_page_tickets {
+  margin: 2rem 0 0;
+}
+
+.turitop_thank_you_page_tickets_title,
+.turitop_thank_you_page_booking_data,
+.turitop_thank_you_page_redsys_data {
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  line-height: 1.65;
+  color: var(--color-ink-60);
+}
+
+.turitop_thank_you_page_tickets_title {
+  font-size: 0.8rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+}
+
+.turitop_thank_you_page_ticket {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 0.5rem;
+}
+
+/* The booking reference — the one thing a guest comes back to this page for. */
+.turitop_thank_you_page_ticket_booking_id {
+  display: inline-block;
+  font-family: var(--font-serif);
+  font-size: 2rem;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  color: var(--dd-purple);
+  background: var(--dd-purple-06);
+  border: 1px solid var(--dd-purple-20);
+  border-radius: 999px;
+  padding: 0.6rem 1.4rem;
+}
+
+/* Vendor markup is <a><button>Download/Print</button></a>; style the button. */
+.turitop_thank_you_page_ticket_url button {
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  color: var(--color-warm);
+  background: var(--dd-purple);
+  border: 0;
+  border-radius: 999px;
+  padding: 0.7rem 1.4rem;
+  cursor: pointer;
+  transition: filter 200ms ease;
+}
+
+.turitop_thank_you_page_ticket_url button:hover {
+  filter: brightness(1.15);
+}
+
 

@@ -77,14 +77,34 @@ async function main() {
     `    <changefreq>${changefreq}</changefreq>\n    <priority>${priority}</priority>\n  </url>`;
 
   let posts = [];
+  let wpError = null;
   if (WP_BASE_URL) {
-    try {
-      const api = `${WP_BASE_URL}/wp-json/wp/v2/posts?per_page=100&_fields=slug,modified`;
-      const resp = await fetch(api);
-      if (resp.ok) posts = await resp.json();
-    } catch {
-      console.warn('[sitemap] WordPress unreachable — emitting static pages only.');
+    const api = `${WP_BASE_URL}/wp-json/wp/v2/posts?per_page=100&_fields=slug,modified`;
+    // Retry: the CMS sits behind a WAF that can reject a burst, and a blip here
+    // used to mean "emit a sitemap with no blog in it" without anyone noticing.
+    for (let attempt = 0; attempt < 3 && !posts.length; attempt++) {
+      if (attempt) await new Promise((r) => setTimeout(r, 500 * 2 ** (attempt - 1)));
+      try {
+        const resp = await fetch(api);
+        if (resp.ok) posts = await resp.json();
+        else wpError = `HTTP ${resp.status}`;
+      } catch (err) {
+        wpError = err.message;
+      }
     }
+  }
+
+  // A build that reaches here with no posts prerendered no blog pages either
+  // (app.routes.server.ts feeds getPrerenderParams from the same endpoint), so
+  // the sitemap would list only the static pages and the whole blog would
+  // quietly vanish from the deploy — with a green build. Refuse instead.
+  if (WP_BASE_URL && !posts.length) {
+    console.error(
+      `[sitemap] FATAL: WordPress returned no posts (${wpError ?? 'empty response'}). ` +
+        `The blog would ship with zero pages and be dropped from sitemap.xml. ` +
+        `Check ${WP_BASE_URL} is reachable and re-run — do not deploy this build.`,
+    );
+    process.exit(1);
   }
 
   // A blog slug colliding with a routing prefix would silently break that
@@ -123,6 +143,52 @@ async function main() {
 
   await writeFile(join(OUT_DIR, 'sitemap.xml'), xml, 'utf8');
   console.log(`[sitemap] Wrote sitemap.xml with ${urls.length} URLs (${posts.length} posts).`);
+
+  await assertSitemappedPagesAreIndexable(xml);
+}
+
+/**
+ * Every URL in the sitemap must have prerendered as a real, indexable page.
+ *
+ * This exists because of a live near-miss: a helper used NodeList.forEach,
+ * which Chrome has and domino (the prerenderer's DOM) does not. It threw for
+ * every post, the component's error handler turned that into "Post not found" +
+ * noindex, and `ng build` still printed "Prerendered 46 static routes" and
+ * exited 0. Unit tests could not catch it — they run in a real browser. The
+ * built output is the only place this class of bug is visible, so check it here
+ * rather than trusting a green build.
+ */
+async function assertSitemappedPagesAreIndexable(xml) {
+  const locs = [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]);
+  const broken = [];
+
+  for (const loc of locs) {
+    const path = new URL(loc).pathname;
+    const file = join(OUT_DIR, path, 'index.html');
+
+    if (!existsSync(file)) {
+      broken.push(`${path} — not prerendered (no ${path}index.html)`);
+      continue;
+    }
+
+    const html = await readFile(file, 'utf8');
+    // Only the <head> matters: "noindex" can legitimately appear in body copy.
+    const head = html.slice(0, html.indexOf('</head>'));
+    if (/<meta[^>]+name="robots"[^>]*content="[^"]*noindex/i.test(head)) {
+      broken.push(`${path} — prerendered as noindex`);
+    }
+  }
+
+  if (broken.length) {
+    console.error(
+      `[sitemap] FATAL: ${broken.length} sitemapped page(s) are not indexable — ` +
+        `they would be submitted to Google and then refuse to be indexed:\n  ` +
+        broken.join('\n  '),
+    );
+    process.exit(1);
+  }
+
+  console.log(`[sitemap] Verified all ${locs.length} sitemapped pages prerendered as indexable.`);
 }
 
 main();

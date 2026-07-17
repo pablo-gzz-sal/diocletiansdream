@@ -1,7 +1,23 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { environment } from '../../../environments/environment';
-import { map, Observable } from 'rxjs';
+import { catchError, map, Observable, of, retry, switchMap, timer } from 'rxjs';
+import { AltById, attachmentIdsIn, WpContentService } from './wp-content';
+
+/**
+ * Retry a WordPress request a few times with backoff.
+ *
+ * The stakes are asymmetric: BlogPostPage turns any fetch error into
+ * "Post not found" + noindex, so a single blip while prerendering silently
+ * deindexes that post — the build still reports success. One flaky request out
+ * of 29 is exactly what took a post out on a CI build, and the CMS sits behind
+ * a WAF that can reject a burst from an unfamiliar IP.
+ *
+ * Cheap insurance: at build time these run once per page, not per visitor.
+ */
+function retryTransient<T>() {
+  return retry<T>({ count: 3, delay: (_err, attempt) => timer(300 * 2 ** (attempt - 1)) });
+}
 
 @Injectable({ providedIn: 'root' })
 export class WpService {
@@ -14,6 +30,8 @@ export class WpService {
   private readonly oldMediaHost = new URL(environment.siteUrl).host; // diocletiansdream.com
   private readonly newMediaHost = new URL(environment.wpBaseUrl).host; // cms.diocletiansdream.com
 
+  private readonly content = inject(WpContentService);
+
   constructor(private http: HttpClient) {}
 
   /**
@@ -21,14 +39,22 @@ export class WpService {
    * direct references (`//diocletiansdream.com/wp-content/...`) and the Jetpack
    * Photon CDN form where the origin host is a path segment
    * (`//i1.wp.com/diocletiansdream.com/wp-content/...`).
+   *
+   * The host rewrites are deliberately scheme-agnostic (`//host/...`), which
+   * means an `http://` source survives as `http://cms...` and the browser flags
+   * it as mixed content. Upgrading afterwards catches every one of them, and is
+   * scoped to the CMS host so outbound links keep whatever scheme they had.
    */
   private normalizeMedia<T>(data: T): T {
-    if (this.oldMediaHost === this.newMediaHost) return data;
+    // No early return when the hosts match: the host swaps become no-ops, but
+    // the scheme upgrade below still has to run.
     const json = JSON.stringify(data)
       .split(`//${this.oldMediaHost}/wp-content`)
       .join(`//${this.newMediaHost}/wp-content`)
       .split(`.wp.com/${this.oldMediaHost}/wp-content`)
-      .join(`.wp.com/${this.newMediaHost}/wp-content`);
+      .join(`.wp.com/${this.newMediaHost}/wp-content`)
+      .split(`http://${this.newMediaHost}/`)
+      .join(`https://${this.newMediaHost}/`);
     return JSON.parse(json) as T;
   }
 
@@ -40,14 +66,67 @@ export class WpService {
 
     return this.http
       .get<any[]>(`${this.api}/posts`, { params })
-      .pipe(map((posts) => this.normalizeMedia(posts)));
+      .pipe(
+        // A blip here prerenders an empty blog index — which the build canary
+        // cannot flag, since an empty list page is still validly indexable.
+        retryTransient(),
+        map((posts) => this.normalizeMedia(posts)),
+      );
   }
 
+  /**
+   * The only place `content.rendered` is cleaned, because it is the only place
+   * a full body is rendered — the list pages show excerpts, so cleaning their
+   * dozen unread bodies would be pure waste.
+   */
   getPostBySlug(slug: string) {
     const params = new HttpParams().set('slug', slug).set('_embed', 'true');
-    return this.http
-      .get<any[]>(`${this.api}/posts`, { params })
-      .pipe(map((posts) => this.normalizeMedia(posts)));
+    return this.http.get<any[]>(`${this.api}/posts`, { params }).pipe(
+      retryTransient(),
+      map((posts) => this.normalizeMedia(posts)),
+      switchMap((posts) => this.withCleanContent(posts)),
+    );
+  }
+
+  private withCleanContent(posts: any[]): Observable<any[]> {
+    if (!posts?.length) return of(posts);
+
+    const ids = posts.flatMap((post) => attachmentIdsIn(post?.content?.rendered ?? ''));
+
+    return this.getAltByAttachmentId(ids).pipe(
+      map((altById) =>
+        posts.map((post) =>
+          post?.content?.rendered
+            ? {
+                ...post,
+                content: { ...post.content, rendered: this.content.clean(post.content.rendered, altById) },
+              }
+            : post,
+        ),
+      ),
+    );
+  }
+
+  /**
+   * Alt text lives in the media library, but the editor baked `alt=""` into the
+   * post HTML at insert time, so it has to be looked up and reapplied.
+   *
+   * Never allowed to fail the caller: a media-endpoint hiccup at prerender time
+   * would otherwise take out the whole article rather than just its alt text.
+   */
+  private getAltByAttachmentId(ids: number[]): Observable<AltById> {
+    const empty: AltById = new Map();
+    if (!ids.length) return of(empty);
+
+    const params = new HttpParams()
+      .set('include', ids.join(','))
+      .set('per_page', Math.min(ids.length, 100))
+      .set('_fields', 'id,alt_text');
+
+    return this.http.get<any[]>(`${this.api}/media`, { params }).pipe(
+      map((media) => new Map(media.map((m) => [m.id as number, (m.alt_text as string) ?? '']))),
+      catchError(() => of(empty)),
+    );
   }
 
   getCategories() {
