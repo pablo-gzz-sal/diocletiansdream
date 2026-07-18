@@ -65,6 +65,14 @@ export class Booking implements OnInit {
   }
 
 
+  scrollToWidget(event: Event): void {
+    event.preventDefault();
+    if (!isPlatformBrowser(this.platformId)) return;
+    this.doc
+      .getElementById('booking-widget')
+      ?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
   toggleFaq(item: any) {
     item.open = !item.open;
   }
