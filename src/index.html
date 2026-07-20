@@ -11,15 +11,66 @@
     <meta name="google-site-verification" content="spY1d7Mrx40JOT4u7GjuC1GKnHSPCHdFBLrEg4X3Kfo" />
 
     <!-- Google tag (GA4 + Google Ads) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-QN1CZT8HXQ"></script>
+    <!--
+      Consent Mode v2. The consent defaults MUST be set before gtag.js runs, so
+      this block deliberately sits above the async loader: anything below it
+      would let the tag write ad/analytics cookies before the visitor answers
+      the banner, which is exactly what the EU consent rules forbid.
+
+      Storage is denied by default for everyone, not just the EEA — the banner
+      is shown site-wide, so a regionless default keeps one code path. Consent
+      is then granted (or not) by ConsentService via gtag('consent','update').
+      'security_storage' stays granted: it is strictly necessary and not opt-in.
+    -->
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
+
+      gtag('consent', 'default', {
+        ad_storage: 'denied',
+        ad_user_data: 'denied',
+        ad_personalization: 'denied',
+        analytics_storage: 'denied',
+        functionality_storage: 'denied',
+        personalization_storage: 'denied',
+        security_storage: 'granted',
+        // Hold tags briefly so a returning visitor's stored consent is applied
+        // before the first pageview fires, rather than after it as a denied hit.
+        wait_for_update: 500
+      });
+
+      // Replay the stored decision as early as possible. ConsentService is the
+      // source of truth and re-applies this after bootstrap, but Angular starts
+      // well after the first pageview — without this, every returning visitor's
+      // first hit of the session would be recorded as consent-denied.
+      try {
+        var stored = localStorage.getItem('dd.cookie-consent');
+        if (stored) {
+          var c = JSON.parse(stored);
+          gtag('consent', 'update', {
+            ad_storage: c.marketing ? 'granted' : 'denied',
+            ad_user_data: c.marketing ? 'granted' : 'denied',
+            ad_personalization: c.marketing ? 'granted' : 'denied',
+            analytics_storage: c.analytics ? 'granted' : 'denied',
+            functionality_storage: 'granted',
+            personalization_storage: c.analytics ? 'granted' : 'denied'
+          });
+        }
+      } catch (e) {
+        /* private mode / blocked storage — stay with the denied defaults */
+      }
+
       gtag('js', new Date());
+
+      // ads_data_redaction strips ad click identifiers from Google Ads pings
+      // while ad_storage is denied, so pre-consent traffic stays non-identifying.
+      gtag('set', 'ads_data_redaction', true);
+      gtag('set', 'url_passthrough', true);
 
       gtag('config', 'G-QN1CZT8HXQ');
       gtag('config', 'AW-11199515913');
     </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-QN1CZT8HXQ"></script>
     <!-- LIVE: indexing enabled at go-live (paired with environment.siteIndexable = true). -->
     <meta name="robots" content="index, follow" />
     <link rel="canonical" href="https://diocletiansdream.com/" />

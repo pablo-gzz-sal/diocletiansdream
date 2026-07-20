@@ -1,0 +1,108 @@
+@if (hydrated() && showBanner()) {
+  <div
+    class="cookie-banner"
+    role="dialog"
+    aria-modal="false"
+    aria-labelledby="cookie-banner-title"
+    aria-describedby="cookie-banner-body"
+  >
+    <div class="cookie-banner__card">
+      <p id="cookie-banner-title" class="cookie-banner__title">
+        {{ 'cookieBanner.title' | translate }}
+      </p>
+
+      <p id="cookie-banner-body" class="cookie-banner__body">
+        {{ 'cookieBanner.body' | translate }}
+        <a routerLink="/cookies" class="cookie-banner__link">
+          {{ 'cookieBanner.policyLink' | translate }}
+        </a>
+      </p>
+
+      @if (detailsOpen()) {
+        <div class="cookie-banner__details">
+          <!-- Necessary: no toggle, because there is no lawful choice to offer. -->
+          <div class="cookie-banner__category">
+            <div>
+              <p class="cookie-banner__category-name">
+                {{ 'cookieBanner.categories.necessary.name' | translate }}
+              </p>
+              <p class="cookie-banner__category-desc">
+                {{ 'cookieBanner.categories.necessary.desc' | translate }}
+              </p>
+            </div>
+            <span class="cookie-banner__always">
+              {{ 'cookieBanner.categories.necessary.always' | translate }}
+            </span>
+          </div>
+
+          <label class="cookie-banner__category">
+            <div>
+              <p class="cookie-banner__category-name">
+                {{ 'cookieBanner.categories.analytics.name' | translate }}
+              </p>
+              <p class="cookie-banner__category-desc">
+                {{ 'cookieBanner.categories.analytics.desc' | translate }}
+              </p>
+            </div>
+            <input
+              type="checkbox"
+              class="cookie-banner__switch"
+              [checked]="analytics()"
+              (change)="analytics.set($any($event.target).checked)"
+            />
+          </label>
+
+          <label class="cookie-banner__category">
+            <div>
+              <p class="cookie-banner__category-name">
+                {{ 'cookieBanner.categories.marketing.name' | translate }}
+              </p>
+              <p class="cookie-banner__category-desc">
+                {{ 'cookieBanner.categories.marketing.desc' | translate }}
+              </p>
+            </div>
+            <input
+              type="checkbox"
+              class="cookie-banner__switch"
+              [checked]="marketing()"
+              (change)="marketing.set($any($event.target).checked)"
+            />
+          </label>
+        </div>
+      }
+
+      <div class="cookie-banner__actions">
+        <!--
+          Reject and Accept are deliberately the same size, weight and visual
+          weight. Making "Accept" the prominent one is the classic dark pattern
+          the EU guidance calls out, and it invalidates the consent.
+        -->
+        <button type="button" class="cookie-banner__btn" (click)="rejectAll()">
+          {{ 'cookieBanner.actions.rejectAll' | translate }}
+        </button>
+
+        @if (detailsOpen()) {
+          <button type="button" class="cookie-banner__btn" (click)="saveChoices()">
+            {{ 'cookieBanner.actions.save' | translate }}
+          </button>
+        }
+
+        <button type="button" class="cookie-banner__btn" (click)="acceptAll()">
+          {{ 'cookieBanner.actions.acceptAll' | translate }}
+        </button>
+
+        <button
+          type="button"
+          class="cookie-banner__btn cookie-banner__btn--ghost"
+          [attr.aria-expanded]="detailsOpen()"
+          (click)="toggleDetails()"
+        >
+          {{
+            (detailsOpen() ? 'cookieBanner.actions.hideDetails' : 'cookieBanner.actions.customise')
+              | translate
+          }}
+        </button>
+      </div>
+    </div>
+  </div>
+}

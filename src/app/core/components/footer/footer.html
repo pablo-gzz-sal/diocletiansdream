@@ -115,6 +115,11 @@
         <a routerLink="/privacy" class="footer-nav-link" style="color: rgba(250,248,244,0.25)">{{ 'footer.legal.privacy' | translate }}</a>
         <a routerLink="/terms" class="footer-nav-link" style="color: rgba(250,248,244,0.25)">{{ 'footer.legal.terms' | translate }}</a>
         <a routerLink="/cookies" class="footer-nav-link" style="color: rgba(250,248,244,0.25)">{{ 'footer.legal.cookies' | translate }}</a>
+        <!-- Consent must stay as easy to withdraw as it was to give, so the
+             banner needs a permanent way back in once it has been dismissed. -->
+        <button type="button" (click)="openCookieSettings()"
+                class="footer-nav-link bg-transparent border-0 p-0 cursor-pointer text-[0.7rem] font-[family-name:var(--font-sans)]"
+                style="color: rgba(250,248,244,0.25)">{{ 'footer.legal.cookieSettings' | translate }}</button>
       </div>
     </div>
 
