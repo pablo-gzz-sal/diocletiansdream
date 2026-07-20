@@ -495,7 +495,8 @@
       "rights": "All rights reserved.",
       "privacy": "Privacy",
       "terms": "Terms",
-      "cookies": "Cookies"
+      "cookies": "Cookies",
+      "cookieSettings": "Cookie settings"
     }
   },
   "blogPage": {
@@ -632,6 +633,33 @@
     "seo": {
       "metaTitle": "Book Diocletians dream VR Tickets | Diocletians Dream Split",
       "metaDescription": "Reserve your 15-minute Diocletians dream VR experience in Split. Choose your time slot and secure your tickets online."
+    }
+  },
+  "cookieBanner": {
+    "title": "We use cookies",
+    "body": "We use cookies to run this site, to understand how it is used, and to measure our advertising. You can accept all, reject all, or choose. Read our",
+    "policyLink": "Cookie Policy.",
+    "categories": {
+      "necessary": {
+        "name": "Strictly necessary",
+        "desc": "Required for the site and the booking widget to work. These cannot be switched off.",
+        "always": "Always on"
+      },
+      "analytics": {
+        "name": "Analytics",
+        "desc": "Google Analytics, so we can see which pages visitors find useful."
+      },
+      "marketing": {
+        "name": "Marketing",
+        "desc": "Google Ads, used to measure our campaigns and show relevant ads."
+      }
+    },
+    "actions": {
+      "acceptAll": "Accept all",
+      "rejectAll": "Reject all",
+      "save": "Save choices",
+      "customise": "Customise",
+      "hideDetails": "Hide options"
     }
   }
 }

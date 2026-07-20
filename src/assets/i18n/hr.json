@@ -495,7 +495,8 @@
       "rights": "Sva prava pridržana.",
       "privacy": "Privatnost",
       "terms": "Uvjeti",
-      "cookies": "Kolačići"
+      "cookies": "Kolačići",
+      "cookieSettings": "Postavke kolačića"
     }
   },
   "blogPage": {
@@ -632,6 +633,33 @@
     "seo": {
       "metaTitle": "Rezervirajte VR ulaznice za Dioklecijanovu palaču | Diocletians Dream Split",
       "metaDescription": "Rezervirajte 15-minutno VR iskustvo Dioklecijanove palače u Splitu. Odaberite termin i osigurajte ulaznice online."
+    }
+  },
+  "cookieBanner": {
+    "title": "Koristimo kolačiće",
+    "body": "Kolačiće koristimo za rad stranice, za razumijevanje kako se koristi i za mjerenje našeg oglašavanja. Možete prihvatiti sve, odbiti sve ili odabrati. Pročitajte našu",
+    "policyLink": "Politiku kolačića.",
+    "categories": {
+      "necessary": {
+        "name": "Nužni",
+        "desc": "Potrebni za rad stranice i sustava za rezervacije. Ne mogu se isključiti.",
+        "always": "Uvijek uključeno"
+      },
+      "analytics": {
+        "name": "Analitika",
+        "desc": "Google Analytics, kako bismo vidjeli koje su stranice posjetiteljima korisne."
+      },
+      "marketing": {
+        "name": "Marketing",
+        "desc": "Google Ads, za mjerenje naših kampanja i prikaz relevantnih oglasa."
+      }
+    },
+    "actions": {
+      "acceptAll": "Prihvati sve",
+      "rejectAll": "Odbij sve",
+      "save": "Spremi odabir",
+      "customise": "Prilagodi",
+      "hideDetails": "Sakrij opcije"
     }
   }
 }
