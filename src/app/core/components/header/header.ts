@@ -66,9 +66,10 @@ export class Header implements OnInit, OnDestroy, AfterViewInit {
 
   /**
    * Switching language is a navigation, not an in-memory flip: the URL is the
-   * source of truth for language. Pages that exist only in English (the blog,
-   * a post) have no Croatian counterpart, so switching to Croatian from one
-   * lands on the Croatian home page instead.
+   * source of truth for language. Pages with a counterpart (marketing pages and
+   * the blog index) map across locales; pages without one — a legal page or an
+   * individual post, whose en/hr slugs differ and aren't known here — fall back
+   * to the target locale's home page instead.
    */
   switchTo(target: SupportedLang) {
     if (target === this.currentLang()) return;

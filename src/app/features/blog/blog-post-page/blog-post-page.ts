@@ -21,6 +21,9 @@ export class BlogPostPage implements OnInit, OnDestroy {
   loading = true;
   post: any | null = null;
 
+  /** 'en' at the root (/slug/), 'hr' under the Croatian subtree (/hr/slug/). */
+  private lang: 'en' | 'hr' = 'en';
+
   private sub?: Subscription;
 
   // Set once (or move to environment.ts)
@@ -37,6 +40,7 @@ export class BlogPostPage implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
+    this.lang = this.route.snapshot.data['lang'] === 'hr' ? 'hr' : 'en';
 
     this.sub = this.route.paramMap.subscribe(params => {
       const slug = params.get('slug');
@@ -55,7 +59,7 @@ export class BlogPostPage implements OnInit, OnDestroy {
     this.loading = true;
     this.post = null;
 
-    this.wp.getPostBySlug(slug).subscribe({
+    this.wp.getPostBySlug(slug, this.lang).subscribe({
       next: (res) => {
         this.post = (res && res.length) ? res[0] : null;
         this.loading = false;
@@ -82,12 +86,11 @@ export class BlogPostPage implements OnInit, OnDestroy {
 
   /** --- SEO core --- */
   private applySeo(post: any) {
-    // Posts live at the site root with a trailing slash, e.g. /what-to-do-in-split/
-    const url = this.absoluteUrl(`/${post?.slug ?? ''}/`);
+    // English posts live at the root (/slug/); Croatian ones under /hr/slug/.
+    const url = this.postUrl(this.lang, post?.slug ?? '');
     this.seo.clearHttpStatus();
     this.seo.setRobots();
-    // Posts are English-only (WordPress has no Croatian translations).
-    this.seo.clearAlternates();
+    this.applyAlternates(post);
 
     // If you add SEO fields in WP (Yoast/RankMath/AIOSEO or ACF),
     // map them here. Fallback to title/excerpt.
@@ -111,6 +114,36 @@ export class BlogPostPage implements OnInit, OnDestroy {
 
     // Breadcrumb schema
     this.seo.setJsonLd('ld-breadcrumb', this.buildBreadcrumbJsonLd(post, url));
+  }
+
+  /** Absolute URL for a post in a given locale (/slug/ or /hr/slug/). */
+  private postUrl(lang: 'en' | 'hr', slug: string): string {
+    return this.absoluteUrl(lang === 'hr' ? `/hr/${slug}/` : `/${slug}/`);
+  }
+
+  /**
+   * Reciprocal hreflang built from Polylang's `translations` map (lang ->
+   * published slug, exposed by the dd-polylang-rest mu-plugin). Only emitted
+   * when BOTH language versions are published: Google ignores one-way
+   * annotations, and a href to a missing translation would 404. Otherwise the
+   * alternates are cleared (they survive client-side navigation).
+   */
+  private applyAlternates(post: any): void {
+    const t = post?.translations ?? {};
+    const enSlug = typeof t.en === 'string' ? t.en : null;
+    const hrSlug = typeof t.hr === 'string' ? t.hr : null;
+
+    if (enSlug && hrSlug) {
+      const en = this.postUrl('en', enSlug);
+      const hr = this.postUrl('hr', hrSlug);
+      this.seo.setAlternates([
+        { hreflang: 'en', href: en },
+        { hreflang: 'hr', href: hr },
+        { hreflang: 'x-default', href: en },
+      ]);
+    } else {
+      this.seo.clearAlternates();
+    }
   }
 
   private pickSeoTitle(post: any): string {
@@ -175,12 +208,14 @@ export class BlogPostPage implements OnInit, OnDestroy {
   }
 
   private buildBreadcrumbJsonLd(post: any, url: string) {
+    const home = this.lang === 'hr' ? '/hr/' : '/';
+    const blog = this.lang === 'hr' ? '/hr/blog/' : '/blog/';
     return {
       '@context': 'https://schema.org',
       '@type': 'BreadcrumbList',
       itemListElement: [
-        { '@type': 'ListItem', position: 1, name: 'Home', item: this.absoluteUrl('/') },
-        { '@type': 'ListItem', position: 2, name: 'Blog', item: this.absoluteUrl('/blog/') },
+        { '@type': 'ListItem', position: 1, name: 'Home', item: this.absoluteUrl(home) },
+        { '@type': 'ListItem', position: 2, name: 'Blog', item: this.absoluteUrl(blog) },
         { '@type': 'ListItem', position: 3, name: this.titleText(post), item: url }
       ]
     };

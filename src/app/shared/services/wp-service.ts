@@ -58,11 +58,14 @@ export class WpService {
     return JSON.parse(json) as T;
   }
 
-  getPosts(page = 1, perPage = 12) {
-    const params = new HttpParams()
+  getPosts(page = 1, perPage = 12, lang?: string) {
+    let params = new HttpParams()
       .set('page', page)
       .set('per_page', perPage)
       .set('_embed', 'true');
+    // Polylang language filter (see the mu-plugin `dd-polylang-rest`). Omitted
+    // for English callers, which keeps the default-language behaviour.
+    if (lang) params = params.set('lang', lang);
 
     return this.http
       .get<any[]>(`${this.api}/posts`, { params })
@@ -79,8 +82,9 @@ export class WpService {
    * a full body is rendered — the list pages show excerpts, so cleaning their
    * dozen unread bodies would be pure waste.
    */
-  getPostBySlug(slug: string) {
-    const params = new HttpParams().set('slug', slug).set('_embed', 'true');
+  getPostBySlug(slug: string, lang?: string) {
+    let params = new HttpParams().set('slug', slug).set('_embed', 'true');
+    if (lang) params = params.set('lang', lang);
     return this.http.get<any[]>(`${this.api}/posts`, { params }).pipe(
       retryTransient(),
       map((posts) => this.normalizeMedia(posts)),
@@ -133,9 +137,12 @@ export class WpService {
     return this.http.get<any[]>(`${this.api}/categories?per_page=100`);
   }
 
-  getSamplePosts(): Observable<any[]> {
+  getSamplePosts(lang?: string): Observable<any[]> {
+  // `lang` must be passed by callers: with Polylang's REST filter active,
+  // omitting it returns every language mixed together.
+  const langParam = lang ? `&lang=${lang}` : '';
   return this.http
-    .get<any[]>(`${this.api}/posts?per_page=20&_embed=true`)
+    .get<any[]>(`${this.api}/posts?per_page=20&_embed=true${langParam}`)
     .pipe(
       map(posts => this.normalizeMedia(posts)),
       map(posts => {
