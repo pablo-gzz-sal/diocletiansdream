@@ -522,6 +522,11 @@
       "readLabel": "Read",
       "continueLabel": "Continue →"
     },
+    "pagination": {
+      "prev": "Previous",
+      "next": "Next",
+      "page": "Page {{current}} of {{total}}"
+    },
     "seo": {
       "title": "Learn More About Roman History and Split Culture",
       "text": "Our articles explore everything from the legacy of Diocletians Palace to practical travel advice in Split. Whether researching Roman heritage or planning your itinerary, the blog offers useful insights connected to our immersive VR experience.",

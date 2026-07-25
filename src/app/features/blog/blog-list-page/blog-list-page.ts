@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 import { WpService } from '../../../shared/services/wp-service';
 import { Footer } from '../../../core/components/footer/footer';
 import { Header } from '../../../core/components/header/header';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { SeoService } from '../../../shared/services/seo-service';
 import { CtaBlock } from '../../../shared/components/cta-block/cta-block';
 import { RevealOnScrollDirective } from '../../../shared/animations/reveal-on-scroll-directive';
@@ -23,11 +23,20 @@ export class BlogListPage implements OnInit {
   loading = true;
   private readonly SITE_URL = 'https://diocletiansdream.com';
 
+  /** 'en' at /blog/, 'hr' at /hr/blog/. */
+  private lang: 'en' | 'hr' = 'en';
+
   posts: any[] = [];
   categories: any[] = [];
 
   query = '';
   selectedCategoryId: number | null = null;
+
+  // Client-side pagination over the fully-fetched, filtered set. The list itself
+  // is not indexed page-by-page — individual posts are prerendered and sitemapped
+  // — so paging is a browser-only navigation aid over the loaded posts.
+  readonly pageSize = 9;
+  currentPage = 1;
 
   categoryTabs: CategoryTab[] = [];
 
@@ -39,22 +48,34 @@ export class BlogListPage implements OnInit {
     'beyond-split-day-trips': 'blogPage.filters.dayTrips',
   };
 
-  constructor(private wp: WpService, private seo: SeoService) {}
+  constructor(
+    private wp: WpService,
+    private seo: SeoService,
+    private route: ActivatedRoute,
+    private translate: TranslateService,
+  ) {}
 
   ngOnInit(): void {
+    this.lang = this.route.snapshot.data['lang'] === 'hr' ? 'hr' : 'en';
     this.applySeo();
     this.loadPosts();
 
-    this.wp.getCategories().subscribe({
-      next: (cats) => {
-        this.categories = cats ?? [];
-        this.buildCategoryTabs();
-      },
-      error: () => {
-        this.categories = [];
-        this.buildCategoryTabs();
-      },
-    });
+    // Category tabs resolve English category slugs to numeric ids. Croatian
+    // posts reference the hr translations of those terms (different ids), so
+    // the tabs only filter reliably on the English list — omit them on hr for
+    // now (translated-category filtering is a follow-up).
+    if (this.lang === 'en') {
+      this.wp.getCategories().subscribe({
+        next: (cats) => {
+          this.categories = cats ?? [];
+          this.buildCategoryTabs();
+        },
+        error: () => {
+          this.categories = [];
+          this.buildCategoryTabs();
+        },
+      });
+    }
   }
 
   private buildCategoryTabs(): void {
@@ -73,15 +94,53 @@ export class BlogListPage implements OnInit {
 
   selectCategory(id: number | null): void {
     this.selectedCategoryId = id;
+    this.currentPage = 1;
     // Optional: clear search when switching categories
     // this.query = '';
   }
 
+  /** Reset to the first page whenever the search query changes. */
+  onQueryChange(): void {
+    this.currentPage = 1;
+  }
+
+  /** Lang-aware post link: /slug on English, /hr/slug under the Croatian tree. */
+  postLink(post: any): any[] {
+    return this.lang === 'hr' ? ['/hr', post?.slug] : ['/', post?.slug];
+  }
+
+  /** The filtered posts for the current page only. */
+  pagedPosts(): any[] {
+    const start = (this.currentPage - 1) * this.pageSize;
+    return this.filteredPosts().slice(start, start + this.pageSize);
+  }
+
+  totalPages(): number {
+    return Math.max(1, Math.ceil(this.filteredPosts().length / this.pageSize));
+  }
+
+  pageList(): number[] {
+    return Array.from({ length: this.totalPages() }, (_, i) => i + 1);
+  }
+
+  goToPage(n: number): void {
+    this.currentPage = Math.min(Math.max(1, n), this.totalPages());
+    if (typeof window !== 'undefined') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  }
+
   loadPosts(): void {
     this.loading = true;
-    this.wp.getPosts(1, 30).subscribe({
+    // Fetch the whole set (per_page max is 100; well above the post count per
+    // language) so search, category filtering and pagination all operate over
+    // every post rather than an arbitrary first slice. `lang` is ALWAYS sent:
+    // once Polylang's REST filter is active, omitting it returns every language
+    // mixed together, so the English list must ask for `en` explicitly.
+    this.wp.getPosts(1, 100, this.lang).subscribe({
       next: (posts) => {
         this.posts = posts ?? [];
+        this.currentPage = 1;
         this.loading = false;
       },
       error: (err) => {
@@ -146,25 +205,34 @@ export class BlogListPage implements OnInit {
   }
 
   private applySeo(): void {
-  const title = "Diocletians Dream Blog | Roman History & Things to Do in Split"
-  const description = "Read articles about Diocletians Palace, Roman history, and things to do in Split. Explore Split travel guides and cultural insights connected to the immersive VR experience."
+  // Locale-correct meta (the language JSON is already loaded by languageResolver
+  // before this component activates, so instant() resolves synchronously).
+  const title = this.translate.instant('blogPage.seo.metaTitle');
+  const description = this.translate.instant('blogPage.seo.metaDescription');
 
-  const url = `${this.SITE_URL}/blog/`;
+  const enUrl = `${this.SITE_URL}/blog/`;
+  const hrUrl = `${this.SITE_URL}/hr/blog/`;
+  const url = this.lang === 'hr' ? hrUrl : enUrl;
 
   this.seo.setTitle(title);
   this.seo.setDescription(description);
   this.seo.setRobots();
   this.seo.setCanonical(url);
-  // English-only: no Croatian counterpart to advertise, and <link> tags
-  // survive client-side navigation from a page that had them.
-  this.seo.clearAlternates();
+  // Reciprocal hreflang: /blog/ <-> /hr/blog/. Both locales emit the same three
+  // tags (Google ignores one-way annotations).
+  this.seo.setAlternates([
+    { hreflang: 'en', href: enUrl },
+    { hreflang: 'hr', href: hrUrl },
+    { hreflang: 'x-default', href: enUrl },
+  ]);
 
   this.seo.setOpenGraph({
     url,
     title,
     description,
     image: `${this.SITE_URL}/assets/images/vr/peristyle-crowd.jpg`,
-    type: 'website'
+    type: 'website',
+    locale: this.lang === 'hr' ? 'hr_HR' : 'en_US',
   });
 
   this.seo.setJsonLd('ld-blog-collection', {

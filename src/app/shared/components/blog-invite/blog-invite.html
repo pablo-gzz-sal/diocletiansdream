@@ -25,7 +25,7 @@
       <!-- Buttons -->
       <div class="mt-7 flex flex-wrap gap-3">
         <!-- Primary blog button -->
-        <a routerLink="/blog" class="btn btn--dark">
+        <a [routerLink]="'/blog' | locPath" class="btn btn--dark">
           {{ 'blogInvite.ctaPrimary' | translate }} →
         </a>
 

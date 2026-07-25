@@ -41,8 +41,9 @@ describe('locale-url', () => {
       expect(withLocale('/', 'hr')).toBe('/hr');
     });
 
-    it('leaves an untranslated path alone rather than inventing a slug', () => {
-      // /blog has no Croatian counterpart; it must not silently become /hr/blog.
+    it('keeps a non-HR_SLUGS path as-is under /hr rather than inventing a slug', () => {
+      // The blog index is bilingual with the SAME slug in both locales, so it
+      // maps /blog -> /hr/blog (no native Croatian slug, unlike marketing pages).
       expect(withLocale('/blog', 'hr')).toBe('/hr/blog');
       expect(stripLocale('/hr/blog')).toEqual({ lang: 'hr', path: '/blog' });
     });
@@ -60,6 +61,9 @@ describe('locale-url', () => {
       expect(hasCounterpart('/experience')).toBe(true);
       expect(hasCounterpart('/experience/')).toBe(true);
       expect(hasCounterpart('/')).toBe(true);
+      // The blog index is bilingual too (/blog <-> /hr/blog).
+      expect(hasCounterpart('/blog')).toBe(true);
+      expect(hasCounterpart('/blog/')).toBe(true);
     });
 
     it('takes the ENGLISH path, which is what stripLocale hands back', () => {
@@ -67,7 +71,6 @@ describe('locale-url', () => {
     });
 
     it('is false for English-only pages', () => {
-      expect(hasCounterpart('/blog/')).toBe(false);
       expect(hasCounterpart('/privacy/')).toBe(false);
       expect(hasCounterpart('/what-to-do-in-split/')).toBe(false);
     });

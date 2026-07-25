@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { BlogListPage } from './features/blog/blog-list-page/blog-list-page';
 import { BlogPostPage } from './features/blog/blog-post-page/blog-post-page';
 import { NotFound } from './features/not-found/not-found';
 import { ThankYou } from './features/thank-you/thank-you';
@@ -12,7 +13,12 @@ export const routes: Routes = [
     path: 'hr',
     children: [
       ...localizedRoutes('hr'),
+      // Croatian blog. `hr/:slug` is a single-segment wildcard, so it MUST come
+      // after every fixed hr route (marketing pages, blog, 404) and before the
+      // catch-all — mirrors the root ordering below.
+      localizedRoute({ path: 'blog', component: BlogListPage }, 'hr'),
       localizedRoute({ path: '404', component: NotFound }, 'hr'),
+      localizedRoute({ path: ':slug', component: BlogPostPage }, 'hr'),
       localizedRoute({ path: '**', component: NotFound }, 'hr'),
     ],
   },

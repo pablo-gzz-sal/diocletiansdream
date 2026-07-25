@@ -112,7 +112,7 @@ export class LandingPage implements OnInit, AfterViewInit, OnDestroy {
   }
 
   getBlogs() {
-    this.wpService.getSamplePosts().subscribe((posts) => {
+    this.wpService.getSamplePosts(this.i18n.current()).subscribe((posts) => {
       this.blogCards = posts;
     });
   }

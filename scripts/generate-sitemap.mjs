@@ -21,6 +21,28 @@ function readEnvValue(source, key) {
   return match ? match[1] : undefined;
 }
 
+/**
+ * Fetch one language's posts from WordPress with retry (the CMS sits behind a
+ * WAF that can reject a burst). `?lang=` + the `translations` field come from
+ * the dd-polylang-rest mu-plugin. Returns { posts, error }.
+ */
+async function fetchPostsForLang(base, lang) {
+  const api = `${base}/wp-json/wp/v2/posts?per_page=100&_fields=slug,modified,translations&lang=${lang}`;
+  let posts = [];
+  let error = null;
+  for (let attempt = 0; attempt < 3 && !posts.length; attempt++) {
+    if (attempt) await new Promise((r) => setTimeout(r, 500 * 2 ** (attempt - 1)));
+    try {
+      const resp = await fetch(api);
+      if (resp.ok) posts = await resp.json();
+      else error = `HTTP ${resp.status}`;
+    } catch (err) {
+      error = err.message;
+    }
+  }
+  return { posts, error };
+}
+
 async function main() {
   if (!existsSync(OUT_DIR)) {
     console.error(`[sitemap] Output folder not found: ${OUT_DIR}. Run "ng build" first.`);
@@ -42,10 +64,13 @@ async function main() {
     { path: '/about/', changefreq: 'monthly', priority: '0.7' },
   ];
 
-  // English-only: no Croatian content exists, so no hreflang alternates.
+  // The blog index exists in both locales (/blog/ <-> /hr/blog/), so it carries
+  // reciprocal hreflang like the marketing pages.
+  const blogPages = [{ path: '/blog/', changefreq: 'weekly', priority: '0.8' }];
+
+  // English-only: no Croatian counterpart, so no hreflang alternates.
   // /dd-thankyou/ is deliberately absent — it is noindex.
   const enOnlyPages = [
-    { path: '/blog/', changefreq: 'weekly', priority: '0.8' },
     { path: '/privacy/', changefreq: 'yearly', priority: '0.2' },
     { path: '/terms/', changefreq: 'yearly', priority: '0.2' },
     { path: '/cookies/', changefreq: 'yearly', priority: '0.2' },
@@ -76,62 +101,88 @@ async function main() {
     (alternatesFor ? `${altBlock(alternatesFor)}\n` : '') +
     `    <changefreq>${changefreq}</changefreq>\n    <priority>${priority}</priority>\n  </url>`;
 
-  let posts = [];
+  let enPosts = [];
+  let hrPosts = [];
   let wpError = null;
   if (WP_BASE_URL) {
-    const api = `${WP_BASE_URL}/wp-json/wp/v2/posts?per_page=100&_fields=slug,modified`;
-    // Retry: the CMS sits behind a WAF that can reject a burst, and a blip here
-    // used to mean "emit a sitemap with no blog in it" without anyone noticing.
-    for (let attempt = 0; attempt < 3 && !posts.length; attempt++) {
-      if (attempt) await new Promise((r) => setTimeout(r, 500 * 2 ** (attempt - 1)));
-      try {
-        const resp = await fetch(api);
-        if (resp.ok) posts = await resp.json();
-        else wpError = `HTTP ${resp.status}`;
-      } catch (err) {
-        wpError = err.message;
-      }
-    }
+    ({ posts: enPosts, error: wpError } = await fetchPostsForLang(WP_BASE_URL, 'en'));
+    ({ posts: hrPosts } = await fetchPostsForLang(WP_BASE_URL, 'hr'));
   }
 
-  // A build that reaches here with no posts prerendered no blog pages either
-  // (app.routes.server.ts feeds getPrerenderParams from the same endpoint), so
-  // the sitemap would list only the static pages and the whole blog would
-  // quietly vanish from the deploy — with a green build. Refuse instead.
-  if (WP_BASE_URL && !posts.length) {
+  // A build that reaches here with no English posts prerendered no blog pages
+  // either (app.routes.server.ts feeds getPrerenderParams from the same
+  // endpoint), so the sitemap would list only the static pages and the whole
+  // blog would quietly vanish from the deploy — with a green build. Refuse.
+  if (WP_BASE_URL && !enPosts.length) {
     console.error(
-      `[sitemap] FATAL: WordPress returned no posts (${wpError ?? 'empty response'}). ` +
+      `[sitemap] FATAL: WordPress returned no English posts (${wpError ?? 'empty response'}). ` +
         `The blog would ship with zero pages and be dropped from sitemap.xml. ` +
         `Check ${WP_BASE_URL} is reachable and re-run — do not deploy this build.`,
     );
     process.exit(1);
   }
 
-  // A blog slug colliding with a routing prefix would silently break that
-  // route: ':slug' is a single-segment wildcard, so a post slugged "hr" or
-  // "dd-thankyou" would fight the real page. Fail the build loudly instead.
-  const RESERVED = ['hr', 'dd-thankyou'];
-  const collisions = posts.map((p) => p.slug).filter((s) => RESERVED.includes(s));
-  if (collisions.length) {
+  // Croatian is optional (posts may not be published yet) — warn, don't fail.
+  if (WP_BASE_URL && !hrPosts.length) {
+    console.warn(
+      `[sitemap] No Croatian posts returned — the hr blog ships empty. ` +
+        `Publish the hr posts and ensure ?lang= is honoured (dd-polylang-rest mu-plugin).`,
+    );
+  }
+
+  // A post slug colliding with a routing prefix silently breaks that route
+  // (':slug' / 'hr/:slug' are single-segment wildcards). Root posts must not
+  // take 'hr' or 'dd-thankyou'; hr posts must not take a fixed hr route slug.
+  const RESERVED_ROOT = ['hr', 'dd-thankyou'];
+  const RESERVED_HR = ['iskustvo', 'posjet', 'o-nama', 'rezervacija', 'blog', '404'];
+  const rootCollisions = enPosts.map((p) => p.slug).filter((s) => RESERVED_ROOT.includes(s));
+  const hrCollisions = hrPosts.map((p) => p.slug).filter((s) => RESERVED_HR.includes(s));
+  if (rootCollisions.length || hrCollisions.length) {
+    const parts = [
+      ...rootCollisions.map((s) => `en:${s}`),
+      ...hrCollisions.map((s) => `hr:${s}`),
+    ];
     console.error(
-      `[sitemap] FATAL: WordPress post slug(s) collide with reserved routes: ${collisions.join(', ')}. ` +
+      `[sitemap] FATAL: post slug(s) collide with reserved routes: ${parts.join(', ')}. ` +
         `Rename the post(s) in WordPress — these URLs belong to the site's own pages.`,
     );
     process.exit(1);
   }
+
+  // Reciprocal hreflang for a post pair, from Polylang's translations map
+  // (lang -> published slug). Only when BOTH sides are published.
+  const postAltBlock = (enSlug, hrSlug) =>
+    [
+      `    <xhtml:link rel="alternate" hreflang="en" href="${SITE_URL}/${enSlug}/"/>`,
+      `    <xhtml:link rel="alternate" hreflang="hr" href="${SITE_URL}/hr/${hrSlug}/"/>`,
+      `    <xhtml:link rel="alternate" hreflang="x-default" href="${SITE_URL}/${enSlug}/"/>`,
+    ].join('\n');
+
+  const postEntry = (loc, post) => {
+    const t = post.translations ?? {};
+    const alt =
+      typeof t.en === 'string' && typeof t.hr === 'string' ? postAltBlock(t.en, t.hr) : '';
+    const lastmod = post.modified
+      ? `\n    <lastmod>${new Date(post.modified).toISOString()}</lastmod>`
+      : '';
+    return (
+      `  <url>\n    <loc>${loc}</loc>${lastmod}\n` +
+      (alt ? `${alt}\n` : '') +
+      `    <changefreq>monthly</changefreq>\n    <priority>0.6</priority>\n  </url>`
+    );
+  };
 
   const urls = [
     ...translatedPages.map((p) => entry(`${SITE_URL}${p.path}`, p, p.path)),
     ...translatedPages.map((p) =>
       entry(`${SITE_URL}${hrPath(p.path)}`, { ...p, priority: '0.8' }, p.path),
     ),
+    // Blog index, both locales (reciprocal hreflang via altBlock/hrPath).
+    ...blogPages.map((p) => entry(`${SITE_URL}${p.path}`, p, p.path)),
+    ...blogPages.map((p) => entry(`${SITE_URL}${hrPath(p.path)}`, p, p.path)),
     ...enOnlyPages.map((p) => entry(`${SITE_URL}${p.path}`, p, null)),
-    ...posts.map((post) => {
-      const lastmod = post.modified
-        ? `\n    <lastmod>${new Date(post.modified).toISOString()}</lastmod>`
-        : '';
-      return `  <url>\n    <loc>${SITE_URL}/${post.slug}/</loc>${lastmod}\n    <changefreq>monthly</changefreq>\n    <priority>0.6</priority>\n  </url>`;
-    }),
+    ...enPosts.map((post) => postEntry(`${SITE_URL}/${post.slug}/`, post)),
+    ...hrPosts.map((post) => postEntry(`${SITE_URL}/hr/${post.slug}/`, post)),
   ];
 
   // The xmlns:xhtml declaration is mandatory once xhtml:link is used — without
@@ -142,7 +193,10 @@ async function main() {
     `${urls.join('\n')}\n</urlset>\n`;
 
   await writeFile(join(OUT_DIR, 'sitemap.xml'), xml, 'utf8');
-  console.log(`[sitemap] Wrote sitemap.xml with ${urls.length} URLs (${posts.length} posts).`);
+  console.log(
+    `[sitemap] Wrote sitemap.xml with ${urls.length} URLs ` +
+      `(${enPosts.length} en posts, ${hrPosts.length} hr posts).`,
+  );
 
   await assertSitemappedPagesAreIndexable(xml);
 }

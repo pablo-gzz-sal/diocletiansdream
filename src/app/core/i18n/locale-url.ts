@@ -73,7 +73,15 @@ export function withLocale(path: string, lang: SupportedLang): string {
   return p === '/' ? '/hr' : `/hr${p}`;
 }
 
+/**
+ * Bilingual paths that are NOT marketing routes, so they stay out of
+ * TRANSLATED_PATHS (which mirrors MARKETING_ROUTES and drives hreflang/sitemap).
+ * The blog index exists in both locales with the same slug (/blog <-> /hr/blog).
+ */
+const EXTRA_BILINGUAL_PATHS: readonly string[] = ['/blog'];
+
 /** Does this English-form path have a counterpart in the other locale? */
 export function hasCounterpart(path: string): boolean {
-  return TRANSLATED_PATHS.includes(normalise(path));
+  const p = normalise(path);
+  return TRANSLATED_PATHS.includes(p) || EXTRA_BILINGUAL_PATHS.includes(p);
 }

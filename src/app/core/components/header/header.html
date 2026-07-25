@@ -68,7 +68,7 @@
         </a>
 
         <a
-          routerLink="/blog"
+          [routerLink]="'/blog' | locPath"
           routerLinkActive="is-active"
           class="nav-link text-[0.78rem] font-medium rounded-[0.625rem] px-3.5 py-2 transition-colors no-underline"
           [style.color]="homeRoute() && !scrolled() ? 'rgba(250,248,244,0.82)' : (scrolled() ? 'var(--color-ink-60)' : 'var(--color-ink)')"
@@ -264,7 +264,7 @@
       </a>
 
       <a
-        routerLink="/blog"
+        [routerLink]="'/blog' | locPath"
         routerLinkActive="is-active"
         (click)="closeMenu()"
         class="group flex items-center justify-between rounded-[1rem] px-4 py-3.5 hover:bg-black/5 transition-colors no-underline"

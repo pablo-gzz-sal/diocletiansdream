@@ -28,6 +28,7 @@
     <div class="flex flex-col gap-2.5 sm:flex-row sm:items-center">
       <input
         [(ngModel)]="query"
+        (ngModelChange)="onQueryChange()"
         type="text"
         [placeholder]="'blogPage.controls.searchPlaceholder' | translate"
         class="w-full sm:w-72 rounded-full border border-black/10 bg-white/65 px-4 py-2.5 font-[family-name:var(--font-sans)] text-[0.78rem] text-ink placeholder:text-ink-60 outline-none focus:border-ink-60 focus:bg-white transition-colors"
@@ -99,8 +100,8 @@
       class="mx-auto max-w-7xl px-6 lg:px-8 py-8 pb-16 grid gap-3 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
     >
       <a
-        *ngFor="let post of filteredPosts(); trackBy: trackById"
-        [routerLink]="['/', post.slug]"
+        *ngFor="let post of pagedPosts(); trackBy: trackById"
+        [routerLink]="postLink(post)"
         class="group rounded-[1rem] border border-black/10 bg-white/60 overflow-hidden hover:bg-white hover:border-black/20 hover:-translate-y-0.5 transition-all no-underline text-ink"
       >
         <!-- Image -->
@@ -146,6 +147,43 @@
         </div>
       </a>
     </div>
+
+    <!-- Pagination -->
+    @if (totalPages() > 1) {
+      <nav
+        class="mx-auto max-w-7xl px-6 lg:px-8 pb-16 flex flex-wrap items-center justify-center gap-2"
+        [attr.aria-label]="'blogPage.pagination.page' | translate:{ current: currentPage, total: totalPages() }"
+      >
+        <button
+          type="button"
+          (click)="goToPage(currentPage - 1)"
+          [disabled]="currentPage === 1"
+          class="rounded-full border border-black/10 bg-white/60 text-ink hover:bg-white px-4 py-2 font-[family-name:var(--font-sans)] text-[0.7rem] font-medium tracking-[0.12em] uppercase transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
+        >
+          {{ 'blogPage.pagination.prev' | translate }}
+        </button>
+
+        <button
+          *ngFor="let p of pageList()"
+          type="button"
+          (click)="goToPage(p)"
+          [attr.aria-current]="p === currentPage ? 'page' : null"
+          [class]="p === currentPage ? 'bg-ink text-warm border-black/10' : 'bg-white/60 text-ink border-black/10 hover:bg-white'"
+          class="rounded-full border px-3.5 py-2 min-w-[2.5rem] font-[family-name:var(--font-sans)] text-[0.7rem] font-medium tracking-[0.12em] uppercase transition-colors"
+        >
+          {{ p }}
+        </button>
+
+        <button
+          type="button"
+          (click)="goToPage(currentPage + 1)"
+          [disabled]="currentPage === totalPages()"
+          class="rounded-full border border-black/10 bg-white/60 text-ink hover:bg-white px-4 py-2 font-[family-name:var(--font-sans)] text-[0.7rem] font-medium tracking-[0.12em] uppercase transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
+        >
+          {{ 'blogPage.pagination.next' | translate }}
+        </button>
+      </nav>
+    }
 
     <!-- SEO footer block + Internal links -->
     <app-cta-block></app-cta-block>

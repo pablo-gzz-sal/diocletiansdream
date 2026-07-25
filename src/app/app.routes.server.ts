@@ -7,13 +7,15 @@ import { environment } from '../environments/environment';
  * REST API (100 per page). If WordPress is unreachable the build still succeeds
  * with the static pages — only the posts are skipped (logged below).
  */
-async function fetchAllPostSlugs(): Promise<string[]> {
+async function fetchAllPostSlugs(lang: 'en' | 'hr' = 'en'): Promise<string[]> {
   const base = environment.wpBaseUrl.replace(/\/+$/, '');
   const slugs: string[] = [];
 
   try {
     for (let page = 1; page <= 50; page++) {
-      const url = `${base}/wp-json/wp/v2/posts?per_page=100&page=${page}&_fields=slug`;
+      // ?lang= (dd-polylang-rest mu-plugin) scopes the slugs to one language so
+      // /slug/ prerenders English posts and /hr/slug/ the Croatian ones.
+      const url = `${base}/wp-json/wp/v2/posts?per_page=100&page=${page}&_fields=slug&lang=${lang}`;
       const res = await fetch(url);
       if (!res.ok) break; // 400 => ran past the last page
       const posts: Array<{ slug: string }> = await res.json();
@@ -39,7 +41,21 @@ export const serverRoutes: ServerRoute[] = [
   { path: 'hr/posjet', renderMode: RenderMode.Prerender },
   { path: 'hr/o-nama', renderMode: RenderMode.Prerender },
   { path: 'hr/rezervacija', renderMode: RenderMode.Prerender },
+  { path: 'hr/blog', renderMode: RenderMode.Prerender },
   { path: 'hr/404', renderMode: RenderMode.Prerender },
+
+  // Croatian blog posts, one prerendered file per hr slug (same client-fallback
+  // story as the root ':slug' below). MUST precede 'hr/**'.
+  {
+    path: 'hr/:slug',
+    renderMode: RenderMode.Prerender,
+    fallback: PrerenderFallback.Client,
+    async getPrerenderParams() {
+      const slugs = await fetchAllPostSlugs('hr');
+      return slugs.map((slug) => ({ slug }));
+    },
+  },
+
   { path: 'hr/**', renderMode: RenderMode.Prerender },
 
   // TuriTop booking confirmation (noindex). Also ahead of ':slug'.
