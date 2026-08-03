@@ -19,7 +19,10 @@ export class NotFound implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    // Without an explicit description the page keeps index.html's English
+    // boilerplate, which reads as English meta on the Croatian 404.
     this.seo.setTitle(this.translate.instant('pageNotFound.seo.metaTitle'));
+    this.seo.setDescription(this.translate.instant('pageNotFound.seo.metaDescription'));
     this.seo.setRobots(true); // always noindex
     this.seo.clearAlternates();
     // Tell the SSR server to return a real 404 for this render.

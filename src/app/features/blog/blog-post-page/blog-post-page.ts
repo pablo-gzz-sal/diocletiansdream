@@ -5,7 +5,7 @@ import { Subscription } from 'rxjs';
 import { WpService } from '../../../shared/services/wp-service';
 import { Header } from '../../../core/components/header/header';
 import { Footer } from '../../../core/components/footer/footer';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { SeoService } from '../../../shared/services/seo-service';
 import { CtaBlock } from '../../../shared/components/cta-block/cta-block';
 import { LocalePathPipe } from '../../../core/i18n/locale-path.pipe';
@@ -36,6 +36,7 @@ export class BlogPostPage implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private wp: WpService,
     private seo: SeoService,
+    private translate: TranslateService,
     @Inject(DOCUMENT) private doc: Document
   ) {}
 
@@ -77,7 +78,7 @@ export class BlogPostPage implements OnInit, OnDestroy {
 
   /** Unknown slug: render the not-found state as a real, noindex 404. */
   private applyNotFoundSeo(): void {
-    this.seo.setTitle('Page not found | Diocletians Dream');
+    this.seo.setTitle(this.translate.instant('pageNotFound.seo.metaTitle'));
     this.seo.setRobots(true);
     this.seo.setHttpStatus(404);
     this.seo.clearJsonLd('ld-blogposting');
@@ -107,6 +108,7 @@ export class BlogPostPage implements OnInit, OnDestroy {
       description,
       image,
       type: 'article',
+      locale: this.lang === 'hr' ? 'hr_HR' : 'en_US',
     });
 
     // BlogPosting schema
@@ -146,15 +148,49 @@ export class BlogPostPage implements OnInit, OnDestroy {
     }
   }
 
+  /**
+   * The Yoast SEO-title field is authored per post and on a few Croatian
+   * translations it was left in English — /hr/vr-iskustvo-dioklecijanova-palaca/
+   * shipped "VR Experience in Split: Discover Diocletian's Palace" over Croatian
+   * body copy. On hr we therefore accept that field only when it is actually
+   * built on the post's own (translated) title, and otherwise fall back to
+   * Yoast's og_title, which follows the translated title. English posts keep
+   * their authored SEO title untouched: those pages are indexed as-is.
+   */
   private pickSeoTitle(post: any): string {
     // Try plugin fields first (examples). Adjust to your WP payload.
-    const pluginTitle =
+    const authored = this.stripHtml(
       post?.yoast_head_json?.title ||
       post?.rank_math_seo?.title ||
-      post?.aioseo?.title;
+      post?.aioseo?.title ||
+      ''
+    ).trim();
 
-    const fallback = `${this.titleText(post)} | ${this.SITE_NAME}`;
-    return (pluginTitle ? this.stripHtml(pluginTitle) : fallback).trim();
+    const localized = this.stripHtml(post?.yoast_head_json?.og_title || post?.title?.rendered || '').trim();
+
+    if (authored && (this.lang !== 'hr' || this.derivesFrom(authored, localized))) return authored;
+    if (localized) return this.withSiteName(localized);
+    return authored || this.SITE_NAME;
+  }
+
+  /**
+   * Whether the authored SEO title grew out of the post's own title (Yoast's
+   * default is the title plus a site-name suffix) rather than being a leftover
+   * from the other language. A short prefix is enough to tell the languages
+   * apart without tripping on separators the editor added mid-title.
+   */
+  private derivesFrom(authored: string, localized: string): boolean {
+    const key = this.normalizeTitle(localized).slice(0, 15);
+    return !!key && this.normalizeTitle(authored).includes(key);
+  }
+
+  private normalizeTitle(value: string): string {
+    return value.toLowerCase().replace(/[’']/g, "'").replace(/\s+/g, ' ').trim();
+  }
+
+  /** Brands the title, unless it already carries the site name. */
+  private withSiteName(title: string): string {
+    return /diocletian['’]?s\s+dream/i.test(title) ? title : `${title} | ${this.SITE_NAME}`;
   }
 
   private pickSeoDescription(post: any): string {
@@ -168,7 +204,7 @@ export class BlogPostPage implements OnInit, OnDestroy {
     const base = pluginDesc ? this.stripHtml(pluginDesc) : excerpt;
 
     const trimmed = (base || '').trim();
-    if (!trimmed) return `Read the latest from ${this.SITE_NAME}.`;
+    if (!trimmed) return this.translate.instant('blogPage.seo.metaDescription');
 
     return trimmed.length > 160 ? trimmed.slice(0, 157).trimEnd() + '…' : trimmed;
   }
@@ -214,8 +250,18 @@ export class BlogPostPage implements OnInit, OnDestroy {
       '@context': 'https://schema.org',
       '@type': 'BreadcrumbList',
       itemListElement: [
-        { '@type': 'ListItem', position: 1, name: 'Home', item: this.absoluteUrl(home) },
-        { '@type': 'ListItem', position: 2, name: 'Blog', item: this.absoluteUrl(blog) },
+        {
+          '@type': 'ListItem',
+          position: 1,
+          name: this.translate.instant('header.nav.home'),
+          item: this.absoluteUrl(home),
+        },
+        {
+          '@type': 'ListItem',
+          position: 2,
+          name: this.translate.instant('header.nav.blog'),
+          item: this.absoluteUrl(blog),
+        },
         { '@type': 'ListItem', position: 3, name: this.titleText(post), item: url }
       ]
     };
@@ -244,10 +290,15 @@ export class BlogPostPage implements OnInit, OnDestroy {
     return this.stripHtml(post?.title?.rendered ?? '');
   }
 
+  /**
+   * Croatian pages spell the month out in Croatian; English ones keep following
+   * the visitor's own locale, as they always have.
+   */
   dateLabel(post: any): string {
     const d = new Date(post?.date);
     if (isNaN(d.getTime())) return '';
-    return d.toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: '2-digit' });
+    const locale = this.lang === 'hr' ? 'hr-HR' : undefined;
+    return d.toLocaleDateString(locale, { year: 'numeric', month: 'long', day: '2-digit' });
   }
 
   contentHtml(post: any): string {

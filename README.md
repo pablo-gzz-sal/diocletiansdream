@@ -77,12 +77,100 @@ public/
 
 ## Getting Started
 
-**Prerequisites:** Node 20+
+Prerequisites: Node 20 or newer and npm. Nothing else needs to be installed
+globally — the Angular CLI comes from the project's own dependencies, so use
+`npx ng …` rather than a system-wide `ng`.
 
 ```bash
+git clone <repo-url> diocletiansdream
+cd diocletiansdream
 npm install
-ng serve          # Dev server at http://localhost:4200
-ng build          # Production build -> dist/diocletiansdream/browser/
+npm start                 # dev server at http://localhost:4200
+```
+
+There are no secrets and no `.env` file. Every environment value lives in
+`src/environments/environment.ts`:
+
+| Key | Meaning |
+|---|---|
+| `wpBaseUrl` | Headless WordPress host. Change this if the CMS moves. |
+| `siteUrl` | Public site origin. Used for canonicals, hreflang and the sitemap. |
+| `siteIndexable` | `true` in production. Set to `false` to make every page emit `noindex, nofollow` (used before launch, or for a staging copy). |
+
+The dev server renders in the browser only. It is fine for building pages, but
+it does not exercise prerendering, so anything SEO-related (titles, meta tags,
+canonicals, JSON-LD) has to be checked against a real build — see
+[Local preview of the real build](#local-preview-of-the-real-build).
+
+### Commands
+
+| Command | What it does |
+|---|---|
+| `npm start` | Dev server on port 4200. |
+| `npm run build` | Production build plus sitemap. Output in `dist/diocletiansdream/browser/`. This is what gets deployed. |
+| `npm test` | Unit tests (Karma + Jasmine). Needs a Chrome binary, see below. |
+| `npm run watch` | Development build that rebuilds on change. Rarely needed. |
+
+### Running the tests
+
+Karma needs a Chrome-family browser. If Google Chrome is not installed, point
+`CHROME_BIN` at whatever is available (Brave and Edge both work):
+
+```bash
+CHROME_BIN="/Applications/Brave Browser.app/Contents/MacOS/Brave Browser" npx ng test --watch=false --browsers=ChromeHeadless
+```
+
+### Local preview of the real build
+
+To check what actually ships, serve the build output as static files:
+
+```bash
+npm run build
+npx http-server dist/diocletiansdream/browser -p 4321 -c-1
+```
+
+Then open http://localhost:4321. This serves the prerendered HTML, so the page
+titles, meta tags and Croatian routes behave exactly as they will in production.
+
+---
+
+## WordPress (headless CMS)
+
+Blog content comes from WordPress at `cms.diocletiansdream.com`. The Angular app
+never writes to it — it reads the REST API at build time (to prerender each post)
+and at runtime (for posts published since the last build).
+
+Plugins the site depends on:
+
+- **Yoast SEO** — supplies `yoast_head_json` (SEO title, meta description, OG
+  fields) for each post.
+- **Elementor** — post bodies are Elementor markup; the app injects them as HTML.
+- **Polylang** — provides the Croatian translations of each post.
+- **`dd-polylang-rest`** — a small must-use plugin kept in this repo at
+  `wordpress/mu-plugins/dd-polylang-rest.php`. Polylang's free edition does not
+  expose language data over REST, so without this plugin `?lang=en` and
+  `?lang=hr` both return every post in every language and the build prerenders
+  each post twice under the wrong URLs. It must live in
+  `wp-content/mu-plugins/` on the CMS host (note the folder name — a typo there
+  means WordPress silently ignores it).
+
+Do not strip the CMS down to "just Polylang". Removing Yoast or Elementor breaks
+post SEO and post rendering respectively.
+
+Two things to know when editing content:
+
+- **Every REST request must pass `?lang=`.** With the must-use plugin active, a
+  request without it returns all languages mixed together.
+- **Yoast's SEO-title field is per post and is not translated automatically.**
+  A few Croatian posts were published with the English SEO title still in the
+  field. The app compensates (`pickSeoTitle` in `blog-post-page.ts` falls back to
+  the translated title on Croatian routes), but fixing the field in Yoast is the
+  cleaner solution.
+
+Check the raw payload before suspecting the Angular code:
+
+```bash
+curl -s "https://cms.diocletiansdream.com/wp-json/wp/v2/posts?slug=<slug>&lang=hr" | head -c 2000
 ```
 
 ---
@@ -164,21 +252,118 @@ Ticket booking is handled by the **Turitop** widget. The script is loaded in `sr
 
 ## Deployment
 
-The app is **prerendered (static site generation)** — `npm run build` renders every
-public page to static HTML at build time, so it can be hosted on any static host
-(SiteGround/Apache, Netlify, Cloudflare Pages…) with **no Node server**.
+The site is prerendered: `npm run build` renders every public page to static HTML,
+so SiteGround serves plain files and there is no Node process in production. The
+`.htaccess` in `public/` (copied into the build output) does the routing work —
+trailing-slash canonicalisation, the legacy `/blog/<slug>` → `/<slug>/` 301s, a
+client-render fallback for posts published since the last build, and
+`ErrorDocument 404` → the prerendered `/404/` page.
 
-- **Build:** `npm run build` runs `ng build` (`outputMode: static`, see `angular.json`)
-  then `scripts/generate-sitemap.mjs`. Output is `dist/diocletiansdream/browser/`.
-- **Prerendered routes:** all static pages plus one file per blog post. Post slugs are
-  fetched from WordPress at build time in `src/app/app.routes.server.ts`
-  (`getPrerenderParams`). **Publishing a new post requires a rebuild + redeploy**
-  (trigger via a WordPress publish webhook or a scheduled build).
-- **Upload:** copy the **contents** of `dist/diocletiansdream/browser/` into the
-  domain's document root (e.g. SiteGround `public_html`). The included `.htaccess`
-  handles trailing-slash canonicalization, the legacy `/blog/<slug>` → `/<slug>`
-  301s, and `ErrorDocument 404` → the prerendered `/404/` page.
-- **WordPress** runs as a headless CMS on its own subdomain
-  (`cms.diocletiansdream.com`); see `wpBaseUrl` in `src/environments/environment.ts`.
-- **Sitemap:** `sitemap.xml` is generated into the output at build time (static pages +
-  every WordPress post). `robots.txt` is a static file in `public/`.
+Post slugs are fetched from WordPress during the build
+(`fetchAllPostSlugs` in `src/app/app.routes.server.ts`), which is why the CMS has
+to be reachable when you build.
+
+### 1. Build
+
+```bash
+npm run build
+```
+
+Read the output before going any further. Two numbers matter:
+
+```
+Prerendered 76 static routes.
+[sitemap] Wrote sitemap.xml with 73 URLs (29 en posts, 29 hr posts).
+[sitemap] Verified all 73 sitemapped pages prerendered as indexable.
+```
+
+18 of those routes are fixed pages; the rest is one file per blog post, English
+and Croatian. A route count near 18 means the build could not reach WordPress and
+contains no blog posts at all.
+
+Always build with `npm run build`, never with a bare `ng build`. The sitemap
+script that runs afterwards is what refuses a post-less build (`FATAL: WordPress
+returned no English posts`) and what catches reserved slugs. On its own, `ng build`
+prints a prerender error, then finishes successfully and leaves you with a
+gutted build that looks fine.
+
+### 2. Zip the output
+
+Zip the *contents* of the browser folder, not the folder itself, and keep hidden
+files so `.htaccess` is included:
+
+```bash
+cd dist/diocletiansdream/browser
+zip -rq ../site.zip . -x '.DS_Store'
+```
+
+### 3. Upload through SiteGround
+
+1. Site Tools → Site → File Manager, open `diocletiansdream.com/public_html`.
+2. Delete the previous build's files (keep the folder itself).
+3. Upload `site.zip` and use Extract.
+4. SiteGround extracts into a subfolder named after the zip, so you end up with
+   `public_html/site/`. Open it, select all including hidden files, Move to
+   `/diocletiansdream.com/public_html`, then delete the empty `site` folder and
+   `site.zip`.
+5. Confirm `.htaccess` is directly in `public_html`. Hidden files are sometimes
+   skipped by the extractor. If it is missing, recreate it by copying
+   `public/.htaccess` from this repo — without it, every URL except the homepage
+   breaks.
+
+### 4. Verify
+
+```bash
+curl -o /dev/null -s -w "%{http_code} %{redirect_url}\n" https://diocletiansdream.com/
+curl -o /dev/null -s -w "%{http_code} %{redirect_url}\n" https://diocletiansdream.com/experience
+curl -o /dev/null -s -w "%{http_code} %{redirect_url}\n" https://diocletiansdream.com/hr/blog/
+curl -o /dev/null -s -w "%{http_code} %{redirect_url}\n" https://diocletiansdream.com/definitely-not-a-page/
+```
+
+Expected: `200` for the homepage and `/hr/blog/`, `301` to the trailing-slash URL
+for `/experience`, `404` for the unknown URL. Also open one English and one
+Croatian blog post and check the browser tab title is in the right language.
+
+### Publishing a new blog post
+
+Publish in WordPress as usual, in both languages if the post should exist in
+Croatian. The post is reachable at its URL straight away through the client-render
+fallback, but it has no prerendered HTML and is absent from the sitemap until the
+site is rebuilt and re-uploaded. Run through the four steps above whenever you
+want new posts baked in properly.
+
+One rule when creating posts: **never use `hr` or `dd-thankyou` as a slug.** The
+blog route is a single-segment wildcard, so such a post would collide with the
+Croatian section or the booking confirmation page. The sitemap script fails the
+build if it finds one.
+
+---
+
+## Troubleshooting
+
+**The build prerenders only ~18 routes, or stops with `FATAL: WordPress returned
+no English posts`.** The CMS was unreachable, so no post slugs were fetched.
+Check it directly:
+
+```bash
+curl -s -o /dev/null -w "%{http_code}\n" "https://cms.diocletiansdream.com/wp-json/wp/v2/posts?per_page=1&lang=en"
+```
+
+`200` means the CMS is fine. Anything else, most often `202` with an HTML body
+mentioning `sgcaptcha`, means SiteGround's bot protection has challenged your IP.
+That happens after a burst of automated requests to the CMS. It clears on its own
+after a while; you can also allow the IP under Site Tools → Security on the CMS
+site. Rebuild once the check returns `200`.
+
+**A blog post shows the "not found" state.** The slug does not exist in the
+language you are viewing. Croatian posts have their own slugs — `/hr/tko-je-bio-dioklecijan/`,
+not `/hr/who-was-diocletian/`.
+
+**Both languages show all the posts mixed together.** The `dd-polylang-rest`
+must-use plugin is not active on the CMS. See the WordPress section above.
+
+**Everything 404s after a deploy.** `.htaccess` did not make it into
+`public_html`. Re-upload it from `public/.htaccess`.
+
+**Sitemap or canonicals point at the wrong domain.** Check `siteUrl` in
+`src/environments/environment.ts`; it is the single source of truth for both.

@@ -175,10 +175,12 @@ export class BlogListPage implements OnInit {
     return this.stripHtml(post?.title?.rendered ?? '');
   }
 
+  /** Croatian on the hr list; the visitor's own locale on the English one. */
   dateLabel(post: any): string {
     const d = new Date(post?.date);
     if (isNaN(d.getTime())) return '';
-    return d.toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: '2-digit' });
+    const locale = this.lang === 'hr' ? 'hr-HR' : undefined;
+    return d.toLocaleDateString(locale, { year: 'numeric', month: 'short', day: '2-digit' });
   }
 
   filteredPosts(): any[] {
