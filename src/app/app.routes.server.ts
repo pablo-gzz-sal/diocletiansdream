@@ -4,30 +4,69 @@ import { environment } from '../environments/environment';
 /**
  * Fetch every published blog-post slug from WordPress so each post can be
  * prerendered to its own static HTML file at build time. Paginates through the
- * REST API (100 per page). If WordPress is unreachable the build still succeeds
- * with the static pages — only the posts are skipped (logged below).
+ * REST API (100 per page).
+ *
+ * Throws rather than returning a short list. An empty result here does not
+ * fail the build by itself — it silently produces a dist with zero blog posts,
+ * which deploys as a site whose entire blog 404s. That is the exact silent
+ * failure this file's route ordering is otherwise written to avoid, so a CMS
+ * that cannot be read is treated as a build error.
  */
-async function fetchAllPostSlugs(lang: 'en' | 'hr' = 'en'): Promise<string[]> {
+export async function fetchAllPostSlugs(lang: 'en' | 'hr' = 'en'): Promise<string[]> {
   const base = environment.wpBaseUrl.replace(/\/+$/, '');
   const slugs: string[] = [];
 
-  try {
-    for (let page = 1; page <= 50; page++) {
-      // ?lang= (dd-polylang-rest mu-plugin) scopes the slugs to one language so
-      // /slug/ prerenders English posts and /hr/slug/ the Croatian ones.
-      const url = `${base}/wp-json/wp/v2/posts?per_page=100&page=${page}&_fields=slug&lang=${lang}`;
-      const res = await fetch(url);
-      if (!res.ok) break; // 400 => ran past the last page
-      const posts: Array<{ slug: string }> = await res.json();
-      if (!posts.length) break;
-      for (const p of posts) if (p?.slug) slugs.push(p.slug);
-      if (posts.length < 100) break;
+  for (let page = 1; page <= 50; page++) {
+    // ?lang= (dd-polylang-rest mu-plugin) scopes the slugs to one language so
+    // /slug/ prerenders English posts and /hr/slug/ the Croatian ones.
+    const url = `${base}/wp-json/wp/v2/posts?per_page=100&page=${page}&_fields=slug&lang=${lang}`;
+    const res = await fetch(url);
+
+    // 400 => ran past the last page. Anything else non-OK is a real failure.
+    if (res.status === 400) break;
+    if (!res.ok) throw new Error(`${url} -> HTTP ${res.status}`);
+
+    // A WAF challenge answers 200/202 with an HTML interstitial, which `res.ok`
+    // happily accepts and `json()` then chokes on. Say so in the error, because
+    // "Unexpected token '<'" 40 lines into a build log explains nothing.
+    const type = res.headers.get('content-type') ?? '';
+    if (!type.includes('json')) {
+      throw new Error(
+        `${url} -> expected JSON, got "${type}". The CMS is answering with a ` +
+          `challenge or error page rather than the REST API.`
+      );
     }
-  } catch (err) {
-    console.warn('[prerender] Could not fetch post slugs from WordPress:', err);
+
+    const posts: Array<{ slug: string }> = await res.json();
+    if (!posts.length) break;
+    for (const p of posts) if (p?.slug) slugs.push(p.slug);
+    if (posts.length < 100) break;
   }
 
   return slugs;
+}
+
+/**
+ * Slugs for a locale, with the same policy the sitemap generator applies:
+ * English posts are required (their absence is a broken build), Croatian ones
+ * are optional — the CMS may legitimately have none published yet.
+ */
+async function prerenderSlugs(lang: 'en' | 'hr'): Promise<Array<{ slug: string }>> {
+  const slugs = await fetchAllPostSlugs(lang);
+
+  if (!slugs.length) {
+    const message = `[prerender] WordPress returned no ${lang} post slugs.`;
+    if (lang === 'hr') {
+      console.warn(`${message} Prerendering no Croatian posts.`);
+    } else {
+      throw new Error(
+        `${message} Refusing to build a site with an empty blog — check that ` +
+          `${environment.wpBaseUrl} is reachable from this machine.`
+      );
+    }
+  }
+
+  return slugs.map((slug) => ({ slug }));
 }
 
 export const serverRoutes: ServerRoute[] = [
@@ -50,10 +89,7 @@ export const serverRoutes: ServerRoute[] = [
     path: 'hr/:slug',
     renderMode: RenderMode.Prerender,
     fallback: PrerenderFallback.Client,
-    async getPrerenderParams() {
-      const slugs = await fetchAllPostSlugs('hr');
-      return slugs.map((slug) => ({ slug }));
-    },
+    getPrerenderParams: () => prerenderSlugs('hr'),
   },
 
   { path: 'hr/**', renderMode: RenderMode.Prerender },
@@ -83,10 +119,7 @@ export const serverRoutes: ServerRoute[] = [
     path: ':slug',
     renderMode: RenderMode.Prerender,
     fallback: PrerenderFallback.Client,
-    async getPrerenderParams() {
-      const slugs = await fetchAllPostSlugs();
-      return slugs.map((slug) => ({ slug }));
-    },
+    getPrerenderParams: () => prerenderSlugs('en'),
   },
 
   // In-app catch-all (client navigation to an unknown route shows NotFound).
