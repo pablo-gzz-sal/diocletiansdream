@@ -56,9 +56,22 @@ describe('app routes precedence', () => {
     expect(match('/hr/rezervacija')).toBe(Booking);
   });
 
-  it('does NOT serve the English slug under /hr/', () => {
-    // /hr/experience/ is not a real URL — only /hr/iskustvo/ is.
-    expect(match('/hr/experience')).toBe(NotFound);
+  it('does NOT serve the English page under its English slug on /hr/', () => {
+    // /hr/experience/ is not a real URL — only /hr/iskustvo/ is. Since the
+    // Croatian blog landed, `hr/:slug` catches it before `hr/**`, exactly as
+    // `:slug` catches unknown single-segment URLs at the root: nothing in the
+    // route table can tell a typo from a Croatian post slug. BlogPostPage then
+    // finds no post and serves its 404 state (404 status + noindex, asserted
+    // in blog-post-page.spec.ts). What must never happen is the Experience
+    // page rendering here under an untranslated URL.
+    const hit = match('/hr/experience');
+    expect(hit).not.toBe(Experience);
+    expect(hit).toBe(BlogPostPage);
+  });
+
+  it('sends a multi-segment unknown URL under /hr/ to the 404 page', () => {
+    // Past `:slug`'s single segment there is no ambiguity left — `hr/**` owns it.
+    expect(match('/hr/experience/vr')).toBe(NotFound);
   });
 
   it('routes /dd-thankyou/ to the thank-you page, not a blog post', () => {
