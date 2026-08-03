@@ -1,0 +1,54 @@
+# Builds the static site and publishes it as a downloadable site.zip.
+#
+# This exists because the build has to read every post out of WordPress at
+# prerender time, and the CMS sits behind SiteGround's Anti-Bot AI, which
+# answers /wp-json/ with an HTML challenge for clients it scores as automated —
+# a developer machine included. A GitHub runner is a different network path and
+# gets the real API, so the build is reproducible here even when it is blocked
+# locally.
+name: Build site
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      # Chrome for the headless Karma run; the runner image already ships it.
+      - name: Unit tests
+        run: npm test -- --watch=false --browsers=ChromeHeadless
+
+      # Fails loudly if WordPress is unreachable rather than emitting a dist
+      # with no blog posts — see fetchAllPostSlugs in app.routes.server.ts. The
+      # script chain also generates sitemap.xml and then runs
+      # scripts/verify-build.mjs over the finished output, so a build that
+      # produced no posts (or baked a 404 into one) fails here rather than
+      # being packaged below.
+      - name: Build and verify
+        run: npm run build
+
+      - name: Package site.zip
+        run: cd dist/diocletiansdream/browser && zip -r "$GITHUB_WORKSPACE/site.zip" . -x '.DS_Store'
+
+      # Download from the run's Artifacts section. Note GitHub wraps uploads in
+      # its own zip, so what you download is a zip containing site.zip.
+      - uses: actions/upload-artifact@v4
+        with:
+          name: site
+          path: site.zip
+          retention-days: 30
+          if-no-files-found: error
