@@ -300,7 +300,7 @@ zip -rq ../site.zip . -x '.DS_Store'
 ### 3. Upload through SiteGround
 
 1. Site Tools → Site → File Manager, open `diocletiansdream.com/public_html`.
-2. Delete the previous build's files (keep the folder itself).
+2. Delete the previous build's files (keep the folder itself). DO NOT DELETE well-known FOLDER. The rest can be deleted 
 3. Upload `site.zip` and use Extract.
 4. SiteGround extracts into a subfolder named after the zip, so you end up with
    `public_html/site/`. Open it, select all including hidden files, Move to
