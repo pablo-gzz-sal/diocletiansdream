@@ -64,6 +64,23 @@
       "p2": "It is Croatia’s leading virtual reality heritage experience, built to connect modern audiences with ancient history.",
       "cta": "About the Project"
     },
+    "partners": {
+      "eyebrow": "Recommended",
+      "title": "Our Recommended Things to Do",
+      "text": "Split rewards the curious. These are local experiences we happily send our visitors to — each one run by people who know this city and its coastline inside out.",
+      "visitSite": "Visit site",
+      "items": {
+        "rafting": {
+          "text": "Premium rafting, cliff jumping and cave exploring with a picnic along the way. Raft the Cetina river canyon with white water professionals, in small groups and at the quieter hours — a tailor-made day that suits any age and any taste."
+        },
+        "food": {
+          "text": "A fun and engaging way to taste Split. Their food tour feels less like a tour and more like a walk with a local friend sharing the stories, history and secrets of the city — alongside the dishes that make it worth the trip."
+        },
+        "bus": {
+          "text": "See Split and its surroundings from an open-top bus, with commentary in ten languages. A daily ticket lets you hop off wherever you like and explore the city at your own pace."
+        }
+      }
+    },
     "finalCta": {
       "title": "Ready to Step Back in Time?",
       "text": "Experience Diocletians Palace as it stood in 305 AD. Book your tickets today and discover Split’s history in a way you’ve never seen before.",

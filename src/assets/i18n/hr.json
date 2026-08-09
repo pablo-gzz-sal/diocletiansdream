@@ -64,6 +64,23 @@
       "p2": "Riječ je o jednom od vodećih VR projekata kulturne baštine u Hrvatskoj, osmišljenom kako bi današnjoj publici približio antičku povijest na jasan i vizualno dojmljiv način.",
       "cta": "O projektu"
     },
+    "partners": {
+      "eyebrow": "Preporuka",
+      "title": "Što još posjetiti u Splitu",
+      "text": "Split nagrađuje znatiželjne. Ovo su lokalna iskustva koja rado preporučujemo svojim posjetiteljima — svako vode ljudi koji dobro poznaju ovaj grad i njegovu obalu.",
+      "visitSite": "Posjeti stranicu",
+      "items": {
+        "rafting": {
+          "text": "Rafting, skokovi u vodu i istraživanje špilja, uz piknik usput. Spustite se kanjonom Cetine s iskusnim vodičima, u malim grupama i u mirnijim satima — doživljaj prilagođen svakoj dobi i svakom ukusu."
+        },
+        "food": {
+          "text": "Zabavan i opušten način da upoznate Split kroz njegovu kuhinju. Njihova gastro tura više nalikuje šetnji s prijateljem iz grada koji dijeli priče, povijest i male tajne Splita — uz jela zbog kojih se vrijedi zaustaviti."
+        },
+        "bus": {
+          "text": "Upoznajte Split i okolicu iz autobusa s otvorenim krovom, uz audio vodič na deset jezika. Dnevna karta omogućuje vam da izađete gdje god želite i grad istražite vlastitim tempom."
+        }
+      }
+    },
     "finalCta": {
       "title": "Spremni za povratak u 305. godinu?",
       "text": "Doživite Dioklecijanovu palaču u njezinu izvornom arhitektonskom obliku. Rezervirajte svoju ulaznicu i upoznajte povijest Splita kroz jedinstveno iskustvo virtualne stvarnosti.",
