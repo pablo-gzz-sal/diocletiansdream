@@ -18,6 +18,7 @@ import { Reviews } from '../../core/components/reviews/reviews';
 import { Faq } from '../../core/components/faq/faq';
 import { AboutProject } from '../../core/components/about-project/about-project';
 import { Highlights } from '../../core/components/highlights/highlights';
+import { Partners } from '../../core/components/partners/partners';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { OG_DEFAULT_IMAGE, PageSeoService } from '../../shared/services/page-seo';
@@ -43,7 +44,8 @@ gsap.registerPlugin(ScrollTrigger);
     Reviews,
     Faq,
     AboutProject,
-    Highlights],
+    Highlights,
+    Partners],
   templateUrl: './landing-page.html',
   styleUrl: './landing-page.css',
 })
