@@ -25,6 +25,39 @@ const HR_POST_WITH_ENGLISH_YOAST_TITLE = {
   },
 };
 
+type PostLoadObserver = {
+  next: (posts: any[]) => void;
+  error: (error: unknown) => void;
+};
+
+/**
+ * Deliberately keeps delivering to the original observer after unsubscribe.
+ * This models a non-cooperative producer so the component's own stale-request
+ * guard is tested rather than RxJS's closed-subscriber behaviour.
+ */
+function nonCooperativePostLoad() {
+  let observer: PostLoadObserver | undefined;
+  let unsubscribeCalls = 0;
+
+  return {
+    source: {
+      subscribe(destination: PostLoadObserver) {
+        observer = destination;
+        return { unsubscribe: () => unsubscribeCalls++ };
+      },
+    } as unknown as Observable<any[]>,
+    next(posts: any[]) {
+      observer?.next(posts);
+    },
+    error(error: unknown) {
+      observer?.error(error);
+    },
+    get unsubscribeCalls() {
+      return unsubscribeCalls;
+    },
+  };
+}
+
 describe('BlogPostPage', () => {
   let component: BlogPostPage;
   let fixture: ComponentFixture<BlogPostPage>;
@@ -268,62 +301,55 @@ describe('BlogPostPage', () => {
   it('cancels an older request and keeps the newer post route', () => {
     const router = TestBed.inject(Router);
     const routes = TestBed.inject(PostLanguageRouteService);
-    let emitFirst!: (value: any[]) => void;
-    let failFirst!: (error: unknown) => void;
-    let firstTornDown = false;
-    const first = new Observable<any[]>((subscriber) => {
-      emitFirst = (value) => subscriber.next(value);
-      failFirst = (error) => subscriber.error(error);
-      return () => { firstTornDown = true; };
-    });
+    const seo = TestBed.inject(SeoService);
+    const first = nonCooperativePostLoad();
     let currentUrl = '/first-post';
     spyOnProperty(router, 'url', 'get').and.callFake(() => currentUrl);
     const postLoads = spyOn(TestBed.inject(WpService), 'getPostBySlug').and.returnValues(
-      first,
+      first.source,
       of([{
         slug: 'second-post',
         translations: { en: 'second-post', hr: 'drugi-post' },
       }]),
     );
+    const setTitle = spyOn(seo, 'setTitle');
+    const setRobots = spyOn(seo, 'setRobots');
 
     component.fetch('first-post');
     currentUrl = '/second-post';
     component.fetch('second-post');
     expect(postLoads).toHaveBeenCalledTimes(2);
-    expect(firstTornDown).toBeTrue();
-    emitFirst([{
+    expect(first.unsubscribeCalls).toBe(1);
+    const titleCallsAfterB = setTitle.calls.count();
+    const robotsCallsAfterB = setRobots.calls.count();
+    first.next([{
       slug: 'first-post',
       translations: { en: 'first-post', hr: 'prvi-post' },
     }]);
-    failFirst(new Error('late request failure'));
+    first.error(new Error('late request failure'));
 
     expect(component.post?.slug).toBe('second-post');
     expect(routes.destinationFor('/second-post', 'hr')).toBe('/hr/drugi-post');
+    expect(setTitle.calls.count()).toBe(titleCallsAfterB);
+    expect(setRobots.calls.count()).toBe(robotsCallsAfterB);
   });
 
   it('cancels a pending request on destroy and ignores later producer activity', () => {
     const router = TestBed.inject(Router);
     const routes = TestBed.inject(PostLanguageRouteService);
     const seo = TestBed.inject(SeoService);
-    let emit!: (value: any[]) => void;
-    let fail!: (error: unknown) => void;
-    let tornDown = false;
-    const pending = new Observable<any[]>((subscriber) => {
-      emit = (value) => subscriber.next(value);
-      fail = (error) => subscriber.error(error);
-      return () => { tornDown = true; };
-    });
+    const pending = nonCooperativePostLoad();
     spyOnProperty(router, 'url', 'get').and.returnValue('/pending-post');
-    spyOn(TestBed.inject(WpService), 'getPostBySlug').and.returnValue(pending);
+    spyOn(TestBed.inject(WpService), 'getPostBySlug').and.returnValue(pending.source);
     const setTitle = spyOn(seo, 'setTitle');
     const setRobots = spyOn(seo, 'setRobots');
 
     component.fetch('pending-post');
     fixture.destroy();
-    emit([{ slug: 'pending-post', translations: { en: 'pending-post', hr: 'post-na-cekanju' } }]);
-    fail(new Error('destroyed request failure'));
+    pending.next([{ slug: 'pending-post', translations: { en: 'pending-post', hr: 'post-na-cekanju' } }]);
+    pending.error(new Error('destroyed request failure'));
 
-    expect(tornDown).toBeTrue();
+    expect(pending.unsubscribeCalls).toBe(1);
     expect(component.post).toBeNull();
     expect(routes.destinationFor('/pending-post', 'hr')).toBeNull();
     expect(setTitle).not.toHaveBeenCalled();
