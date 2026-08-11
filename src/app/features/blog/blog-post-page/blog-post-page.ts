@@ -1,4 +1,4 @@
-import { Component, DOCUMENT, Inject, OnDestroy, OnInit } from '@angular/core';
+import { Component, DOCUMENT, HostListener, Inject, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -21,11 +21,13 @@ import { htmlToText } from '../../../shared/utils/html-text';
 export class BlogPostPage implements OnInit, OnDestroy {
   loading = true;
   post: any | null = null;
+  lightboxImage: { src: string; alt: string } | null = null;
 
   /** 'en' at the root (/slug/), 'hr' under the Croatian subtree (/hr/slug/). */
   private lang: 'en' | 'hr' = 'en';
 
   private sub?: Subscription;
+  private readonly galleryClickListener = (event: Event) => this.onProseClick(event as MouseEvent);
 
   // Set once (or move to environment.ts)
   private readonly SITE_NAME = "Diocletians Dream";
@@ -42,6 +44,7 @@ export class BlogPostPage implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
+    this.doc.addEventListener?.('click', this.galleryClickListener);
     this.lang = this.route.snapshot.data['lang'] === 'hr' ? 'hr' : 'en';
 
     this.sub = this.route.paramMap.subscribe(params => {
@@ -53,6 +56,7 @@ export class BlogPostPage implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.sub?.unsubscribe();
+    this.doc.removeEventListener?.('click', this.galleryClickListener);
     this.seo.clearJsonLd('ld-blogposting');
     this.seo.clearJsonLd('ld-breadcrumb');
   }
@@ -304,5 +308,31 @@ export class BlogPostPage implements OnInit, OnDestroy {
 
   contentHtml(post: any): string {
     return post?.content?.rendered ?? '';
+  }
+
+  /** Open only images that WordPress has marked as part of a gallery. */
+  onProseClick(event: MouseEvent): void {
+    const image = (event.target as HTMLElement | null)?.closest?.('img') as HTMLImageElement | null;
+    if (!image || !image.closest('.wp-block-gallery')) return;
+
+    event.preventDefault();
+    const link = image.closest('a[href]') as HTMLAnchorElement | null;
+    this.lightboxImage = {
+      src: link?.href || image.currentSrc || image.src,
+      alt: image.getAttribute('alt')?.trim() || 'Gallery image',
+    };
+  }
+
+  onLightboxBackdropClick(event: MouseEvent): void {
+    if (event.target === event.currentTarget) this.closeLightbox();
+  }
+
+  closeLightbox(): void {
+    this.lightboxImage = null;
+  }
+
+  @HostListener('document:keydown.escape')
+  onEscape(): void {
+    this.closeLightbox();
   }
 }

@@ -139,6 +139,13 @@
   }
   <app-cta-block
 ></app-cta-block>
+
+  @if (lightboxImage; as image) {
+    <div class="blog-gallery-lightbox" role="dialog" aria-modal="true" [attr.aria-label]="image.alt" (click)="onLightboxBackdropClick($event)">
+      <button type="button" class="blog-gallery-lightbox__close" (click)="closeLightbox()" aria-label="Close image">×</button>
+      <img class="blog-gallery-lightbox__image" [src]="image.src" [alt]="image.alt" />
+    </div>
+  }
 </div>
 
 <app-footer></app-footer>
