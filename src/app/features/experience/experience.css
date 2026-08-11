@@ -172,6 +172,11 @@
   backdrop-filter: blur(10px);
 }
 
+.experience-audience-card .eyebrow {
+  color: var(--dd-gold) !important;
+  border-color: rgba(194, 154, 89, 0.56);
+}
+
 .experience-audience-card .inline-link {
   margin-top: auto;
   padding-top: 1.5rem;
