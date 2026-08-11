@@ -804,7 +804,7 @@ body {
 }
 
 .section-h2 {
-  font-family: var(--serif);
+  font-family: var(--font-serif);
   font-size: clamp(2.625rem, 4.5vw, 3.25rem);
   font-weight: 400;
   line-height: 0.95;
@@ -1096,6 +1096,7 @@ main::after {
 
 /* Floating editorial header */
 .dd-site-header {
+  font-family: var(--font-sans);
   top: clamp(0.625rem, 1.5vw, 1rem) !important;
   left: var(--dd-page-x) !important;
   right: var(--dd-page-x) !important;
@@ -1323,11 +1324,11 @@ main::after {
 }
 
 .dd-mobile-menu-panel nav a span:first-child {
-  font-family: var(--font-serif);
-  font-size: clamp(1.15rem, 6vw, 1.45rem);
-  font-weight: 300;
-  letter-spacing: -0.01em;
-  line-height: 1.1;
+  font-family: var(--font-sans);
+  font-size: clamp(1rem, 5vw, 1.12rem);
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  line-height: 1.25;
   color: var(--color-ink);
 }
 
@@ -1872,5 +1873,3 @@ footer > div {
 .turitop_thank_you_page_ticket_url button:hover {
   filter: brightness(1.15);
 }
-
-

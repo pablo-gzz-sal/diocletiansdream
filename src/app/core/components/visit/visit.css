@@ -145,9 +145,10 @@
 
 /* Card ordinal — gold micro-detail */
 .vcard-num {
-  font-family: var(--font-serif);
-  font-size: 0.75rem;
-  font-style: italic;
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  font-style: normal;
+  font-weight: 600;
   color: var(--dd-gold);
   letter-spacing: 0.06em;
   margin-bottom: 0.75rem;

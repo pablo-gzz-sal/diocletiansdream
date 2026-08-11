@@ -39,8 +39,9 @@
   gap: clamp(1.5rem, 3vw, 2.5rem);
   width: max-content;
   animation: var(--animate-marquee);
-  font-family: var(--font-serif);
-  font-style: italic;
+  font-family: var(--font-sans) !important;
+  font-style: normal;
+  letter-spacing: 0.015em;
   font-size: clamp(0.98rem, 1.45vw, 1.12rem);
   font-weight: 500;
   color: rgba(26, 24, 20, 0.9);
