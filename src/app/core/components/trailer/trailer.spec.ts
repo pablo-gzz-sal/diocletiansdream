@@ -12,10 +12,19 @@ describe('Trailer', () => {
 
   it('renders a browser-safe autoplay trailer and booking CTA contract', () => {
     const video = fixture.nativeElement.querySelector('video') as HTMLVideoElement;
+    const heading = fixture.nativeElement.querySelector('h1') as HTMLHeadingElement;
+    const bookingDock = fixture.nativeElement.querySelector('.booking-dock') as HTMLElement;
     const bookingCta = fixture.nativeElement.querySelector(
       '[data-testid="hero-booking-cta"]',
     ) as HTMLAnchorElement;
+    const bookingDockText = bookingDock.textContent.replace(/\s+/g, ' ');
 
+    expect(heading).withContext('hero heading').not.toBeNull();
+    expect(bookingDockText).toContain('15-minute experience');
+    expect(bookingDockText).toContain('Beside the Golden Gate');
+    expect(bookingDockText).toContain('Adult €13');
+    expect(bookingDockText).toContain('Child €9');
+    expect(bookingDockText).toContain('ages 8–14');
     expect(video.autoplay).toBeTrue();
     expect(video.muted).toBeTrue();
     expect(video.loop).toBeTrue();

@@ -10,7 +10,6 @@ import {
 } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
-import { RevealOnScrollDirective } from '../../../shared/animations/reveal-on-scroll-directive';
 import { LocalePathPipe } from '../../i18n/locale-path.pipe';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -21,7 +20,7 @@ gsap.registerPlugin(ScrollTrigger);
 @Component({
   selector: 'app-trailer',
   standalone: true,
-  imports: [CommonModule, RouterLink, TranslateModule, RevealOnScrollDirective, LocalePathPipe],
+  imports: [CommonModule, RouterLink, TranslateModule, LocalePathPipe],
   templateUrl: './trailer.html',
   styleUrl: './trailer.css',
 })

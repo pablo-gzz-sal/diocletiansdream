@@ -3,12 +3,12 @@
   <div class="trailer-glow" aria-hidden="true"></div>
 
   <div class="trailer-inner">
-    <header class="trailer-heading">
-      <p class="eyebrow" revealOnScroll [revealDelay]="0">{{ 'home.trailer.eyebrow' | translate }}</p>
-      <h2 class="section-h2 trailer-h2" revealOnScroll [revealDelay]="0.08" [revealClip]="true">
+    <header class="trailer-heading" aria-labelledby="trailer-title">
+      <p class="eyebrow">{{ 'home.trailer.eyebrow' | translate }}</p>
+      <h1 id="trailer-title" class="section-h2 trailer-h1">
         {{ 'home.trailer.title' | translate }}
-      </h2>
-      <p class="trailer-sub" revealOnScroll [revealDelay]="0.16">
+      </h1>
+      <p class="trailer-sub">
         {{ 'home.trailer.subtitle' | translate }}
       </p>
     </header>
@@ -64,8 +64,29 @@
       }
     </div>
 
-    <a [routerLink]="'/booking' | locPath" class="btn btn--dark" data-testid="hero-booking-cta">
-      {{ 'header.cta.bookNow' | translate }}
-    </a>
+    <section class="booking-dock" aria-label="Booking information">
+      <dl class="booking-dock__facts">
+        <div class="booking-fact">
+          <dt>Experience</dt>
+          <dd>15-minute experience</dd>
+        </div>
+        <div class="booking-fact">
+          <dt>Location</dt>
+          <dd>Beside the Golden Gate</dd>
+        </div>
+        <div class="booking-fact">
+          <dt>Adult</dt>
+          <dd>€13</dd>
+        </div>
+        <div class="booking-fact">
+          <dt>Child</dt>
+          <dd>€9 <span>(ages 8–14)</span></dd>
+        </div>
+      </dl>
+
+      <a [routerLink]="'/booking' | locPath" class="btn btn--dark booking-dock__cta" data-testid="hero-booking-cta">
+        {{ 'header.cta.bookNow' | translate }}
+      </a>
+    </section>
   </div>
 </section>
