@@ -25,6 +25,7 @@ describe('Trailer', () => {
     expect(bookingDockText).toContain('Adult €13');
     expect(bookingDockText).toContain('Child €9');
     expect(bookingDockText).toContain('ages 8–14');
+    expect(bookingDockText).toContain('Tripadvisor Travellers’ Choice · 2022 & 2023');
     expect(video.autoplay).toBeTrue();
     expect(video.muted).toBeTrue();
     expect(video.loop).toBeTrue();
