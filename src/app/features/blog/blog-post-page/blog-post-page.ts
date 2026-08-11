@@ -16,6 +16,7 @@ import { htmlToText } from '../../../shared/utils/html-text';
   imports: [CommonModule, RouterModule, Header, Footer, TranslateModule, CtaBlock, LocalePathPipe],
   selector: 'app-blog-post-page',
   templateUrl: './blog-post-page.html',
+  styleUrl: './blog-post-page.css',
 })
 export class BlogPostPage implements OnInit, OnDestroy {
   loading = true;

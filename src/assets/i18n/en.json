@@ -578,6 +578,23 @@
     "footer": {
       "headline": "Ready to step into 305 AD?",
       "cta": "Book an experience"
+    },
+    "booking": {
+      "eyebrow": "VR experience",
+      "title": "Diocletians Dream",
+      "location": "305 AD · Split, Croatia",
+      "durationLabel": "Duration",
+      "durationValue": "15 minutes",
+      "sessionsLabel": "Sessions",
+      "sessionsValue": "Every 30 min",
+      "languagesLabel": "Languages",
+      "languagesValue": "8 available",
+      "ageLabel": "Recommended age",
+      "ageValue": "8+ only",
+      "benefitConfirmation": "Instant booking confirmation",
+      "benefitCancellation": "Free cancellation up to 24h",
+      "benefitVenue": "Wheelchair accessible venue",
+      "cta": "Book a session"
     }
   },
   "pageNotFound": {

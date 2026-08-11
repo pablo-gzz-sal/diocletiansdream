@@ -307,3 +307,175 @@
   background: var(--ink);
   color: var(--white);
 }
+
+/* ── Redesigned article layout ── */
+.blog-post-page .blog-post-surface {
+  /* This wrapper intentionally has no panel background: it establishes the
+     same wide reading measure as the related-reading panel below. */
+  align-items: start;
+}
+
+.blog-post-page {
+  /* clip prevents horizontal bleed without becoming a sticky-positioning
+     scroll container, unlike overflow-x: hidden. */
+  overflow-x: clip !important;
+}
+
+.blog-post-page .blog-post-sidebar {
+  align-self: stretch;
+  min-width: 0;
+}
+
+.blog-post-booking-card {
+  position: sticky;
+  top: 7rem;
+  overflow: hidden;
+  border: 1px solid rgba(232, 196, 127, 0.22);
+  border-radius: 1.5rem;
+  background: #1d1b16;
+  color: #fff9ee;
+  box-shadow: 0 22px 52px rgba(26, 18, 19, 0.22);
+}
+
+.blog-post-booking-card__head {
+  position: relative;
+  overflow: hidden;
+  padding: 1.7rem 1.5rem 1.45rem;
+  background:
+    radial-gradient(circle at 88% 18%, rgba(232, 196, 127, 0.36), transparent 32%),
+    linear-gradient(135deg, #1e0754 0%, #2d046a 52%, #3e135c 100%);
+}
+
+.blog-post-booking-card__eyebrow {
+  margin: 0;
+  color: #e8c47f;
+  font-family: var(--font-sans);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.blog-post-booking-card h2 {
+  margin: 0.65rem 0 0;
+  color: #fff9ee;
+  font-family: var(--font-serif);
+  font-size: 2rem;
+  font-weight: 400;
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+}
+
+.blog-post-booking-card__location {
+  margin: 0.45rem 0 0;
+  color: rgba(255, 249, 238, 0.7);
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+}
+
+.blog-post-booking-card__facts {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin: 0;
+}
+
+.blog-post-booking-card__facts > div {
+  min-height: 5.65rem;
+  padding: 1.1rem 1.25rem;
+  border-right: 1px solid rgba(255, 249, 238, 0.12);
+  border-bottom: 1px solid rgba(255, 249, 238, 0.12);
+}
+
+.blog-post-booking-card__facts > div:nth-child(2n) {
+  border-right: 0;
+}
+
+.blog-post-booking-card__facts dt {
+  color: rgba(255, 249, 238, 0.5);
+  font-family: var(--font-sans);
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.blog-post-booking-card__facts dd {
+  margin: 0.5rem 0 0;
+  color: #fff9ee;
+  font-family: var(--font-serif);
+  font-size: 1rem;
+  line-height: 1.2;
+}
+
+.blog-post-booking-card__benefits {
+  display: grid;
+  gap: 0.65rem;
+  margin: 0;
+  padding: 1.15rem 1.25rem;
+  list-style: none;
+  border-bottom: 1px solid rgba(255, 249, 238, 0.12);
+}
+
+.blog-post-booking-card__benefits li {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: rgba(255, 249, 238, 0.8);
+  font-family: var(--font-sans);
+  font-size: 0.84rem;
+  line-height: 1.35;
+}
+
+.blog-post-booking-card__benefits span {
+  display: inline-flex;
+  width: 1rem;
+  height: 1rem;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(232, 196, 127, 0.7);
+  border-radius: 50%;
+  color: #e8c47f;
+  font-size: 0.62rem;
+  font-weight: 700;
+}
+
+.blog-post-booking-card__cta {
+  display: flex;
+  min-height: 3.25rem;
+  align-items: center;
+  justify-content: center;
+  margin: 1.25rem;
+  border-radius: 999px;
+  background: var(--dd-gold);
+  color: #1a1814;
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: transform 180ms var(--ease-out), background 180ms var(--ease-out);
+}
+
+.blog-post-booking-card__cta:hover {
+  background: #d6af68;
+  transform: translateY(-1px);
+}
+
+.blog-post-booking-card__cta:focus-visible {
+  outline: 3px solid rgba(232, 196, 127, 0.72);
+  outline-offset: 3px;
+}
+
+@media (max-width: 1023px) {
+  .blog-post-page .blog-post-surface {
+    padding: 0;
+  }
+
+  .blog-post-page .blog-post-sidebar {
+    max-width: 28rem;
+  }
+
+  .blog-post-booking-card {
+    position: static;
+  }
+}

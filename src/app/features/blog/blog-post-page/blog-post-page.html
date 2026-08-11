@@ -1,8 +1,8 @@
 
 <app-header></app-header>
-<div class="min-h-screen bg-cream overflow-x-hidden">
+<div class="blog-post-page min-h-screen bg-cream overflow-x-hidden">
   <!-- Back nav -->
-  <div class="mx-auto max-w-4xl px-6 lg:px-8 pt-28">
+  <div class="mx-auto max-w-7xl px-6 lg:px-8 pt-28">
     <a
       [routerLink]="'/blog' | locPath"
       class="inline-flex items-center gap-2 font-[family-name:var(--font-sans)] text-[0.65rem] font-medium tracking-[0.18em] uppercase text-ink-60 hover:text-ink transition-colors no-underline group"
@@ -50,7 +50,9 @@
 
   <!-- Article -->
   @if (!loading && post) {
-    <article class="mx-auto max-w-4xl px-6 lg:px-8 pb-24">
+    <div class="mx-auto max-w-7xl px-6 lg:px-8 pb-24">
+      <div class="blog-post-surface grid gap-10 p-6 sm:p-8 lg:grid-cols-[minmax(0,1fr)_22rem] lg:gap-12 lg:p-12">
+    <article class="min-w-0">
       <header class="pt-10">
         <p class="font-[family-name:var(--font-sans)] text-[0.65rem] font-medium tracking-[0.18em] uppercase text-ink-60">
           {{ dateLabel(post) }}
@@ -93,6 +95,47 @@
         </a>
       </div>
     </article>
+
+        <aside class="blog-post-sidebar">
+          <div class="blog-post-booking-card lg:sticky lg:top-28">
+            <div class="blog-post-booking-card__head">
+              <p class="blog-post-booking-card__eyebrow">{{ 'blogPostPage.booking.eyebrow' | translate }}</p>
+              <h2>{{ 'blogPostPage.booking.title' | translate }}</h2>
+              <p class="blog-post-booking-card__location">{{ 'blogPostPage.booking.location' | translate }}</p>
+            </div>
+
+            <dl class="blog-post-booking-card__facts">
+              <div>
+                <dt>{{ 'blogPostPage.booking.durationLabel' | translate }}</dt>
+                <dd>{{ 'blogPostPage.booking.durationValue' | translate }}</dd>
+              </div>
+              <div>
+                <dt>{{ 'blogPostPage.booking.sessionsLabel' | translate }}</dt>
+                <dd>{{ 'blogPostPage.booking.sessionsValue' | translate }}</dd>
+              </div>
+              <div>
+                <dt>{{ 'blogPostPage.booking.languagesLabel' | translate }}</dt>
+                <dd>{{ 'blogPostPage.booking.languagesValue' | translate }}</dd>
+              </div>
+              <div>
+                <dt>{{ 'blogPostPage.booking.ageLabel' | translate }}</dt>
+                <dd>{{ 'blogPostPage.booking.ageValue' | translate }}</dd>
+              </div>
+            </dl>
+
+            <ul class="blog-post-booking-card__benefits">
+              <li><span aria-hidden="true">✓</span>{{ 'blogPostPage.booking.benefitConfirmation' | translate }}</li>
+              <li><span aria-hidden="true">✓</span>{{ 'blogPostPage.booking.benefitCancellation' | translate }}</li>
+              <li><span aria-hidden="true">✓</span>{{ 'blogPostPage.booking.benefitVenue' | translate }}</li>
+            </ul>
+
+            <a [routerLink]="'/booking' | locPath" class="blog-post-booking-card__cta">
+              {{ 'blogPostPage.booking.cta' | translate }}
+            </a>
+          </div>
+        </aside>
+      </div>
+    </div>
   }
   <app-cta-block
 ></app-cta-block>

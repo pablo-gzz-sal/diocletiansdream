@@ -578,6 +578,23 @@
     "footer": {
       "headline": "Spremni za povratak u 305. godinu?",
       "cta": "Rezerviraj iskustvo"
+    },
+    "booking": {
+      "eyebrow": "VR iskustvo",
+      "title": "Diocletians Dream",
+      "location": "305. godina · Split, Hrvatska",
+      "durationLabel": "Trajanje",
+      "durationValue": "15 minuta",
+      "sessionsLabel": "Termini",
+      "sessionsValue": "Svakih 30 min",
+      "languagesLabel": "Jezici",
+      "languagesValue": "8 dostupnih",
+      "ageLabel": "Preporučena dob",
+      "ageValue": "8+",
+      "benefitConfirmation": "Trenutna potvrda rezervacije",
+      "benefitCancellation": "Besplatno otkazivanje do 24 h ranije",
+      "benefitVenue": "Prostor prilagođen kolicima",
+      "cta": "Rezerviraj termin"
     }
   },
   "pageNotFound": {
