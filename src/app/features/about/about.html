@@ -74,7 +74,10 @@
 
           <!-- Internal linking (Experience + Visit) -->
           <div class="mt-8 flex flex-wrap gap-3">
-            <a [routerLink]="'/experience' | locPath" class="btn btn--dark">
+            <a [routerLink]="'/booking' | locPath" class="btn btn--dark">
+              {{ 'header.cta.bookNow' | translate }}
+            </a>
+            <a [routerLink]="'/experience' | locPath" class="btn btn--ghost">
               {{ 'aboutPage.mission.linkText' | translate }}
             </a>
             <a [routerLink]="'/visit' | locPath" class="btn btn--ghost">
@@ -440,7 +443,7 @@
 
   <!-- ════════ CTA ════════ -->
   <section class="px-6 lg:px-8 pb-10">
-    <div class="mx-auto max-w-7xl rounded-[3rem] bg-ink overflow-hidden relative">
+    <div class="about-final-cta mx-auto max-w-7xl rounded-[3rem] bg-ink overflow-hidden relative">
       <div class="pointer-events-none absolute inset-0 opacity-10 dd-grain"></div>
       <div
         class="pointer-events-none absolute -bottom-32 -right-32 w-[600px] h-[600px] rounded-full opacity-[0.08] blur-[100px]"

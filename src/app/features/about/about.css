@@ -134,6 +134,43 @@
   line-height: 1.66 !important;
 }
 
+.about-page app-blog-invite {
+  display: block;
+  margin-top: 3.5rem;
+}
+
+.about-final-cta {
+  background:
+    linear-gradient(112deg, rgba(18, 13, 24, 0.94), rgba(32, 19, 30, 0.78)),
+    url('/assets/images/vr/trailer-stills/diocletians-bedchamber.jpg') center / cover !important;
+  border: 1px solid rgba(232, 196, 127, 0.22);
+  box-shadow: 0 24px 60px rgba(26, 16, 25, 0.25);
+}
+
+.about-final-cta .eyebrow {
+  color: #e8c47f !important;
+  border-color: rgba(232, 196, 127, 0.58);
+}
+
+.about-final-cta h2 {
+  color: #fff9ee !important;
+}
+
+.about-final-cta p:not(.eyebrow) {
+  color: rgba(255, 249, 238, 0.8) !important;
+}
+
+.about-final-cta .btn--ghost-light {
+  background: rgba(255, 249, 238, 0.12);
+  border-color: rgba(255, 249, 238, 0.45);
+  color: #fff9ee;
+}
+
+.about-final-cta .btn--ghost-light:hover {
+  background: rgba(255, 249, 238, 0.2);
+  border-color: #e8c47f;
+}
+
 @media (max-width: 767px) {
   .about-page .eyebrow,
   .about-page [class*='text-[0.75rem]'],
@@ -145,5 +182,9 @@
   .about-hero-visual {
     min-height: 20rem;
     border-radius: 1.125rem;
+  }
+
+  .about-page app-blog-invite {
+    margin-top: 2rem;
   }
 }
