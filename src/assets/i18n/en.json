@@ -17,6 +17,17 @@
       "play": "Play the trailer",
       "duration": "Trailer"
     },
+    "heroConversion": {
+      "title": "See beyond the ruins",
+      "subtitle": "Step into Diocletians Palace as it stood in 305 AD in a historically grounded, 15-minute VR experience.",
+      "duration": "15-minute cultural experience",
+      "location": "Beside the Golden Gate",
+      "adult": "Adult €13",
+      "child": "Child €9",
+      "childAges": "(ages 8–14)",
+      "bookingCta": "Book your experience",
+      "bookingInfo": "Booking information"
+    },
     "experience": {
       "title": "Experience Ancient Split Through Virtual Reality",
       "p1": "Diocletians Dream is a 15-minute virtual reality experience located just steps from Diocletians Palace in Split. Through carefully designed 3D reconstruction and immersive VR technology, it presents the palace complex as it appeared in 305 AD.",
@@ -117,12 +128,12 @@
     },
     "marquee": {
       "items": [
-        "Diocletians Palace VR experience",
-        "virtual reality Split",
-        "VR museum Split",
-        "immersive historical experience Split",
-        "educational VR experience",
-        "Diocletian Palace virtual reality"
+        "Historically grounded reconstruction",
+        "The Palace in 305 AD",
+        "15-minute cultural experience",
+        "8 languages",
+        "In the heart of Split",
+        "See beyond the ruins"
       ]
     },
     "seo": {

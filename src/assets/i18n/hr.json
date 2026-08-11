@@ -17,6 +17,17 @@
       "play": "Pokreni trailer",
       "duration": "Trailer"
     },
+    "heroConversion": {
+      "title": "Pogledajte dalje od ruševina",
+      "subtitle": "Zakoračite u Dioklecijanovu palaču kakva je bila 305. godine kroz povijesno utemeljeno 15-minutno VR iskustvo.",
+      "duration": "15-minutno kulturno iskustvo",
+      "location": "Uz Zlatna vrata",
+      "adult": "Odrasli €13",
+      "child": "Djeca €9",
+      "childAges": "(od 8 do 14 godina)",
+      "bookingCta": "Rezervirajte svoje iskustvo",
+      "bookingInfo": "Informacije o rezervaciji"
+    },
     "experience": {
       "title": "Doživite antički Split kroz virtualnu stvarnost",
       "p1": "Diocletians Dream je 15-minutno iskustvo virtualne stvarnosti smješteno svega nekoliko koraka od Dioklecijanove palače u Splitu. Kroz pažljivo izrađenu 3D rekonstrukciju i suvremenu VR tehnologiju prikazuje palaču onako kako je izgledala 305. godine.",
@@ -117,12 +128,12 @@
     },
     "marquee": {
       "items": [
-        "VR iskustvo Dioklecijanove palače",
-        "virtualna stvarnost Split",
-        "VR muzej Split",
-        "immersivno povijesno iskustvo Split",
-        "edukativno VR iskustvo",
-        "Dioklecijanova palača virtualna stvarnost"
+        "Povijesno utemeljena rekonstrukcija",
+        "Palača 305. godine",
+        "15-minutno kulturno iskustvo",
+        "8 jezika",
+        "U samom srcu Splita",
+        "Pogledajte dalje od ruševina"
       ]
     },
     "seo": {

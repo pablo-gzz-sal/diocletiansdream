@@ -6,10 +6,10 @@
     <header class="trailer-heading" aria-labelledby="trailer-title">
       <p class="eyebrow">{{ 'home.trailer.eyebrow' | translate }}</p>
       <h1 id="trailer-title" class="section-h2 trailer-h1">
-        {{ 'home.trailer.title' | translate }}
+        {{ 'home.heroConversion.title' | translate }}
       </h1>
       <p class="trailer-sub">
-        {{ 'home.trailer.subtitle' | translate }}
+        {{ 'home.heroConversion.subtitle' | translate }}
       </p>
     </header>
 
@@ -33,7 +33,7 @@
         [controls]="playing"
         (play)="onVideoPlay()"
         (pause)="onVideoPause()"
-        [attr.aria-label]="'home.trailer.title' | translate"
+        [attr.aria-label]="'home.heroConversion.title' | translate"
       >
         <source [src]="src" type="video/mp4" />
       </video>
@@ -64,28 +64,27 @@
       }
     </div>
 
-    <section class="booking-dock" aria-label="Booking information">
+    <section class="booking-dock" [attr.aria-label]="'home.heroConversion.bookingInfo' | translate">
       <dl class="booking-dock__facts">
         <div class="booking-fact">
-          <dt>Experience</dt>
-          <dd>15-minute experience</dd>
+          <dd>{{ 'home.heroConversion.duration' | translate }}</dd>
         </div>
         <div class="booking-fact">
-          <dt>Location</dt>
-          <dd>Beside the Golden Gate</dd>
+          <dd>{{ 'home.heroConversion.location' | translate }}</dd>
         </div>
         <div class="booking-fact">
-          <dt>Adult</dt>
-          <dd>€13</dd>
+          <dd>{{ 'home.heroConversion.adult' | translate }}</dd>
         </div>
         <div class="booking-fact">
-          <dt>Child</dt>
-          <dd>€9 <span>(ages 8–14)</span></dd>
+          <dd>
+            {{ 'home.heroConversion.child' | translate }}
+            <span>{{ 'home.heroConversion.childAges' | translate }}</span>
+          </dd>
         </div>
       </dl>
 
       <a [routerLink]="'/booking' | locPath" class="btn btn--dark booking-dock__cta" data-testid="hero-booking-cta">
-        {{ 'header.cta.bookNow' | translate }}
+        {{ 'home.heroConversion.bookingCta' | translate }}
       </a>
     </section>
   </div>
