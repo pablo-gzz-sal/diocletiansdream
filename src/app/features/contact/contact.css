@@ -1,0 +1,88 @@
+/* Visit page — display typography stays with headings; practical details stay clear. */
+.visit-page p:not(.eyebrow),
+.visit-page details summary span:first-child {
+  font-family: var(--font-sans) !important;
+}
+
+.visit-page p[class*='text-[0.95rem]'],
+.visit-page p[class*='text-[0.92rem]'],
+.visit-page p[class*='text-[0.875rem]'],
+.visit-page p[class*='text-[0.82rem]'],
+.visit-page p[class*='text-[0.78rem]'] {
+  font-size: clamp(1rem, 1.25vw, 1.1rem) !important;
+  line-height: 1.78 !important;
+}
+
+.visit-page .eyebrow,
+.visit-page [class*='text-[0.75rem]'],
+.visit-page [class*='text-[0.7rem]'] {
+  font-size: 0.78rem;
+}
+
+.visit-page .eyebrow:not(.eyebrow--light) {
+  color: #8a6127;
+  font-weight: 700;
+}
+
+.visit-page .text-ink-60 {
+  color: rgba(26, 24, 20, 0.74) !important;
+}
+
+.visit-page details summary span:first-child {
+  font-size: clamp(1.05rem, 1.35vw, 1.18rem);
+}
+
+.visit-reading-card,
+.visit-schedule-card,
+.visit-map-card {
+  background: rgba(255, 255, 255, 0.72);
+  box-shadow: 0 16px 44px rgba(26, 24, 20, 0.055);
+}
+
+.visit-map-card {
+  overflow: hidden;
+  border: 1px solid rgba(26, 24, 20, 0.1);
+  border-radius: 1.125rem;
+}
+
+.visit-schedule-card {
+  border-color: rgba(26, 24, 20, 0.1);
+}
+
+.visit-visitor-types {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background:
+    linear-gradient(105deg, rgba(22, 16, 28, 0.84), rgba(28, 20, 31, 0.7)),
+    url('/assets/images/vr/trailer-stills/marketplace-colonnade.jpg') center / cover !important;
+}
+
+.visit-audience-card {
+  min-height: 33rem;
+  background: rgba(250, 248, 244, 0.9);
+  box-shadow: 0 16px 44px rgba(0, 0, 0, 0.18);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+}
+
+.visit-audience-card .eyebrow {
+  color: var(--dd-gold) !important;
+  border-color: rgba(194, 154, 89, 0.56);
+}
+
+.visit-audience-actions {
+  flex-shrink: 0;
+}
+
+@media (max-width: 767px) {
+  .visit-page .eyebrow,
+  .visit-page [class*='text-[0.75rem]'],
+  .visit-page [class*='text-[0.7rem]'] {
+    font-size: 0.72rem;
+  }
+
+  .visit-audience-card {
+    min-height: auto;
+  }
+}
