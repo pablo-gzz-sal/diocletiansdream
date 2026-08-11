@@ -57,7 +57,9 @@
 .marquee-track span[aria-hidden] {
   color: var(--dd-gold);
   font-style: normal;
-  font-size: 0.85rem;
+  font-size: 1.45rem;
+  font-weight: 600;
+  line-height: 0;
   opacity: 1;
 }
 
