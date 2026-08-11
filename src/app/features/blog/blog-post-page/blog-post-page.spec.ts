@@ -71,6 +71,24 @@ describe('BlogPostPage', () => {
     expect(lightbox?.querySelector('img')?.getAttribute('src')).toBe('https://example.com/featured.jpg');
   });
 
+  it('preserves an editorial image lightbox target after Angular renders the post HTML', () => {
+    component.loading = false;
+    component.post = {
+      date: '2026-08-11T00:00:00.000Z',
+      title: { rendered: 'Gallery post' },
+      content: {
+        rendered: '<p><a class="post-image-lightbox-trigger" href="#dd-post-image-lightbox-1"><img src="https://example.com/gallery.jpg" alt="Gallery visitor" /></a></p><figure id="dd-post-image-lightbox-1" class="post-image-lightbox"><img class="post-image-lightbox__image" src="https://example.com/gallery.jpg" alt="Gallery visitor" /></figure>',
+      },
+    };
+    fixture.detectChanges();
+
+    const trigger = fixture.nativeElement.querySelector('.blog-prose .post-image-lightbox-trigger') as HTMLAnchorElement | null;
+    const lightbox = fixture.nativeElement.querySelector('.blog-prose #dd-post-image-lightbox-1') as HTMLElement | null;
+
+    expect(trigger?.getAttribute('href')).toBe('#dd-post-image-lightbox-1');
+    expect(lightbox?.querySelector('.post-image-lightbox__image')).not.toBeNull();
+  });
+
   it('takes the Croatian title from og_title when the Yoast SEO title is English', () => {
     expect(pickTitle('hr', HR_POST_WITH_ENGLISH_YOAST_TITLE)).toBe(
       'Zašto je VR iskustvo jedan od najboljih načina da upoznate Dioklecijanovu palaču | Diocletians Dream'

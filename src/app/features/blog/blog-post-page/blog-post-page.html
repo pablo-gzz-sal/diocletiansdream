@@ -67,7 +67,7 @@
 
       <!-- Hero image -->
       <div class="mt-10 rounded-[1rem] overflow-hidden border border-black/10">
-        @if (featuredImage(post) as img) {
+        @if (featuredImage(post); as img) {
           <a href="#dd-featured-lightbox" class="post-image-lightbox-trigger" [attr.aria-label]="titleText(post)">
             <img [src]="img" [alt]="titleText(post)" class="aspect-[16/9] w-full object-cover block" />
           </a>
@@ -79,7 +79,7 @@
         </ng-template>
       </div>
 
-      @if (featuredImage(post) as img) {
+      @if (featuredImage(post); as img) {
         <figure id="dd-featured-lightbox" class="post-image-lightbox" [attr.aria-label]="titleText(post)">
           <a href="#post-article" class="post-image-lightbox__backdrop" aria-label="Close image"></a>
           <img [src]="img" [alt]="titleText(post)" class="post-image-lightbox__image" />
