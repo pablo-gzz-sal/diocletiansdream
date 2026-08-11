@@ -3,63 +3,12 @@
 
 <app-header></app-header>
 
-<main class="landing-root font-[family-name:var(--font-serif)] ">
-  <app-intro-reveal></app-intro-reveal>
-<app-hero></app-hero>
-
-  <!-- ════════════════════════════════════════
-       TRAILER — cinematic sizzle reel
-  ════════════════════════════════════════ -->
+<main class="landing-root font-[family-name:var(--font-serif)]">
   <app-trailer></app-trailer>
-
-  <!-- ════════════════════════════════════════
-       MARQUEE STRIP
-       (not in JSON yet — keep as lightweight SEO strip)
-  ════════════════════════════════════════ -->
   <app-highlights></app-highlights>
-
   <app-experience></app-experience>
-
-  <!-- ════════════════════════════════════════
-       UNIQUE (from JSON)
-  ════════════════════════════════════════ -->
-
-<app-visit></app-visit>
-
-<app-reviews></app-reviews>
-<app-about-project></app-about-project>
-<app-blog-invite [showSecondaryLinks]="true"></app-blog-invite>
-
-  <!-- ════════════════════════════════════════
-       FINAL CTA (from JSON)
-  ════════════════════════════════════════ -->
-<!-- <section class="cta-banner">
-  <div class="cta-inner">
-    <div class="cta-grain"></div>
-
-    <p class="eyebrow eyebrow--light">{{ 'home.finalCta.cta' | translate }}</p>
-    <h2 class="cta-h2">{{ 'home.finalCta.title' | translate }}</h2>
-    <p class="cta-sub">{{ 'home.finalCta.text' | translate }}</p>
-
-    <div class="cta-actions">
-      <a [routerLink]="'/booking' | locPath" class="btn btn--cream">
-        {{ 'home.finalCta.cta' | translate }}
-      </a>
-      <a [routerLink]="'/experience' | locPath" class="btn btn--ghost-light">
-        {{ 'home.experience.cta' | translate }}
-      </a>
-    </div>
-  </div>
-</section> -->
-
-  <!-- ════════════════════════════════════════
-       PARTNERS — recommended things to do in Split
-  ════════════════════════════════════════ -->
-  <app-partners></app-partners>
-
-  <!-- ════════════════════════════════════════
-       NEWSLETTER (from JSON)
-  ════════════════════════════════════════ -->
+  <app-visit></app-visit>
+  <app-reviews></app-reviews>
   <app-faq></app-faq>
 </main>
 

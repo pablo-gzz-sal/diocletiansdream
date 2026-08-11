@@ -56,28 +56,6 @@ export class Experience implements AfterViewInit, OnDestroy {
         });
       });
 
-      // ── 2. Bento image cells — inner parallax on scroll ─────
-      const imgCells = root.querySelectorAll<HTMLElement>(
-        '.bento-cell--imgA, .bento-cell--imgB, .bento-cell--imgC',
-      );
-      imgCells.forEach((cell) => {
-        const inner = cell.querySelector<HTMLElement>('.bento-img-placeholder');
-        if (!inner) return;
-        gsap.fromTo(
-          inner,
-          { y: 18 },
-          {
-            scrollTrigger: {
-              trigger: cell,
-              start: 'top bottom',
-              end: 'bottom top',
-              scrub: 1.2,
-            },
-            y: -18,
-            ease: 'none',
-          },
-        );
-      });
     }, root);
   }
 

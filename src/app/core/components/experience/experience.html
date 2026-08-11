@@ -9,20 +9,11 @@
     </div>
 
     <div class="bento">
-
-      <!-- Tall image A -->
-      <div class="bento-cell bento-cell--imgA" revealOnScroll [revealDelay]="0.1" [revealY]="40">
+      <div class="bento-cell bento-cell--image" revealOnScroll [revealDelay]="0.1" [revealY]="40">
         <img class="bento-img" src="assets/images/vr/visitors-vr.jpg"
              alt="Visitors wearing VR headsets during the Diocletians Dream experience" loading="lazy" />
       </div>
 
-      <!-- Tall image B -->
-      <div class="bento-cell bento-cell--imgB" revealOnScroll [revealDelay]="0.2" [revealY]="40">
-        <img class="bento-img" src="assets/images/vr/visitor-immersed.jpg"
-             alt="A visitor smiling during the Diocletians Dream virtual reality experience" loading="lazy" />
-      </div>
-
-      <!-- Text block -->
       <div class="bento-cell bento-cell--text" revealOnScroll [revealDelay]="0.15">
         <p class="bento-copy">{{ 'home.experience.p1' | translate }}</p>
         <p class="bento-copy">{{ 'home.experience.p2' | translate }}</p>
@@ -31,29 +22,17 @@
         <a [routerLink]="'/booking' | locPath" class="btn btn--dark">
           {{ 'home.hero.ctaPrimary' | translate }}
         </a>
-        <a [routerLink]="'/experience' | locPath" class="inline-link">
-          {{ 'home.experience.cta' | translate }} →
-        </a>
+        <div class="experience-facts">
+          <div class="bento-cell bento-cell--stat" revealOnScroll [revealDelay]="0.25" [revealY]="30">
+            <span class="stat-num"><span class="stat-count" data-target="15">15</span><span class="stat-unit">'</span></span>
+            <span class="stat-label">{{ 'home.experience.statDuration' | translate }}</span>
+          </div>
+          <div class="bento-cell bento-cell--stat bento-cell--statB" revealOnScroll [revealDelay]="0.3" [revealY]="30">
+            <span class="stat-num"><span class="stat-count" data-target="305">305</span></span>
+            <span class="stat-label">{{ 'home.experience.statYear' | translate }}</span>
+          </div>
+        </div>
       </div>
-
-      <!-- Stat: duration -->
-      <div class="bento-cell bento-cell--stat" revealOnScroll [revealDelay]="0.25" [revealY]="30">
-        <span class="stat-num"><span class="stat-count" data-target="15">15</span><span class="stat-unit">'</span></span>
-        <span class="stat-label">{{ 'home.experience.statDuration' | translate }}</span>
-      </div>
-
-      <!-- Stat: year -->
-      <div class="bento-cell bento-cell--stat bento-cell--statB" revealOnScroll [revealDelay]="0.3" [revealY]="30">
-        <span class="stat-num"><span class="stat-count" data-target="305">305</span></span>
-        <span class="stat-label">{{ 'home.experience.statYear' | translate }}</span>
-      </div>
-
-      <!-- Wide panorama image -->
-      <div class="bento-cell bento-cell--imgC" revealOnScroll [revealDelay]="0.35" [revealY]="40">
-        <img class="bento-img" src="assets/images/vr/harbor-ships.jpg"
-             alt="Panorama of the palace harbour with Roman ships" loading="lazy" />
-      </div>
-
     </div>
   </div>
 </section>

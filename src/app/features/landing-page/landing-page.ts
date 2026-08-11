@@ -1,24 +1,14 @@
 import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Header } from '../../core/components/header/header';
 import { Footer } from '../../core/components/footer/footer';
-import { RouterLink } from '@angular/router';
-import { RevealOnScrollDirective } from '../../shared/animations/reveal-on-scroll-directive';
-import { CommonModule } from '@angular/common';
-import { WpService } from '../../shared/services/wp-service';
 import { SeoService } from '../../shared/services/seo-service';
-import { IntroReveal } from '../../shared/components/intro-reveal/intro-reveal';
-import { TranslateModule, TranslateService } from '@ngx-translate/core';
-import { FormsModule } from '@angular/forms';
-import { BlogInvite } from '../../shared/components/blog-invite/blog-invite';
-import { Hero } from '../../core/components/hero/hero';
+import { TranslateService } from '@ngx-translate/core';
 import { Trailer } from '../../core/components/trailer/trailer';
 import { Experience } from '../../core/components/experience/experience';
 import { Visit } from '../../core/components/visit/visit';
 import { Reviews } from '../../core/components/reviews/reviews';
 import { Faq } from '../../core/components/faq/faq';
-import { AboutProject } from '../../core/components/about-project/about-project';
 import { Highlights } from '../../core/components/highlights/highlights';
-import { Partners } from '../../core/components/partners/partners';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { OG_DEFAULT_IMAGE, PageSeoService } from '../../shared/services/page-seo';
@@ -29,23 +19,14 @@ gsap.registerPlugin(ScrollTrigger);
 @Component({
   selector: 'app-landing-page',
   standalone: true,
-  imports: [RouterLink,
-    Header,
+  imports: [Header,
     Footer,
-    FormsModule,
-    CommonModule,
-    IntroReveal,
-    TranslateModule,
-    BlogInvite,
-    Hero,
     Trailer,
     Experience,
     Visit,
     Reviews,
     Faq,
-    AboutProject,
-    Highlights,
-    Partners],
+    Highlights],
   templateUrl: './landing-page.html',
   styleUrl: './landing-page.css',
 })
@@ -53,13 +34,11 @@ export class LandingPage implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('spotlight', { static: true }) spotRef!: ElementRef<HTMLElement>;
 
   marqueeItems: string[] = [];
-  blogCards!: any;
 
   private cleanups: Array<() => void> = [];
 
   constructor(
     private seo: SeoService,
-    private wpService: WpService,
     private translate: TranslateService,
     private pageSeo: PageSeoService,
     private i18n: I18nService,
@@ -70,7 +49,6 @@ export class LandingPage implements OnInit, AfterViewInit, OnDestroy {
     this.translate.get('home.marquee.items').subscribe((items: string[]) => {
       this.marqueeItems = items;
     });
-    this.getBlogs();
   }
 
   ngAfterViewInit(): void {
@@ -111,12 +89,6 @@ export class LandingPage implements OnInit, AfterViewInit, OnDestroy {
   ngOnDestroy(): void {
     this.cleanups.forEach(fn => fn());
     this.cleanups = [];
-  }
-
-  getBlogs() {
-    this.wpService.getSamplePosts(this.i18n.current()).subscribe((posts) => {
-      this.blogCards = posts;
-    });
   }
 
   private applySeo(): void {
