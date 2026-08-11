@@ -46,7 +46,22 @@
 }
 
 .visit-schedule-card {
+  position: relative;
+  overflow: hidden;
   border-color: rgba(26, 24, 20, 0.1);
+  background:
+    linear-gradient(125deg, rgba(18, 13, 25, 0.92), rgba(38, 25, 29, 0.84)),
+    url('/assets/images/vr/trailer-stills/vaulted-palace-substructures.jpg') center / cover;
+  box-shadow: 0 18px 45px rgba(26, 24, 20, 0.18);
+}
+
+.visit-schedule-card .text-ink,
+.visit-schedule-card .text-ink-60 {
+  color: rgba(255, 249, 239, 0.9) !important;
+}
+
+.visit-schedule-card [class*='border-black'] {
+  border-color: rgba(255, 249, 239, 0.17) !important;
 }
 
 .visit-visitor-types {
@@ -88,6 +103,41 @@
 .visit-hours-actions {
   margin-top: auto;
   padding-top: 2rem;
+}
+
+.visit-booking-info {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background:
+    linear-gradient(108deg, rgba(22, 15, 26, 0.86), rgba(29, 18, 30, 0.68)),
+    url('/assets/images/vr/trailer-stills/imperial-audience-hall.jpg') center / cover !important;
+}
+
+.visit-booking-info .eyebrow {
+  color: #e8c47f !important;
+  border-color: rgba(232, 196, 127, 0.58);
+}
+
+.visit-booking-info h2,
+.visit-booking-lead {
+  color: #fff9ee !important;
+}
+
+.visit-booking-panel {
+  border-color: rgba(255, 249, 239, 0.2) !important;
+  background: linear-gradient(135deg, rgba(27, 19, 33, 0.78), rgba(45, 31, 39, 0.64)) !important;
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.28);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+}
+
+.visit-booking-panel .text-ink-60 {
+  color: rgba(255, 249, 239, 0.88) !important;
+}
+
+.visit-booking-panel [class*='border-black'] {
+  border-color: rgba(255, 249, 239, 0.18) !important;
 }
 
 @media (max-width: 767px) {
