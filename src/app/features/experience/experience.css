@@ -146,6 +146,32 @@
   background: rgba(255, 255, 255, 0.68);
 }
 
+.experience-audience {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background:
+    linear-gradient(105deg, rgba(22, 16, 28, 0.86), rgba(28, 20, 31, 0.72)),
+    url('/assets/images/vr/trailer-stills/golden-gate-market-street.jpg') center / cover !important;
+}
+
+.experience-audience .eyebrow:not(.eyebrow--light) {
+  color: #e8c47f;
+  border-color: rgba(232, 196, 127, 0.52);
+}
+
+.experience-audience h2 {
+  color: #f5f0e8 !important;
+  text-shadow: 0 2px 18px rgba(0, 0, 0, 0.34);
+}
+
+.experience-audience-card {
+  background: rgba(250, 248, 244, 0.9);
+  box-shadow: 0 16px 44px rgba(0, 0, 0, 0.18);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+}
+
 .experience-audience-card .inline-link {
   margin-top: auto;
   padding-top: 1.5rem;
