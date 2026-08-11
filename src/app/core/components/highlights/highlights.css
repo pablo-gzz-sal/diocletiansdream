@@ -44,7 +44,7 @@
   letter-spacing: 0.01em;
   font-size: clamp(0.98rem, 1.45vw, 1.12rem);
   font-weight: 500;
-  color: var(--dd-gold);
+  color: var(--color-ink);
   align-items: center;
 }
 
