@@ -20,9 +20,9 @@ import { LocalePathPipe } from '../../core/i18n/locale-path.pipe';
   styleUrl: './experience.css',
 })
 export class Experience implements OnInit, OnDestroy {
-  /** Sizzle reel served from the headless WordPress host (root domain is the
-   * static site now and has no /wp-content). */
-  readonly videoSrc = `${environment.wpBaseUrl.replace(/\/+$/, '')}/wp-content/uploads/2026/07/Sizzle-Reel-Diocletians-Dream.mp4`;
+  /** Public Vimeo page and embed for the trailer shown directly beneath the hero. */
+  readonly videoPageUrl = 'https://vimeo.com/1217274878';
+  readonly videoEmbedUrl = 'https://player.vimeo.com/video/1217274878';
 
   private static readonly JSON_LD_IDS = ['ld-experience-faq', 'ld-experience-video'];
 
@@ -93,9 +93,9 @@ export class Experience implements OnInit, OnDestroy {
       description: trailerText,
       inLanguage: lang === 'hr' ? 'hr' : 'en',
       thumbnailUrl: this.pageSeo.absolute(OG_DEFAULT_IMAGE),
-      // Date the sizzle reel was published to WordPress (from its upload path).
-      uploadDate: '2026-07-01',
-      contentUrl: this.videoSrc,
+      uploadDate: '2026-08-11',
+      contentUrl: this.videoPageUrl,
+      embedUrl: this.videoEmbedUrl,
       publisher: {
         '@type': 'Organization',
         name: 'Diocletians Dream',

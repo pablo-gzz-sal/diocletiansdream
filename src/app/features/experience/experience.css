@@ -1,0 +1,68 @@
+/* Experience page — display typography is reserved for headings; supporting copy stays legible. */
+.experience-page p:not(.eyebrow),
+.experience-page details summary span:first-child {
+  font-family: var(--font-sans) !important;
+}
+
+.experience-page p[class*='text-[0.95rem]'],
+.experience-page p[class*='text-[0.92rem]'],
+.experience-page p[class*='text-[0.875rem]'],
+.experience-page p[class*='text-[0.78rem]'] {
+  font-size: clamp(1rem, 1.25vw, 1.1rem) !important;
+  line-height: 1.78 !important;
+}
+
+.experience-page .eyebrow,
+.experience-page [class*='text-[0.72rem]'] {
+  font-size: 0.78rem;
+}
+
+.experience-trailer {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 12% 20%, rgba(194, 154, 89, 0.16), transparent 35%),
+    linear-gradient(118deg, #1b1222, #251a30 56%, #16101d);
+}
+
+.experience-trailer::before {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: url('/assets/images/vr/great-hall.jpg') center / cover no-repeat;
+  opacity: 0.16;
+  content: '';
+}
+
+.experience-trailer .eyebrow {
+  color: #e8c47f;
+  border-color: rgba(232, 196, 127, 0.5);
+}
+
+.experience-trailer__copy {
+  max-width: 38ch;
+  color: rgba(245, 240, 232, 0.82);
+  font-size: clamp(1.02rem, 1.35vw, 1.15rem) !important;
+  line-height: 1.75;
+}
+
+.experience-trailer__frame {
+  overflow: hidden;
+  border: 1px solid rgba(245, 240, 232, 0.24);
+  border-radius: 1.25rem;
+  background: #0f0a15;
+  box-shadow: 0 24px 58px rgba(3, 1, 7, 0.36), inset 0 1px rgba(255, 255, 255, 0.12);
+}
+
+@media (max-width: 767px) {
+  .experience-page .eyebrow,
+  .experience-page [class*='text-[0.72rem]'] {
+    font-size: 0.72rem;
+  }
+
+  .experience-trailer {
+    padding-top: 4.5rem;
+    padding-bottom: 4.75rem;
+  }
+}
