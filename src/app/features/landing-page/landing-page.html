@@ -4,7 +4,8 @@
 <app-header></app-header>
 
 <main class="landing-root font-[family-name:var(--font-serif)]">
-  <app-trailer></app-trailer>
+  <!-- Vimeo is an external, client-only player; do not hydrate the server trailer markup. -->
+  <app-trailer ngSkipHydration></app-trailer>
   <app-highlights></app-highlights>
   <app-experience></app-experience>
   <app-visit></app-visit>

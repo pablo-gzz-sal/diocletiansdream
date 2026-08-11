@@ -1,5 +1,6 @@
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { Component, ElementRef, inject, OnDestroy, PLATFORM_ID, ViewChild } from '@angular/core';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { RouterLink } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import Player from '@vimeo/player';
@@ -31,9 +32,10 @@ export class Trailer implements OnDestroy {
   heroCopyVisible = true;
 
   private readonly isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
+  private readonly sanitizer = inject(DomSanitizer);
   private loopSeekInProgress = false;
   readonly autoplayAllowed = this.isBrowser && !this.prefersReducedMotion();
-  readonly playerUrl = this.createPlayerUrl();
+  readonly playerUrl: SafeResourceUrl = this.sanitizer.bypassSecurityTrustResourceUrl(this.createPlayerUrl());
 
   private player?: Player;
 

@@ -20,7 +20,7 @@
 }
 
 .trailer-video {
-  z-index: -2;
+  z-index: 0;
   display: block;
   top: 50%;
   left: 50%;
@@ -41,7 +41,7 @@
 }
 
 .trailer-scrim {
-  z-index: -1;
+  z-index: 1;
   pointer-events: none;
   background:
     linear-gradient(180deg, rgba(17, 13, 25, 0.58) 0%, rgba(17, 13, 25, 0.08) 31%, rgba(17, 13, 25, 0.24) 53%, rgba(17, 13, 25, 0.88) 100%),
@@ -50,7 +50,7 @@
 
 .trailer-content {
   position: relative;
-  z-index: 1;
+  z-index: 2;
   width: min(100% - 2rem, 760px);
   margin: 0 auto;
   padding: clamp(8rem, 17vh, 12rem) 0 clamp(10.5rem, 20vh, 15rem);
@@ -112,7 +112,7 @@
   position: absolute;
   right: clamp(1rem, 3vw, 2rem);
   bottom: clamp(7rem, 12vh, 9rem);
-  z-index: 1;
+  z-index: 2;
   display: grid;
   width: 2.75rem;
   height: 2.75rem;
@@ -138,7 +138,7 @@
   right: 0;
   bottom: 0;
   left: 0;
-  z-index: 1;
+  z-index: 2;
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
   gap: 1rem clamp(1rem, 3vw, 2rem);
