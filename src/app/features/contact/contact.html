@@ -72,17 +72,6 @@
             <a [routerLink]="'/visit' | locPath" fragment="hours" class="btn btn--ghost">{{ 'visitPage.hero.ctaHours' | translate }}</a>
           </div>
 
-          <div class="visit-hero-chips mt-8 flex flex-wrap items-center gap-3 text-ink-60">
-            <span class="rounded-full border border-black/10 bg-white/50 px-4 py-2 font-[family-name:var(--font-sans)] text-[0.7rem] tracking-[0.12em] uppercase">
-              {{ 'visitPage.hero.chipHistoricCentre' | translate }}
-            </span>
-            <span class="rounded-full border border-black/10 bg-white/50 px-4 py-2 font-[family-name:var(--font-sans)] text-[0.7rem] tracking-[0.12em] uppercase">
-              {{ 'visitPage.hero.chipGoldenGate' | translate }}
-            </span>
-            <span class="rounded-full border border-black/10 bg-white/50 px-4 py-2 font-[family-name:var(--font-sans)] text-[0.7rem] tracking-[0.12em] uppercase">
-              {{ 'visitPage.hero.chipTimeSlots' | translate }}
-            </span>
-          </div>
         </div>
 
         <!-- Right: location image -->
@@ -100,6 +89,7 @@
           />
           <div class="visit-hero-image-shade" aria-hidden="true"></div>
           <div class="visit-hero-image-caption">
+            <span>{{ 'visitPage.hero.chipHistoricCentre' | translate }}</span>
             <span>{{ 'visitPage.hero.chipGoldenGate' | translate }}</span>
             <span>{{ 'visitPage.hero.chipTimeSlots' | translate }}</span>
           </div>
