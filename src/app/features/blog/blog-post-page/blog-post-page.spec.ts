@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Router } from '@angular/router';
-import { of, Subject } from 'rxjs';
+import { Observable, of } from 'rxjs';
 
 import { BlogPostPage } from './blog-post-page';
 import { SeoService } from '../../../shared/services/seo-service';
@@ -234,30 +234,99 @@ describe('BlogPostPage', () => {
     expect(routes.destinationFor('/diocletians-palace-vr-experience', 'hr')).toBeNull();
   });
 
-  it('keeps the newer post route when an older request resolves late', () => {
+  it('ignores a response when its requested route is no longer current', () => {
     const router = TestBed.inject(Router);
     const routes = TestBed.inject(PostLanguageRouteService);
-    const first = new Subject<any[]>();
-    const second = new Subject<any[]>();
+    const seo = TestBed.inject(SeoService);
+    let emit!: (value: any[]) => void;
+    let fail!: (error: unknown) => void;
+    const pending = new Observable<any[]>((subscriber) => {
+      emit = (value) => subscriber.next(value);
+      fail = (error) => subscriber.error(error);
+      return undefined;
+    });
     let currentUrl = '/first-post';
     spyOnProperty(router, 'url', 'get').and.callFake(() => currentUrl);
-    const postLoads = spyOn(TestBed.inject(WpService), 'getPostBySlug').and.returnValues(first, second);
+    spyOn(TestBed.inject(WpService), 'getPostBySlug').and.returnValue(pending);
+    const register = spyOn(routes, 'register').and.callThrough();
+    const setTitle = spyOn(seo, 'setTitle');
+    const setRobots = spyOn(seo, 'setRobots');
+
+    component.fetch('first-post');
+    currentUrl = '/second-post';
+    routes.register('/second-post', { en: 'second-post', hr: 'drugi-post' });
+    emit([{ slug: 'first-post', translations: { en: 'first-post', hr: 'prvi-post' } }]);
+    fail(new Error('late request failure'));
+
+    expect(component.post).toBeNull();
+    expect(register).toHaveBeenCalledTimes(1);
+    expect(routes.destinationFor('/second-post', 'hr')).toBe('/hr/drugi-post');
+    expect(setTitle).not.toHaveBeenCalled();
+    expect(setRobots).not.toHaveBeenCalled();
+  });
+
+  it('cancels an older request and keeps the newer post route', () => {
+    const router = TestBed.inject(Router);
+    const routes = TestBed.inject(PostLanguageRouteService);
+    let emitFirst!: (value: any[]) => void;
+    let failFirst!: (error: unknown) => void;
+    let firstTornDown = false;
+    const first = new Observable<any[]>((subscriber) => {
+      emitFirst = (value) => subscriber.next(value);
+      failFirst = (error) => subscriber.error(error);
+      return () => { firstTornDown = true; };
+    });
+    let currentUrl = '/first-post';
+    spyOnProperty(router, 'url', 'get').and.callFake(() => currentUrl);
+    const postLoads = spyOn(TestBed.inject(WpService), 'getPostBySlug').and.returnValues(
+      first,
+      of([{
+        slug: 'second-post',
+        translations: { en: 'second-post', hr: 'drugi-post' },
+      }]),
+    );
 
     component.fetch('first-post');
     currentUrl = '/second-post';
     component.fetch('second-post');
     expect(postLoads).toHaveBeenCalledTimes(2);
-    second.next([{
-      slug: 'second-post',
-      translations: { en: 'second-post', hr: 'drugi-post' },
-    }]);
-    first.next([{
+    expect(firstTornDown).toBeTrue();
+    emitFirst([{
       slug: 'first-post',
       translations: { en: 'first-post', hr: 'prvi-post' },
     }]);
-    first.error(new Error('late request failure'));
+    failFirst(new Error('late request failure'));
 
     expect(component.post?.slug).toBe('second-post');
     expect(routes.destinationFor('/second-post', 'hr')).toBe('/hr/drugi-post');
+  });
+
+  it('cancels a pending request on destroy and ignores later producer activity', () => {
+    const router = TestBed.inject(Router);
+    const routes = TestBed.inject(PostLanguageRouteService);
+    const seo = TestBed.inject(SeoService);
+    let emit!: (value: any[]) => void;
+    let fail!: (error: unknown) => void;
+    let tornDown = false;
+    const pending = new Observable<any[]>((subscriber) => {
+      emit = (value) => subscriber.next(value);
+      fail = (error) => subscriber.error(error);
+      return () => { tornDown = true; };
+    });
+    spyOnProperty(router, 'url', 'get').and.returnValue('/pending-post');
+    spyOn(TestBed.inject(WpService), 'getPostBySlug').and.returnValue(pending);
+    const setTitle = spyOn(seo, 'setTitle');
+    const setRobots = spyOn(seo, 'setRobots');
+
+    component.fetch('pending-post');
+    fixture.destroy();
+    emit([{ slug: 'pending-post', translations: { en: 'pending-post', hr: 'post-na-cekanju' } }]);
+    fail(new Error('destroyed request failure'));
+
+    expect(tornDown).toBeTrue();
+    expect(component.post).toBeNull();
+    expect(routes.destinationFor('/pending-post', 'hr')).toBeNull();
+    expect(setTitle).not.toHaveBeenCalled();
+    expect(setRobots).not.toHaveBeenCalled();
   });
 });
