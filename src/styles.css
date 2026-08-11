@@ -1116,17 +1116,26 @@ main::after {
   backdrop-filter: none;
 }
 
-.dd-site-header.dd-header-hidden {
-  opacity: 0;
-  pointer-events: none;
-  transform: translateY(-1rem);
-}
-
 .dd-site-header.dd-header-home-top img {
   background: rgba(245, 240, 232, 0.88);
   box-shadow:
     0 0 0 1px rgba(250, 248, 244, 0.4),
     0 16px 40px rgba(0, 0, 0, 0.18);
+}
+
+.dd-site-header .header-logo-image {
+  display: block;
+  background: transparent;
+  box-shadow: none;
+}
+
+.dd-site-header.dd-header-home-top .header-logo-image {
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.dd-site-header.dd-header-solid .header-logo-image {
+  filter: invert(1);
 }
 
 .dd-site-header.dd-header-home-top a[routerlink="/"] span,

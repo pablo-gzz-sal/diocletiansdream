@@ -2,35 +2,28 @@
   class="dd-site-header z-[999] fixed top-0 left-0 right-0 z-50 transition-all duration-500 font-[family-name:var(--font-sans)]"
   [ngClass]="{
     'backdrop-blur-md shadow-[0_1px_0_rgba(26,24,20,0.12)]': scrolled(),
-    'dd-header-hidden': homeRoute() && !scrolled(),
     'dd-header-home-top': homeRoute() && !scrolled(),
     'dd-header-solid': !homeRoute() || scrolled()
   }"
   [style.background]="homeRoute() && !scrolled() ? 'transparent' : 'rgba(245,240,232,0.88)'"
 >
   <div class="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
-    <div class="h-16 flex items-center justify-between gap-8">
+    <div class="relative h-16 flex items-center justify-between gap-8">
       <!-- ── Logo ── -->
       <a
         [routerLink]="'/' | locPath"
         (click)="closeMenu()"
-        class="flex items-center gap-2.5 no-underline shrink-0 group"
+        class="absolute left-0 top-1/2 z-10 -translate-y-1/2 no-underline group"
       >
         <img
-          src="assets/images/ddLogo.png"
-          class="h-9 w-9 rounded-[0.5rem] transition-opacity group-hover:opacity-75"
+          src="ddLogo-wh.png"
+          class="header-logo-image h-[90px] w-[90px] object-contain transition-opacity group-hover:opacity-75"
           [alt]="'header.brand' | translate"
         />
-        <span
-          class="hidden sm:block font-[family-name:var(--font-serif)] text-[1.05rem] font-medium leading-none group-hover:opacity-60 transition-opacity"
-
-        >
-          {{ 'header.brand' | translate }}
-        </span>
       </a>
 
       <!-- ── Desktop nav ── -->
-      <nav class="hidden md:flex items-center gap-0.5 flex-1 justify-center">
+      <nav class="hidden md:flex absolute left-1/2 -translate-x-1/2 items-center gap-0.5 justify-center">
         <a
           [routerLink]="'/' | locPath"
           routerLinkActive="is-active"
@@ -115,7 +108,7 @@
 
       <!-- ── Mobile hamburger ── -->
       <button
-        class="md:hidden flex flex-col justify-center gap-[5px] w-9 h-9 rounded-[0.625rem] hover:bg-black/[0.05] transition-colors bg-transparent border-none cursor-pointer p-2 relative z-[70] shrink-0"
+        class="md:hidden ml-auto flex flex-col justify-center gap-[5px] w-9 h-9 rounded-[0.625rem] hover:bg-black/[0.05] transition-colors bg-transparent border-none cursor-pointer p-2 relative z-[70] shrink-0"
         (click)="toggleMenu()"
         [attr.aria-expanded]="menuOpen()"
         [attr.aria-label]="'header.ui.toggleMenu' | translate"
