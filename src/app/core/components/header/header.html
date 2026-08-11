@@ -13,11 +13,16 @@
       <a
         [routerLink]="'/' | locPath"
         (click)="closeMenu()"
-        class="absolute left-0 top-1/2 z-10 -translate-y-1/2 no-underline group"
+        class="absolute left-0 top-1/2 z-10 h-16 w-16 -translate-y-1/2 no-underline group"
       >
         <img
           src="ddLogo-wh.png"
           class="header-logo-image h-16 w-16 object-contain transition-opacity group-hover:opacity-75"
+          [alt]="'header.brand' | translate"
+        />
+        <img
+          src="assets/images/ddLogo.png"
+          class="header-logo-sticky absolute left-1/2 top-1/2 h-9 w-9 -translate-x-1/2 -translate-y-1/2 rounded-[0.5rem] object-contain"
           [alt]="'header.brand' | translate"
         />
       </a>

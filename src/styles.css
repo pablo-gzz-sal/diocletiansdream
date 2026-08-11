@@ -1130,6 +1130,12 @@ main::after {
   transition: opacity 220ms var(--dd-ease);
 }
 
+.dd-site-header .header-logo-sticky {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 180ms var(--dd-ease);
+}
+
 .dd-site-header.dd-header-home-top .header-logo-image {
   background: transparent !important;
   box-shadow: none !important;
@@ -1138,6 +1144,10 @@ main::after {
 .dd-site-header.dd-header-solid .header-logo-image {
   opacity: 0;
   pointer-events: none;
+}
+
+.dd-site-header.dd-header-solid .header-logo-sticky {
+  opacity: 1;
 }
 
 .dd-site-header.dd-header-home-top a[routerlink="/"] span,
