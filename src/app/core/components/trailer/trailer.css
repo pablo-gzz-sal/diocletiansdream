@@ -1,370 +1,191 @@
-/* ═══════════════════════════════════════════════════════════
-   TRAILER HERO — cinematic sizzle-reel and booking dock
-   Poster frame with a gold-ringed play button; native controls
-   appear only after the visitor chooses to play.
-════════════════════════════════════════════════════════════ */
-
+/* Full-viewport trailer hero: the film is the composition, never a framed module. */
 .trailer {
   position: relative;
+  isolation: isolate;
+  display: grid;
+  align-items: end;
+  min-height: 100vh;
+  min-height: 100svh;
   overflow: hidden;
-  margin-block: clamp(2.5rem, 6vw, 5rem);
+  background: var(--color-ink);
+  color: var(--color-cream);
 }
 
-/* Soft purple→gold bloom sitting behind the frame for depth */
-.trailer-glow {
+.trailer-video,
+.trailer-scrim {
   position: absolute;
-  top: 42%;
-  left: 50%;
-  width: min(78vw, 980px);
-  aspect-ratio: 16 / 10;
-  transform: translate(-50%, -50%);
-  background: radial-gradient(
-    ellipse at center,
-    rgba(45, 4, 106, 0.16) 0%,
-    rgba(194, 154, 89, 0.10) 42%,
-    transparent 70%
-  );
-  filter: blur(30px);
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.trailer-video {
+  z-index: -2;
+  display: block;
+  object-fit: cover;
+  object-position: center;
+}
+
+.trailer-scrim {
+  z-index: -1;
   pointer-events: none;
-  z-index: 0;
+  background:
+    linear-gradient(180deg, rgba(17, 13, 25, 0.58) 0%, rgba(17, 13, 25, 0.08) 31%, rgba(17, 13, 25, 0.24) 53%, rgba(17, 13, 25, 0.88) 100%),
+    linear-gradient(90deg, rgba(17, 13, 25, 0.34) 0%, transparent 68%);
 }
 
-.trailer-inner {
-  position: relative;
-  z-index: 1;
-  max-width: 1080px;
+.trailer-content {
+  width: min(100% - 2rem, 760px);
   margin: 0 auto;
-  padding: 0 clamp(1rem, 5vw, 2.5rem);
-}
-
-/* ── Heading ─────────────────────────────────────────────── */
-.trailer-heading {
-  max-width: 720px;
-  margin: 0 auto clamp(2rem, 4vw, 3rem);
+  padding: clamp(8rem, 17vh, 12rem) 0 clamp(10.5rem, 20vh, 15rem);
   text-align: center;
 }
 
+.trailer-heading {
+  margin: 0;
+}
+
 .trailer-heading .eyebrow {
-  border-bottom: none;
-  padding-bottom: 0;
+  margin-bottom: 0.9rem;
+  border: 0;
+  color: var(--dd-gold);
 }
 
 .trailer-h1 {
-  margin-top: 0.35rem;
-  margin-bottom: 0;
+  max-width: 13ch;
+  margin: 0 auto;
+  color: var(--color-cream);
+  font-size: clamp(2.55rem, 5.3vw, 5.5rem);
+  line-height: 0.98;
+  text-wrap: balance;
+  text-shadow: 0 3px 32px rgba(17, 13, 25, 0.5);
 }
 
 .trailer-sub {
-  margin-top: 1rem;
+  max-width: 54ch;
+  margin: 1.25rem auto 0;
+  color: rgba(245, 240, 232, 0.9);
   font-family: var(--font-sans);
-  font-size: 1rem;
-  line-height: 1.7;
-  color: var(--color-ink-60);
+  font-size: clamp(0.98rem, 1.45vw, 1.14rem);
+  line-height: 1.65;
+  text-shadow: 0 2px 18px rgba(17, 13, 25, 0.6);
 }
 
-/* ── Booking dock ───────────────────────────────────────── */
-.booking-dock {
+.trailer-cta {
+  margin-top: 1.75rem;
+}
+
+.trailer-play {
+  position: absolute;
+  right: clamp(1rem, 3vw, 2rem);
+  bottom: clamp(7rem, 12vh, 9rem);
+  z-index: 1;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  align-items: stretch;
-  gap: 1rem;
-  margin-top: 1rem;
-  padding: 0.75rem;
-  border: 1px solid var(--dd-gold-30);
-  border-radius: var(--radius-xl);
-  background:
-    linear-gradient(120deg, rgba(250, 248, 244, 0.97), rgba(237, 231, 218, 0.96)),
-    var(--color-cream);
-  box-shadow: 0 18px 42px rgba(26, 24, 20, 0.12);
+  width: 2.75rem;
+  height: 2.75rem;
+  padding-left: 0.14rem;
+  place-items: center;
+  border: 1px solid rgba(245, 240, 232, 0.35);
+  border-radius: 50%;
+  color: var(--color-cream);
+  background: rgba(17, 13, 25, 0.42);
+  box-shadow: 0 8px 24px rgba(17, 13, 25, 0.2);
+  backdrop-filter: blur(10px);
+  cursor: pointer;
+  transition: background 0.25s var(--ease-out), transform 0.25s var(--ease-out);
+}
+
+.trailer-play:hover {
+  transform: scale(1.06);
+  background: rgba(17, 13, 25, 0.68);
+}
+
+.booking-dock {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+  padding: 0.9rem clamp(1rem, 5vw, 3rem) max(0.9rem, env(safe-area-inset-bottom));
+  border-top: 1px solid rgba(245, 240, 232, 0.18);
+  background: linear-gradient(90deg, rgba(17, 13, 25, 0.78), rgba(17, 13, 25, 0.56));
+  backdrop-filter: blur(14px);
 }
 
 .booking-dock__facts {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  margin: 0;
+  width: min(100%, 980px);
+  margin: 0 auto;
 }
 
 .booking-fact {
-  display: grid;
-  align-content: center;
-  gap: 0.25rem;
   min-width: 0;
-  padding: 0.4rem clamp(0.75rem, 1.8vw, 1.25rem);
+  padding: 0.2rem clamp(0.75rem, 2vw, 1.5rem);
+  text-align: center;
 }
 
 .booking-fact + .booking-fact {
-  border-left: 1px solid rgba(26, 24, 20, 0.12);
-}
-
-.booking-fact dt {
-  font-family: var(--font-sans);
-  font-size: 0.62rem;
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  line-height: 1.2;
-  text-transform: uppercase;
-  color: rgba(26, 24, 20, 0.62);
+  border-left: 1px solid rgba(245, 240, 232, 0.2);
 }
 
 .booking-fact dd {
   margin: 0;
+  color: rgba(245, 240, 232, 0.95);
   font-family: var(--font-sans);
-  font-size: clamp(0.82rem, 1.35vw, 0.98rem);
-  font-weight: 700;
+  font-size: clamp(0.72rem, 1.15vw, 0.88rem);
+  font-weight: 600;
   line-height: 1.35;
-  color: var(--color-ink);
 }
 
 .booking-fact dd span {
-  color: rgba(26, 24, 20, 0.76);
-  font-size: 0.86em;
-  font-weight: 500;
-  white-space: nowrap;
-}
-
-.booking-dock__cta {
-  align-self: stretch;
-  min-width: max-content;
-  padding-inline: clamp(1.4rem, 2.5vw, 2rem);
-}
-
-/* ── The cinematic frame ─────────────────────────────────── */
-.reel {
-  position: relative;
-  aspect-ratio: 16 / 9;
-  border-radius: var(--radius-xl);
-  overflow: hidden;
-  background: var(--color-ink);
-  border: 1px solid var(--dd-gold-30);
-  box-shadow:
-    0 30px 80px rgba(26, 24, 20, 0.28),
-    0 8px 24px rgba(45, 4, 106, 0.14),
-    inset 0 0 0 1px rgba(255, 255, 255, 0.04);
-  cursor: pointer;
-}
-
-.reel-video {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
   display: block;
-}
-
-/* Darkening veil so the play button and text read cleanly over the poster */
-.reel-veil {
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(ellipse at center, rgba(26, 24, 20, 0.15) 0%, rgba(26, 24, 20, 0.55) 100%),
-    linear-gradient(to top, rgba(26, 24, 20, 0.45), transparent 55%);
-  transition: opacity 0.5s var(--ease-out);
-  z-index: 1;
-}
-
-/* ── Corner ticks (film-frame detailing) ─────────────────── */
-.reel-corner {
-  position: absolute;
-  width: 22px;
-  height: 22px;
-  border: 1.5px solid var(--dd-gold-60);
-  z-index: 2;
-  opacity: 0.7;
-  transition: opacity 0.4s var(--ease-out);
-}
-.reel-corner--tl { top: 14px; left: 14px; border-right: none; border-bottom: none; }
-.reel-corner--tr { top: 14px; right: 14px; border-left: none; border-bottom: none; }
-.reel-corner--bl { bottom: 14px; left: 14px; border-right: none; border-top: none; }
-.reel-corner--br { bottom: 14px; right: 14px; border-left: none; border-top: none; }
-
-/* ── Play button ─────────────────────────────────────────── */
-.reel-play {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 92px;
-  height: 92px;
-  border: none;
-  background: transparent;
-  padding: 0;
-  cursor: pointer;
-  z-index: 3;
-  display: grid;
-  place-items: center;
-  border-radius: 50%;
-}
-
-/* The visible disc */
-.reel-play__disc {
-  position: relative;
-  z-index: 2;
-  width: 78px;
-  height: 78px;
-  border-radius: 50%;
-  display: grid;
-  place-items: center;
-  color: var(--color-ink);
-  background: linear-gradient(155deg, #f4ead4 0%, var(--dd-gold) 100%);
-  box-shadow:
-    0 10px 30px rgba(26, 24, 20, 0.35),
-    0 0 0 1px rgba(255, 255, 255, 0.5) inset;
-  padding-left: 4px; /* optically centre the play triangle */
-  transition:
-    transform 0.28s var(--ease-out),
-    box-shadow 0.28s var(--ease-out);
-}
-
-.reel-play:hover .reel-play__disc {
-  transform: scale(1.06);
-  box-shadow:
-    0 16px 40px rgba(194, 154, 89, 0.4),
-    0 0 0 1px rgba(255, 255, 255, 0.6) inset;
-}
-
-.reel-play:active .reel-play__disc {
-  transform: scale(0.97);
-}
-
-.reel-play:focus-visible {
-  outline: none;
-}
-.reel-play:focus-visible .reel-play__disc {
-  box-shadow:
-    0 0 0 3px var(--color-warm),
-    0 0 0 6px var(--dd-purple-20),
-    0 10px 30px rgba(26, 24, 20, 0.35);
-}
-
-/* Expanding rings that echo out from the disc */
-.reel-play__pulse {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  border-radius: 50%;
-  border: 1.5px solid var(--dd-gold-60);
-  animation: reel-pulse 3s ease-out infinite;
-}
-.reel-play__pulse--2 {
-  animation-delay: 1.5s;
-}
-
-@keyframes reel-pulse {
-  0% {
-    transform: scale(0.8);
-    opacity: 0.7;
-  }
-  100% {
-    transform: scale(1.7);
-    opacity: 0;
-  }
-}
-
-/* ── Duration chip ───────────────────────────────────────── */
-.reel-meta {
-  position: absolute;
-  left: 16px;
-  bottom: 16px;
-  z-index: 3;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.4rem 0.85rem;
-  border-radius: var(--radius-pill);
-  font-family: var(--font-sans);
-  font-size: 0.62rem;
+  margin-top: 0.08rem;
+  color: rgba(245, 240, 232, 0.68);
+  font-size: 0.82em;
   font-weight: 500;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: rgba(245, 240, 232, 0.9);
-  background: rgba(26, 24, 20, 0.4);
-  border: 1px solid rgba(245, 240, 232, 0.18);
-  backdrop-filter: blur(8px);
 }
 
-.reel-meta__dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--dd-gold);
-  box-shadow: 0 0 8px var(--dd-gold);
-}
-
-/* ── Playing state ───────────────────────────────────────── */
-.reel--playing {
-  cursor: default;
-}
-.reel--playing .reel-corner {
-  opacity: 0;
-}
-
-/* ── Small screens ───────────────────────────────────────── */
 @media (max-width: 640px) {
-  .trailer {
-    margin-block: 2.5rem;
+  .trailer-content {
+    width: min(100% - 2.25rem, 540px);
+    padding-top: 7.5rem;
+    padding-bottom: 12.5rem;
   }
 
-  .trailer-heading {
-    margin-bottom: 1.5rem;
-    text-align: left;
+  .trailer-h1 {
+    max-width: 11ch;
+  }
+
+  .trailer-play {
+    right: 1rem;
+    bottom: 9.75rem;
   }
 
   .booking-dock {
-    grid-template-columns: 1fr;
-    gap: 0.75rem;
-    padding: 0.75rem;
+    padding-inline: 0.5rem;
   }
 
   .booking-dock__facts {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 0.5rem;
+    gap: 0.55rem 0;
   }
 
   .booking-fact {
-    min-height: 4.5rem;
-    padding: 0.75rem;
-    border: 1px solid rgba(26, 24, 20, 0.1);
-    border-radius: var(--radius-md);
-    background: rgba(255, 255, 255, 0.46);
+    padding: 0.3rem 0.45rem;
   }
 
-  .booking-fact + .booking-fact {
-    border-left: 1px solid rgba(26, 24, 20, 0.1);
+  .booking-fact:nth-child(3) {
+    border-left: 0;
   }
 
-  .booking-fact dd {
-    font-size: 0.84rem;
-  }
-
-  .booking-dock__cta {
-    width: 100%;
-    min-height: 3.25rem;
-  }
-
-  .reel-play {
-    width: 76px;
-    height: 76px;
-  }
-  .reel-play__disc {
-    width: 64px;
-    height: 64px;
-  }
-  .reel-corner {
-    width: 16px;
-    height: 16px;
+  .booking-fact:nth-child(n + 3) {
+    border-top: 1px solid rgba(245, 240, 232, 0.16);
   }
 }
 
-/* ── Reduced motion: no pulsing, no float ────────────────── */
 @media (prefers-reduced-motion: reduce) {
-  .reel-play__pulse {
-    animation: none;
-    opacity: 0;
-  }
-  .reel-play__disc,
-  .reel-veil,
-  .reel-corner {
+  .trailer-play {
     transition: none;
   }
 }

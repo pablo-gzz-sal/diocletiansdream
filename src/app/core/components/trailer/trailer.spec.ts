@@ -33,14 +33,28 @@ describe('Trailer', () => {
     expect(bookingCta.getAttribute('href')).toBe('/booking');
   });
 
-  it('shows native pause controls only after the trailer starts playing', () => {
+  it('renders the trailer video as a full-viewport hero background', () => {
+    const hero = fixture.nativeElement.querySelector('#trailer') as HTMLElement;
+    const video = fixture.nativeElement.querySelector('video') as HTMLVideoElement;
+
+    expect(hero.classList.contains('trailer--full-viewport')).toBeTrue();
+    expect(video.classList.contains('trailer-video')).toBeTrue();
+    expect(fixture.nativeElement.querySelector('.reel')).toBeNull();
+  });
+
+  it('keeps native controls available after the trailer is paused', () => {
+    const component = fixture.componentInstance;
     const video = fixture.nativeElement.querySelector('video') as HTMLVideoElement;
 
     video.dispatchEvent(new Event('play'));
     fixture.detectChanges();
 
-    expect(fixture.nativeElement.querySelector('.reel-veil')).toBeNull();
-    expect(fixture.nativeElement.querySelector('.reel-play')).toBeNull();
+    video.dispatchEvent(new Event('pause'));
+    fixture.detectChanges();
+
+    expect(component.hasStarted).toBeTrue();
+    expect(component.playing).toBeFalse();
+    expect(fixture.nativeElement.querySelector('.trailer-play')).toBeNull();
     expect(video.controls).toBeTrue();
   });
 
@@ -51,7 +65,7 @@ describe('Trailer', () => {
 
     const component = fixture.componentInstance;
     const video = fixture.nativeElement.querySelector('video') as HTMLVideoElement;
-    const playButton = fixture.nativeElement.querySelector('.reel-play') as HTMLButtonElement;
+    const playButton = fixture.nativeElement.querySelector('.trailer-play') as HTMLButtonElement;
     const play = spyOn(video, 'play').and.returnValue(Promise.resolve());
 
     expect(component.autoplayAllowed).toBeFalse();
@@ -61,7 +75,7 @@ describe('Trailer', () => {
     playButton.click();
 
     expect(play).toHaveBeenCalledTimes(1);
-    expect(fixture.nativeElement.querySelector('.reel-veil')).not.toBeNull();
+    expect(fixture.nativeElement.querySelector('.trailer-play')).not.toBeNull();
   });
 });
 
