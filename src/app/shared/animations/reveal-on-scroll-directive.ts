@@ -24,7 +24,7 @@ export class RevealOnScrollDirective implements OnInit, OnDestroy {
   ngOnInit(): void {
     // Skip animations on the server so content renders fully visible in the
     // SSR HTML (crawlers see it) and no browser-only GSAP/ScrollTrigger runs.
-    if (!this.isBrowser) return;
+    if (!this.isBrowser || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
     const el = this.el.nativeElement;
 
