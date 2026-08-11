@@ -28,6 +28,8 @@ describe('Trailer', () => {
     expect(playerFrame.src).toContain('player.vimeo.com/video/1217274878');
     expect(playerFrame.src).toContain('dnt=1');
     expect(playerFrame.src).toContain('autoplay=1');
+    expect(playerFrame.src).toContain('background=1');
+    expect(playerFrame.src).toContain('controls=0');
     expect(playerFrame.src).toContain('muted=1');
     expect(bookingCta).withContext('hero booking CTA').not.toBeNull();
     expect(bookingCta.getAttribute('href')).toBe('/booking');
@@ -42,7 +44,7 @@ describe('Trailer', () => {
     expect(fixture.nativeElement.querySelector('.reel')).toBeNull();
   });
 
-  it('keeps Vimeo controls available after the trailer is paused', () => {
+  it('keeps the custom playback fallback while hiding Vimeo controls', () => {
     const component = fixture.componentInstance;
     const playerFrame = fixture.nativeElement.querySelector('iframe') as HTMLIFrameElement;
 
@@ -55,7 +57,7 @@ describe('Trailer', () => {
     expect(component.hasStarted).toBeTrue();
     expect(component.playing).toBeFalse();
     expect(fixture.nativeElement.querySelector('.trailer-play')).toBeNull();
-    expect(playerFrame.src).toContain('controls=1');
+    expect(playerFrame.src).toContain('controls=0');
   });
 
   it('starts the clean loop after the opening branding and resets once before the closing branding', async () => {
@@ -69,8 +71,8 @@ describe('Trailer', () => {
     expect(player.setMuted).toHaveBeenCalledWith(true);
     expect(player.play).toHaveBeenCalledTimes(1);
 
-    component.onPlayerTimeUpdate(47.2);
-    component.onPlayerTimeUpdate(47.2);
+    component.onPlayerTimeUpdate(component.loopEndSeconds);
+    component.onPlayerTimeUpdate(component.loopEndSeconds);
 
     expect(player.setCurrentTime).toHaveBeenCalledTimes(2);
 

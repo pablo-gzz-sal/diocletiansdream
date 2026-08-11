@@ -20,12 +20,14 @@
 .experience::before {
   z-index: -2;
   background: url('/assets/images/vr/great-hall.jpg') center / cover no-repeat;
-  opacity: 0.12;
+  opacity: 1;
 }
 
 .experience::after {
   z-index: -1;
-  background: linear-gradient(90deg, rgba(245, 240, 232, 0.96), rgba(245, 240, 232, 0.86));
+  background:
+    linear-gradient(90deg, rgba(17, 12, 20, 0.9) 0%, rgba(20, 15, 25, 0.79) 54%, rgba(23, 17, 28, 0.69) 100%),
+    linear-gradient(180deg, rgba(12, 8, 16, 0.1), rgba(12, 8, 16, 0.52));
 }
 
 .experience-inner {
@@ -43,7 +45,7 @@
   display: inline-block;
   padding-bottom: 0.6rem;
   border-bottom: 1px solid var(--dd-gold-30);
-  color: var(--dd-gold);
+  color: #e5be78;
   letter-spacing: 0.22em;
 }
 
@@ -54,7 +56,8 @@
   line-height: 0.92;
   letter-spacing: -0.025em;
   margin-top: 0.75rem;
-  color: #1a1814;
+  color: var(--color-cream);
+  text-shadow: 0 3px 22px rgba(0, 0, 0, 0.35);
 }
 
 .bento {
@@ -65,10 +68,13 @@
 }
 
 .bento-cell {
-  border: 1px solid rgba(26, 24, 20, 0.12);
+  border: 1px solid rgba(245, 240, 232, 0.24);
   border-radius: var(--radius-xl);
   overflow: hidden;
-  background: rgba(245, 240, 232, 0.96);
+  background: rgba(26, 18, 33, 0.55);
+  box-shadow: 0 14px 38px rgba(4, 2, 8, 0.18);
+  -webkit-backdrop-filter: blur(14px) saturate(120%);
+  backdrop-filter: blur(14px) saturate(120%);
 }
 
 .bento-cell--image {
@@ -87,13 +93,14 @@
   flex-direction: column;
   justify-content: center;
   padding: clamp(1.75rem, 4vw, 3.25rem);
-  border-top: 2px solid rgba(194, 154, 89, 0.45);
+  border-top: 2px solid rgba(229, 190, 120, 0.78);
+  background: linear-gradient(145deg, rgba(29, 20, 38, 0.78), rgba(18, 12, 26, 0.66));
 }
 
 .bento-copy {
   font-size: clamp(1rem, 1.3vw, 1.125rem);
   line-height: 1.75;
-  color: #1a1814;
+  color: rgba(245, 240, 232, 0.92);
 }
 
 .bento-copy + .bento-copy {
@@ -103,6 +110,9 @@
 .bento-cell--text .btn--dark {
   align-self: flex-start;
   margin-top: 2rem;
+  background: var(--color-cream);
+  color: #1a1814;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.22);
 }
 
 .experience-facts {
@@ -118,12 +128,12 @@
   justify-content: flex-end;
   min-height: 9rem;
   padding: clamp(1.25rem, 2.5vw, 1.75rem);
-  background: rgba(248, 246, 241, 0.96);
-  border-top: 2px solid rgba(45, 4, 106, 0.2);
+  background: rgba(245, 240, 232, 0.13);
+  border-top: 2px solid rgba(229, 190, 120, 0.62);
 }
 
 .bento-cell--statB {
-  border-top-color: rgba(194, 154, 89, 0.48);
+  border-top-color: rgba(245, 240, 232, 0.46);
 }
 
 .stat-num {
@@ -131,7 +141,7 @@
   font-size: clamp(2.4rem, 5vw, 4.5rem);
   font-weight: 300;
   line-height: 1;
-  color: #2d046a;
+  color: #f0cd8d;
 }
 
 .stat-unit {
@@ -142,10 +152,10 @@
 .stat-label {
   margin-top: 0.65rem;
   padding-top: 0.65rem;
-  border-top: 1px solid rgba(26, 24, 20, 0.16);
-  color: #39342d;
+  border-top: 1px solid rgba(245, 240, 232, 0.25);
+  color: rgba(245, 240, 232, 0.86);
   font-family: var(--font-sans);
-  font-size: 0.75rem;
+  font-size: 0.83rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
 }

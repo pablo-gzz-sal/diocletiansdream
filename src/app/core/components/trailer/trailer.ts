@@ -18,7 +18,7 @@ export class Trailer implements OnDestroy {
 
   /** Skip the opening logo and reset before the closing branding begins. */
   readonly loopStartSeconds = 5;
-  readonly loopEndSeconds = 47.2;
+  readonly loopEndSeconds = 46.2;
   readonly heroCopyVisibleForSeconds = 5;
   readonly heroCopyReturnForSeconds = 4;
 
@@ -124,9 +124,10 @@ export class Trailer implements OnDestroy {
     const parameters = new URLSearchParams({
       autoplay: this.autoplayAllowed ? '1' : '0',
       autopause: '0',
+      background: '1',
       badge: '0',
       byline: '0',
-      controls: '1',
+      controls: '0',
       dnt: '1',
       muted: '1',
       playsinline: '1',
