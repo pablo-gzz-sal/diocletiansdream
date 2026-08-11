@@ -1,22 +1,15 @@
 <section id="trailer" class="trailer trailer--full-viewport">
-  <video
-    #video
+  <iframe
+    #playerFrame
     class="trailer-video"
-    [poster]="poster"
-    [autoplay]="autoplayAllowed"
-    [attr.preload]="autoplayAllowed ? 'metadata' : 'none'"
-    [muted]="true"
-    playsinline
-    [controls]="hasStarted"
-    (play)="onVideoPlay()"
-    (pause)="onVideoPause()"
-    (loadedmetadata)="onVideoLoadedMetadata()"
-    (timeupdate)="onVideoTimeUpdate()"
-    (seeked)="onVideoSeeked()"
-    [attr.aria-label]="'home.heroConversion.title' | translate"
-  >
-    <source [src]="src" type="video/mp4" />
-  </video>
+    [src]="playerUrl"
+    allow="autoplay; fullscreen; picture-in-picture"
+    allowfullscreen
+    loading="eager"
+    referrerpolicy="strict-origin-when-cross-origin"
+    (load)="onPlayerFrameLoad()"
+    [attr.title]="'home.heroConversion.title' | translate"
+  ></iframe>
 
   <div class="trailer-scrim" aria-hidden="true"></div>
 

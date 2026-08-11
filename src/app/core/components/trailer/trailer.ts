@@ -1,9 +1,9 @@
 import { CommonModule, isPlatformBrowser } from '@angular/common';
-import { Component, ElementRef, inject, PLATFORM_ID, ViewChild } from '@angular/core';
+import { Component, ElementRef, inject, OnDestroy, PLATFORM_ID, ViewChild } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
+import Player from '@vimeo/player';
 import { LocalePathPipe } from '../../i18n/locale-path.pipe';
-import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-trailer',
@@ -12,22 +12,14 @@ import { environment } from '../../../../environments/environment';
   templateUrl: './trailer.html',
   styleUrl: './trailer.css',
 })
-export class Trailer {
-  @ViewChild('video') videoRef?: ElementRef<HTMLVideoElement>;
+export class Trailer implements OnDestroy {
+  @ViewChild('playerFrame') playerFrameRef?: ElementRef<HTMLIFrameElement>;
 
   /** Skip the opening logo and reset before the closing branding begins. */
   readonly loopStartSeconds = 5;
   readonly loopEndSeconds = 47.2;
   readonly heroCopyVisibleForSeconds = 5;
   readonly heroCopyReturnForSeconds = 4;
-
-  /**
-   * Served from the headless WordPress host (CMS subdomain) over https to avoid
-   * mixed-content blocking. The root domain is the static Angular site now and
-   * has no /wp-content, so the file must be fetched from wpBaseUrl.
-   */
-  readonly src = `${environment.wpBaseUrl.replace(/\/+$/, '')}/wp-content/uploads/2026/07/Sizzle-Reel-Diocletians-Dream.mp4`;
-  readonly poster = 'assets/images/vr/emperor-peristyle.jpg';
 
   /** Tracks transient media playback for the current video state. */
   playing = false;
@@ -38,54 +30,81 @@ export class Trailer {
   /** Keeps the opening and closing beats readable while the middle stays cinematic. */
   heroCopyVisible = true;
 
-  private isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
+  private readonly isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
   private loopSeekInProgress = false;
   readonly autoplayAllowed = this.isBrowser && !this.prefersReducedMotion();
+  readonly playerUrl = this.createPlayerUrl();
+
+  private player?: Player;
 
   play(): void {
     if (this.playing || !this.isBrowser) return;
 
-    const v = this.videoRef?.nativeElement;
-    if (!v) return;
-    const p = v.play();
-    if (p && typeof p.catch === 'function') p.catch(() => {});
+    void this.player?.play().catch(() => {});
   }
 
-  onVideoPlay(): void {
+  onPlayerFrameLoad(): void {
+    const frame = this.playerFrameRef?.nativeElement;
+    if (!this.isBrowser || !frame || this.player) return;
+
+    this.player = new Player(frame);
+    this.player.on('play', () => this.onPlayerPlay());
+    this.player.on('pause', () => this.onPlayerPause());
+    this.player.on('timeupdate', ({ seconds }) => this.onPlayerTimeUpdate(seconds));
+    this.player.on('seeked', () => this.onPlayerSeeked());
+    void this.player.ready().then(() => this.onPlayerReady()).catch(() => {});
+  }
+
+  onPlayerPlay(): void {
     this.hasStarted = true;
     this.playing = true;
   }
 
-  onVideoPause(): void {
+  onPlayerPause(): void {
     this.playing = false;
   }
 
-  onVideoLoadedMetadata(): void {
-    const video = this.videoRef?.nativeElement;
-    if (!video) return;
+  onPlayerReady(): Promise<void> {
+    const player = this.player;
+    if (!player) return Promise.resolve();
 
-    video.currentTime = this.loopStartSeconds;
     this.updateHeroCopyVisibility(this.loopStartSeconds);
+    const seek = player.setCurrentTime(this.loopStartSeconds).then(() => {}).catch(() => {});
+    const mute = player.setMuted(true).then(() => {}).catch(() => {});
+    const autoplay = this.autoplayAllowed ? player.play().then(() => {}).catch(() => {}) : Promise.resolve();
+
+    return Promise.all([seek, mute, autoplay]).then(() => {});
   }
 
-  onVideoTimeUpdate(): void {
-    const video = this.videoRef?.nativeElement;
-    if (!video) return;
+  onPlayerTimeUpdate(currentTime: number): void {
+    this.updateHeroCopyVisibility(currentTime);
 
-    this.updateHeroCopyVisibility(video.currentTime);
-
-    if (this.loopSeekInProgress || video.currentTime < this.loopEndSeconds) return;
+    if (this.loopSeekInProgress || currentTime < this.loopEndSeconds) return;
 
     this.loopSeekInProgress = true;
-    video.currentTime = this.loopStartSeconds;
     this.updateHeroCopyVisibility(this.loopStartSeconds);
 
-    const playback = video.play();
-    if (playback && typeof playback.catch === 'function') playback.catch(() => {});
+    const player = this.player;
+    if (!player) {
+      this.loopSeekInProgress = false;
+      return;
+    }
+
+    void player
+      .setCurrentTime(this.loopStartSeconds)
+      .then(() => player.play())
+      .catch(() => {})
+      .finally(() => {
+        this.loopSeekInProgress = false;
+      });
   }
 
-  onVideoSeeked(): void {
+  onPlayerSeeked(): void {
     this.loopSeekInProgress = false;
+  }
+
+  ngOnDestroy(): void {
+    void this.player?.destroy().catch(() => {});
   }
 
   private updateHeroCopyVisibility(currentTime: number): void {
@@ -97,5 +116,22 @@ export class Trailer {
 
   private prefersReducedMotion(): boolean {
     return typeof window.matchMedia === 'function' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  }
+
+  private createPlayerUrl(): string {
+    const parameters = new URLSearchParams({
+      autoplay: this.autoplayAllowed ? '1' : '0',
+      autopause: '0',
+      badge: '0',
+      byline: '0',
+      controls: '1',
+      dnt: '1',
+      muted: '1',
+      playsinline: '1',
+      portrait: '0',
+      title: '0',
+    });
+
+    return `https://player.vimeo.com/video/1217274878?${parameters.toString()}`;
   }
 }
