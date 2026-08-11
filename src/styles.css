@@ -1127,6 +1127,7 @@ main::after {
   display: block;
   background: transparent;
   box-shadow: none;
+  transition: opacity 220ms var(--dd-ease);
 }
 
 .dd-site-header.dd-header-home-top .header-logo-image {
@@ -1135,7 +1136,8 @@ main::after {
 }
 
 .dd-site-header.dd-header-solid .header-logo-image {
-  filter: invert(1);
+  opacity: 0;
+  pointer-events: none;
 }
 
 .dd-site-header.dd-header-home-top a[routerlink="/"] span,
