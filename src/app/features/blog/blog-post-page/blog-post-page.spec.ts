@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Router } from '@angular/router';
-import { of } from 'rxjs';
+import { of, Subject } from 'rxjs';
 
 import { BlogPostPage } from './blog-post-page';
 import { SeoService } from '../../../shared/services/seo-service';
@@ -232,5 +232,32 @@ describe('BlogPostPage', () => {
     fixture.destroy();
 
     expect(routes.destinationFor('/diocletians-palace-vr-experience', 'hr')).toBeNull();
+  });
+
+  it('keeps the newer post route when an older request resolves late', () => {
+    const router = TestBed.inject(Router);
+    const routes = TestBed.inject(PostLanguageRouteService);
+    const first = new Subject<any[]>();
+    const second = new Subject<any[]>();
+    let currentUrl = '/first-post';
+    spyOnProperty(router, 'url', 'get').and.callFake(() => currentUrl);
+    const postLoads = spyOn(TestBed.inject(WpService), 'getPostBySlug').and.returnValues(first, second);
+
+    component.fetch('first-post');
+    currentUrl = '/second-post';
+    component.fetch('second-post');
+    expect(postLoads).toHaveBeenCalledTimes(2);
+    second.next([{
+      slug: 'second-post',
+      translations: { en: 'second-post', hr: 'drugi-post' },
+    }]);
+    first.next([{
+      slug: 'first-post',
+      translations: { en: 'first-post', hr: 'prvi-post' },
+    }]);
+    first.error(new Error('late request failure'));
+
+    expect(component.post?.slug).toBe('second-post');
+    expect(routes.destinationFor('/second-post', 'hr')).toBe('/hr/drugi-post');
   });
 });

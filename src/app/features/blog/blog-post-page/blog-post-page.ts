@@ -32,6 +32,8 @@ export class BlogPostPage implements OnInit, OnDestroy {
   private lang: 'en' | 'hr' = 'en';
 
   private sub?: Subscription;
+  private postLoadSub?: Subscription;
+  private postLoadVersion = 0;
 
   // Set once (or move to environment.ts)
   private readonly SITE_NAME = "Diocletians Dream";
@@ -61,23 +63,30 @@ export class BlogPostPage implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.sub?.unsubscribe();
+    this.postLoadSub?.unsubscribe();
+    this.postLoadVersion++;
     this.postLanguageRoutes.clear();
     this.seo.clearJsonLd('ld-blogposting');
     this.seo.clearJsonLd('ld-breadcrumb');
   }
 
   fetch(slug: string): void {
+    this.postLoadSub?.unsubscribe();
+    const requestedRoute = this.router.url;
+    const requestVersion = ++this.postLoadVersion;
     this.postLanguageRoutes.clear();
     this.loading = true;
     this.post = null;
 
-    this.wp.getPostBySlug(slug, this.lang).subscribe({
+    this.postLoadSub = this.wp.getPostBySlug(slug, this.lang).subscribe({
       next: (res) => {
+        if (!this.isCurrentPostLoad(requestVersion, requestedRoute)) return;
+
         this.post = (res && res.length) ? res[0] : null;
         this.loading = false;
 
         if (this.post) {
-          this.postLanguageRoutes.register(this.router.url, this.post.translations);
+          this.postLanguageRoutes.register(requestedRoute, this.post.translations);
           this.applySeo(this.post);
         } else {
           this.postLanguageRoutes.clear();
@@ -85,12 +94,18 @@ export class BlogPostPage implements OnInit, OnDestroy {
         }
       },
       error: () => {
+        if (!this.isCurrentPostLoad(requestVersion, requestedRoute)) return;
+
         this.post = null;
         this.loading = false;
         this.postLanguageRoutes.clear();
         this.applyNotFoundSeo();
       },
     });
+  }
+
+  private isCurrentPostLoad(requestVersion: number, requestedRoute: string): boolean {
+    return this.postLoadVersion === requestVersion && this.router.url === requestedRoute;
   }
 
   /** Unknown slug: render the not-found state as a real, noindex 404. */
