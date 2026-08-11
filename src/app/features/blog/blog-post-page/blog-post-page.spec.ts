@@ -1,9 +1,11 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { Router } from '@angular/router';
 import { of } from 'rxjs';
 
 import { BlogPostPage } from './blog-post-page';
 import { SeoService } from '../../../shared/services/seo-service';
 import { WpService } from '../../../shared/services/wp-service';
+import { PostLanguageRouteService } from '../../../core/i18n/post-language-route.service';
 import { commonTestImports, commonTestProviders } from '../../../../testing/test-setup';
 
 /**
@@ -190,5 +192,45 @@ describe('BlogPostPage', () => {
     expect(component.post).toBeNull();
     expect(robots).toHaveBeenCalledWith(true);
     expect(status).toHaveBeenCalledWith(404);
+  });
+
+  it('registers the current URL and translation slugs after loading a post', () => {
+    const router = TestBed.inject(Router);
+    const routes = TestBed.inject(PostLanguageRouteService);
+    const post = {
+      slug: 'diocletians-palace-vr-experience',
+      translations: {
+        en: 'diocletians-palace-vr-experience',
+        hr: 'vr-iskustvo-dioklecijanova-palaca',
+      },
+    };
+    spyOnProperty(router, 'url', 'get').and.returnValue('/diocletians-palace-vr-experience');
+    spyOn(TestBed.inject(WpService), 'getPostBySlug').and.returnValue(of([post]));
+    const register = spyOn(routes, 'register').and.callThrough();
+
+    component.fetch('diocletians-palace-vr-experience');
+
+    expect(register).toHaveBeenCalledWith('/diocletians-palace-vr-experience', post.translations);
+    expect(routes.destinationFor('/diocletians-palace-vr-experience', 'hr')).toBe(
+      '/hr/vr-iskustvo-dioklecijanova-palaca',
+    );
+  });
+
+  it('clears the registered post route when destroyed', () => {
+    const router = TestBed.inject(Router);
+    const routes = TestBed.inject(PostLanguageRouteService);
+    spyOnProperty(router, 'url', 'get').and.returnValue('/diocletians-palace-vr-experience');
+    spyOn(TestBed.inject(WpService), 'getPostBySlug').and.returnValue(of([{
+      slug: 'diocletians-palace-vr-experience',
+      translations: {
+        en: 'diocletians-palace-vr-experience',
+        hr: 'vr-iskustvo-dioklecijanova-palaca',
+      },
+    }]));
+
+    component.fetch('diocletians-palace-vr-experience');
+    fixture.destroy();
+
+    expect(routes.destinationFor('/diocletians-palace-vr-experience', 'hr')).toBeNull();
   });
 });

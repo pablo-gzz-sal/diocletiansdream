@@ -7,6 +7,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { DEFAULT_LANG, SupportedLang } from '../../i18n/i18n.config';
 import { hasCounterpart, stripLocale, withLocale } from '../../i18n/locale-url';
 import { LocalePathPipe } from '../../i18n/locale-path.pipe';
+import { PostLanguageRouteService } from '../../i18n/post-language-route.service';
 
 @Component({
   selector: 'app-header',
@@ -27,7 +28,10 @@ export class Header implements OnInit, OnDestroy, AfterViewInit {
   private isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
   private removeOverflow = () => this.doc.body.classList.remove('overflow-hidden');
 
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    private postLanguageRoutes: PostLanguageRouteService,
+  ) {}
 
   ngOnInit() {
     this.updateRouteState();
@@ -75,11 +79,12 @@ export class Header implements OnInit, OnDestroy, AfterViewInit {
   switchTo(target: SupportedLang) {
     if (target === this.currentLang()) return;
     const { path } = stripLocale(this.router.url);
-    const dest = hasCounterpart(path)
-      ? withLocale(path, target)
-      : target === DEFAULT_LANG
-        ? path
-        : withLocale('/', target);
+    const dest = this.postLanguageRoutes.destinationFor(this.router.url, target) ??
+      (hasCounterpart(path)
+        ? withLocale(path, target)
+        : target === DEFAULT_LANG
+          ? path
+          : withLocale('/', target));
     this.router.navigateByUrl(dest);
   }
 

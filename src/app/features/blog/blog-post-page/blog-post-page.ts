@@ -1,6 +1,6 @@
 import { Component, DOCUMENT, HostListener, Inject, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ActivatedRoute, RouterModule } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { WpService } from '../../../shared/services/wp-service';
 import { Header } from '../../../core/components/header/header';
@@ -9,6 +9,7 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { SeoService } from '../../../shared/services/seo-service';
 import { CtaBlock } from '../../../shared/components/cta-block/cta-block';
 import { LocalePathPipe } from '../../../core/i18n/locale-path.pipe';
+import { PostLanguageRouteService } from '../../../core/i18n/post-language-route.service';
 import { htmlToText } from '../../../shared/utils/html-text';
 
 type LightboxImage = { src: string; alt: string };
@@ -40,9 +41,11 @@ export class BlogPostPage implements OnInit, OnDestroy {
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private wp: WpService,
     private seo: SeoService,
     private translate: TranslateService,
+    private postLanguageRoutes: PostLanguageRouteService,
     @Inject(DOCUMENT) private doc: Document
   ) {}
 
@@ -58,11 +61,13 @@ export class BlogPostPage implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.sub?.unsubscribe();
+    this.postLanguageRoutes.clear();
     this.seo.clearJsonLd('ld-blogposting');
     this.seo.clearJsonLd('ld-breadcrumb');
   }
 
   fetch(slug: string): void {
+    this.postLanguageRoutes.clear();
     this.loading = true;
     this.post = null;
 
@@ -71,12 +76,18 @@ export class BlogPostPage implements OnInit, OnDestroy {
         this.post = (res && res.length) ? res[0] : null;
         this.loading = false;
 
-        if (this.post) this.applySeo(this.post);
-        else this.applyNotFoundSeo();
+        if (this.post) {
+          this.postLanguageRoutes.register(this.router.url, this.post.translations);
+          this.applySeo(this.post);
+        } else {
+          this.postLanguageRoutes.clear();
+          this.applyNotFoundSeo();
+        }
       },
       error: () => {
         this.post = null;
         this.loading = false;
+        this.postLanguageRoutes.clear();
         this.applyNotFoundSeo();
       },
     });
