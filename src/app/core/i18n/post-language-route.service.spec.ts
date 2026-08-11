@@ -47,6 +47,32 @@ describe('PostLanguageRouteService', () => {
     expect(service.destinationFor('/current-post', 'hr')).toBeNull();
   });
 
+  it('does not return a destination for malformed percent encoding', () => {
+    service.register('/current-post', { en: 'current-post', hr: '%ZZ' });
+
+    expect(service.destinationFor('/current-post', 'hr')).toBeNull();
+  });
+
+  it('does not return a destination for a matrix parameter delimiter', () => {
+    service.register('/current-post', { en: 'current-post', hr: 'post;draft=true' });
+
+    expect(service.destinationFor('/current-post', 'hr')).toBeNull();
+  });
+
+  it('does not return a destination for unsafe path grammar', () => {
+    for (const slug of ['post(title)', '.', '..', '%2Fother-post', '%3Bdraft']) {
+      service.register('/current-post', { en: 'current-post', hr: slug });
+
+      expect(service.destinationFor('/current-post', 'hr')).withContext(slug).toBeNull();
+    }
+  });
+
+  it('does not return a destination for a runtime non-string translation value', () => {
+    service.register('/current-post', { en: 'current-post', hr: 42 } as unknown as { en: string; hr: string });
+
+    expect(service.destinationFor('/current-post', 'hr')).toBeNull();
+  });
+
   it('forgets the registered route when cleared', () => {
     service.register('/current-post', { en: 'current-post', hr: 'trenutni-post' });
     service.clear();

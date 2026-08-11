@@ -8,6 +8,23 @@ function normalise(path: string): string {
   return withoutQueryOrHash.length > 1 ? withoutQueryOrHash.replace(/\/$/, '') : '/';
 }
 
+function isSafeSlug(value: unknown): value is string {
+  if (typeof value !== 'string' || value.length === 0) return false;
+
+  let decoded: string;
+  try {
+    decoded = decodeURIComponent(value);
+  } catch {
+    return false;
+  }
+
+  return (
+    decoded.length > 0 &&
+    !/[/\\?#;()\u0000-\u001F\u007F]/.test(decoded) &&
+    !/^\.+$/.test(decoded)
+  );
+}
+
 @Injectable({ providedIn: 'root' })
 export class PostLanguageRouteService {
   private current: { path: string; translations: PostTranslations } | null = null;
@@ -24,7 +41,7 @@ export class PostLanguageRouteService {
     if (!this.current || this.current.path !== normalise(path)) return null;
 
     const slug = this.current.translations[target];
-    if (!slug || !/^[^/?#]+$/.test(slug)) return null;
+    if (!isSafeSlug(slug)) return null;
 
     return target === 'hr' ? `/hr/${slug}` : `/${slug}`;
   }
