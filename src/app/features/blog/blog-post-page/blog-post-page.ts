@@ -11,6 +11,8 @@ import { CtaBlock } from '../../../shared/components/cta-block/cta-block';
 import { LocalePathPipe } from '../../../core/i18n/locale-path.pipe';
 import { htmlToText } from '../../../shared/utils/html-text';
 
+type LightboxImage = { src: string; alt: string };
+
 @Component({
   standalone: true,
   imports: [CommonModule, RouterModule, Header, Footer, TranslateModule, CtaBlock, LocalePathPipe],
@@ -21,7 +23,9 @@ import { htmlToText } from '../../../shared/utils/html-text';
 export class BlogPostPage implements OnInit, OnDestroy {
   loading = true;
   post: any | null = null;
-  lightboxImage: { src: string; alt: string } | null = null;
+  lightboxImage: LightboxImage | null = null;
+  private lightboxImages: LightboxImage[] = [];
+  private lightboxIndex = 0;
 
   /** 'en' at the root (/slug/), 'hr' under the Croatian subtree (/hr/slug/). */
   private lang: 'en' | 'hr' = 'en';
@@ -310,14 +314,17 @@ export class BlogPostPage implements OnInit, OnDestroy {
   /** Handles images inserted through [innerHTML] without turning them into router links. */
   onPostImageClick(event: MouseEvent): void {
     const image = (event.target as HTMLElement | null)?.closest?.('img') as HTMLImageElement | null;
-    if (!image || !image.closest('#post-article')) return;
+    const article = image?.closest<HTMLElement>('#post-article');
+    if (!image || !article) return;
 
     event.preventDefault();
     event.stopPropagation();
-    this.lightboxImage = {
-      src: image.currentSrc || image.src,
-      alt: image.getAttribute('alt')?.trim() || 'Gallery image',
-    };
+    this.lightboxImages = Array.from(article.querySelectorAll('img')).map((item) => ({
+      src: item.currentSrc || item.src,
+      alt: item.getAttribute('alt')?.trim() || 'Gallery image',
+    }));
+    this.lightboxIndex = Math.max(0, this.lightboxImages.findIndex((item) => item.src === (image.currentSrc || image.src)));
+    this.lightboxImage = this.lightboxImages[this.lightboxIndex] ?? null;
   }
 
   onLightboxBackdropClick(event: MouseEvent): void {
@@ -326,11 +333,45 @@ export class BlogPostPage implements OnInit, OnDestroy {
 
   closeLightbox(): void {
     this.lightboxImage = null;
+    this.lightboxImages = [];
+    this.lightboxIndex = 0;
   }
 
-  @HostListener('document:keydown.escape')
-  onEscape(): void {
-    this.closeLightbox();
+  previousLightboxImage(): void {
+    this.moveLightboxImage(-1);
+  }
+
+  nextLightboxImage(): void {
+    this.moveLightboxImage(1);
+  }
+
+  hasLightboxNavigation(): boolean {
+    return this.lightboxImages.length > 1;
+  }
+
+  lightboxPosition(): string {
+    return `${this.lightboxIndex + 1} / ${this.lightboxImages.length}`;
+  }
+
+  @HostListener('document:keydown', ['$event'])
+  onLightboxKeydown(event: KeyboardEvent): void {
+    if (!this.lightboxImage) return;
+
+    if (event.key === 'Escape') {
+      this.closeLightbox();
+    } else if (event.key === 'ArrowLeft') {
+      event.preventDefault();
+      this.previousLightboxImage();
+    } else if (event.key === 'ArrowRight') {
+      event.preventDefault();
+      this.nextLightboxImage();
+    }
+  }
+
+  private moveLightboxImage(direction: -1 | 1): void {
+    if (this.lightboxImages.length < 2) return;
+    this.lightboxIndex = (this.lightboxIndex + direction + this.lightboxImages.length) % this.lightboxImages.length;
+    this.lightboxImage = this.lightboxImages[this.lightboxIndex];
   }
 
 }

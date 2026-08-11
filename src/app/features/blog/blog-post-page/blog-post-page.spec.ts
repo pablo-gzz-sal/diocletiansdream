@@ -92,6 +92,30 @@ describe('BlogPostPage', () => {
     expect(lightbox?.querySelector('img')?.getAttribute('src')).toBe('https://example.com/gallery.jpg');
   });
 
+  it('moves to the next image in the post from the lightbox', () => {
+    component.loading = false;
+    component.post = {
+      date: '2026-08-11T00:00:00.000Z',
+      title: { rendered: 'Gallery post' },
+      content: {
+        rendered: '<p><img src="https://example.com/first.jpg" alt="First image" /></p><p><img src="https://example.com/second.jpg" alt="Second image" /></p>',
+      },
+    };
+    fixture.detectChanges();
+
+    const image = fixture.nativeElement.querySelector('.blog-prose img') as HTMLImageElement;
+    image.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true }));
+    fixture.detectChanges();
+
+    const next = fixture.nativeElement.querySelector('.blog-gallery-lightbox__next') as HTMLButtonElement;
+    expect(next).not.toBeNull();
+    next.click();
+    fixture.detectChanges();
+
+    const preview = fixture.nativeElement.querySelector('.blog-gallery-lightbox__image') as HTMLImageElement;
+    expect(preview.getAttribute('src')).toBe('https://example.com/second.jpg');
+  });
+
   it('takes the Croatian title from og_title when the Yoast SEO title is English', () => {
     expect(pickTitle('hr', HR_POST_WITH_ENGLISH_YOAST_TITLE)).toBe(
       'Zašto je VR iskustvo jedan od najboljih načina da upoznate Dioklecijanovu palaču | Diocletians Dream'

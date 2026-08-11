@@ -142,6 +142,11 @@
 
   @if (lightboxImage; as image) {
     <div class="blog-gallery-lightbox" role="dialog" aria-modal="true" [attr.aria-label]="image.alt" (click)="onLightboxBackdropClick($event)">
+      @if (hasLightboxNavigation()) {
+        <button type="button" class="blog-gallery-lightbox__arrow blog-gallery-lightbox__previous" (click)="previousLightboxImage()" aria-label="Previous image">←</button>
+        <button type="button" class="blog-gallery-lightbox__arrow blog-gallery-lightbox__next" (click)="nextLightboxImage()" aria-label="Next image">→</button>
+        <p class="blog-gallery-lightbox__count" aria-live="polite">{{ lightboxPosition() }}</p>
+      }
       <button type="button" class="blog-gallery-lightbox__close" (click)="closeLightbox()" aria-label="Close image">×</button>
       <img class="blog-gallery-lightbox__image" [src]="image.src" [alt]="image.alt" />
     </div>
