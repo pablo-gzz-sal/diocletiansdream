@@ -52,11 +52,12 @@ export class BlogPostPage implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.lang = this.route.snapshot.data['lang'] === 'hr' ? 'hr' : 'en';
-
     this.sub = this.route.paramMap.subscribe(params => {
       const slug = params.get('slug');
       if (!slug) return;
+      // Angular reuses this component when EN and HR post routes change.
+      // Refresh the language from the active route before every request.
+      this.lang = this.route.snapshot.data['lang'] === 'hr' ? 'hr' : 'en';
       this.fetch(slug);
     });
   }

@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Router } from '@angular/router';
-import { Observable, of } from 'rxjs';
+import { ActivatedRoute, Router, convertToParamMap } from '@angular/router';
+import { BehaviorSubject, Observable, of } from 'rxjs';
 
 import { BlogPostPage } from './blog-post-page';
 import { SeoService } from '../../../shared/services/seo-service';
@@ -61,6 +61,12 @@ function nonCooperativePostLoad() {
 describe('BlogPostPage', () => {
   let component: BlogPostPage;
   let fixture: ComponentFixture<BlogPostPage>;
+  const routeParams = new BehaviorSubject(convertToParamMap({}));
+  const routeSnapshot = { data: { lang: 'en' } };
+  const routeStub = {
+    paramMap: routeParams.asObservable(),
+    snapshot: routeSnapshot,
+  };
 
   /** The title is picked by a private helper; drive it directly. */
   const pickTitle = (lang: 'en' | 'hr', post: unknown) => {
@@ -69,9 +75,15 @@ describe('BlogPostPage', () => {
   };
 
   beforeEach(async () => {
+    routeParams.next(convertToParamMap({}));
+    routeSnapshot.data.lang = 'en';
+
     await TestBed.configureTestingModule({
       imports: [BlogPostPage, ...commonTestImports],
-      providers: [...commonTestProviders]
+      providers: [
+        ...commonTestProviders,
+        { provide: ActivatedRoute, useValue: routeStub },
+      ]
     })
     .compileComponents();
 
@@ -247,6 +259,24 @@ describe('BlogPostPage', () => {
     expect(routes.destinationFor('/diocletians-palace-vr-experience', 'hr')).toBe(
       '/hr/vr-iskustvo-dioklecijanova-palaca',
     );
+  });
+
+  it('loads the Croatian translation in Croatian when the reused page changes locale', () => {
+    const router = TestBed.inject(Router);
+    let currentUrl = '/english-post';
+    spyOnProperty(router, 'url', 'get').and.callFake(() => currentUrl);
+    const postLoads = spyOn(TestBed.inject(WpService), 'getPostBySlug').and.returnValues(
+      of([{ slug: 'english-post', translations: { en: 'english-post', hr: 'hrvatski-post' } }]),
+      of([{ slug: 'hrvatski-post', translations: { en: 'english-post', hr: 'hrvatski-post' } }]),
+    );
+
+    routeParams.next(convertToParamMap({ slug: 'english-post' }));
+    currentUrl = '/hr/hrvatski-post';
+    routeSnapshot.data.lang = 'hr';
+    routeParams.next(convertToParamMap({ slug: 'hrvatski-post' }));
+
+    expect(postLoads.calls.argsFor(1)).toEqual(['hrvatski-post', 'hr']);
+    expect(component.post?.slug).toBe('hrvatski-post');
   });
 
   it('clears the registered post route when destroyed', () => {
