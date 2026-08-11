@@ -49,7 +49,7 @@ describe('BlogPostPage', () => {
     expect(component).toBeTruthy();
   });
 
-  it('renders the featured image with a native lightbox target', () => {
+  it('opens an in-page lightbox when a featured image is clicked', () => {
     component.loading = false;
     component.post = {
       date: '2026-08-11T00:00:00.000Z',
@@ -63,30 +63,33 @@ describe('BlogPostPage', () => {
     };
     fixture.detectChanges();
 
-    const trigger = fixture.nativeElement.querySelector('.post-image-lightbox-trigger') as HTMLAnchorElement | null;
-    const lightbox = fixture.nativeElement.querySelector('#dd-featured-lightbox') as HTMLElement | null;
+    const image = fixture.nativeElement.querySelector('.post-image-image') as HTMLImageElement;
+    image.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true }));
+    fixture.detectChanges();
 
-    expect(trigger?.getAttribute('href')).toBe('#dd-featured-lightbox');
+    const lightbox = fixture.nativeElement.querySelector('.blog-gallery-lightbox') as HTMLElement | null;
     expect(lightbox).not.toBeNull();
     expect(lightbox?.querySelector('img')?.getAttribute('src')).toBe('https://example.com/featured.jpg');
   });
 
-  it('preserves an editorial image lightbox target after Angular renders the post HTML', () => {
+  it('opens an in-page lightbox for an editorial post image without changing its link', () => {
     component.loading = false;
     component.post = {
       date: '2026-08-11T00:00:00.000Z',
       title: { rendered: 'Gallery post' },
       content: {
-        rendered: '<p><a class="post-image-lightbox-trigger" href="#dd-post-image-lightbox-1"><img src="https://example.com/gallery.jpg" alt="Gallery visitor" /></a></p><figure id="dd-post-image-lightbox-1" class="post-image-lightbox"><img class="post-image-lightbox__image" src="https://example.com/gallery.jpg" alt="Gallery visitor" /></figure>',
+        rendered: '<p><img src="https://example.com/gallery.jpg" alt="Gallery visitor" /></p>',
       },
     };
     fixture.detectChanges();
 
-    const trigger = fixture.nativeElement.querySelector('.blog-prose .post-image-lightbox-trigger') as HTMLAnchorElement | null;
-    const lightbox = fixture.nativeElement.querySelector('.blog-prose #dd-post-image-lightbox-1') as HTMLElement | null;
+    const image = fixture.nativeElement.querySelector('.blog-prose img') as HTMLImageElement;
+    image.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true }));
+    fixture.detectChanges();
 
-    expect(trigger?.getAttribute('href')).toBe('#dd-post-image-lightbox-1');
-    expect(lightbox?.querySelector('.post-image-lightbox__image')).not.toBeNull();
+    const lightbox = fixture.nativeElement.querySelector('.blog-gallery-lightbox') as HTMLElement | null;
+
+    expect(lightbox?.querySelector('img')?.getAttribute('src')).toBe('https://example.com/gallery.jpg');
   });
 
   it('takes the Croatian title from og_title when the Yoast SEO title is English', () => {

@@ -1,4 +1,4 @@
-import { Component, DOCUMENT, Inject, OnDestroy, OnInit } from '@angular/core';
+import { Component, DOCUMENT, HostListener, Inject, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -21,6 +21,7 @@ import { htmlToText } from '../../../shared/utils/html-text';
 export class BlogPostPage implements OnInit, OnDestroy {
   loading = true;
   post: any | null = null;
+  lightboxImage: { src: string; alt: string } | null = null;
 
   /** 'en' at the root (/slug/), 'hr' under the Croatian subtree (/hr/slug/). */
   private lang: 'en' | 'hr' = 'en';
@@ -304,6 +305,32 @@ export class BlogPostPage implements OnInit, OnDestroy {
 
   contentHtml(post: any): string {
     return post?.content?.rendered ?? '';
+  }
+
+  /** Handles images inserted through [innerHTML] without turning them into router links. */
+  onPostImageClick(event: MouseEvent): void {
+    const image = (event.target as HTMLElement | null)?.closest?.('img') as HTMLImageElement | null;
+    if (!image || !image.closest('#post-article')) return;
+
+    event.preventDefault();
+    event.stopPropagation();
+    this.lightboxImage = {
+      src: image.currentSrc || image.src,
+      alt: image.getAttribute('alt')?.trim() || 'Gallery image',
+    };
+  }
+
+  onLightboxBackdropClick(event: MouseEvent): void {
+    if (event.target === event.currentTarget) this.closeLightbox();
+  }
+
+  closeLightbox(): void {
+    this.lightboxImage = null;
+  }
+
+  @HostListener('document:keydown.escape')
+  onEscape(): void {
+    this.closeLightbox();
   }
 
 }

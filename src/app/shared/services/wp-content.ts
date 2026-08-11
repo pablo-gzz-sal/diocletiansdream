@@ -24,7 +24,6 @@ export class WpContentService {
 
       this.dropResponsiveDuplicates(root);
       this.backfillAlt(root, altById);
-      this.addImageLightboxes(root);
 
       return root.innerHTML;
     } catch (err) {
@@ -92,56 +91,6 @@ export class WpContentService {
     }
   }
 
-  /**
-   * WordPress body HTML is inserted through [innerHTML], so Angular cannot
-   * safely bind a click handler to its images. Give each image a regular hash
-   * link and a matching :target overlay instead. This works before hydration,
-   * after hydration, and in static builds alike.
-   */
-  private addImageLightboxes(root: HTMLElement): void {
-    const images = this.queryAll(root, 'img');
-
-    images.forEach((image, index) => {
-      if (image.closest('.post-image-lightbox, .post-image-lightbox-trigger')) return;
-
-      const id = `dd-post-image-lightbox-${index + 1}`;
-      const alt = image.getAttribute('alt')?.trim() ?? '';
-      const source = image.getAttribute('src') ?? '';
-
-      const trigger = this.doc.createElement('a');
-      trigger.className = 'post-image-lightbox-trigger';
-      trigger.setAttribute('href', `#${id}`);
-      trigger.setAttribute('aria-label', alt ? `Open image: ${alt}` : 'Open image');
-      image.parentNode?.insertBefore(trigger, image);
-      trigger.appendChild(image);
-
-      const overlay = this.doc.createElement('figure');
-      overlay.id = id;
-      overlay.className = 'post-image-lightbox';
-      overlay.setAttribute('aria-label', alt || 'Image preview');
-
-      const backdrop = this.doc.createElement('a');
-      backdrop.className = 'post-image-lightbox__backdrop';
-      backdrop.setAttribute('href', '#post-article');
-      backdrop.setAttribute('aria-label', 'Close image');
-
-      const preview = this.doc.createElement('img');
-      preview.className = 'post-image-lightbox__image';
-      preview.setAttribute('src', source);
-      preview.setAttribute('alt', alt);
-
-      const close = this.doc.createElement('a');
-      close.className = 'post-image-lightbox__close';
-      close.setAttribute('href', '#post-article');
-      close.setAttribute('aria-label', 'Close image');
-      close.textContent = '×';
-
-      overlay.appendChild(backdrop);
-      overlay.appendChild(preview);
-      overlay.appendChild(close);
-      root.appendChild(overlay);
-    });
-  }
 }
 
 /** `wp-image-666` -> 666. */

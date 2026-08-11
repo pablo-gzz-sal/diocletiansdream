@@ -1,6 +1,6 @@
 
 <app-header></app-header>
-<div class="blog-post-page min-h-screen bg-cream overflow-x-hidden">
+<div class="blog-post-page min-h-screen bg-cream overflow-x-hidden" (click)="onPostImageClick($event)">
   <!-- Back nav -->
   <div class="mx-auto max-w-7xl px-6 lg:px-8 pt-28">
     <a
@@ -67,25 +67,16 @@
 
       <!-- Hero image -->
       <div class="mt-10 rounded-[1rem] overflow-hidden border border-black/10">
-        @if (featuredImage(post); as img) {
-          <a href="#dd-featured-lightbox" class="post-image-lightbox-trigger" [attr.aria-label]="titleText(post)">
-            <img [src]="img" [alt]="titleText(post)" class="aspect-[16/9] w-full object-cover block" />
-          </a>
-        } @else {
-          <ng-container *ngTemplateOutlet="heroPlaceholder"></ng-container>
-        }
+        <img
+          *ngIf="featuredImage(post) as img; else heroPlaceholder"
+          [src]="img"
+          [alt]="titleText(post)"
+          class="post-image-image aspect-[16/9] w-full object-cover block"
+        />
         <ng-template #heroPlaceholder>
           <div class="aspect-[16/9] w-full bg-gradient-to-br from-sand to-[#ddd5c5]"></div>
         </ng-template>
       </div>
-
-      @if (featuredImage(post); as img) {
-        <figure id="dd-featured-lightbox" class="post-image-lightbox" [attr.aria-label]="titleText(post)">
-          <a href="#post-article" class="post-image-lightbox__backdrop" aria-label="Close image"></a>
-          <img [src]="img" [alt]="titleText(post)" class="post-image-lightbox__image" />
-          <a href="#post-article" class="post-image-lightbox__close" aria-label="Close image">×</a>
-        </figure>
-      }
 
       <!-- Prose body -->
       <div class="mt-12 blog-prose" [innerHTML]="contentHtml(post)"></div>
@@ -149,6 +140,12 @@
   <app-cta-block
 ></app-cta-block>
 
+  @if (lightboxImage; as image) {
+    <div class="blog-gallery-lightbox" role="dialog" aria-modal="true" [attr.aria-label]="image.alt" (click)="onLightboxBackdropClick($event)">
+      <button type="button" class="blog-gallery-lightbox__close" (click)="closeLightbox()" aria-label="Close image">×</button>
+      <img class="blog-gallery-lightbox__image" [src]="image.src" [alt]="image.alt" />
+    </div>
+  }
 </div>
 
 <app-footer></app-footer>
