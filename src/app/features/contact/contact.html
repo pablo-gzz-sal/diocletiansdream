@@ -4,7 +4,7 @@
   <!-- ════════════════════════════════════════
        HERO
   ════════════════════════════════════════ -->
-  <section class="relative overflow-hidden bg-cream pt-40 pb-16 px-6 lg:px-8">
+  <section class="visit-hero relative overflow-hidden bg-cream pt-36 pb-20 px-6 lg:px-8 lg:pt-40 lg:pb-24">
     <!-- Background layers -->
     <div class="absolute inset-0 overflow-hidden dd-grain">
       <div
@@ -45,9 +45,9 @@
     </div>
 
     <div class="relative mx-auto max-w-7xl">
-      <div class="grid gap-12 lg:grid-cols-[1fr_420px] lg:items-center">
+      <div class="grid gap-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:items-center lg:gap-16">
         <!-- Left: eyebrow + H1 + text -->
-        <div revealOnScroll [revealDelay]="0.1">
+        <div class="visit-hero-copy" revealOnScroll [revealDelay]="0.1">
           <p class="eyebrow mb-5">
             {{ 'visitPage.hero.eyebrow' | translate }}
           </p>
@@ -72,7 +72,7 @@
             <a [routerLink]="'/visit' | locPath" fragment="hours" class="btn btn--ghost">{{ 'visitPage.hero.ctaHours' | translate }}</a>
           </div>
 
-          <div class="mt-8 flex flex-wrap items-center gap-3 text-ink-60">
+          <div class="visit-hero-chips mt-8 flex flex-wrap items-center gap-3 text-ink-60">
             <span class="rounded-full border border-black/10 bg-white/50 px-4 py-2 font-[family-name:var(--font-sans)] text-[0.7rem] tracking-[0.12em] uppercase">
               {{ 'visitPage.hero.chipHistoricCentre' | translate }}
             </span>
@@ -85,28 +85,23 @@
           </div>
         </div>
 
-        <!-- Right: side card -->
+        <!-- Right: location image -->
         <div
           revealOnScroll [revealDelay]="0.25" [revealY]="30"
-          class="rounded-[1.125rem] border border-black/10 bg-white/60 overflow-hidden shadow-[0_12px_60px_rgba(26,24,20,0.07)]"
+          class="visit-hero-visual"
         >
-          <div class="aspect-[4/5] bg-gradient-to-b from-sand to-cream overflow-hidden">
-            <img
-              src="assets/images/vr/substructures.jpg"
-              alt="Interior of Diocletians Palace substructures near the museum entrance"
-              width="1200"
-              height="1500"
-              class="w-full h-full object-cover"
-              loading="lazy"
-            />
-          </div>
-          <div class="p-6">
-            <p class="font-[family-name:var(--font-serif)] italic text-[1.1rem] text-ink">
-              {{ 'visitPage.sideCard.title' | translate }}
-            </p>
-            <p class="mt-1 font-[family-name:var(--font-sans)] text-[0.78rem] text-ink-60">
-              {{ 'visitPage.sideCard.text' | translate }}
-            </p>
+          <img
+            src="assets/images/vr/trailer-stills/golden-gate-market-street.jpg"
+            alt="Reconstructed market street beside the Golden Gate of Diocletians Palace"
+            width="1920"
+            height="1080"
+            class="h-full w-full object-cover"
+            loading="eager"
+          />
+          <div class="visit-hero-image-shade" aria-hidden="true"></div>
+          <div class="visit-hero-image-caption">
+            <span>{{ 'visitPage.hero.chipGoldenGate' | translate }}</span>
+            <span>{{ 'visitPage.hero.chipTimeSlots' | translate }}</span>
           </div>
         </div>
       </div>

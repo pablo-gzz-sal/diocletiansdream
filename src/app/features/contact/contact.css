@@ -32,6 +32,75 @@
   font-size: clamp(1.05rem, 1.35vw, 1.18rem);
 }
 
+.visit-hero {
+  background:
+    radial-gradient(circle at 83% 16%, rgba(194, 154, 89, 0.19), transparent 29%),
+    radial-gradient(circle at 7% 84%, rgba(45, 4, 106, 0.08), transparent 26%),
+    var(--color-cream) !important;
+}
+
+.visit-hero-copy {
+  max-width: 43rem;
+}
+
+.visit-hero .eyebrow {
+  font-size: clamp(0.64rem, 0.72vw, 0.74rem);
+  letter-spacing: 0.12em;
+  white-space: nowrap;
+}
+
+.visit-hero-visual {
+  position: relative;
+  min-height: clamp(25rem, 44vw, 34rem);
+  overflow: hidden;
+  border: 1px solid rgba(26, 24, 20, 0.14);
+  border-radius: 1.5rem;
+  background: #2a1b1d;
+  box-shadow: 0 26px 76px rgba(52, 35, 24, 0.22);
+}
+
+.visit-hero-visual > img {
+  position: absolute;
+  inset: 0;
+  height: 100%;
+  width: 100%;
+  object-position: 53% center;
+  transform: scale(1.015);
+}
+
+.visit-hero-image-shade {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(19, 13, 23, 0.04) 28%, rgba(19, 13, 23, 0.68) 100%),
+    linear-gradient(90deg, rgba(19, 13, 23, 0.28), transparent 56%);
+}
+
+.visit-hero-image-caption {
+  position: absolute;
+  right: 1.25rem;
+  bottom: 1.25rem;
+  left: 1.25rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.visit-hero-image-caption span {
+  border: 1px solid rgba(255, 249, 239, 0.3);
+  border-radius: 999px;
+  background: rgba(22, 15, 26, 0.48);
+  padding: 0.5rem 0.7rem;
+  color: #fff9ee;
+  font-family: var(--font-sans);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+}
+
 .visit-reading-card,
 .visit-schedule-card,
 .visit-map-card {
@@ -149,6 +218,21 @@
 
   .visit-audience-card {
     min-height: auto;
+  }
+
+  .visit-hero-visual {
+    min-height: 20rem;
+    border-radius: 1.125rem;
+  }
+
+  .visit-hero .eyebrow {
+    white-space: normal;
+  }
+
+  .visit-hero-image-caption {
+    right: 0.9rem;
+    bottom: 0.9rem;
+    left: 0.9rem;
   }
 
   .visit-hours-panel {
