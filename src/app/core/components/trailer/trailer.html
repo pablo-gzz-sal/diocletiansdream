@@ -14,7 +14,7 @@
     </header>
 
     <!-- Cinematic 16:9 frame -->
-    <div class="reel" [class.reel--playing]="activated">
+    <div class="reel" [class.reel--playing]="playing">
       <!-- Corner ticks — film-frame detailing -->
       <span class="reel-corner reel-corner--tl" aria-hidden="true"></span>
       <span class="reel-corner reel-corner--tr" aria-hidden="true"></span>
@@ -30,14 +30,16 @@
         muted
         loop
         playsinline
-        [controls]="activated"
+        [controls]="playing"
+        (play)="onVideoPlay()"
+        (pause)="onVideoPause()"
         [attr.aria-label]="'home.trailer.title' | translate"
       >
         <source [src]="src" type="video/mp4" />
       </video>
 
-      <!-- Poster veil + play affordance (removed once activated) -->
-      @if (!activated) {
+      <!-- Poster veil + play affordance remain only while playback is unavailable. -->
+      @if (!playing) {
         <div class="reel-veil" aria-hidden="true"></div>
 
         <button

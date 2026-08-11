@@ -36,8 +36,8 @@ export class Trailer implements AfterViewInit, OnDestroy {
   readonly src = `${environment.wpBaseUrl.replace(/\/+$/, '')}/wp-content/uploads/2026/07/Sizzle-Reel-Diocletians-Dream.mp4`;
   readonly poster = 'assets/images/vr/emperor-peristyle.jpg';
 
-  /** Once true, the mp4 is loaded, native controls appear and the poster fades out. */
-  activated = false;
+  /** Tracks actual media playback so the visual fallback follows the video state. */
+  playing = false;
 
   private isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
   readonly autoplayAllowed = this.isBrowser && !this.prefersReducedMotion();
@@ -69,15 +69,20 @@ export class Trailer implements AfterViewInit, OnDestroy {
   }
 
   play(): void {
-    if (this.activated || !this.isBrowser) return;
-    this.activated = true;
+    if (this.playing || !this.isBrowser) return;
 
-    // preload="none" means the source isn't fetched until now — kick it off.
     const v = this.videoRef?.nativeElement;
     if (!v) return;
-    v.load();
     const p = v.play();
     if (p && typeof p.catch === 'function') p.catch(() => {});
+  }
+
+  onVideoPlay(): void {
+    this.playing = true;
+  }
+
+  onVideoPause(): void {
+    this.playing = false;
   }
 
   ngOnDestroy(): void {
