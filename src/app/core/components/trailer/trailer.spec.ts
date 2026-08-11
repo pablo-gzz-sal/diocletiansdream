@@ -17,18 +17,14 @@ describe('Trailer', () => {
     const bookingCta = fixture.nativeElement.querySelector(
       '[data-testid="hero-booking-cta"]',
     ) as HTMLAnchorElement;
-    const bookingDockText = bookingDock.textContent.replace(/\s+/g, ' ');
+    const bookingFacts = bookingDock.querySelectorAll('.booking-fact');
 
     expect(heading).withContext('hero heading').not.toBeNull();
-    expect(bookingDockText).toContain('15-minute experience');
-    expect(bookingDockText).toContain('Beside the Golden Gate');
-    expect(bookingDockText).toContain('Adult €13');
-    expect(bookingDockText).toContain('Child €9');
-    expect(bookingDockText).toContain('ages 8–14');
-    expect(bookingDockText).toContain('Tripadvisor Travellers’ Choice · 2022 & 2023');
+    expect(bookingFacts.length).toBe(4);
+    expect(fixture.nativeElement.querySelector('.trailer-trust')).not.toBeNull();
     expect(video.autoplay).toBeTrue();
     expect(video.muted).toBeTrue();
-    expect(video.loop).toBeTrue();
+    expect(video.loop).toBeFalse();
     expect(video.hasAttribute('playsinline')).toBeTrue();
     expect(bookingCta).withContext('hero booking CTA').not.toBeNull();
     expect(bookingCta.getAttribute('href')).toBe('/booking');
@@ -57,6 +53,52 @@ describe('Trailer', () => {
     expect(component.playing).toBeFalse();
     expect(fixture.nativeElement.querySelector('.trailer-play')).toBeNull();
     expect(video.controls).toBeTrue();
+  });
+
+  it('starts the clean loop after the opening branding and resets once before the closing branding', () => {
+    const component = fixture.componentInstance;
+    const video = fixture.nativeElement.querySelector('video') as HTMLVideoElement;
+    const play = spyOn(video, 'play').and.returnValue(Promise.resolve());
+
+    setVideoTime(video, 0);
+    component.onVideoLoadedMetadata();
+
+    expect(video.currentTime).toBe(5);
+
+    setVideoTime(video, 47.2);
+    component.onVideoTimeUpdate();
+
+    expect(video.currentTime).toBe(5);
+    expect(play).toHaveBeenCalledTimes(1);
+
+    setVideoTime(video, 47.2);
+    component.onVideoTimeUpdate();
+
+    expect(video.currentTime).toBe(47.2);
+    expect(play).toHaveBeenCalledTimes(1);
+
+    component.onVideoSeeked();
+    component.onVideoTimeUpdate();
+
+    expect(video.currentTime).toBe(5);
+    expect(play).toHaveBeenCalledTimes(2);
+  });
+
+  it('only shows the cinematic copy at the start and end of the clean loop', () => {
+    const component = fixture.componentInstance;
+    const video = fixture.nativeElement.querySelector('video') as HTMLVideoElement;
+
+    setVideoTime(video, 5);
+    component.onVideoTimeUpdate();
+    expect(component.heroCopyVisible).toBeTrue();
+
+    setVideoTime(video, 10.1);
+    component.onVideoTimeUpdate();
+    expect(component.heroCopyVisible).toBeFalse();
+
+    setVideoTime(video, 43.2);
+    component.onVideoTimeUpdate();
+    expect(component.heroCopyVisible).toBeTrue();
   });
 
   it('disables autoplay for reduced motion and keeps the manual play fallback', async () => {
@@ -89,4 +131,8 @@ async function createTrailerFixture(): Promise<ComponentFixture<Trailer>> {
   const fixture = TestBed.createComponent(Trailer);
   fixture.detectChanges();
   return fixture;
+}
+
+function setVideoTime(video: HTMLVideoElement, time: number): void {
+  Object.defineProperty(video, 'currentTime', { configurable: true, value: time, writable: true });
 }

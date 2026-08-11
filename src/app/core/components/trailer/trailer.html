@@ -5,12 +5,14 @@
     [poster]="poster"
     [autoplay]="autoplayAllowed"
     [attr.preload]="autoplayAllowed ? 'metadata' : 'none'"
-    muted
-    loop
+    [muted]="true"
     playsinline
     [controls]="hasStarted"
     (play)="onVideoPlay()"
     (pause)="onVideoPause()"
+    (loadedmetadata)="onVideoLoadedMetadata()"
+    (timeupdate)="onVideoTimeUpdate()"
+    (seeked)="onVideoSeeked()"
     [attr.aria-label]="'home.heroConversion.title' | translate"
   >
     <source [src]="src" type="video/mp4" />
@@ -18,7 +20,7 @@
 
   <div class="trailer-scrim" aria-hidden="true"></div>
 
-  <div class="trailer-content">
+  <div class="trailer-content" [class.trailer-content--hidden]="!heroCopyVisible" [attr.aria-hidden]="!heroCopyVisible">
     <header class="trailer-heading" aria-labelledby="trailer-title">
       <p class="eyebrow">{{ 'home.hero.title' | translate }}</p>
       <h1 id="trailer-title" class="section-h2 trailer-h1">
@@ -29,9 +31,18 @@
       </p>
     </header>
 
-    <a [routerLink]="'/booking' | locPath" class="btn btn--cream trailer-cta" data-testid="hero-booking-cta">
+    <a
+      [routerLink]="'/booking' | locPath"
+      class="btn btn--cream trailer-cta"
+      data-testid="hero-overlay-booking-cta"
+      [attr.tabindex]="heroCopyVisible ? null : -1"
+    >
       {{ 'home.heroConversion.bookingCta' | translate }}
     </a>
+
+    <p class="trailer-trust">
+      {{ 'home.heroConversion.trust' | translate }}
+    </p>
   </div>
 
   @if (!hasStarted) {
@@ -48,27 +59,26 @@
   }
 
   <section class="booking-dock" [attr.aria-label]="'home.heroConversion.bookingInfo' | translate">
-      <dl class="booking-dock__facts">
-        <div class="booking-fact">
-          <dd>{{ 'home.heroConversion.duration' | translate }}</dd>
-        </div>
-        <div class="booking-fact">
-          <dd>{{ 'home.heroConversion.location' | translate }}</dd>
-        </div>
-        <div class="booking-fact">
-          <dd>{{ 'home.heroConversion.adult' | translate }}</dd>
-        </div>
-        <div class="booking-fact">
-          <dd>
-            {{ 'home.heroConversion.child' | translate }}
-            <span>{{ 'home.heroConversion.childAges' | translate }}</span>
-          </dd>
-        </div>
-      </dl>
+    <dl class="booking-dock__facts">
+      <div class="booking-fact">
+        <dd>{{ 'home.heroConversion.duration' | translate }}</dd>
+      </div>
+      <div class="booking-fact">
+        <dd>{{ 'home.heroConversion.location' | translate }}</dd>
+      </div>
+      <div class="booking-fact">
+        <dd>{{ 'home.heroConversion.adult' | translate }}</dd>
+      </div>
+      <div class="booking-fact">
+        <dd>
+          {{ 'home.heroConversion.child' | translate }}
+          <span>{{ 'home.heroConversion.childAges' | translate }}</span>
+        </dd>
+      </div>
+    </dl>
 
-    <p class="booking-dock__trust">
-      {{ 'home.heroConversion.trust' | translate }}
-    </p>
-
+    <a [routerLink]="'/booking' | locPath" class="btn btn--cream booking-dock__cta" data-testid="hero-booking-cta">
+      {{ 'home.heroConversion.bookingCta' | translate }}
+    </a>
   </section>
 </section>

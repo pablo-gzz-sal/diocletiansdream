@@ -15,6 +15,12 @@ import { environment } from '../../../../environments/environment';
 export class Trailer {
   @ViewChild('video') videoRef?: ElementRef<HTMLVideoElement>;
 
+  /** Skip the opening logo and reset before the closing branding begins. */
+  readonly loopStartSeconds = 5;
+  readonly loopEndSeconds = 47.2;
+  readonly heroCopyVisibleForSeconds = 5;
+  readonly heroCopyReturnForSeconds = 4;
+
   /**
    * Served from the headless WordPress host (CMS subdomain) over https to avoid
    * mixed-content blocking. The root domain is the static Angular site now and
@@ -29,7 +35,11 @@ export class Trailer {
   /** Remains true after a pause so the viewer never loses access to playback controls. */
   hasStarted = false;
 
+  /** Keeps the opening and closing beats readable while the middle stays cinematic. */
+  heroCopyVisible = true;
+
   private isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
+  private loopSeekInProgress = false;
   readonly autoplayAllowed = this.isBrowser && !this.prefersReducedMotion();
 
   play(): void {
@@ -49,6 +59,42 @@ export class Trailer {
   onVideoPause(): void {
     this.playing = false;
   }
+
+  onVideoLoadedMetadata(): void {
+    const video = this.videoRef?.nativeElement;
+    if (!video) return;
+
+    video.currentTime = this.loopStartSeconds;
+    this.updateHeroCopyVisibility(this.loopStartSeconds);
+  }
+
+  onVideoTimeUpdate(): void {
+    const video = this.videoRef?.nativeElement;
+    if (!video) return;
+
+    this.updateHeroCopyVisibility(video.currentTime);
+
+    if (this.loopSeekInProgress || video.currentTime < this.loopEndSeconds) return;
+
+    this.loopSeekInProgress = true;
+    video.currentTime = this.loopStartSeconds;
+    this.updateHeroCopyVisibility(this.loopStartSeconds);
+
+    const playback = video.play();
+    if (playback && typeof playback.catch === 'function') playback.catch(() => {});
+  }
+
+  onVideoSeeked(): void {
+    this.loopSeekInProgress = false;
+  }
+
+  private updateHeroCopyVisibility(currentTime: number): void {
+    const elapsedLoopTime = currentTime - this.loopStartSeconds;
+    this.heroCopyVisible =
+      elapsedLoopTime <= this.heroCopyVisibleForSeconds ||
+      currentTime >= this.loopEndSeconds - this.heroCopyReturnForSeconds;
+  }
+
   private prefersReducedMotion(): boolean {
     return typeof window.matchMedia === 'function' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   }
