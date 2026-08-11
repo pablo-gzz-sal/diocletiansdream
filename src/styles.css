@@ -1116,6 +1116,12 @@ main::after {
   backdrop-filter: none;
 }
 
+.dd-site-header.dd-header-hidden {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-1rem);
+}
+
 .dd-site-header.dd-header-home-top img {
   background: rgba(245, 240, 232, 0.88);
   box-shadow:

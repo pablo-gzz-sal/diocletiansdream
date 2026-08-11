@@ -19,6 +19,18 @@
   height: 100%;
 }
 
+.trailer-logo {
+  position: absolute;
+  top: clamp(1.75rem, 5.5vh, 4.5rem);
+  left: 50%;
+  z-index: 2;
+  display: block;
+  width: min(250px, 58vw);
+  height: auto;
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
 .trailer-video {
   z-index: 0;
   display: block;

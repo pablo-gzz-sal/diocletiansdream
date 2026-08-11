@@ -16,6 +16,8 @@ import { LocalePathPipe } from '../../i18n/locale-path.pipe';
   styleUrl: './header.css',
 })
 export class Header implements OnInit, OnDestroy, AfterViewInit {
+  private static readonly HOME_HEADER_REVEAL_OFFSET = 200;
+
   menuOpen = signal(false);
   scrolled = signal(false);
   homeRoute = signal(false);
@@ -41,13 +43,12 @@ export class Header implements OnInit, OnDestroy, AfterViewInit {
 
   ngAfterViewInit() {
     if (!this.isBrowser) return;
-    this.scrolled.set((window.scrollY || 0) > 8);
+    this.updateScrollState();
   }
 
   @HostListener('window:scroll')
   onScroll() {
-    const y = window.scrollY || 0;
-    this.scrolled.set(y > 8);
+    this.updateScrollState();
   }
 
   toggleMenu() {
@@ -90,5 +91,11 @@ export class Header implements OnInit, OnDestroy, AfterViewInit {
     // Compare the locale-stripped path so /hr/ counts as home too.
     const { path } = stripLocale(this.router.url);
     this.homeRoute.set(path === '/');
+    if (this.isBrowser) this.updateScrollState();
+  }
+
+  private updateScrollState() {
+    const offset = this.homeRoute() ? Header.HOME_HEADER_REVEAL_OFFSET : 8;
+    this.scrolled.set((window.scrollY || 0) > offset);
   }
 }
