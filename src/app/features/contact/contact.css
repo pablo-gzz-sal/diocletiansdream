@@ -66,6 +66,11 @@
   backdrop-filter: blur(10px);
 }
 
+.visit-audience-card p:not(.eyebrow) {
+  font-size: 0.94rem !important;
+  line-height: 1.66 !important;
+}
+
 .visit-audience-card .eyebrow {
   color: var(--dd-gold) !important;
   border-color: rgba(194, 154, 89, 0.56);
@@ -73,6 +78,16 @@
 
 .visit-audience-actions {
   flex-shrink: 0;
+}
+
+.visit-hours-panel {
+  display: flex;
+  flex-direction: column;
+}
+
+.visit-hours-actions {
+  margin-top: auto;
+  padding-top: 2rem;
 }
 
 @media (max-width: 767px) {
@@ -83,6 +98,10 @@
   }
 
   .visit-audience-card {
+    min-height: auto;
+  }
+
+  .visit-hours-panel {
     min-height: auto;
   }
 }
