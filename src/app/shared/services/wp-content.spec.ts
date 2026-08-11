@@ -86,6 +86,19 @@ describe('WpContentService', () => {
     expect(out).toContain('alt=""');
   });
 
+  it('gives every editorial image a native lightbox target', () => {
+    const out = service.clean(
+      '<p><img src="https://cms.example.com/first.webp" alt="First reconstruction" /></p>' +
+      '<figure><img src="https://cms.example.com/second.webp" alt="Second reconstruction" /></figure>',
+    );
+
+    expect(out).toContain('class="post-image-lightbox-trigger"');
+    expect(out).toContain('href="#dd-post-image-lightbox-1"');
+    expect(out).toContain('id="dd-post-image-lightbox-1"');
+    expect(out).toContain('id="dd-post-image-lightbox-2"');
+    expect(out).toContain('class="post-image-lightbox__image"');
+  });
+
   it('handles empty content', () => {
     expect(service.clean('')).toBe('');
   });

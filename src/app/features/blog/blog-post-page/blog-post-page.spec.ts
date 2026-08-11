@@ -49,24 +49,26 @@ describe('BlogPostPage', () => {
     expect(component).toBeTruthy();
   });
 
-  it('opens the lightbox when an editorial image is clicked', () => {
+  it('renders the featured image with a native lightbox target', () => {
     component.loading = false;
     component.post = {
       date: '2026-08-11T00:00:00.000Z',
       title: { rendered: 'Gallery post' },
+      _embedded: {
+        'wp:featuredmedia': [{ source_url: 'https://example.com/featured.jpg' }],
+      },
       content: {
         rendered: '<figure class="wp-block-gallery"><figure class="wp-block-image"><img src="https://example.com/gallery.jpg" alt="Gallery visitor" /></figure></figure>',
       },
     };
     fixture.detectChanges();
 
-    const image = fixture.nativeElement.querySelector('.blog-prose img') as HTMLImageElement;
-    image.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true }));
-    fixture.detectChanges();
+    const trigger = fixture.nativeElement.querySelector('.post-image-lightbox-trigger') as HTMLAnchorElement | null;
+    const lightbox = fixture.nativeElement.querySelector('#dd-featured-lightbox') as HTMLElement | null;
 
-    const lightbox = fixture.nativeElement.querySelector('.blog-gallery-lightbox') as HTMLElement | null;
+    expect(trigger?.getAttribute('href')).toBe('#dd-featured-lightbox');
     expect(lightbox).not.toBeNull();
-    expect(lightbox?.querySelector('img')?.getAttribute('src')).toBe('https://example.com/gallery.jpg');
+    expect(lightbox?.querySelector('img')?.getAttribute('src')).toBe('https://example.com/featured.jpg');
   });
 
   it('takes the Croatian title from og_title when the Yoast SEO title is English', () => {
