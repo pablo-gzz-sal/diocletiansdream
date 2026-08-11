@@ -114,6 +114,29 @@
   justify-content: flex-end;
 }
 
+.experience-process-stats {
+  overflow: hidden;
+  box-shadow: 0 16px 44px rgba(26, 24, 20, 0.055);
+}
+
+.experience-process-stat {
+  display: flex;
+  min-width: 0;
+  min-height: 9.4rem;
+  flex-direction: column;
+  justify-content: center;
+  padding: 1.35rem 0.75rem;
+  text-align: center;
+}
+
+.experience-process-stat + .experience-process-stat {
+  border-left: 1px solid rgba(26, 24, 20, 0.1);
+}
+
+.experience-process-stat p:last-child {
+  line-height: 1.45 !important;
+}
+
 .experience-proof-card {
   min-height: 9.4rem;
 }
