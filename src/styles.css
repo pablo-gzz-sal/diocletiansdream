@@ -452,6 +452,10 @@ body {
   transition: transform 240ms var(--ease-out), filter 240ms var(--ease-out);
 }
 
+.blog-post-page article img {
+  cursor: zoom-in;
+}
+
 .blog-prose .wp-block-gallery .wp-block-image:hover img {
   filter: brightness(1.04);
   transform: scale(1.025);

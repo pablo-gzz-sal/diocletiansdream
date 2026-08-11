@@ -27,7 +27,7 @@ export class BlogPostPage implements OnInit, OnDestroy {
   private lang: 'en' | 'hr' = 'en';
 
   private sub?: Subscription;
-  private readonly galleryClickListener = (event: Event) => this.onProseClick(event as MouseEvent);
+  private readonly galleryClickListener = (event: Event) => this.onPostImageClick(event as MouseEvent);
 
   // Set once (or move to environment.ts)
   private readonly SITE_NAME = "Diocletians Dream";
@@ -310,10 +310,10 @@ export class BlogPostPage implements OnInit, OnDestroy {
     return post?.content?.rendered ?? '';
   }
 
-  /** Open only images that WordPress has marked as part of a gallery. */
-  onProseClick(event: MouseEvent): void {
+  /** Every editorial image can be expanded; galleries additionally receive the grid treatment. */
+  onPostImageClick(event: MouseEvent): void {
     const image = (event.target as HTMLElement | null)?.closest?.('img') as HTMLImageElement | null;
-    if (!image || !image.closest('.wp-block-gallery')) return;
+    if (!image || !image.closest('.blog-post-page article')) return;
 
     event.preventDefault();
     const link = image.closest('a[href]') as HTMLAnchorElement | null;
