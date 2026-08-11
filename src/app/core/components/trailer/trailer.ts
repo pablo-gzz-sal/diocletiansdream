@@ -8,8 +8,10 @@ import {
   PLATFORM_ID,
   ViewChild,
 } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { RevealOnScrollDirective } from '../../../shared/animations/reveal-on-scroll-directive';
+import { LocalePathPipe } from '../../i18n/locale-path.pipe';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { environment } from '../../../../environments/environment';
@@ -19,7 +21,7 @@ gsap.registerPlugin(ScrollTrigger);
 @Component({
   selector: 'app-trailer',
   standalone: true,
-  imports: [CommonModule, TranslateModule, RevealOnScrollDirective],
+  imports: [CommonModule, RouterLink, TranslateModule, RevealOnScrollDirective, LocalePathPipe],
   templateUrl: './trailer.html',
   styleUrl: './trailer.css',
 })
@@ -38,6 +40,7 @@ export class Trailer implements AfterViewInit, OnDestroy {
   activated = false;
 
   private isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
+  readonly autoplayAllowed = this.isBrowser && !this.prefersReducedMotion();
   private ctx?: gsap.Context;
 
   constructor(private el: ElementRef<HTMLElement>) {}
@@ -45,8 +48,7 @@ export class Trailer implements AfterViewInit, OnDestroy {
   ngAfterViewInit(): void {
     if (!this.isBrowser) return;
 
-    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (reduced) return;
+    if (!this.autoplayAllowed) return;
 
     const root = this.el.nativeElement;
 
@@ -80,5 +82,9 @@ export class Trailer implements AfterViewInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.ctx?.revert();
+  }
+
+  private prefersReducedMotion(): boolean {
+    return typeof window.matchMedia === 'function' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   }
 }

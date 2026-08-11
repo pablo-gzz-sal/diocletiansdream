@@ -25,7 +25,10 @@
         #video
         class="reel-video"
         [poster]="poster"
-        preload="none"
+        [autoplay]="autoplayAllowed"
+        [attr.preload]="autoplayAllowed ? 'metadata' : 'none'"
+        muted
+        loop
         playsinline
         [controls]="activated"
         [attr.aria-label]="'home.trailer.title' | translate"
@@ -58,5 +61,9 @@
         </div>
       }
     </div>
+
+    <a [routerLink]="'/booking' | locPath" data-testid="hero-booking-cta">
+      {{ 'header.cta.bookNow' | translate }}
+    </a>
   </div>
 </section>
