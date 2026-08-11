@@ -1,0 +1,149 @@
+/* About page — heritage-led reading hierarchy and visual pacing. */
+.about-page p:not(.eyebrow) {
+  font-family: var(--font-sans) !important;
+}
+
+.about-page p[class*='text-[0.95rem]'],
+.about-page p[class*='text-[0.92rem]'],
+.about-page p[class*='text-[0.9rem]'],
+.about-page p[class*='text-[0.875rem]'],
+.about-page p[class*='text-[0.82rem]'] {
+  font-size: clamp(1rem, 1.2vw, 1.1rem) !important;
+  line-height: 1.78 !important;
+}
+
+.about-page .eyebrow,
+.about-page [class*='text-[0.75rem]'],
+.about-page [class*='text-[0.7rem]'],
+.about-page [class*='text-[0.65rem]'] {
+  font-size: 0.78rem;
+}
+
+.about-page .eyebrow:not(.eyebrow--light) {
+  color: #8a6127;
+  font-weight: 700;
+}
+
+.about-page .text-ink-60 {
+  color: rgba(26, 24, 20, 0.74) !important;
+}
+
+.about-hero {
+  background:
+    radial-gradient(circle at 83% 16%, rgba(194, 154, 89, 0.19), transparent 29%),
+    radial-gradient(circle at 7% 84%, rgba(45, 4, 106, 0.08), transparent 26%),
+    var(--color-cream) !important;
+}
+
+.about-hero-copy {
+  max-width: 43rem;
+}
+
+.about-hero-visual {
+  position: relative;
+  min-height: clamp(25rem, 44vw, 34rem);
+  overflow: hidden;
+  border: 1px solid rgba(26, 24, 20, 0.14);
+  border-radius: 1.5rem;
+  background: #2a1b1d;
+  box-shadow: 0 26px 76px rgba(52, 35, 24, 0.22);
+}
+
+.about-hero-visual > img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-position: center;
+  transform: scale(1.015);
+}
+
+.about-hero-image-shade {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(19, 13, 23, 0.04) 28%, rgba(19, 13, 23, 0.7) 100%),
+    linear-gradient(90deg, rgba(19, 13, 23, 0.22), transparent 56%);
+}
+
+.about-hero-image-caption {
+  position: absolute;
+  right: 1.25rem;
+  bottom: 1.25rem;
+  left: 1.25rem;
+  margin: 0;
+  color: #fff9ee;
+  font-family: var(--font-sans) !important;
+  font-size: 0.72rem !important;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.about-reading-card {
+  background: rgba(255, 255, 255, 0.72);
+  box-shadow: 0 16px 44px rgba(26, 24, 20, 0.055);
+}
+
+.about-why-vr,
+.about-cultural {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.about-why-vr {
+  background:
+    linear-gradient(106deg, rgba(23, 16, 29, 0.86), rgba(31, 22, 34, 0.67)),
+    url('/assets/images/vr/trailer-stills/peristyle-courtyard.jpg') center / cover !important;
+}
+
+.about-cultural {
+  background:
+    linear-gradient(108deg, rgba(22, 15, 26, 0.84), rgba(29, 19, 28, 0.69)),
+    url('/assets/images/vr/trailer-stills/golden-gate-market-street.jpg') center / cover !important;
+}
+
+.about-why-vr > .relative > .lg\:col-span-5 .eyebrow,
+.about-cultural > .relative > .lg\:col-span-5 .eyebrow {
+  color: #e8c47f !important;
+  border-color: rgba(232, 196, 127, 0.58);
+}
+
+.about-why-vr > .relative > .lg\:col-span-5 .text-ink,
+.about-cultural > .relative > .lg\:col-span-5 .text-ink {
+  color: #fff9ee !important;
+}
+
+.about-why-vr > .relative > .lg\:col-span-5 .text-ink-60,
+.about-cultural > .relative > .lg\:col-span-5 .text-ink-60 {
+  color: rgba(255, 249, 238, 0.83) !important;
+}
+
+.about-why-card,
+.about-cultural-card {
+  background: rgba(250, 248, 244, 0.9) !important;
+  box-shadow: 0 16px 44px rgba(0, 0, 0, 0.18);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+}
+
+.about-why-card p,
+.about-cultural-card p {
+  font-size: 0.98rem !important;
+  line-height: 1.66 !important;
+}
+
+@media (max-width: 767px) {
+  .about-page .eyebrow,
+  .about-page [class*='text-[0.75rem]'],
+  .about-page [class*='text-[0.7rem]'],
+  .about-page [class*='text-[0.65rem]'] {
+    font-size: 0.72rem;
+  }
+
+  .about-hero-visual {
+    min-height: 20rem;
+    border-radius: 1.125rem;
+  }
+}
