@@ -1339,8 +1339,30 @@ main::after {
     right: 0.75rem !important;
   }
 
+  .dd-site-header.dd-header-solid {
+    background: rgba(26, 24, 20, 0.78) !important;
+    border-color: rgba(250, 248, 244, 0.16);
+    box-shadow: 0 16px 42px rgba(15, 10, 8, 0.28);
+    -webkit-backdrop-filter: blur(18px) saturate(1.1);
+    backdrop-filter: blur(18px) saturate(1.1);
+  }
+
+  .dd-site-header.dd-header-solid .header-logo-sticky {
+    filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.38));
+  }
+
+  .dd-site-header.dd-header-solid .dd-mobile-menu-toggle {
+    border-color: rgba(255, 255, 255, 0.28) !important;
+    background: rgba(255, 255, 255, 0.08) !important;
+    color: #fff !important;
+  }
+
+  .dd-site-header.dd-header-solid .dd-mobile-menu-toggle__line {
+    background: #fff !important;
+  }
+
   .dd-site-header > div {
-    padding-inline: 0.6rem !important;
+    padding-inline: 1rem !important;
   }
 
   .dd-site-header .h-16 {
@@ -1854,7 +1876,7 @@ footer > div {
   .booking-widget-inner,
   .booking-faq__inner,
   .map-section__inner {
-    padding-inline: 1rem;
+    padding-inline: 1rem !important;
   }
 
   .btn,

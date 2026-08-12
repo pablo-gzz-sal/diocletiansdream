@@ -7,7 +7,7 @@
   }"
   [style.background]="homeRoute() && !scrolled() ? 'transparent' : 'rgba(245,240,232,0.88)'"
 >
-  <div class="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
+  <div class="mx-auto max-w-7xl dd-page-gutter">
     <div class="relative h-16 flex items-center justify-between gap-8">
       <!-- ── Logo ── -->
       <a
@@ -112,30 +112,40 @@
         </a>
       </div>
 
-      <!-- ── Mobile hamburger ── -->
-      <button
-        class="md:hidden ml-auto flex flex-col justify-center gap-[5px] w-9 h-9 rounded-[0.625rem] hover:bg-black/[0.05] transition-colors bg-transparent border-none cursor-pointer p-2 relative z-[70] shrink-0"
-        (click)="toggleMenu()"
-        [attr.aria-expanded]="menuOpen()"
-        [attr.aria-label]="'header.ui.toggleMenu' | translate"
-        type="button"
-      >
-        <span
-          class="block h-px w-full rounded-full transition-all duration-300 origin-center"
-          style="background: var(--color-ink)"
-          [ngClass]="menuOpen() ? 'rotate-45 translate-y-[6px]' : ''"
-        ></span>
-        <span
-          class="block h-px w-full rounded-full transition-all duration-200"
-          style="background: var(--color-ink)"
-          [ngClass]="menuOpen() ? 'opacity-0 scale-x-0' : 'opacity-100'"
-        ></span>
-        <span
-          class="block h-px w-full rounded-full transition-all duration-300 origin-center"
-          style="background: var(--color-ink)"
-          [ngClass]="menuOpen() ? '-rotate-45 -translate-y-[6px]' : ''"
-        ></span>
-      </button>
+      <!-- ── Mobile actions ── -->
+      <div class="dd-mobile-header-actions md:hidden">
+        @if (scrolled()) {
+          <a
+            [routerLink]="'/booking' | locPath"
+            class="dd-mobile-booking-cta"
+            data-testid="mobile-sticky-booking-cta"
+          >
+            {{ 'header.cta.bookNow' | translate }}
+          </a>
+        }
+
+        <button
+          class="dd-mobile-menu-toggle"
+          [class.dd-mobile-menu-toggle--hero]="homeRoute() && !scrolled()"
+          (click)="toggleMenu()"
+          [attr.aria-expanded]="menuOpen()"
+          [attr.aria-label]="'header.ui.toggleMenu' | translate"
+          type="button"
+        >
+          <span
+            class="dd-mobile-menu-toggle__line"
+            [class.dd-mobile-menu-toggle__line--top-open]="menuOpen()"
+          ></span>
+          <span
+            class="dd-mobile-menu-toggle__line"
+            [class.dd-mobile-menu-toggle__line--middle-open]="menuOpen()"
+          ></span>
+          <span
+            class="dd-mobile-menu-toggle__line"
+            [class.dd-mobile-menu-toggle__line--bottom-open]="menuOpen()"
+          ></span>
+        </button>
+      </div>
     </div>
   </div>
 </header>
@@ -153,7 +163,7 @@
 
   <!-- ── Slide panel ── -->
   <div
-    class="dd-mobile-menu-panel absolute top-3 bottom-3 right-3 w-[82%] max-w-xs rounded-[1rem] bg-cream shadow-[0_32px_80px_rgba(26,24,20,0.22)] border border-black/8 overflow-hidden flex flex-col transition-all duration-[350ms]"
+    class="dd-mobile-menu-panel absolute top-3 bottom-3 right-4 w-[82%] max-w-xs rounded-[1rem] bg-cream shadow-[0_32px_80px_rgba(26,24,20,0.22)] border border-black/8 overflow-hidden flex flex-col transition-all duration-[350ms]"
     style="transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1)"
     [ngClass]="menuOpen() ? 'translate-x-0 opacity-100' : 'translate-x-[110%] opacity-0'"
   >
@@ -310,6 +320,7 @@
       <a
         [routerLink]="'/booking' | locPath"
         (click)="closeMenu()"
+        data-testid="mobile-menu-booking-cta"
         class="flex items-center justify-center rounded-full text-warm py-3 text-[0.82rem] font-bold tracking-[0.11em] uppercase hover:brightness-110 transition-all no-underline"
         style="background: var(--dd-purple); box-shadow: 0 3px 14px rgba(45,4,106,0.30)"
       >

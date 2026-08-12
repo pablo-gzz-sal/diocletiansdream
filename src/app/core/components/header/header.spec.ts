@@ -25,6 +25,39 @@ describe('Header', () => {
     expect(component).toBeTruthy();
   });
 
+  it('shows a compact mobile booking action in the sticky header', () => {
+    component.scrolled.set(true);
+    fixture.detectChanges();
+
+    const bookingLink = fixture.nativeElement.querySelector(
+      '[data-testid="mobile-sticky-booking-cta"]',
+    ) as HTMLAnchorElement | null;
+
+    expect(bookingLink).not.toBeNull();
+    expect(bookingLink?.getAttribute('href')).toBe('/booking');
+  });
+
+  it('keeps the booking action in the 16 px-aligned mobile menu', () => {
+    const menuPanel = fixture.nativeElement.querySelector(
+      '.dd-mobile-menu-panel',
+    ) as HTMLElement | null;
+    const bookingLink = fixture.nativeElement.querySelector(
+      '[data-testid="mobile-menu-booking-cta"]',
+    ) as HTMLAnchorElement | null;
+
+    expect(menuPanel?.classList.contains('right-4')).toBeTrue();
+    expect(bookingLink).not.toBeNull();
+    expect(bookingLink?.getAttribute('href')).toBe('/booking');
+  });
+
+  it('renders three stable hamburger strokes', () => {
+    const strokes = fixture.nativeElement.querySelectorAll(
+      '.dd-mobile-menu-toggle__line',
+    );
+
+    expect(strokes.length).toBe(3);
+  });
+
   it('switches a registered English post to its Croatian translation', () => {
     const router = TestBed.inject(Router);
     const routes = TestBed.inject(PostLanguageRouteService);
