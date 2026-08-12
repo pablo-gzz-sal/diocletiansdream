@@ -2028,6 +2028,10 @@ footer > div {
 /* Mobile performance mode: keep the full desktop art direction, but avoid
    scroll-linked motion, continuous animation, and costly compositing on phones. */
 @media (max-width: 767px) {
+  body {
+    background-attachment: scroll !important;
+  }
+
   *,
   *::before,
   *::after {
@@ -2051,6 +2055,13 @@ footer > div {
   [revealOnScroll] {
     opacity: 1 !important;
     clip-path: none !important;
+    transform: none !important;
+  }
+}
+
+@media (max-width: 767px), (prefers-reduced-motion: reduce) {
+  .page-hero-title-line {
+    opacity: 1 !important;
     transform: none !important;
   }
 }
