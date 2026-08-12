@@ -2,7 +2,7 @@
 
 <main class="experience-page overflow-x-hidden bg-cream">
   <!-- ════════ HERO ════════ -->
-  <section class="relative overflow-hidden bg-cream pt-40 pb-16 px-6 lg:px-8">
+  <section class="relative overflow-hidden bg-cream pt-40 pb-16 dd-page-gutter">
     <!-- Background layers -->
     <div class="absolute inset-0 overflow-hidden dd-grain">
       <div
@@ -111,7 +111,7 @@
           <div class="aspect-[4/5] bg-gradient-to-b from-sand to-cream overflow-hidden">
             <img
               src="assets/images/vr/imperial-chamber.jpg"
-              alt="Reconstructed interior chamber of Diocletians Palace rendered in VR"
+              alt="Reconstructed interior chamber of Diocletian's Palace rendered in VR"
               width="1200"
               height="1500"
               class="w-full h-full object-cover"
@@ -132,7 +132,7 @@
   </section>
 
   <!-- ════════ TRAILER ════════ -->
-  <section id="trailer" class="experience-trailer px-6 lg:px-8 py-24">
+  <section id="trailer" class="experience-trailer dd-page-gutter py-24">
     <div class="relative mx-auto max-w-7xl grid gap-10 lg:grid-cols-12 lg:items-center">
       <div class="lg:col-span-4" revealOnScroll [revealDelay]="0.04">
         <p class="eyebrow">{{ 'experiencePage.trailer.title' | translate }}</p>
@@ -164,7 +164,7 @@
   </section>
 
   <!-- ════════ WHAT YOU WILL SEE ════════ -->
-  <section class="bg-sand px-6 lg:px-8 py-24">
+  <section class="bg-sand dd-page-gutter py-24">
     <div class="mx-auto max-w-7xl grid gap-12 lg:grid-cols-12 items-start">
       <div class="lg:col-span-5" revealOnScroll [revealDelay]="0.04">
         <p class="eyebrow">
@@ -218,7 +218,7 @@
   </section>
 
   <!-- ════════ HOW IT WORKS ════════ -->
-  <section id="how" class="bg-cream px-6 lg:px-8 py-24">
+  <section id="how" class="bg-cream dd-page-gutter py-24">
     <div class="mx-auto max-w-7xl grid gap-12 lg:grid-cols-12 items-start">
       <div class="lg:col-span-4" revealOnScroll [revealDelay]="0.04">
         <p class="eyebrow">
@@ -306,7 +306,7 @@
   </section>
 
   <!-- ════════ LANGUAGES + ACCURACY (two column) ════════ -->
-  <section class="bg-sand px-6 lg:px-8 py-24">
+  <section class="bg-sand dd-page-gutter py-24">
     <div class="experience-paired-grid mx-auto max-w-7xl grid gap-3 lg:grid-cols-2">
       <!-- Languages -->
       <div class="experience-paired-card rounded-[1.125rem] border border-black/10 bg-white/55 p-8 sm:p-10 lg:p-12" revealOnScroll [revealDelay]="0.04">
@@ -444,13 +444,6 @@
             PL
           </span>
         </div>
-
-        <!-- <p
-          *ngIf="'experiencePage.availableLanguages.note' | translate as langNote"
-          class="mt-8 rounded-[0.75rem] border border-black/10 bg-cream px-6 py-4 font-[family-name:var(--font-sans)] text-[0.82rem] leading-[1.7] text-ink-60"
-        >
-          {{ langNote }}
-        </p> -->
       </div>
 
       <!-- Accuracy -->
@@ -501,7 +494,7 @@
   </section>
 
   <!-- ════════ AUDIENCE ════════ -->
-  <section class="experience-audience bg-cream px-6 lg:px-8 py-24">
+  <section class="experience-audience bg-cream dd-page-gutter py-24">
     <div class="relative z-10 mx-auto max-w-7xl">
       <div class="mb-12" revealOnScroll [revealDelay]="0.04">
         <p class="eyebrow mb-3">
@@ -595,7 +588,7 @@
   </section>
 
   <!-- ════════ LOCATION & ACCESSIBILITY ════════ -->
-  <section class="bg-sand px-6 lg:px-8 py-24">
+  <section class="bg-sand dd-page-gutter py-24">
     <div class="experience-location-layout mx-auto max-w-7xl grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-stretch">
       <div class="experience-location-copy" revealOnScroll [revealDelay]="0.04">
         <p class="eyebrow">
@@ -639,7 +632,7 @@
       <!-- Map -->
       <div class="experience-location-map" revealOnScroll [revealDelay]="0.16" [revealY]="34">
         <iframe
-          title="Diocletians Dream — Zagrebačka ulica 1, Split"
+          title="Diocletian's Dream — Zagrebačka ulica 1, Split"
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d720.7837!2d16.43997!3d43.50831!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x13355df883e58f93%3A0x5d2f8c929c408e3!2sZagreba%C4%8Dka%20ul.%201%2C%2021000%2C%20Split%2C%20Croatia!5e0!3m2!1sen!2shr!4v1700000000000!5m2!1sen!2shr"
           allowfullscreen
           loading="lazy"
@@ -651,7 +644,7 @@
   </section>
 
   <!-- ════════ FAQ ════════ -->
-  <section class="bg-cream px-6 lg:px-8 py-24">
+  <section class="bg-cream dd-page-gutter py-24">
     <div class="mx-auto max-w-7xl grid gap-12 lg:grid-cols-12 items-start">
       <div class="lg:col-span-4" revealOnScroll [revealDelay]="0.04">
         <p class="eyebrow">
@@ -671,12 +664,17 @@
               *ngFor="let item of 'experiencePage.faq.items' | translate"
               class="group rounded-[1rem] border border-black/10 bg-white/60 open:bg-white transition-colors px-6 py-5"
             >
+              <!--
+                The question is an <h3>, not a styled <span>. Google indexes
+                long pages by passage, and a passage is anchored to its heading:
+                an answer under a <span> is invisible as an answer.
+              -->
               <summary class="cursor-pointer list-none flex items-start justify-between gap-4">
-                <span
-                  class="font-[family-name:var(--font-serif)] text-[1.1rem] leading-[1.35] text-ink"
+                <h3
+                  class="faq-question font-[family-name:var(--font-serif)] text-[1.1rem] font-normal leading-[1.35] text-ink"
                 >
                   {{ item.q }}
-                </span>
+                </h3>
                 <span
                   class="mt-1 font-[family-name:var(--font-sans)] text-ink-60 group-open:rotate-45 transition-transform"
                   >+</span
@@ -685,7 +683,7 @@
 
               <div class="mt-4">
                 <p
-                  class="font-[family-name:var(--font-sans)] text-[0.92rem] leading-[1.8] text-ink-60 whitespace-pre-line"
+                  class="faq-answer font-[family-name:var(--font-sans)] text-[0.92rem] leading-[1.8] text-ink-60 whitespace-pre-line"
                 >
                   {{ item.a }}
                 </p>
@@ -702,7 +700,7 @@
   </section>
 
   <!-- ════════ BOOKING CTA ════════ -->
-  <section class="px-6 lg:px-8 pb-10">
+  <section class="dd-page-gutter pb-10">
     <div class="mx-auto max-w-7xl rounded-[3rem] bg-ink overflow-hidden relative" revealOnScroll [revealDelay]="0.04" [revealY]="32">
       <div class="pointer-events-none absolute inset-0 opacity-10 dd-grain"></div>
       <div

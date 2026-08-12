@@ -1,7 +1,7 @@
 <app-header></app-header>
 <section class="min-h-screen bg-cream overflow-x-hidden">
   <!-- Header -->
-  <div class="mx-auto max-w-7xl px-6 lg:px-8 pt-32 pb-0">
+  <div class="mx-auto max-w-7xl dd-page-gutter pt-32 pb-0">
     <p
       class="eyebrow mb-4"
     >
@@ -23,7 +23,7 @@
 
   <!-- Controls -->
   <div
-    class="mx-auto max-w-7xl px-6 lg:px-8 py-5 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between border-b border-black/10"
+    class="mx-auto max-w-7xl dd-page-gutter py-5 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between border-b border-black/10"
   >
     <div class="flex flex-col gap-2.5 sm:flex-row sm:items-center">
       <input
@@ -41,7 +41,7 @@
   </div>
 
   <!-- Category filter tabs (above grid) -->
-  <div class="mx-auto max-w-7xl px-6 lg:px-8 pt-4">
+  <div class="mx-auto max-w-7xl dd-page-gutter pt-4">
     <div class="flex flex-wrap items-center gap-2">
       <span
         class="mr-2 font-[family-name:var(--font-sans)] text-[0.65rem] font-medium tracking-[0.2em] uppercase text-ink-60"
@@ -75,7 +75,7 @@
   <!-- Skeleton -->
   @if (loading) {
     <div
-      class="mx-auto max-w-7xl px-6 lg:px-8 py-8 grid gap-3 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
+      class="mx-auto max-w-7xl dd-page-gutter py-8 grid gap-3 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
     >
       <div
         *ngFor="let i of [1, 2, 3, 4, 5, 6]"
@@ -97,7 +97,7 @@
   <!-- Grid -->
   @if (!loading) {
     <div
-      class="mx-auto max-w-7xl px-6 lg:px-8 py-8 pb-16 grid gap-3 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
+      class="mx-auto max-w-7xl dd-page-gutter py-8 pb-16 grid gap-3 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
     >
       <a
         *ngFor="let post of pagedPosts(); trackBy: trackById"
@@ -151,7 +151,7 @@
     <!-- Pagination -->
     @if (totalPages() > 1) {
       <nav
-        class="mx-auto max-w-7xl px-6 lg:px-8 pb-16 flex flex-wrap items-center justify-center gap-2"
+        class="mx-auto max-w-7xl dd-page-gutter pb-16 flex flex-wrap items-center justify-center gap-2"
         [attr.aria-label]="'blogPage.pagination.page' | translate:{ current: currentPage, total: totalPages() }"
       >
         <button

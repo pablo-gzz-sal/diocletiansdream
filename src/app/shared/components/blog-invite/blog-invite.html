@@ -1,5 +1,5 @@
-<div class="mx-auto max-w-7xl px-6 lg:px-8 pb-24">
-  <div class="rounded-[1.125rem] border border-black/10 bg-white/55 overflow-hidden p-8 sm:p-10 relative">
+<div class="blog-invite-shell mx-auto max-w-7xl dd-page-gutter pb-24">
+  <div class="blog-invite-panel rounded-[1.125rem] border border-black/10 bg-white/55 overflow-hidden p-8 sm:p-10 relative">
 
     <!-- Subtle background glow -->
     <div
@@ -23,19 +23,19 @@
       </p>
 
       <!-- Buttons -->
-      <div class="mt-7 flex flex-wrap gap-3">
+      <div class="blog-invite-actions mt-7 flex flex-wrap gap-3">
         <!-- Primary blog button -->
-        <a [routerLink]="'/blog' | locPath" class="btn btn--dark">
+        <a [routerLink]="'/blog' | locPath" class="blog-invite-action btn btn--dark">
           {{ 'blogInvite.ctaPrimary' | translate }} →
         </a>
 
         <!-- Optional extra links -->
         @if (showSecondaryLinks) {
-          <a [routerLink]="'/experience' | locPath" class="btn btn--ghost">
+          <a [routerLink]="'/experience' | locPath" class="blog-invite-action btn btn--ghost">
             {{ 'blogInvite.ctaExperience' | translate }} →
           </a>
 
-          <a [routerLink]="'/visit' | locPath" class="btn btn--ghost">
+          <a [routerLink]="'/visit' | locPath" class="blog-invite-action btn btn--ghost">
             {{ 'blogInvite.ctaVisit' | translate }} →
           </a>
         }

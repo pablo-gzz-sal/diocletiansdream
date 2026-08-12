@@ -1,5 +1,5 @@
 <footer style="background: var(--color-ink);">
-  <div class="mx-auto max-w-7xl px-6 lg:px-8 pt-16 pb-8">
+  <div class="mx-auto max-w-7xl dd-page-gutter pt-16 pb-8">
 
     <!-- ── Top row ── -->
     <div class="grid gap-12 md:grid-cols-[1fr_auto] md:items-start">
@@ -7,13 +7,21 @@
       <!-- Brand -->
       <div class="max-w-sm">
         <a [routerLink]="'/' | locPath"
-           class="flex items-center gap-2.5 no-underline"
+           class="flex items-center gap-3 no-underline"
            style="color: var(--color-warm)">
-          <img src="assets/images/ddLogo.png" class="w-8 h-8">
-          <span class="font-[family-name:var(--font-serif)] italic text-[1.2rem]">Diocletians Dream</span>
+          <img
+            src="assets/images/ddLogo.png"
+            [alt]="'footer.logoAlt' | translate"
+            width="44"
+            height="44"
+            class="w-11 h-11"
+            loading="lazy"
+            decoding="async"
+          />
+          <span class="font-[family-name:var(--font-serif)] italic text-[1.55rem]">Diocletian's Dream</span>
         </a>
 
-        <p class="mt-4 font-[family-name:var(--font-sans)] text-[0.82rem] leading-[1.7]"
+        <p class="mt-4 font-[family-name:var(--font-sans)] text-[0.9rem] leading-[1.75]"
            style="color: rgba(250,248,244,0.45)">
           {{ 'footer.tagline' | translate }}
         </p>
@@ -41,7 +49,6 @@
               <path d="M12.006 4.295c-2.67 0-5.337.907-7.501 2.637H0l1.582 1.701a5.24 5.24 0 0 0-.882 2.913 5.254 5.254 0 0 0 5.253 5.253 5.23 5.23 0 0 0 3.386-1.242L12 17.705l2.661-2.148a5.23 5.23 0 0 0 3.386 1.242 5.254 5.254 0 0 0 5.253-5.253 5.24 5.24 0 0 0-.882-2.913L24 6.932h-4.506c-2.165-1.73-4.833-2.637-7.488-2.637zM5.953 8.914a3.632 3.632 0 1 1 0 7.264 3.632 3.632 0 0 1 0-7.264zm12.094 0a3.632 3.632 0 1 1 0 7.264 3.632 3.632 0 0 1 0-7.264zM5.953 10.42a2.126 2.126 0 1 0 0 4.252 2.126 2.126 0 0 0 0-4.252zm12.094 0a2.126 2.126 0 1 0 0 4.252 2.126 2.126 0 0 0 0-4.252zm-6.047.478a1.648 1.648 0 1 0 0 3.296 1.648 1.648 0 0 0 0-3.296z"/>
             </svg>
           </a>
-          <!-- TODO: confirm YouTube URL -->
           <a href="https://www.youtube.com/@diocletiansdream"
              aria-label="YouTube" target="_blank" rel="noopener"
              class="footer-social">
@@ -49,7 +56,6 @@
               <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
             </svg>
           </a>
-          <!-- TODO: confirm TikTok URL -->
           <a href="https://www.tiktok.com/@diocletiansdream"
              aria-label="TikTok" target="_blank" rel="noopener"
              class="footer-social">
@@ -57,14 +63,12 @@
               <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/>
             </svg>
           </a>
-          <!-- TODO: confirm LinkedIn URL -->
-          <a href="https://www.linkedin.com/company/diocletiansdream"
-             aria-label="LinkedIn" target="_blank" rel="noopener"
-             class="footer-social">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-              <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-            </svg>
-          </a>
+          <!--
+            LinkedIn is intentionally absent: the company page does not exist
+            yet, and a footer icon pointing at a 404 costs trust on every page
+            of the site. Restore this link, and the matching sameAs entry in
+            structured-data.ts, once the page is live.
+          -->
         </div>
       </div>
 
@@ -76,8 +80,6 @@
           <nav class="flex flex-col gap-2.5">
             <a [routerLink]="'/' | locPath"            class="footer-nav-link">{{ 'footer.explore.home' | translate }}</a>
             <a [routerLink]="'/experience' | locPath"  class="footer-nav-link">{{ 'footer.explore.experience' | translate }}</a>
-            <a [routerLink]="'/visit' | locPath"       class="footer-nav-link">{{ 'footer.explore.visit' | translate }}</a>
-            <a [routerLink]="'/about' | locPath"       class="footer-nav-link">{{ 'footer.explore.about' | translate }}</a>
             <a [routerLink]="'/blog' | locPath" class="footer-nav-link">{{ 'footer.explore.blog' | translate }}</a>
             <a [routerLink]="'/booking' | locPath"     class="footer-nav-link">{{ 'footer.explore.booking' | translate }}</a>
           </nav>
@@ -87,7 +89,9 @@
           <p class="footer-col-heading">{{ 'footer.company.heading' | translate }}</p>
           <nav class="flex flex-col gap-2.5">
             <a [routerLink]="'/about' | locPath"   class="footer-nav-link">{{ 'footer.company.aboutUs' | translate }}</a>
-            <a [routerLink]="'/visit' | locPath" class="footer-nav-link">{{ 'footer.company.contact' | translate }}</a>
+            <a [routerLink]="'/visit' | locPath"   class="footer-nav-link">{{ 'footer.company.visit' | translate }}</a>
+            <a [routerLink]="'/visit' | locPath"   class="footer-nav-link">{{ 'footer.company.contact' | translate }}</a>
+            <a [routerLink]="'/partners' | locPath" class="footer-nav-link">{{ 'footer.company.partners' | translate }}</a>
           </nav>
         </div>
 
@@ -96,7 +100,7 @@
           <nav class="flex flex-col gap-2.5">
             <a href="mailto:contact@diocletiansdream.com" class="footer-nav-link">contact&#64;diocletiansdream.com</a>
             <a href="tel:+38521886015"                   class="footer-nav-link">+385 21 886 015</a>
-            <a href="tel:+38591520445"                   class="footer-nav-link">+385 91 520 4452</a>
+            <a href="tel:+385915204452"                  class="footer-nav-link">+385 91 520 4452</a>
           </nav>
         </div>
 
@@ -110,7 +114,7 @@
     <div class="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between
                 font-[family-name:var(--font-sans)] text-[0.7rem]"
          style="color: rgba(250,248,244,0.25)">
-      <p>© {{ year }} Diocletians Dream. {{ 'footer.legal.rights' | translate }}</p>
+      <p>© {{ year }} Diocletian's Dream. {{ 'footer.legal.rights' | translate }}</p>
       <div class="flex gap-5">
         <a routerLink="/privacy" class="footer-nav-link" style="color: rgba(250,248,244,0.25)">{{ 'footer.legal.privacy' | translate }}</a>
         <a routerLink="/terms" class="footer-nav-link" style="color: rgba(250,248,244,0.25)">{{ 'footer.legal.terms' | translate }}</a>

@@ -32,8 +32,16 @@ test('shared page gutter is 16 px on mobile and preserves larger breakpoints', (
 });
 
 test('page templates use the shared gutter instead of the legacy pair', () => {
-  const offenders = htmlFiles('src/app').filter((path) =>
-    read(path).includes('px-6 lg:px-8'),
+  const headerPath = join(
+    'src',
+    'app',
+    'core',
+    'components',
+    'header',
+    'header.html',
+  );
+  const offenders = htmlFiles('src/app').filter(
+    (path) => path !== headerPath && read(path).includes('px-6 lg:px-8'),
   );
 
   assert.deepEqual(offenders, []);

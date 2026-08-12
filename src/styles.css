@@ -12,6 +12,7 @@
     opacity 700ms ease,
     transform 700ms ease;
 }
+
 .reveal-in {
   opacity: 1;
   transform: translateY(0);
@@ -1089,6 +1090,23 @@ body {
   --dd-ease: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+/* Shared page-edge spacing: 16 px on mobile, existing values above it. */
+.dd-page-gutter {
+  padding-inline: 1rem;
+}
+
+@media (min-width: 768px) {
+  .dd-page-gutter {
+    padding-inline: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .dd-page-gutter {
+    padding-inline: 2rem;
+  }
+}
+
 html,
 body {
   overflow-x: clip;
@@ -1114,6 +1132,50 @@ img,
 iframe,
 svg {
   max-width: 100%;
+}
+
+/* Let real content shrink inside nested grid/flex layouts. Page-level clipping
+   remains a final paint guard, not the mechanism that hides oversized cards. */
+main :where(section, article, aside, figure, div) {
+  min-width: 0;
+}
+
+main :where(h1, h2, h3, h4, p, li, a) {
+  overflow-wrap: break-word;
+}
+
+/* WordPress content can include inline desktop widths and unbroken URLs.
+   Constrain media, while preserving readable horizontal access for data/code. */
+.blog-prose,
+.blog-prose > *,
+.blog-post-surface > * {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.blog-prose :where(figure, img, video, iframe, embed, object) {
+  max-width: 100% !important;
+}
+
+.blog-prose :where(img, video) {
+  height: auto;
+}
+
+.blog-prose figure {
+  margin-inline: 0;
+}
+
+.blog-prose :where(a, code) {
+  overflow-wrap: anywhere;
+}
+
+.blog-prose :where(table, pre) {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+  -webkit-overflow-scrolling: touch;
 }
 
 main {
@@ -1293,13 +1355,13 @@ main::after {
   }
 
   .dd-site-header button[aria-expanded] {
-    position: absolute;
-    top: 50%;
-    right: 0.6rem;
-    margin-left: auto;
+    position: relative;
+    top: auto;
+    right: auto;
+    margin-left: 0;
     display: inline-flex !important;
     flex: 0 0 2.25rem;
-    transform: translateY(-50%);
+    transform: none;
     background: rgba(255, 255, 255, 0.38) !important;
     border: 1px solid rgba(26, 24, 20, 0.08) !important;
   }
@@ -1317,30 +1379,7 @@ main::after {
   }
 
   .dd-site-header::after {
-    content: "";
-    position: absolute;
-    top: 50%;
-    right: 1.25rem;
-    z-index: 3;
-    width: 1rem;
-    height: 1px;
-    pointer-events: none;
-    background: var(--color-ink);
-    box-shadow:
-      0 -5px 0 var(--color-ink),
-      0 5px 0 var(--color-ink);
-    transform: translateY(-50%);
-  }
-
-  .dd-site-header.dd-header-home-top::after {
-    background: var(--color-warm);
-    box-shadow:
-      0 -5px 0 var(--color-warm),
-      0 5px 0 var(--color-warm);
-  }
-
-  .dd-site-header:has(button[aria-expanded="true"])::after {
-    opacity: 0;
+    content: none;
   }
 }
 
@@ -1949,4 +1988,34 @@ footer > div {
 
 .turitop_thank_you_page_ticket_url button:hover {
   filter: brightness(1.15);
+}
+
+/* Mobile performance mode: keep the full desktop art direction, but avoid
+   scroll-linked motion, continuous animation, and costly compositing on phones. */
+@media (max-width: 767px) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+    filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+    scroll-behavior: auto !important;
+    will-change: auto !important;
+  }
+
+  .dd-atm,
+  .dd-grain-global,
+  .dd-spotlight,
+  .hero-blob-wrap,
+  .booking-hero__blob {
+    display: none !important;
+  }
+
+  [revealOnScroll] {
+    opacity: 1 !important;
+    clip-path: none !important;
+    transform: none !important;
+  }
 }

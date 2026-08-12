@@ -2,7 +2,7 @@
 <app-header></app-header>
 <div class="blog-post-page min-h-screen bg-cream overflow-x-hidden" (click)="onPostImageClick($event)">
   <!-- Back nav -->
-  <div class="mx-auto max-w-7xl px-6 lg:px-8 pt-28">
+  <div class="mx-auto max-w-7xl dd-page-gutter pt-28">
     <a
       [routerLink]="'/blog' | locPath"
       class="inline-flex items-center gap-2 font-[family-name:var(--font-sans)] text-[0.65rem] font-medium tracking-[0.18em] uppercase text-ink-60 hover:text-ink transition-colors no-underline group"
@@ -14,7 +14,7 @@
 
   <!-- Skeleton -->
   @if (loading) {
-    <div class="mx-auto max-w-4xl px-6 lg:px-8 py-10">
+    <div class="mx-auto max-w-4xl dd-page-gutter py-10">
       <div class="h-2.5 w-32 rounded-full bg-sand animate-[shimmer_1.6s_ease-in-out_infinite]"></div>
       <div class="h-14 w-3/4 rounded-[0.5rem] bg-sand animate-[shimmer_1.6s_ease-in-out_infinite] mt-5"></div>
       <div class="h-14 w-1/2 rounded-[0.5rem] bg-sand animate-[shimmer_1.6s_ease-in-out_infinite] mt-3"></div>
@@ -32,7 +32,7 @@
 
   <!-- Not found -->
   @if (!loading && !post) {
-    <div class="mx-auto max-w-4xl px-6 lg:px-8 py-20">
+    <div class="mx-auto max-w-4xl dd-page-gutter py-20">
       <h1 class="font-[family-name:var(--font-serif)] font-light text-[2.5rem] leading-[0.95] text-ink">
         {{ 'blogPostPage.notFound.title' | translate }}
       </h1>
@@ -50,7 +50,7 @@
 
   <!-- Article -->
   @if (!loading && post) {
-    <div class="mx-auto max-w-7xl px-6 lg:px-8 pb-24">
+    <div class="mx-auto max-w-7xl dd-page-gutter pb-24">
       <div class="blog-post-surface grid gap-10 p-6 sm:p-8 lg:grid-cols-[minmax(0,1fr)_22rem] lg:gap-12 lg:p-12">
     <article id="post-article" class="min-w-0">
       <header>
@@ -62,6 +62,27 @@
         >
           {{ titleText(post) }}
         </h1>
+
+        <!--
+          Byline and revision date, visible on the page rather than only in
+          schema. Google reads the rendered date for freshness, and a reader who
+          can see who wrote a piece and when it was last checked trusts it more.
+          Both are omitted when WordPress has nothing real to show.
+        -->
+        <p
+          *ngIf="authorName(post) || wasUpdated(post)"
+          class="mt-5 flex flex-wrap items-center gap-x-3 gap-y-1 font-[family-name:var(--font-sans)] text-[0.78rem] leading-[1.6] text-ink-60"
+        >
+          <span *ngIf="authorName(post) as author">
+            {{ 'blogPostPage.byLabel' | translate }} <strong class="font-medium text-ink">{{ author }}</strong>
+          </span>
+          <span *ngIf="authorName(post) && wasUpdated(post)" aria-hidden="true">·</span>
+          <span *ngIf="wasUpdated(post)">
+            {{ 'blogPostPage.updatedLabel' | translate }}
+            <time [attr.datetime]="post.modified">{{ modifiedLabel(post) }}</time>
+          </span>
+        </p>
+
         <div class="h-px bg-black/10 mt-8"></div>
       </header>
 
