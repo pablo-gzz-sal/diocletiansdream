@@ -8,7 +8,8 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "test:mobile-gutters": "node --test scripts/mobile-page-gutters.test.mjs",
-    "test:mobile-headings": "node --test scripts/mobile-heading-wrap.test.mjs"
+    "test:mobile-headings": "node --test scripts/mobile-heading-wrap.test.mjs",
+    "test:mobile-performance": "node --test scripts/mobile-hero-performance.test.mjs"
   },
   "prettier": {
     "printWidth": 100,
