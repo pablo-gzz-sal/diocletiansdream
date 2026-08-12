@@ -706,3 +706,13 @@
 .bhc-cta:hover {
   opacity: 0.82;
 }
+
+/* Keep one page-edge gutter on mobile: the inner containers own the 16 px. */
+@media (max-width: 767px) {
+  .booking-hero,
+  .booking-widget-section,
+  .booking-faq,
+  .map-section {
+    padding-inline: 0;
+  }
+}
