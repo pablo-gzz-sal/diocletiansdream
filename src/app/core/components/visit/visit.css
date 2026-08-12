@@ -336,6 +336,11 @@
 }
 
 @media (max-width: 640px) {
+  .visit-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
   .location-bento { grid-template-columns: 1fr; }
   .bento-cell--locText,
   .bento-cell--map { grid-column: 1; grid-row: auto; }

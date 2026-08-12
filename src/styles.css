@@ -1140,8 +1140,17 @@ main :where(section, article, aside, figure, div) {
   min-width: 0;
 }
 
-main :where(h1, h2, h3, h4, p, li, a) {
+main :where(p, li, a) {
   overflow-wrap: break-word;
+}
+
+/* Titles must wrap only between words. Long localized headings are sized by
+   their mobile component rules instead of being split character by character. */
+main :where(h1, h2, h3, h4) {
+  overflow-wrap: normal;
+  word-break: normal;
+  -webkit-hyphens: none;
+  hyphens: none;
 }
 
 /* WordPress content can include inline desktop widths and unbroken URLs.
@@ -1859,6 +1868,10 @@ footer > div {
 @media (max-width: 640px) {
   :root {
     --dd-section-y: clamp(3.5rem, 14vw, 4.75rem);
+  }
+
+  .section-h2 {
+    font-size: clamp(2.15rem, 10vw, 2.4rem);
   }
 
   .hero,

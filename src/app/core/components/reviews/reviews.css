@@ -239,6 +239,11 @@
 }
 
 @media (max-width: 640px) {
+  .reviews-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
   .reviews-bento { grid-template-columns: 1fr; }
   .reviews-bento .bento-cell--text,
   .reviews-bento .bento-cell--imgB  { grid-column: 1; grid-row: auto; }
