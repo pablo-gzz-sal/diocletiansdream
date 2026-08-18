@@ -9,8 +9,8 @@ import { OG_DEFAULT_IMAGE, PageSeoService } from '../../shared/services/page-seo
 import { SeoService } from '../../shared/services/seo-service';
 import { I18nService } from '../../core/i18n/i18n.service';
 import { RevealOnScrollDirective } from '../../shared/animations/reveal-on-scroll-directive';
-import { environment } from '../../../environments/environment';
 import { LocalePathPipe } from '../../core/i18n/locale-path.pipe';
+import { FaqEntry, ID, StructuredDataService } from '../../shared/services/structured-data';
 
 @Component({
   selector: 'app-experience',
@@ -24,85 +24,108 @@ export class Experience implements OnInit, OnDestroy {
   readonly videoPageUrl = 'https://vimeo.com/1217274878';
   readonly videoEmbedUrl = 'https://player.vimeo.com/video/1217274878';
 
-  private static readonly JSON_LD_IDS = ['ld-experience-faq', 'ld-experience-video'];
+  private static readonly JSON_LD_ID = 'ld-experience';
 
   constructor(
     private translate: TranslateService,
     private pageSeo: PageSeoService,
     private seo: SeoService,
     private i18n: I18nService,
+    private sd: StructuredDataService,
   ) {}
 
   ngOnInit(): void {
     this.pageSeo.applyLocalized('experiencePage', '/experience');
+    this.seo.setPreloadImage('/assets/images/vr/great-hall.jpg');
 
-    const lang = this.i18n.current();
-    const [faqSchema, videoSchema] = this.buildSchemas(
-      this.translate.instant('experiencePage.seo.metaDescription'),
-      lang,
-    );
     // Injected into <head> via SeoService, NOT via a <script> in the template:
     // Angular's compiler strips <script> from templates, so a template tag
     // silently emits nothing at all.
-    this.seo.setJsonLd('ld-experience-faq', faqSchema);
-    this.seo.setJsonLd('ld-experience-video', videoSchema);
+    this.seo.setJsonLd(Experience.JSON_LD_ID, this.buildGraph());
   }
 
   ngOnDestroy(): void {
-    // <script> tags survive client-side navigation — drop them on the way out.
-    for (const id of Experience.JSON_LD_IDS) this.seo.clearJsonLd(id);
+    // <script> tags survive client-side navigation — drop it on the way out.
+    this.seo.clearJsonLd(Experience.JSON_LD_ID);
   }
 
-  private buildSchemas(metaDescription: string, lang: string): [unknown, unknown] {
-    // Pull localized FAQ items from i18n.
-    // Your HTML uses: ('experiencePage.faq.items' | translate)
-    // This assumes items are an array of { q: string, a: string, linkText?: string }
-    const faqItems = this.translate.instant('experiencePage.faq.items') as Array<{
-      q: string;
-      a: string;
-      linkText?: string;
-    }>;
+  /** Localized FAQ pairs, straight from the array the template renders. */
+  private faqItems(): FaqEntry[] {
+    const items = this.translate.instant('experiencePage.faq.items') as FaqEntry[];
+    return Array.isArray(items) ? items.filter((item) => !!item?.q && !!item?.a) : [];
+  }
 
-    const faqSchema = {
-      '@context': 'https://schema.org',
-      '@type': 'FAQPage',
-      mainEntity: Array.isArray(faqItems)
-        ? faqItems
-            .filter((x) => !!x?.q && !!x?.a)
-            .map((x) => ({
-              '@type': 'Question',
-              name: x.q,
-              acceptedAnswer: {
-                '@type': 'Answer',
-                text: x.a,
-              },
-            }))
-        : [],
-    };
+  private buildGraph(): unknown {
+    const url = this.sd.url('/experience');
+    const lang = this.i18n.current();
+    const title = this.translate.instant('experiencePage.seo.metaTitle') as string;
+    const description = this.translate.instant('experiencePage.seo.metaDescription') as string;
+    const image = this.sd.asset(OG_DEFAULT_IMAGE);
 
-    const trailerName =
-      this.translate.instant('experiencePage.trailer.title') || 'Experience trailer';
+    return this.sd.graph([
+      this.sd.organization(),
+      this.sd.website(),
+      this.sd.localBusiness(description),
+      this.sd.webPage({
+        url,
+        name: title,
+        description,
+        primaryImage: image,
+        breadcrumbId: `${url}#breadcrumb`,
+        speakableSelectors: ['.faq-question', '.faq-answer'],
+      }),
+      this.sd.breadcrumb(url, [
+        this.sd.homeCrumb(),
+        { name: this.translate.instant('header.nav.experience'), url },
+      ]),
+      this.sd.ticketProduct({
+        url,
+        name: this.translate.instant('experiencePage.hero.title'),
+        description: this.translate.instant('experiencePage.hero.p1'),
+        image,
+      }),
+      this.sd.faqPage(url, this.faqItems()),
+      this.videoObject(url, lang, description),
+      // The historian who advised on the reconstruction, named on the home page.
+      // A real, checkable person is worth more to E-E-A-T than any tag on the
+      // page. `sameAs` stays empty until someone confirms a canonical profile.
+      {
+        '@type': 'Person',
+        '@id': `${ID.organization}-advisor`,
+        name: 'Josip Belamarić',
+        honorificPrefix: this.translate.instant('home.authority.honorific'),
+        jobTitle: 'Art historian',
+        knowsAbout: [
+          "Diocletian's Palace",
+          'Late Roman architecture',
+          'Croatian cultural heritage',
+        ],
+        affiliation: {
+          '@type': 'Organization',
+          name: 'Croatian Academy of Sciences and Arts',
+          sameAs: 'https://www.hazu.hr/',
+        },
+      },
+    ]);
+  }
 
-    const trailerText =
-      this.translate.instant('experiencePage.trailer.text') || metaDescription;
-
-    const videoSchema = {
-      '@context': 'https://schema.org',
+  /**
+   * The Vimeo trailer. `uploadDate` is required for a video rich result, and
+   * `thumbnailUrl` has to resolve to a real image or Google drops the node.
+   */
+  private videoObject(pageUrl: string, lang: string, fallbackText: string) {
+    return {
       '@type': 'VideoObject',
-      name: trailerName,
-      description: trailerText,
-      inLanguage: lang === 'hr' ? 'hr' : 'en',
-      thumbnailUrl: this.pageSeo.absolute(OG_DEFAULT_IMAGE),
+      '@id': `${pageUrl}#trailer`,
+      name: this.translate.instant('experiencePage.trailer.title') || 'Experience trailer',
+      description: this.translate.instant('experiencePage.trailer.text') || fallbackText,
+      inLanguage: lang === 'hr' ? 'hr-HR' : 'en-US',
+      thumbnailUrl: [this.sd.asset(OG_DEFAULT_IMAGE)],
       uploadDate: '2026-08-11',
       contentUrl: this.videoPageUrl,
       embedUrl: this.videoEmbedUrl,
-      publisher: {
-        '@type': 'Organization',
-        name: 'Diocletians Dream',
-        url: environment.siteUrl,
-      },
+      isPartOf: { '@id': `${pageUrl}#webpage` },
+      publisher: { '@id': ID.organization },
     };
-
-    return [faqSchema, videoSchema];
   }
 }

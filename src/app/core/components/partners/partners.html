@@ -3,13 +3,15 @@
   <div class="partners-inner">
 
     <!-- No wrapper revealOnScroll — children animate independently to avoid nested opacity conflicts -->
-    <div class="partners-header">
-      <p class="eyebrow" revealOnScroll [revealDelay]="0">{{ 'home.partners.eyebrow' | translate }}</p>
-      <h2 class="section-h2" revealOnScroll [revealDelay]="0.12" [revealClip]="true">
-        {{ 'home.partners.title' | translate }}
-      </h2>
-      <p class="partners-intro" revealOnScroll [revealDelay]="0.2">{{ 'home.partners.text' | translate }}</p>
-    </div>
+    @if (showHeader) {
+      <div class="partners-header">
+        <p class="eyebrow" revealOnScroll [revealDelay]="0">{{ 'home.partners.eyebrow' | translate }}</p>
+        <h2 class="section-h2" revealOnScroll [revealDelay]="0.12" [revealClip]="true">
+          {{ 'home.partners.title' | translate }}
+        </h2>
+        <p class="partners-intro" revealOnScroll [revealDelay]="0.2">{{ 'home.partners.text' | translate }}</p>
+      </div>
+    }
 
     <div class="partners-cards">
       @for (p of partners; track p.href) {

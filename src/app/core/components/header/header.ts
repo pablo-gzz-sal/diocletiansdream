@@ -1,5 +1,14 @@
 import { DOCUMENT, isPlatformBrowser, NgClass } from '@angular/common';
-import { AfterViewInit, Component, HostListener, inject, OnDestroy, OnInit, PLATFORM_ID, signal } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  inject,
+  NgZone,
+  OnDestroy,
+  OnInit,
+  PLATFORM_ID,
+  signal,
+} from '@angular/core';
 import { NavigationEnd, NavigationStart, Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { filter } from 'rxjs';
 import { I18nService } from '../../i18n/i18n.service';
@@ -26,6 +35,9 @@ export class Header implements OnInit, OnDestroy, AfterViewInit {
   private i18n = inject(I18nService);
   private doc = inject(DOCUMENT);
   private isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
+  private readonly zone = inject(NgZone);
+  private scrollFrame: number | null = null;
+  private removeScrollListener = () => {};
   private removeOverflow = () => this.doc.body.classList.remove('overflow-hidden');
 
   constructor(
@@ -48,11 +60,20 @@ export class Header implements OnInit, OnDestroy, AfterViewInit {
   ngAfterViewInit() {
     if (!this.isBrowser) return;
     this.updateScrollState();
-  }
 
-  @HostListener('window:scroll')
-  onScroll() {
-    this.updateScrollState();
+    this.zone.runOutsideAngular(() => {
+      const handleScroll = () => {
+        if (this.scrollFrame !== null) return;
+
+        this.scrollFrame = window.requestAnimationFrame(() => {
+          this.scrollFrame = null;
+          this.zone.run(() => this.updateScrollState());
+        });
+      };
+
+      window.addEventListener('scroll', handleScroll, { passive: true });
+      this.removeScrollListener = () => window.removeEventListener('scroll', handleScroll);
+    });
   }
 
   toggleMenu() {
@@ -67,6 +88,12 @@ export class Header implements OnInit, OnDestroy, AfterViewInit {
 
   ngOnDestroy() {
     this.removeOverflow();
+    this.removeScrollListener();
+
+    if (this.scrollFrame !== null) {
+      window.cancelAnimationFrame(this.scrollFrame);
+      this.scrollFrame = null;
+    }
   }
 
   /**
@@ -101,6 +128,10 @@ export class Header implements OnInit, OnDestroy, AfterViewInit {
 
   private updateScrollState() {
     const offset = this.homeRoute() ? Header.HOME_HEADER_REVEAL_OFFSET : 8;
-    this.scrolled.set((window.scrollY || 0) > offset);
+    const nextScrolled = (window.scrollY || 0) > offset;
+
+    if (this.scrolled() !== nextScrolled) {
+      this.scrolled.set(nextScrolled);
+    }
   }
 }

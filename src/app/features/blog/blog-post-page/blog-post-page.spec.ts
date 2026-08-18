@@ -165,7 +165,7 @@ describe('BlogPostPage', () => {
 
   it('takes the Croatian title from og_title when the Yoast SEO title is English', () => {
     expect(pickTitle('hr', HR_POST_WITH_ENGLISH_YOAST_TITLE)).toBe(
-      'Zašto je VR iskustvo jedan od najboljih načina da upoznate Dioklecijanovu palaču | Diocletians Dream'
+      "Zašto je VR iskustvo jedan od najboljih načina da upoznate Dioklecijanovu palaču | Diocletian's Dream"
     );
   });
 
@@ -209,7 +209,7 @@ describe('BlogPostPage', () => {
 
   it('falls back to the post title when the post carries no SEO plugin fields', () => {
     expect(pickTitle('hr', { title: { rendered: 'Tko je bio Dioklecijan?' } })).toBe(
-      'Tko je bio Dioklecijan? | Diocletians Dream'
+      "Tko je bio Dioklecijan? | Diocletian's Dream"
     );
   });
 

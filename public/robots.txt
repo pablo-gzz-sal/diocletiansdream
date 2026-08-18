@@ -1,4 +1,33 @@
+# Diocletian's Dream — https://diocletiansdream.com/
+
 User-agent: *
+Allow: /
+
+# The booking confirmation page is a private post-purchase step. It carries a
+# noindex tag already; keeping it out of the crawl also keeps it from diluting
+# the conversion path in Search Console.
+Disallow: /dd-thankyou/
+
+# AI search crawlers, allowed explicitly.
+#
+# These are the read-at-query-time crawlers that decide whether this site can be
+# cited in an AI answer, and they are separate from the bulk training scrapers.
+# Blocking them (a common 2024-25 reflex) removes the business from ChatGPT and
+# Perplexity results entirely, so the intent is spelled out here rather than
+# left to the wildcard above.
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
 Allow: /
 
 Sitemap: https://diocletiansdream.com/sitemap.xml

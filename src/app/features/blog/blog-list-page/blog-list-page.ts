@@ -183,6 +183,15 @@ export class BlogListPage implements OnInit {
     return d.toLocaleDateString(locale, { year: 'numeric', month: 'short', day: '2-digit' });
   }
 
+  /**
+   * Every post, ignoring the search box and category tabs. The archive list at
+   * the foot of the page renders from this rather than from `filteredPosts()`
+   * so the full set stays linked no matter what filter the reader has applied.
+   */
+  allPosts(): any[] {
+    return this.posts;
+  }
+
   filteredPosts(): any[] {
     let list = [...this.posts];
 
@@ -237,17 +246,44 @@ export class BlogListPage implements OnInit {
     locale: this.lang === 'hr' ? 'hr_HR' : 'en_US',
   });
 
+  // Typed Blog rather than a bare CollectionPage, and wired to the shared
+  // WebSite / Organization @ids the marketing pages declare, so the blog reads
+  // as part of one brand instead of a detached list page. The breadcrumb
+  // matches the one each post emits, which is what makes Home > Blog > Post
+  // resolve as a chain in Search.
   this.seo.setJsonLd('ld-blog-collection', {
     '@context': 'https://schema.org',
-    '@type': 'CollectionPage',
-    name: title,
-    description: description,
-    url: url,
-    isPartOf: {
-      '@type': 'WebSite',
-      name: "Diocletians Dream",
-      url: this.SITE_URL
-    }
+    '@graph': [
+      {
+        '@type': ['CollectionPage', 'Blog'],
+        '@id': `${url}#webpage`,
+        name: title,
+        description,
+        url,
+        inLanguage: this.lang === 'hr' ? 'hr-HR' : 'en-US',
+        isPartOf: { '@id': `${this.SITE_URL}/#website` },
+        publisher: { '@id': `${this.SITE_URL}/#organization` },
+        breadcrumb: { '@id': `${url}#breadcrumb` },
+      },
+      {
+        '@type': 'BreadcrumbList',
+        '@id': `${url}#breadcrumb`,
+        itemListElement: [
+          {
+            '@type': 'ListItem',
+            position: 1,
+            name: this.translate.instant('header.nav.home'),
+            item: this.lang === 'hr' ? `${this.SITE_URL}/hr/` : `${this.SITE_URL}/`,
+          },
+          {
+            '@type': 'ListItem',
+            position: 2,
+            name: this.translate.instant('header.nav.blog'),
+            item: url,
+          },
+        ],
+      },
+    ],
   });
 }
 }

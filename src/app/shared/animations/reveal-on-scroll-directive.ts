@@ -2,6 +2,7 @@ import { Directive, ElementRef, inject, Input, OnDestroy, OnInit, PLATFORM_ID } 
 import { isPlatformBrowser } from '@angular/common';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { shouldDisableMotion } from './motion-preference';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -24,7 +25,7 @@ export class RevealOnScrollDirective implements OnInit, OnDestroy {
   ngOnInit(): void {
     // Skip animations on the server so content renders fully visible in the
     // SSR HTML (crawlers see it) and no browser-only GSAP/ScrollTrigger runs.
-    if (!this.isBrowser || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if (!this.isBrowser || shouldDisableMotion()) return;
 
     const el = this.el.nativeElement;
 

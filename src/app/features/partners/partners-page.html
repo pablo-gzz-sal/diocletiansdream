@@ -1,0 +1,98 @@
+<app-header></app-header>
+
+<main class="partners-page overflow-x-hidden bg-cream">
+  <!-- ════════ HERO ════════ -->
+  <section class="partners-hero relative overflow-hidden bg-cream">
+    <!-- Background layers — same grain + glow treatment as the About hero -->
+    <div class="absolute inset-0 overflow-hidden dd-grain">
+      <div
+        class="pointer-events-none absolute -top-24 -left-24 h-[420px] w-[420px] rounded-full blur-3xl opacity-25 dd-float"
+        style="background: radial-gradient(circle at 30% 30%, var(--dd-purple), transparent 60%)"
+      ></div>
+
+      <div
+        class="pointer-events-none absolute -bottom-28 -right-24 h-[520px] w-[520px] rounded-full blur-3xl opacity-25 dd-float"
+        style="
+          animation-delay: -2.5s;
+          background: radial-gradient(circle at 30% 30%, var(--dd-gold), transparent 60%);
+        "
+      ></div>
+
+      <div
+        class="absolute left-0 right-0 top-0 h-px opacity-60"
+        style="
+          background: linear-gradient(
+            90deg,
+            transparent,
+            rgba(194, 154, 89, 0.65),
+            rgba(45, 4, 106, 0.55),
+            transparent
+          );
+        "
+      ></div>
+
+      <div
+        class="pointer-events-none absolute inset-0 opacity-[0.05]"
+        style="
+          background-image:
+            linear-gradient(to right, rgba(45, 4, 106, 0.25) 1px, transparent 1px),
+            linear-gradient(to bottom, rgba(194, 154, 89, 0.2) 1px, transparent 1px);
+          background-size: 54px 54px;
+        "
+      ></div>
+    </div>
+
+    <div class="pp-inner relative">
+      <div class="partners-hero-copy" revealOnScroll [revealDelay]="0.1">
+        <p class="eyebrow mb-5">{{ 'partnersPage.hero.eyebrow' | translate }}</p>
+
+        <h1 class="font-[family-name:var(--font-serif)] font-light leading-[0.95] tracking-[-0.02em] text-ink">
+          <span
+            class="block text-[clamp(2.25rem,5vw,3.75rem)] opacity-0 translate-y-3 animate-[revealLine_0.9s_cubic-bezier(0.16,1,0.3,1)_0.05s_forwards]"
+          >
+            {{ 'partnersPage.hero.title' | translate }}
+          </span>
+        </h1>
+
+        <p class="mt-7 font-[family-name:var(--font-serif)] text-[clamp(1rem,1.5vw,1.1rem)] font-light leading-[1.65] text-ink">
+          {{ 'partnersPage.hero.text' | translate }}
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════ CARDS ════════ -->
+  <!-- Header suppressed: the <h1> above already carries this copy. -->
+  <app-partners [showHeader]="false"></app-partners>
+
+  <!-- ════════ CLOSING CTA ════════ -->
+  <!-- Every card above links off-site. Without this the page is a dead end
+       that spends attention and returns none of it to the booking flow. -->
+  <section class="partners-cta">
+    <div class="pp-inner">
+      <div class="partners-cta-panel" revealOnScroll [revealDelay]="0.1">
+        <h2 class="partners-cta-title font-[family-name:var(--font-serif)] text-[clamp(1.6rem,3vw,2.35rem)] font-light leading-[1.1] tracking-[-0.02em]">
+          {{ 'partnersPage.cta.title' | translate }}
+        </h2>
+
+        <p class="partners-cta-text mt-4 max-w-2xl font-[family-name:var(--font-sans)] text-[0.95rem] leading-[1.8]">
+          {{ 'partnersPage.cta.text' | translate }}
+        </p>
+
+        <div class="mt-7 flex flex-wrap gap-3">
+          <a [routerLink]="'/booking' | locPath" class="btn btn--cream">
+            {{ 'header.cta.bookNow' | translate }}
+          </a>
+          <a [routerLink]="'/experience' | locPath" class="btn btn--ghost-light">
+            {{ 'partnersPage.cta.experience' | translate }}
+          </a>
+          <a [routerLink]="'/visit' | locPath" class="btn btn--ghost-light">
+            {{ 'partnersPage.cta.visit' | translate }}
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<app-footer></app-footer>

@@ -22,4 +22,12 @@ describe('CtaBlock', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('exposes mobile-safe hooks for the complete CTA row', () => {
+    const actions = fixture.nativeElement.querySelector('.cta-block-actions');
+    const links = fixture.nativeElement.querySelectorAll('.cta-block-action');
+
+    expect(actions).not.toBeNull();
+    expect(links.length).toBe(3);
+  });
 });

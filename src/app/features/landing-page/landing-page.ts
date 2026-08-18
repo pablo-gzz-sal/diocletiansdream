@@ -9,10 +9,12 @@ import { Visit } from '../../core/components/visit/visit';
 import { Reviews } from '../../core/components/reviews/reviews';
 import { Faq } from '../../core/components/faq/faq';
 import { Highlights } from '../../core/components/highlights/highlights';
+import { HistoricalAuthority } from '../../core/components/historical-authority/historical-authority';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { OG_DEFAULT_IMAGE, PageSeoService } from '../../shared/services/page-seo';
-import { I18nService } from '../../core/i18n/i18n.service';
+import { FaqEntry, StructuredDataService } from '../../shared/services/structured-data';
+import { shouldDisableMotion } from '../../shared/animations/motion-preference';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -24,6 +26,7 @@ gsap.registerPlugin(ScrollTrigger);
     Trailer,
     Experience,
     Visit,
+    HistoricalAuthority,
     Reviews,
     Faq,
     Highlights],
@@ -37,11 +40,13 @@ export class LandingPage implements OnInit, AfterViewInit, OnDestroy {
 
   private cleanups: Array<() => void> = [];
 
+  private static readonly JSON_LD_ID = 'ld-home';
+
   constructor(
     private seo: SeoService,
     private translate: TranslateService,
     private pageSeo: PageSeoService,
-    private i18n: I18nService,
+    private sd: StructuredDataService,
   ) {}
 
   ngOnInit(): void {
@@ -54,7 +59,9 @@ export class LandingPage implements OnInit, AfterViewInit, OnDestroy {
   ngAfterViewInit(): void {
     if (typeof window === 'undefined') return;
 
-    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const reduced = shouldDisableMotion();
+
+    if (reduced) return;
 
     // ── ScrollTrigger global refresh ─────────────────────────────
     // After Angular finishes rendering all child components, recalculate
@@ -64,8 +71,6 @@ export class LandingPage implements OnInit, AfterViewInit, OnDestroy {
         ScrollTrigger.refresh();
       });
     });
-
-    if (reduced) return;
 
     // ── Cursor spotlight: smooth GSAP lag behind the mouse ──────
     const spot = this.spotRef.nativeElement;
@@ -89,49 +94,49 @@ export class LandingPage implements OnInit, AfterViewInit, OnDestroy {
   ngOnDestroy(): void {
     this.cleanups.forEach(fn => fn());
     this.cleanups = [];
+    // <script> tags survive client-side navigation — drop it on the way out.
+    this.seo.clearJsonLd(LandingPage.JSON_LD_ID);
+  }
+
+  /** The home FAQ pairs, resolved from the same i18n keys the accordion renders. */
+  private faqItems(): FaqEntry[] {
+    return Faq.KEYS.map((key) => ({
+      q: this.translate.instant(`home.faq.items.${key}.q`) as string,
+      a: this.translate.instant(`home.faq.items.${key}.a`) as string,
+    })).filter((item) => !!item.q && !!item.a);
   }
 
   private applySeo(): void {
     this.pageSeo.applyLocalized('home', '/');
+    // The hero still is painted as a CSS background behind the Vimeo player.
+    this.seo.setPreloadImage('/assets/images/vr/trailer-stills/diocletians-bedchamber.jpg');
 
     const description = this.translate.instant('home.seo.metaDescription') as string;
-    const lang = this.i18n.current();
+    const title = this.translate.instant('home.seo.metaTitle') as string;
+    const url = this.sd.url('/');
+    const image = this.sd.asset(OG_DEFAULT_IMAGE);
 
-    this.seo.setJsonLd('ld-local-business', {
-      '@context': 'https://schema.org',
-      '@type': ['LocalBusiness', 'TouristAttraction'],
-      name: "Diocletians Dream VR Museum",
-      description,
-      inLanguage: lang,
-      image: this.pageSeo.absolute(OG_DEFAULT_IMAGE),
-      url: this.pageSeo.urlFor('/'),
-      telephone: '+38521886015',
-      email: 'contact@diocletiansdream.com',
-      address: {
-        '@type': 'PostalAddress',
-        streetAddress: 'Zagrebačka ul. 1',
-        addressLocality: 'Split',
-        postalCode: '21000',
-        addressCountry: 'HR',
-      },
-      geo: {
-        '@type': 'GeoCoordinates',
-        latitude: 43.5081,
-        longitude: 16.4402,
-      },
-      openingHoursSpecification: [
-        {
-          '@type': 'OpeningHoursSpecification',
-          dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
-          opens: '11:00',
-          closes: '16:00',
-        },
-      ],
-      sameAs: [
-        'https://www.instagram.com/diocletiansdream/',
-        'https://www.facebook.com/diocletiansdream/',
-        'https://www.tripadvisor.com/Attraction_Review-g295370-d20921353',
-      ],
-    });
+    // One graph, not four schema islands. Organization / WebSite /
+    // LocalBusiness are declared here with stable @ids that every other page
+    // then references instead of redeclaring, so Google resolves one business
+    // across the site rather than one per page.
+    this.seo.setJsonLd(
+      LandingPage.JSON_LD_ID,
+      this.sd.graph([
+        this.sd.organization(),
+        this.sd.website(),
+        this.sd.localBusiness(description),
+        this.sd.webPage({
+          url,
+          name: title,
+          description,
+          primaryImage: image,
+          breadcrumbId: `${url}#breadcrumb`,
+          speakableSelectors: ['.trailer-h1', '.trailer-sub', '.faq-a p'],
+        }),
+        this.sd.breadcrumb(url, [this.sd.homeCrumb()]),
+        this.sd.faqPage(url, this.faqItems()),
+      ]),
+    );
   }
 }

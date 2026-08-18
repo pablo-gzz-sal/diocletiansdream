@@ -31,14 +31,23 @@ export class BlogPostPage implements OnInit, OnDestroy {
   /** 'en' at the root (/slug/), 'hr' under the Croatian subtree (/hr/slug/). */
   private lang: 'en' | 'hr' = 'en';
 
+  /**
+   * Sibling articles rendered at the foot of the post. Without these, posts
+   * only ever received a link from the blog index, so link equity had nowhere
+   * to flow and readers had no next step inside the journal.
+   */
+  relatedPosts: any[] = [];
+  readonly relatedCount = 4;
+
   private sub?: Subscription;
   private postLoadSub?: Subscription;
+  private relatedSub?: Subscription;
   private postLoadVersion = 0;
 
   // Set once (or move to environment.ts)
-  private readonly SITE_NAME = "Diocletians Dream";
+  private readonly SITE_NAME = "Diocletian's Dream";
   private readonly SITE_URL = "https://diocletiansdream.com"; // change to your real domain
-  private readonly ORG_NAME = "Diocletians Dream";
+  private readonly ORG_NAME = "Diocletian's Dream";
   private readonly ORG_LOGO = "https://diocletiansdream.com/assets/images/ddLogo.png"; // use an absolute URL
 
   constructor(
@@ -65,6 +74,7 @@ export class BlogPostPage implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.sub?.unsubscribe();
     this.postLoadSub?.unsubscribe();
+    this.relatedSub?.unsubscribe();
     this.postLoadVersion++;
     this.postLanguageRoutes.clear();
     this.seo.clearJsonLd('ld-blogposting');
@@ -89,8 +99,10 @@ export class BlogPostPage implements OnInit, OnDestroy {
         if (this.post) {
           this.postLanguageRoutes.register(requestedRoute, this.post.translations);
           this.applySeo(this.post);
+          this.loadRelated(this.post);
         } else {
           this.postLanguageRoutes.clear();
+          this.relatedPosts = [];
           this.applyNotFoundSeo();
         }
       },
@@ -242,37 +254,117 @@ export class BlogPostPage implements OnInit, OnDestroy {
     return trimmed.length > 160 ? trimmed.slice(0, 157).trimEnd() + '…' : trimmed;
   }
 
+  /**
+   * The WordPress author, from the `_embedded` payload `_embed=true` already
+   * fetches. Returns null when WordPress gives us nothing usable or only the
+   * generic "admin" account: a `Person` node naming an account rather than a
+   * human is worse than no author node at all, because it asserts an entity
+   * that cannot be verified anywhere off-site.
+   */
+  authorName(post: any): string | null {
+    const raw = this.stripHtml(post?._embedded?.author?.[0]?.name ?? '').trim();
+    if (!raw) return null;
+    if (/^(admin|administrator|editor|user)$/i.test(raw)) return null;
+    // A social handle ("@diocletiansdream") or the brand name itself is an
+    // account, not a person. Asserting a Person for either claims an entity
+    // that cannot be verified off-site, which scores worse than attributing
+    // the article to the organisation.
+    if (raw.startsWith('@')) return null;
+    if (/^diocletian'?s\s*dream$/i.test(raw.replace(/[’']/g, "'"))) return null;
+    return raw;
+  }
+
+  /**
+   * Byline shown to the reader. Real people get their name; otherwise the
+   * article is attributed to the brand, matching the Organization author node
+   * in the schema graph rather than printing a WordPress handle.
+   */
+  bylineName(post: any): string {
+    return this.authorName(post) ?? this.ORG_NAME;
+  }
+
+  /** Whether the post was meaningfully revised after publication (1 day+ apart). */
+  wasUpdated(post: any): boolean {
+    const published = new Date(post?.date).getTime();
+    const modified = new Date(post?.modified).getTime();
+    if (isNaN(published) || isNaN(modified)) return false;
+    return modified - published > 24 * 60 * 60 * 1000;
+  }
+
+  /** Localized "last updated" label, formatted like the publish date. */
+  modifiedLabel(post: any): string {
+    const d = new Date(post?.modified);
+    if (isNaN(d.getTime())) return '';
+    const locale = this.lang === 'hr' ? 'hr-HR' : undefined;
+    return d.toLocaleDateString(locale, { year: 'numeric', month: 'long', day: '2-digit' });
+  }
+
+  /**
+   * Author node for the schema graph. Falls back to the Organization when
+   * WordPress has no real name attached, which keeps the article valid without
+   * inventing a byline.
+   */
+  private authorNode(post: any) {
+    const name = this.authorName(post);
+    const url = this.stripHtml(post?._embedded?.author?.[0]?.url ?? '').trim();
+
+    if (!name) {
+      return { '@type': 'Organization', '@id': `${this.SITE_URL}/#organization` };
+    }
+
+    return {
+      '@type': 'Person',
+      '@id': `${this.SITE_URL}/#/author/${encodeURIComponent(name.toLowerCase())}`,
+      name,
+      ...(url ? { url } : {}),
+      worksFor: { '@type': 'Organization', '@id': `${this.SITE_URL}/#organization` },
+    };
+  }
+
   private buildBlogPostingJsonLd(post: any, url: string, title: string, description: string, image: string) {
     const published = post?.date ? new Date(post.date).toISOString() : undefined;
     const modified = post?.modified ? new Date(post.modified).toISOString() : published;
+    const body = this.stripHtml(this.contentHtml(post));
+
+    const publisher = {
+      '@type': 'Organization',
+      '@id': `${this.SITE_URL}/#organization`,
+      name: this.ORG_NAME,
+      url: `${this.SITE_URL}/`,
+      logo: {
+        '@type': 'ImageObject',
+        url: this.ORG_LOGO,
+      },
+    };
 
     return {
       '@context': 'https://schema.org',
       '@type': 'BlogPosting',
+      '@id': `${url}#article`,
       mainEntityOfPage: { '@type': 'WebPage', '@id': url },
-      headline: this.stripHtml(title),
+      url,
+      headline: this.stripHtml(title).slice(0, 110),
       description: this.stripHtml(description),
       image: image ? [image] : undefined,
       datePublished: published,
       dateModified: modified,
-      author: {
-        '@type': 'Organization',
-        name: this.ORG_NAME,
-        url: this.SITE_URL,
-        logo: {
-          '@type': 'ImageObject',
-          url: this.ORG_LOGO,
-        },
+      inLanguage: this.lang === 'hr' ? 'hr-HR' : 'en-US',
+      wordCount: body ? body.split(/\s+/).filter(Boolean).length : undefined,
+      author: this.authorNode(post),
+      publisher,
+      /** The article body, so voice assistants read the piece and not the nav. */
+      speakable: {
+        '@type': 'SpeakableSpecification',
+        cssSelector: ['#post-article h1', '#post-article .blog-prose p'],
       },
-      publisher: {
-        '@type': 'Organization',
-        name: this.ORG_NAME,
-        url: this.SITE_URL,
-        logo: {
-          '@type': 'ImageObject',
-          url: this.ORG_LOGO,
-        },
-      }
+      /** Ties the post to the blog index, which ties it to the site. */
+      isPartOf: {
+        '@type': 'Blog',
+        '@id': this.absoluteUrl(this.lang === 'hr' ? '/hr/blog/' : '/blog/'),
+        name: this.translate.instant('blogPage.hero.title'),
+        publisher: { '@id': `${this.SITE_URL}/#organization` },
+      },
+      about: { '@id': `${this.SITE_URL}/#localbusiness` },
     };
   }
 
@@ -306,6 +398,50 @@ export class BlogPostPage implements OnInit, OnDestroy {
   }
 
   /** --- Existing helpers --- */
+  /**
+   * Picks siblings for the "keep reading" list: posts sharing a category first,
+   * then the rest of the archive to top up. Same language only — the Croatian
+   * and English trees are separate sites as far as crawlers are concerned.
+   *
+   * The window into that pool is rotated by the post's own position. Taking a
+   * plain `slice(0, 4)` would hand every article in a category the identical
+   * four links, so a handful of posts would collect all the internal links and
+   * the rest none — the problem this block exists to solve. Rotating spreads
+   * incoming links across the archive and stays deterministic, which matters
+   * because these pages are prerendered.
+   */
+  private loadRelated(post: any): void {
+    this.relatedSub?.unsubscribe();
+    this.relatedSub = this.wp.getPosts(1, 100, this.lang).subscribe({
+      next: (posts) => {
+        const all = (posts ?? []).filter((p: any) => p?.slug);
+        const pool = all.filter((p: any) => p?.id !== post?.id);
+        if (!pool.length) {
+          this.relatedPosts = [];
+          return;
+        }
+
+        const categories: number[] = post?.categories ?? [];
+        const shares = (p: any) => (p?.categories ?? []).some((c: number) => categories.includes(c));
+        const ordered = [...pool.filter(shares), ...pool.filter((p: any) => !shares(p))];
+
+        const offset = Math.max(0, all.findIndex((p: any) => p?.id === post?.id));
+        this.relatedPosts = Array.from(
+          { length: Math.min(this.relatedCount, ordered.length) },
+          (_, i) => ordered[(offset + i) % ordered.length],
+        );
+      },
+      error: () => {
+        this.relatedPosts = [];
+      },
+    });
+  }
+
+  /** Lang-aware post link: /slug on English, /hr/slug under the Croatian tree. */
+  postLink(post: any): any[] {
+    return this.lang === 'hr' ? ['/hr', post?.slug] : ['/', post?.slug];
+  }
+
   featuredImage(post: any): string | null {
     return post?._embedded?.['wp:featuredmedia']?.[0]?.source_url ?? null;
   }

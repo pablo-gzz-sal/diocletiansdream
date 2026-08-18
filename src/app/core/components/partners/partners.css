@@ -5,14 +5,20 @@
    ══════════════════════════════════════════ */
 
 .partners {
-  padding: clamp(3.5rem, 7.5vw, 6.5rem) 0;
+  /* Site-standard section rhythm (--dd-section-y) rather than a local clamp, so
+     the gap above the cards matches the gap the Partners page hero leaves
+     below its intro — they are read as one measurement by the eye. */
+  padding: var(--dd-section-y) 0;
   background: var(--color-warm);
 }
 
+/* Site-standard page gutter (--dd-page-x), not a local clamp: this section sits
+   directly under the Partners page hero, and a 5vw gutter here against the
+   site's 4vw everywhere else left the cards visibly out of line with the H1. */
 .partners-inner {
-  max-width: 1280px;
+  max-width: var(--dd-container);
   margin: 0 auto;
-  padding: 0 clamp(1rem, 5vw, 2.5rem);
+  padding: 0 var(--dd-page-x);
 }
 
 .partners-header {

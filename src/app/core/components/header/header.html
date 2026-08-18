@@ -28,7 +28,7 @@
       </a>
 
       <!-- ── Desktop nav ── -->
-      <nav class="hidden md:flex absolute left-1/2 -translate-x-1/2 items-center gap-0.5 justify-center">
+      <nav class="dd-desktop-nav hidden md:flex absolute left-1/2 -translate-x-1/2 items-center gap-0.5 justify-center">
         <a
           [routerLink]="'/' | locPath"
           routerLinkActive="is-active"
@@ -77,9 +77,9 @@
       </nav>
 
       <!-- ── Desktop actions ── -->
-      <div class="hidden md:flex ml-auto items-center gap-3">
+      <div class="dd-desktop-actions hidden md:flex ml-auto items-center gap-3">
         <div
-          class="hidden lg:flex items-center rounded-full p-[3px]"
+          class="dd-lang-switch hidden lg:flex items-center rounded-full p-[3px]"
         style="background: rgba(26,24,20,0.07); border: 1px solid rgba(26,24,20,0.1)"
         [attr.aria-label]="'header.ui.toggleLanguage' | translate"
         >
@@ -105,7 +105,7 @@
 
         <a
           [routerLink]="'/booking' | locPath"
-          class="inline-flex items-center justify-center shrink-0 rounded-full px-5 py-2.5 text-[0.8rem] font-bold tracking-[0.11em] uppercase no-underline transition-all hover:brightness-110"
+          class="dd-desktop-cta inline-flex items-center justify-center shrink-0 rounded-full px-5 py-2.5 text-[0.8rem] font-bold tracking-[0.11em] uppercase no-underline transition-all hover:brightness-110"
           style="background: var(--dd-purple); color: #fff; box-shadow: 0 3px 14px rgba(45,4,106,0.30);"
         >
           {{ 'header.cta.bookNow' | translate }}
@@ -150,22 +150,18 @@
   </div>
 </header>
 
-<div
-  class="dd-mobile-menu-layer fixed inset-0 z-[60] md:hidden"
-  [ngClass]="menuOpen() ? 'pointer-events-auto' : 'pointer-events-none'"
->
+@if (menuOpen()) {
+<div class="dd-mobile-menu-layer fixed inset-0 z-[60] md:hidden">
   <!-- ── Backdrop ── -->
   <div
-    class="absolute inset-0 bg-ink/50 backdrop-blur-sm transition-opacity duration-300"
-    [ngClass]="menuOpen() ? 'opacity-100' : 'opacity-0'"
+    class="absolute inset-0 bg-ink/50 backdrop-blur-sm opacity-100 transition-opacity duration-300"
     (click)="closeMenu()"
   ></div>
 
   <!-- ── Slide panel ── -->
   <div
-    class="dd-mobile-menu-panel absolute top-3 bottom-3 right-4 w-[82%] max-w-xs rounded-[1rem] bg-cream shadow-[0_32px_80px_rgba(26,24,20,0.22)] border border-black/8 overflow-hidden flex flex-col transition-all duration-[350ms]"
+    class="dd-mobile-menu-panel absolute top-3 bottom-3 right-4 w-[82%] max-w-xs translate-x-0 rounded-[1rem] bg-cream opacity-100 shadow-[0_32px_80px_rgba(26,24,20,0.22)] border border-black/8 overflow-hidden flex flex-col transition-all duration-[350ms]"
     style="transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1)"
-    [ngClass]="menuOpen() ? 'translate-x-0 opacity-100' : 'translate-x-[110%] opacity-0'"
   >
     <!-- grain -->
     <div class="grain-overlay pointer-events-none absolute inset-0 opacity-[0.15]"></div>
@@ -345,3 +341,4 @@
     </div>
   </div>
 </div>
+}

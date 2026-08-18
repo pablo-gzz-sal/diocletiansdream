@@ -6,6 +6,7 @@ import { LandingPage } from '../../features/landing-page/landing-page';
 import { Experience } from '../../features/experience/experience';
 import { Contact } from '../../features/contact/contact';
 import { About } from '../../features/about/about';
+import { PartnersPage } from '../../features/partners/partners-page';
 import { Booking } from '../../features/booking/booking';
 import { BlogListPage } from '../../features/blog/blog-list-page/blog-list-page';
 import { Privacy } from '../../features/legal/privacy/privacy';
@@ -21,6 +22,7 @@ export const MARKETING_ROUTES: Routes = [
   { path: 'experience', component: Experience },
   { path: 'visit', component: Contact },
   { path: 'about', component: About },
+  { path: 'partners', component: PartnersPage },
   { path: 'booking', component: Booking },
 ];
 

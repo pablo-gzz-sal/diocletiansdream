@@ -1,0 +1,33 @@
+:host {
+  display: block;
+  min-width: 0;
+}
+
+.cta-block-actions,
+.cta-block-action {
+  min-width: 0;
+  max-width: 100%;
+}
+
+@media (max-width: 420px) {
+  .cta-block-shell {
+    padding-inline: 1rem;
+  }
+
+  .cta-block-panel {
+    padding: 1.25rem;
+  }
+
+  .cta-block-actions {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .cta-block-action {
+    width: 100%;
+    padding-inline: 0.9rem;
+    white-space: normal;
+    text-align: center;
+    line-height: 1.35;
+  }
+}

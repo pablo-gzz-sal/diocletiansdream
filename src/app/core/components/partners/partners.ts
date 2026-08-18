@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 import { RevealOnScrollDirective } from '../../../shared/animations/reveal-on-scroll-directive';
 
@@ -19,6 +19,13 @@ interface Partner {
   styleUrl: './partners.css',
 })
 export class Partners {
+  /**
+   * The section's own eyebrow/title/intro. Off on the Partners page, which
+   * carries that copy in its <h1> hero — two headings saying the same thing
+   * would leave the page with a duplicate, competing heading.
+   */
+  @Input() showHeader = true;
+
   partners: Partner[] = [
     {
       num: '01',

@@ -16,11 +16,9 @@ import { LocalePathPipe } from '../../i18n/locale-path.pipe';
 export class Trailer implements OnDestroy {
   @ViewChild('playerFrame') playerFrameRef?: ElementRef<HTMLIFrameElement>;
 
-  /** Skip the opening logo and reset before the closing branding begins. */
-  readonly loopStartSeconds = 5;
-  readonly loopEndSeconds = 46.2;
-  readonly heroCopyVisibleForSeconds = 5;
+  readonly heroCopyVisibleForSeconds = 2.5;
   readonly heroCopyReturnForSeconds = 4;
+  readonly loopCrossfadeForSeconds = 0.8;
 
   /** Tracks transient media playback for the current video state. */
   playing = false;
@@ -31,9 +29,16 @@ export class Trailer implements OnDestroy {
   /** Keeps the opening and closing beats readable while the middle stays cinematic. */
   heroCopyVisible = true;
 
+  /** Reveals the moving picture only after Vimeo has buffered behind the ancient still. */
+  videoRevealed = false;
+
   private readonly isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
   private readonly sanitizer = inject(DomSanitizer);
-  private loopSeekInProgress = false;
+  private loopTransitionActive = false;
+  private heroVisible = true;
+  private videoDuration = 0;
+  private playerPrepared = false;
+  private visibilityObserver?: IntersectionObserver;
   readonly autoplayAllowed = this.isBrowser && !this.prefersReducedMotion();
   readonly playerUrl: SafeResourceUrl = this.sanitizer.bypassSecurityTrustResourceUrl(this.createPlayerUrl());
 
@@ -52,68 +57,125 @@ export class Trailer implements OnDestroy {
     this.player = new Player(frame);
     this.player.on('play', () => this.onPlayerPlay());
     this.player.on('pause', () => this.onPlayerPause());
+    this.player.on('ended', () => this.onPlayerEnded());
     this.player.on('timeupdate', ({ seconds }) => this.onPlayerTimeUpdate(seconds));
-    this.player.on('seeked', () => this.onPlayerSeeked());
+    this.observeHeroVisibility(frame);
     void this.player.ready().then(() => this.onPlayerReady()).catch(() => {});
   }
 
   onPlayerPlay(): void {
     this.hasStarted = true;
     this.playing = true;
+    if (!this.loopTransitionActive) {
+      this.videoRevealed = true;
+    }
   }
 
   onPlayerPause(): void {
     this.playing = false;
-  }
 
-  onPlayerReady(): Promise<void> {
-    const player = this.player;
-    if (!player) return Promise.resolve();
-
-    this.updateHeroCopyVisibility(this.loopStartSeconds);
-    const seek = player.setCurrentTime(this.loopStartSeconds).then(() => {}).catch(() => {});
-    const mute = player.setMuted(true).then(() => {}).catch(() => {});
-    const autoplay = this.autoplayAllowed ? player.play().then(() => {}).catch(() => {}) : Promise.resolve();
-
-    return Promise.all([seek, mute, autoplay]).then(() => {});
-  }
-
-  onPlayerTimeUpdate(currentTime: number): void {
-    this.updateHeroCopyVisibility(currentTime);
-
-    if (this.loopSeekInProgress || currentTime < this.loopEndSeconds) return;
-
-    this.loopSeekInProgress = true;
-    this.updateHeroCopyVisibility(this.loopStartSeconds);
-
-    const player = this.player;
-    if (!player) {
-      this.loopSeekInProgress = false;
+    if (!this.heroVisible || !this.autoplayAllowed || !this.playerPrepared) {
       return;
     }
 
-    void player
-      .setCurrentTime(this.loopStartSeconds)
-      .then(() => player.play())
-      .catch(() => {})
-      .finally(() => {
-        this.loopSeekInProgress = false;
-      });
+    void this.player?.play().catch(() => {});
   }
 
-  onPlayerSeeked(): void {
-    this.loopSeekInProgress = false;
+  onPlayerEnded(): void {
+    this.playing = false;
+
+    if (this.heroVisible) {
+      this.loopTransitionActive = true;
+      this.videoRevealed = false;
+      this.heroCopyVisible = true;
+      void this.player?.play().catch(() => {});
+    }
+  }
+
+  async onPlayerReady(): Promise<void> {
+    const player = this.player;
+    if (!player) return;
+
+    const [duration] = await Promise.all([
+      player.getDuration().catch(() => 0),
+      player.setMuted(true).then(() => true).catch(() => false),
+    ]);
+    this.videoDuration = duration;
+    this.updateHeroCopyVisibility(0);
+    this.playerPrepared = true;
+
+    if (this.autoplayAllowed && this.heroVisible) {
+      await this.startPreparedPlayback();
+    }
+  }
+
+  onPlayerTimeUpdate(currentTime: number): void {
+    const closingTransitionStart = Math.max(0, this.videoDuration - this.loopCrossfadeForSeconds);
+
+    if (
+      this.loopTransitionActive &&
+      currentTime >= 0.15 &&
+      (this.videoDuration <= 0 || currentTime < closingTransitionStart)
+    ) {
+      this.loopTransitionActive = false;
+      this.videoRevealed = true;
+    }
+
+    if (this.videoDuration > 0 && currentTime >= closingTransitionStart) {
+      this.loopTransitionActive = true;
+      this.videoRevealed = false;
+    }
+
+    this.updateHeroCopyVisibility(currentTime);
+  }
+
+  onHeroVisibilityChange(visible: boolean): void {
+    this.heroVisible = visible;
+
+    const player = this.player;
+    if (!player || !this.autoplayAllowed) return;
+
+    if (!visible) {
+      void player.pause().catch(() => {});
+      return;
+    }
+
+    void player.play().catch(() => {});
   }
 
   ngOnDestroy(): void {
+    this.visibilityObserver?.disconnect();
     void this.player?.destroy().catch(() => {});
   }
 
+  private async startPreparedPlayback(): Promise<void> {
+    const player = this.player;
+    if (!player || !this.autoplayAllowed || !this.heroVisible || this.videoRevealed) {
+      return;
+    }
+
+    await player
+      .play()
+      .then(() => {
+        this.videoRevealed = true;
+      })
+      .catch(() => {});
+  }
+
+  private observeHeroVisibility(frame: HTMLIFrameElement): void {
+    if (typeof IntersectionObserver === 'undefined' || this.visibilityObserver) return;
+
+    this.visibilityObserver = new IntersectionObserver(
+      ([entry]) => this.onHeroVisibilityChange(Boolean(entry?.isIntersecting)),
+      { threshold: 0.05 },
+    );
+    this.visibilityObserver.observe(frame);
+  }
+
   private updateHeroCopyVisibility(currentTime: number): void {
-    const elapsedLoopTime = currentTime - this.loopStartSeconds;
     this.heroCopyVisible =
-      elapsedLoopTime <= this.heroCopyVisibleForSeconds ||
-      currentTime >= this.loopEndSeconds - this.heroCopyReturnForSeconds;
+      currentTime <= this.heroCopyVisibleForSeconds ||
+      (this.videoDuration > 0 && currentTime >= this.videoDuration - this.heroCopyReturnForSeconds);
   }
 
   private prefersReducedMotion(): boolean {
@@ -129,6 +191,7 @@ export class Trailer implements OnDestroy {
       byline: '0',
       controls: '0',
       dnt: '1',
+      loop: '1',
       muted: '1',
       playsinline: '1',
       portrait: '0',

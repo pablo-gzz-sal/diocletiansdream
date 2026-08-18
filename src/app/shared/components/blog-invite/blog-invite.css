@@ -1,0 +1,33 @@
+:host {
+  display: block;
+  min-width: 0;
+}
+
+.blog-invite-actions,
+.blog-invite-action {
+  min-width: 0;
+  max-width: 100%;
+}
+
+@media (max-width: 420px) {
+  .blog-invite-shell {
+    padding-inline: 1rem;
+  }
+
+  .blog-invite-panel {
+    padding: 1.25rem;
+  }
+
+  .blog-invite-actions {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .blog-invite-action {
+    width: 100%;
+    padding-inline: 0.9rem;
+    white-space: normal;
+    text-align: center;
+    line-height: 1.35;
+  }
+}

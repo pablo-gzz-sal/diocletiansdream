@@ -37,7 +37,12 @@ describe('Header', () => {
     expect(bookingLink?.getAttribute('href')).toBe('/booking');
   });
 
-  it('keeps the booking action in the 16 px-aligned mobile menu', () => {
+  it('renders the fixed mobile menu layer only while the menu is open', () => {
+    expect(fixture.nativeElement.querySelector('.dd-mobile-menu-layer')).toBeNull();
+
+    component.toggleMenu();
+    fixture.detectChanges();
+
     const menuPanel = fixture.nativeElement.querySelector(
       '.dd-mobile-menu-panel',
     ) as HTMLElement | null;
@@ -46,8 +51,11 @@ describe('Header', () => {
     ) as HTMLAnchorElement | null;
 
     expect(menuPanel?.classList.contains('right-4')).toBeTrue();
-    expect(bookingLink).not.toBeNull();
     expect(bookingLink?.getAttribute('href')).toBe('/booking');
+
+    component.closeMenu();
+    fixture.detectChanges();
+    expect(fixture.nativeElement.querySelector('.dd-mobile-menu-layer')).toBeNull();
   });
 
   it('renders three stable hamburger strokes', () => {

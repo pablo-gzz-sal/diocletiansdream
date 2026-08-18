@@ -1,29 +1,23 @@
 <app-header></app-header>
-<main class="pt-24 pb-20 bg-[var(--color-cream)]">
-  <div class="mx-auto max-w-4xl dd-page-gutter">
 
-    <header class="mb-10">
-      <p class="text-[0.7rem] tracking-[0.2em] uppercase text-[var(--color-ink-60)]">
-        Legal
-      </p>
-
-      <h1 class="mt-3 font-[family-name:var(--font-serif)] text-[clamp(2.2rem,4.5vw,3.5rem)] leading-[0.95] text-[var(--color-ink)]">
-        {{ title }}
-      </h1>
+<main class="policy-page">
+  <div class="policy-page__shell dd-page-gutter">
+    <header class="policy-page__header">
+      <p class="policy-page__eyebrow">Legal document</p>
+      <h1 id="policy-title" class="policy-page__title">{{ title }}</h1>
 
       @if (updatedAt) {
-        <p class="mt-3 text-[0.9rem] text-[var(--color-ink-60)]">
+        <p class="policy-page__updated">
+          <span aria-hidden="true"></span>
           Last updated: {{ updatedAt }}
         </p>
       }
     </header>
 
-    <section
-      class="rounded-[1rem] border border-[var(--color-ink-08)] bg-white/60 backdrop-blur p-6 sm:p-10"
-    >
+    <article class="policy-document" aria-labelledby="policy-title">
       <ng-content></ng-content>
-    </section>
-
+    </article>
   </div>
 </main>
+
 <app-footer></app-footer>

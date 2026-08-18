@@ -104,7 +104,11 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .wheel { animation: none; }
+  :host { display: none; }
+}
+
+@media (max-width: 767px) {
+  :host { display: none; }
 }
 
 .intro-viewport {

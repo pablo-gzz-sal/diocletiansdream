@@ -1,8 +1,8 @@
 {
   "home": {
     "hero": {
-      "title": "VR Iskustvo Dioklecijanove Palače u Splitu",
-      "subtitle": "Vratite se u 305. godinu i doživite Dioklecijanovu palaču u njezinu izvornom obliku kroz impresivno iskustvo virtualne stvarnosti u samom srcu Splita.",
+      "title": "VR iskustvo Dioklecijanove palače u Splitu",
+      "subtitle": "Vratite se u 305. godinu i vidite Dioklecijanovu palaču u njezinu izvornom obliku, u iskustvu virtualne stvarnosti minutu hoda od Zlatnih vrata.",
       "ctaPrimary": "Rezerviraj",
       "ctaSecondary": "Pogledaj Trailer",
       "1Line": "Zakoračite",
@@ -13,80 +13,94 @@
     "trailer": {
       "eyebrow": "Trailer",
       "title": "Pogledajte san u pokretu",
-      "subtitle": "Devedeset sekundi u nanovo rođenoj Dioklecijanovoj palači — svjetlo, mramor i carstvo na vrhuncu 305. godine.",
+      "subtitle": "Devedeset sekundi u obnovljenoj Dioklecijanovoj palači: mramor, svjetlo, žamor carskoga grada na vrhuncu 305. godine.",
       "play": "Pokreni trailer",
       "duration": "Trailer"
     },
     "heroConversion": {
       "title": "Pogledajte Dioklecijanovu palaču kakva je bila 305. godine",
-      "subtitle": "Zakoračite u Dioklecijanovu palaču kakva je bila 305. godine kroz povijesno utemeljeno 15-minutno VR iskustvo.",
+      "subtitle": "Zakoračite u Dioklecijanovu palaču kakva je bila 305. godine, kroz povijesno utemeljeno 15-minutno VR iskustvo.",
       "duration": "15-minutno iskustvo",
       "location": "Uz Zlatna vrata",
       "adult": "Odrasli €13",
       "child": "Djeca €9",
-      "childAges": "(od 8 do 14 godina)",
-      "trust": "Tripadvisor Travellers’ Choice · 2022. i 2023.",
+      "childAges": "(8 do 14 g.)",
+      "trust": "Tripadvisor Travellers' Choice · 2022. i 2023.",
       "bookingCta": "Rezervirajte svoje iskustvo",
       "bookingInfo": "Informacije o rezervaciji"
     },
     "experience": {
       "title": "Doživite antički Split kroz virtualnu stvarnost",
-      "p1": "Diocletians Dream je 15-minutno iskustvo virtualne stvarnosti smješteno svega nekoliko koraka od Dioklecijanove palače u Splitu. Kroz pažljivo izrađenu 3D rekonstrukciju i suvremenu VR tehnologiju prikazuje palaču onako kako je izgledala 305. godine.",
-      "p2": "Posjetitelji ulaze u prostore koji danas više ne postoje u izvornom obliku te promatraju prizore inspirirane povijesnim izvorima, dobivajući jedinstvenu vizualnu interpretaciju palače u vrijeme vladavine cara Dioklecijana.",
-      "p3": "Iskustvo je usmjereno na atmosferu, proporcije i vizualno pripovijedanje, omogućujući bolje razumijevanje načina na koji je palača funkcionirala u kontekstu života cara i razvoja grada Splita.",
+      "p1": "Diocletian's Dream je 15-minutno iskustvo virtualne stvarnosti, svega nekoliko koraka od Dioklecijanove palače u Splitu. Palaču smo rekonstruirali u 3D-u i prikazujemo je onakvu kakva je bila 305. godine.",
+      "p2": "Ulazite u prostore koji danas više ne postoje u izvornom obliku i gledate prizore utemeljene na povijesnim izvorima. Malo tko ima priliku vidjeti palaču na vrhuncu Dioklecijanove vladavine. Ovo je najbliže tome.",
+      "p3": "Rekonstrukcija je građena oko atmosfere i proporcija. Odlazite s jasnom slikom o tome kako je palača funkcionirala oko cara i kako je Split poslije izrastao unutar njezinih zidina.",
       "cta": "VR Iskustvo",
+      "awardKicker": "Tripadvisor priznanje",
+      "awardTitle": "Travellers' Choice",
+      "awardYears": "2022. i 2023.",
       "statDuration": "Minuta uronjenog VR-a",
       "statYear": "Godina koju oživljavamo"
+    },
+    "authority": {
+      "eyebrow": "Povijesni autoritet",
+      "title": "Rekonstrukcija utemeljena na stručnom znanju",
+      "titleLead": "Rekonstrukcija",
+      "titleMiddle": "utemeljena na",
+      "titleEnd": "stručnom znanju",
+      "collaboration": "Razvijeno u suradnji s",
+      "honorific": "Akademik",
+      "copy": "Stručni povijesni uvid oblikovao je našu interpretaciju Dioklecijanove palače iz 305. godine, od arhitekture i proporcija do atmosfere svakodnevnog života unutar carskog kompleksa.",
+      "detail": "Povijesna i umjetnička istraživanja vode cijeli doživljaj, pa tehnologija služi priči umjesto da je zamjenjuje."
     },
     "unique": {
       "title": "Što ovo VR iskustvo čini jedinstvenim u Hrvatskoj",
       "reconstruction": {
         "title": "Vjerna rekonstrukcija Dioklecijanove palače",
-        "text": "Naše VR iskustvo prikazuje izvorni kompleks palače onako kako je izgledao u kasnoj antici. Svaki detalj — arhitektura, atmosfera i narativ — pažljivo je rekonstruiran na temelju povijesnih i arheoloških istraživanja."
+        "text": "Naše VR iskustvo prikazuje izvorni kompleks palače onako kako je izgledao u kasnoj antici. Arhitektura, atmosfera i priča slijede povijesna i arheološka istraživanja."
       },
       "journey": {
         "title": "15-minutno putovanje kroz rimsko doba",
-        "text": "Iskustvo je osmišljeno tako da u kratkom vremenu pruži jasan i dojmljiv uvid u povijest. U samo 15 minuta posjetitelji dobivaju cjelovitiju sliku o nastanku Splita i ulozi cara Dioklecijana u njegovu razvoju."
+        "text": "Iskustvo je osmišljeno da bude kratko i pamtljivo. Petnaest minuta dovoljno je da shvatite odakle je Split nastao i što je car Dioklecijan iza sebe ostavio."
       },
       "educational": {
-        "title": "Edukativno, zanimljivo i prilagođeno svim uzrastima starijima od 8 godina",
-        "text": "Bilo da dolazite kao turist, obitelj ili školska grupa, Diocletians Dream pruža pristupačan i zanimljiv način upoznavanja rimske baštine i povijesti Splita."
+        "title": "Edukativno, zanimljivo i prilagođeno posjetiteljima od 8 godina naviše",
+        "text": "Bilo da dolazite kao turist, obitelj ili školska grupa, Diocletian's Dream otvara pristupačan put u rimsku baštinu i povijest Splita."
       },
       "cta": "Planiraj posjet"
     },
     "location": {
       "title": "Smješteno u samom srcu Splita",
-      "p1": "Diocletians Dream nalazi se u neposrednoj blizini Zlatnih vrata Dioklecijanove palače, unutar UNESCO-ove zaštićene povijesne jezgre grada Splita.",
-      "p2": "Riječ je o idealnoj aktivnosti u zatvorenom prostoru, prikladnoj tijekom cijele godine, osobito prilikom razgledavanja stare gradske jezgre. Cijene ulaznica i lokacija dostupne su na stranici Planiraj posjet. Za aktualno radno vrijeme provjerite Google Maps.",
+      "p1": "Diocletian's Dream nalazi se uz Zlatna vrata Dioklecijanove palače, unutar UNESCO-ove zaštićene povijesne jezgre Splita.",
+      "p2": "Riječ je o potpuno zatvorenom prostoru, što ga čini pouzdanim izborom po svakom vremenu dok razgledavate staru gradsku jezgru. Cijene ulaznica i upute za dolazak nalaze se na stranici Planiraj posjet, a aktualno radno vrijeme na Google Maps.",
       "cta": "Posjetite nas",
       "addressCity": "21000 Split, Hrvatska"
     },
     "reviews": {
       "title": "Povjerenje tisuća posjetitelja",
-      "p1": "Više od 50.000 posjetitelja do sada je doživjelo Diocletians Dream i izdvojilo ga kao jedno od najposebnijih kulturnih iskustava u Splitu.",
-      "p2": "Uz stotine recenzija s najvišim ocjenama, iskustvo se ističe kvalitetom interpretacije, povijesnom utemeljenošću i suvremenom tehnologijom virtualne stvarnosti.",
+      "p1": "Više od 50.000 ljudi prošlo je kroz Diocletian's Dream, a mnogi ga opisuju kao najneobičniji kulturni sadržaj koji su doživjeli u Splitu.",
+      "p2": "Stotine recenzija s pet zvjezdica vraćaju se na isto: na pripovijedanje, na povijesnu utemeljenost i na trenutak kad se palača pojavi oko vas.",
       "selected": "Odabrane recenzije:",
       "cta": "Pročitaj više recenzija",
-      "authorName": "Posjetitelji Diocletians Dreama",
+      "authorName": "Posjetitelji Diocletian's Dreama",
       "authorMeta": "Stotine recenzija s pet zvjezdica · Google i Tripadvisor"
     },
     "story": {
-      "title": "Priča iza projekta Diocletians Dream",
-      "p1": "Diocletians Dream nastao je s ciljem suvremenog i pristupačnog predstavljanja kulturne baštine. Povezujući povijesna istraživanja s tehnologijom virtualne stvarnosti, projekt nudi novi pogled na rimsku arhitekturu i povijest antičkog Splita.",
-      "p2": "Riječ je o jednom od vodećih VR projekata kulturne baštine u Hrvatskoj, osmišljenom kako bi današnjoj publici približio antičku povijest na jasan i vizualno dojmljiv način.",
+      "title": "Priča iza projekta Diocletian's Dream",
+      "p1": "Diocletian's Dream nastao je kako bi kulturnu baštinu predstavio na način koji današnja publika stvarno prati. Projekt povezuje povijesna istraživanja s virtualnom stvarnošću i daje rimskoj arhitekturi oblik kroz koji možete prošetati.",
+      "p2": "Riječ je o vodećem hrvatskom VR projektu kulturne baštine, osmišljenom da današnje posjetitelje poveže s antičkom poviješću.",
       "cta": "O projektu"
     },
     "partners": {
       "eyebrow": "Preporuka",
       "title": "Što još posjetiti u Splitu",
-      "text": "Split nagrađuje znatiželjne. Ovo su lokalna iskustva koja rado preporučujemo svojim posjetiteljima — svako vode ljudi koji dobro poznaju ovaj grad i njegovu obalu.",
+      "text": "Split nagrađuje znatiželjne. Ovo su lokalna iskustva koja rado preporučujemo svojim posjetiteljima, a svako vode ljudi koji dobro poznaju ovaj grad i njegovu obalu.",
       "visitSite": "Posjeti stranicu",
       "items": {
         "rafting": {
-          "text": "Rafting, skokovi u vodu i istraživanje špilja, uz piknik usput. Spustite se kanjonom Cetine s iskusnim vodičima, u malim grupama i u mirnijim satima — doživljaj prilagođen svakoj dobi i svakom ukusu."
+          "text": "Rafting, skokovi u vodu i istraživanje špilja, uz piknik usput. Spustite se kanjonom Cetine s iskusnim vodičima, u malim grupama i u mirnijim satima, na izletu prilagođenom svakoj dobi i svakom ukusu."
         },
         "food": {
-          "text": "Zabavan i opušten način da upoznate Split kroz njegovu kuhinju. Njihova gastro tura više nalikuje šetnji s prijateljem iz grada koji dijeli priče, povijest i male tajne Splita — uz jela zbog kojih se vrijedi zaustaviti."
+          "text": "Zabavan i opušten način da upoznate Split kroz njegovu kuhinju. Njihova gastro tura više nalikuje šetnji s prijateljem iz grada koji dijeli priče, povijest i male tajne Splita, uz jela zbog kojih se vrijedi zaustaviti."
         },
         "bus": {
           "text": "Upoznajte Split i okolicu iz autobusa s otvorenim krovom, uz audio vodič na deset jezika. Dnevna karta omogućuje vam da izađete gdje god želite i grad istražite vlastitim tempom."
@@ -95,7 +109,7 @@
     },
     "finalCta": {
       "title": "Spremni za povratak u 305. godinu?",
-      "text": "Doživite Dioklecijanovu palaču u njezinu izvornom arhitektonskom obliku. Rezervirajte svoju ulaznicu i upoznajte povijest Splita kroz jedinstveno iskustvo virtualne stvarnosti.",
+      "text": "Vidite Dioklecijanovu palaču u njezinu izvornom arhitektonskom obliku. Rezervirajte ulaznicu i upoznajte povijest Splita na način na koji je dosad niste vidjeli.",
       "cta": "Rezerviraj"
     },
     "newsletter": {
@@ -107,23 +121,39 @@
     "faq": {
       "eyebrow": "Pitanja",
       "title": "Česta pitanja",
-      "text": "Sve što trebate znati prije dolaska — koliko iskustvo traje, rezervacije, primjerenost za djecu i kako nas pronaći.",
+      "text": "Sve što trebate znati prije dolaska: koliko iskustvo traje, koliko košta, kako rezervirati, je li primjereno djeci i kako nas pronaći.",
       "items": {
         "duration": {
           "q": "Koliko traje iskustvo?",
-          "a": "VR iskustvo u muzeju traje otprilike 15 minuta."
+          "a": "VR iskustvo traje otprilike 15 minuta i cijelo vrijeme sjedite. Računajte na oko 25 minuta u prostoru ukupno, što uključuje kratke upute osoblja prije projekcije i namještanje VR naočala."
+        },
+        "price": {
+          "q": "Koliko košta ulaznica?",
+          "a": "Ulaznica za odrasle stoji €13, a dječja, za dob od 8 do 14 godina, €9. To je puna cijena jedne 15-minutne projekcije. Platiti možete online pri rezervaciji ili na licu mjesta kad u terminu ima slobodnih mjesta."
         },
         "booking": {
           "q": "Trebam li rezervirati unaprijed?",
-          "a": "Preporučujemo rezervaciju kako biste osigurali željeni termin."
+          "a": "Rezervacija unaprijed najsigurniji je način da dobijete željeni termin. Broj mjesta po projekciji je ograničen, a u srpnju i kolovozu termini se brzo popune. Posjetitelje bez rezervacije primamo kad u terminu ima mjesta."
         },
         "age": {
           "q": "Je li primjereno za djecu?",
-          "a": "Da — prilagođeno je obiteljima i primjereno za posjetitelje starije od 8 godina."
+          "a": "Da, za posjetitelje starije od 8 godina. Djeca mlađa od 8 godina ne mogu sudjelovati jer im VR naočale ne pristaju sigurno, a 360-stupanjski format za njih je prezahtjevan. Djecu do 14 godina treba pratiti odrasla osoba."
         },
         "location": {
           "q": "Nalazite li se blizu Dioklecijanove palače?",
-          "a": "Da — nalazimo se u Zagrebačkoj ulici 1, tik uz zidine palače blizu Zlatnih vrata, pa se savršeno uklapa u šetnju Dioklecijanovom palačom."
+          "a": "Nalazimo se u Zagrebačkoj ulici 1, tik uz zidine palače kraj Zlatnih vrata. Do palače se dolazi za manje od minute pješice, pa većina posjetitelja VR iskustvo poveže sa šetnjom kroz staru jezgru."
+        },
+        "language": {
+          "q": "Na kojim je jezicima dostupno iskustvo?",
+          "a": "Naracija je dostupna na osam jezika: engleskom, njemačkom, talijanskom, francuskom, hrvatskom, španjolskom, portugalskom i poljskom. Jezik birate prije početka projekcije, a svatko u istom terminu može odabrati svoj."
+        },
+        "firstTime": {
+          "q": "Trebam li prethodno iskustvo s VR naočalama?",
+          "a": "Ne. Većina naših posjetitelja nikad prije nije nosila VR naočale. Osoblje ih namjesti umjesto vas, objasni što slijedi i ostaje u prostoriji tijekom cijele projekcije. Nema ničega za upravljati: sjedite, gledate oko sebe i priča dolazi do vas."
+        },
+        "worthIt": {
+          "q": "Ima li smisla doći ako sam već obišao palaču?",
+          "a": "Tada iskustvo najbolje funkcionira. Današnji obilazak palače znači gledati srednjovjekovne i moderne zgrade urasle u rimsku ljusku. VR rekonstrukcija skida ta stoljeća i pokazuje volumene i krovove koje sačuvani zidovi samo naslućuju."
         }
       }
     },
@@ -138,8 +168,8 @@
       ]
     },
     "seo": {
-      "metaTitle": "VR muzej Diocletians Dream u Splitu | Zakoračite u 305. godinu",
-      "metaDescription": "15-minutno VR iskustvo u Splitu koje oživljava Dioklecijanovu palaču onakvu kakva je bila 305. godine. Nalazimo se odmah uz zidine palače, blizu Zlatnih vrata. Rezervirajte ulaznice online."
+      "metaTitle": "VR muzej Diocletian's Dream Split | 305. godina",
+      "metaDescription": "15-minutno VR iskustvo u Splitu koje obnavlja Dioklecijanovu palaču iz 305. godine. Uz Zlatna vrata. Odrasli €13, djeca €9. Rezervirajte online."
     },
     "intro": {
       "scroll": "Klizni",
@@ -149,42 +179,42 @@
   "experiencePage": {
     "hero": {
       "title": "VR iskustvo Dioklecijanove palače u Splitu",
-      "p1": "Diocletians Dream je 15-minutno iskustvo virtualne stvarnosti u Splitu koje prikazuje Dioklecijanovu palaču onako kako je izgledala 305. godine. Kroz povijesno utemeljenu 3D rekonstrukciju i prostorni dizajn, posjetitelji ulaze u arhitektonsko okruženje kasnog Rimskog Carstva.",
-      "p2": "Diocletians Dream nalazi se uz same zidine Dioklecijanove palače, neposredno izvan njezina povijesnog kompleksa, na adresi Zagrebačka ul. 1 u Splitu.",
+      "p1": "Diocletian's Dream je 15-minutno iskustvo virtualne stvarnosti u Splitu koje obnavlja Dioklecijanovu palaču onakvu kakva je bila 305. godine. Povijesno utemeljeno 3D modeliranje i prostorni dizajn smještaju vas u arhitekturu kasnog Rimskog Carstva.",
+      "p2": "Diocletian's Dream nalazi se uz same zidine Dioklecijanove palače, uz povijesnu jezgru Splita, na adresi Zagrebačka ul. 1.",
       "ctaTrailer": "Pogledaj trailer",
-      "eyebrow": "Diocletians Dream · VR iskustvo Split · 305. godina",
+      "eyebrow": "Diocletian's Dream · VR iskustvo Split · 305. godina",
       "chipDuration": "15 min",
       "chip3d": "3D rekonstrukcija",
       "chipUnesco": "UNESCO stara jezgra"
     },
     "whatYouWillSee": {
       "title": "Što ćete doživjeti",
-      "intro": "Tijekom projekcije posjetitelji ulaze u digitalno rekonstruiranu verziju carske rezidencije i okolnih prostora. Iskustvo prikazuje:",
+      "intro": "Tijekom projekcije ulazite u digitalno obnovljenu carsku rezidenciju i prostore oko nje. Iskustvo obuhvaća:",
       "bullets": [
-        "Kompleks palače u njegovim izvornim proporcijama",
-        "Ceremonijalne i stambene dijelove koji danas nisu u potpunosti očuvani",
-        "Prizore inspirirane povijesnim kontekstom vladavine cara Dioklecijana"
+        "Kompleks palače u izvornim arhitektonskim proporcijama",
+        "Ceremonijalne i stambene dijelove koji danas nisu u cijelosti očuvani",
+        "Prizore utemeljene na povijesnom kontekstu Dioklecijanove vladavine",
+        "Obalu i luku koje su služile carskom domaćinstvu"
       ],
-      "outro": "Kroz 360° vizualnu interpretaciju otkriva se atmosfera, razmjer i arhitektonska cjelovitost palače, pružajući jasniju sliku njezina izvornog izgleda i značenja u antičkom Splitu.",
+      "outro": "360-stupanjska rekonstrukcija donosi atmosferu, proporcije i puninu palače kakva je nekad stajala, pa njezin izvorni oblik i značenje u antičkom Splitu postaju mnogo jasniji.",
       "ctaBook": "Rezerviraj posjet"
     },
     "howItWorks": {
       "title": "Kako iskustvo funkcionira",
       "p1": "VR projekcija traje približno 15 minuta.",
-      "p2": "Projekcije se održavaju svakih 30 minuta tijekom dana, u unaprijed određenim terminima (npr. 11:00, 11:30, 12:00, 12:30). Preporučujemo dolazak nekoliko minuta prije početka termina. Posljednja projekcija započinje 30 minuta prije zatvaranja.",
-      "p3": "Nakon kratkog uvoda našeg osoblja, posjetitelji koriste VR naočale i započinju vođeno iskustvo kroz rekonstruirani prostor palače. Sustav je intuitivan i prilagođen i onima koji prvi put koriste virtualnu stvarnost.",
-      "p4": "Posjetitelji ulaze u manjim grupama prema rezerviranom terminu. Za informacije o radnom vremenu i planiranju dolaska posjetite stranicu Planiraj posjet.",
+      "p2": "Projekcije se održavaju svakih 30 minuta tijekom dana, u fiksnim terminima na puni sat i pola sata: 11:00, 11:30, 12:00, 12:30 i tako dalje. Dođite nekoliko minuta prije termina kako bi projekcija krenula na vrijeme. Posljednja projekcija počinje 30 minuta prije zatvaranja.",
+      "p3": "Osoblje vam daje kratke upute, namjesti VR naočale i uvodi vas u obnovljenu palaču. Sve je osmišljeno za one koji VR koriste prvi put i nema kontrolera koje treba naučiti.",
+      "p4": "Posjetitelji ulaze u manjim grupama prema rezerviranom terminu. Za radno vrijeme i planiranje dolaska pogledajte stranicu Planiraj posjet.",
       "visitUsLinkText": "Planiraj posjet"
     },
     "availableLanguages": {
       "title": "Dostupni jezici",
-      "p1": "Doświadczenie VR jest dostępne w ośmiu językach: angielskim, niemieckim, włoskim, francuskim, chorwackim, hiszpańskim, portugalskim i polskim.",
-      "p2": "Prije početka projekcije posjetitelji mogu odabrati željeni jezik kako bi u potpunosti razumjeli sadržaj i naraciju povijesne rekonstrukcije.",
-      "note": "Dostupnost jezika za ažurirani VR film koji se pokreće u travnju 2026. podložna je potvrdi s Declanom."
+      "p1": "VR iskustvo dostupno je na osam jezika: engleskom, njemačkom, talijanskom, francuskom, hrvatskom, španjolskom, portugalskom i poljskom.",
+      "p2": "Jezik birate prije početka projekcije, pa naracija i povijesni detalji dolaze jasno, na jeziku na kojem se najbolje snalazite."
     },
     "accuracy": {
       "title": "Povijesna utemeljenost i točnost",
-      "p1": "Digitalna rekonstrukcija temelji se na arheološkim istraživanjima, povijesnim izvorima i arhitektonskoj analizi ostataka palače. Ondje gdje su pojedini dijelovi danas djelomično očuvani, VR iskustvo prikazuje njihovu cjelovitu interpretaciju u izvornom obliku. Cilj nije apstraktno objašnjenje, već prostorno i vizualno razumijevanje povijesnog konteksta.",
+      "p1": "Digitalna rekonstrukcija počiva na arheološkim istraživanjima, povijesnim izvorima i arhitektonskoj analizi onoga što je od palače ostalo. Ondje gdje su izvorne strukture danas samo djelomično sačuvane, VR ih dovršava vizualno. Cilj je povijesni kontekst u koji možete ući, umjesto apstraktnog objašnjenja.",
       "label": "Semantika",
       "archaeological": "Arheološka istraživanja",
       "architectural": "Arhitektonska analiza"
@@ -193,71 +223,95 @@
       "title": "Kome je namijenjeno ovo iskustvo",
       "individual": {
         "title": "Individualni posjetitelji",
-        "text": "Idealno za posjetitelje zainteresirane za rimsku povijest, arhitekturu i kulturnu baštinu. Detalje o rezervaciji pronađite na stranici Individualni posjeti.",
+        "text": "Za posjetitelje zainteresirane za rimsku povijest, arhitekturu i kulturnu baštinu. Detalje o rezervaciji pronađite pod Individualni posjeti.",
         "linkText": "Individualni posjeti"
       },
       "families": {
         "title": "Obitelji",
-        "text": "Pristupačno i zanimljivo starijoj djeci i tinejdžerima, posebno onima koji uče o antičkoj povijesti. Preporučujemo iskustvo djeci starijoj od 8 godina. Dodatne informacije dostupne su u FAQ sekciji niže na stranici.",
+        "text": "Pristupačno starijoj djeci i tinejdžerima, osobito onima koji uče o antičkoj povijesti. Preporučujemo ga djeci od 8 godina naviše. Više praktičnih informacija nalazi se u FAQ sekciji niže.",
         "linkText": "Obiteljski posjeti"
       },
       "schools": {
         "title": "Školske grupe",
-        "text": "Vrijedan edukativni dodatak nastavi povijesti i školskim izletima u Splitu. Više informacija dostupno je na stranici Školski posjeti.",
+        "text": "Edukativna nadopuna nastavi povijesti i školskim izletima u Splitu. Više informacija na stranici Školski posjeti.",
         "linkText": "Školski posjeti"
       },
       "privateGroups": {
         "title": "Organizirane i privatne grupe",
-        "text": "Moguće je organizirati prilagođene termine za turističke ili privatne grupe. Više informacija pronađite na Grupni posjeti.",
+        "text": "Za organizirane grupe možemo dogovoriti prilagođene termine. Više informacija pod Grupni posjeti.",
         "linkText": "Grupni posjeti"
       }
     },
     "locationAccessibility": {
       "title": "Lokacija i pristupačnost",
-      "p1": "Diocletians Dream nalazi se u blizini Zlatnih vrata Dioklecijanove palače, neposredno uz njezine zidine, na adresi Zagrebačka ul. 1 u povijesnoj jezgri Splita.",
-      "p2": "Riječ je o potpuno zatvorenom prostoru, prikladnom za posjet tijekom cijele godine, neovisno o vremenskim uvjetima.",
-      "p3": "Prostor se nalazi u prizemlju i prilagođen je osobama s invaliditetom, omogućujući jednostavan i udoban pristup svim posjetiteljima.",
-      "p4": "Sve informacije o lokaciji, radnom vremenu i planiranju posjeta dostupne su na stranici Planiraj posjet.",
+      "p1": "Diocletian's Dream nalazi se uz Zlatna vrata Dioklecijanove palače, neposredno izvan njezinih zidina, na adresi Zagrebačka ul. 1 u povijesnoj jezgri Splita.",
+      "p2": "Prostor je u cijelosti zatvoren, pa iskustvo jednako dobro funkcionira tijekom cijele godine, bez obzira na vrijeme.",
+      "p3": "Nalazimo se u prizemlju, a prostor je prilagođen osobama s invaliditetom, bez stepenica između ulice i sjedala.",
+      "p4": "Sve upute za dolazak, radno vrijeme i praktične informacije nalaze se na stranici Planiraj posjet.",
       "visitUsLinkText": "Planiraj posjet"
     },
     "faq": {
-      "title": "FAQ – Često postavljana pitanja",
+      "title": "Česta pitanja",
       "items": [
         {
           "q": "Koliko traje iskustvo?",
-          "a": "VR projekcija traje približno 15 minuta. Termini započinju svakih 30 minuta (npr. 11:00, 11:30, 12:00). Molimo da dođete nekoliko minuta prije početka. Posljednja projekcija započinje 30 minuta prije zatvaranja."
+          "a": "VR projekcija traje približno 15 minuta. Termini počinju svakih 30 minuta, na puni sat i pola sata, dakle 11:00, 11:30, 12:00 i dalje. Dođite nekoliko minuta prije svog termina. Posljednja projekcija počinje 30 minuta prije zatvaranja."
         },
         {
           "q": "Je li iskustvo prikladno za djecu?",
-          "a": "Iskustvo je prikladno samo za djecu stariju od 8 godina. Mlađa djeca trebaju biti u pratnji odrasle osobe.\n\nBudući da je riječ o 360° VR iskustvu, sudionici bi se trebali osjećati ugodno pri korištenju VR naočala i boravku u virtualnom prostoru. Osobe osjetljive na simulaciju kretanja ili intenzivne vizualne efekte trebaju to uzeti u obzir.\n\nAko niste sigurni, naše osoblje rado će vam pomoći prije početka projekcije."
+          "a": "Iskustvo je prikladno za djecu od 8 godina naviše. Mlađi posjetitelji ne mogu sudjelovati, a djecu do 14 godina treba pratiti odrasla osoba.\n\nRiječ je o potpuno uronjenom 360-stupanjskom VR iskustvu, pa bi sudionici trebali biti opušteni s VR naočalama i boravkom u digitalnom prostoru. Osobe osjetljive na simulaciju kretanja, virtualne visine ili intenzivne vizualne efekte neka to uzmu u obzir.\n\nAko niste sigurni, pitajte osoblje prije projekcije i objasnit će vam sve."
         },
         {
           "q": "Je li potrebna rezervacija?",
-          "a": "Preporučujemo rezervaciju unaprijed, osobito tijekom turističke sezone. Termin možete osigurati putem stranice Rezerviraj.",
+          "a": "Rezervaciju unaprijed preporučujemo, osobito tijekom sezone. Termin možete osigurati putem stranice Rezerviraj.",
           "linkText": "Rezerviraj"
         },
         {
           "q": "Je li iskustvo fizički zahtjevno?",
-          "a": "Ne. Iskustvo je u potpunosti sjedeće i ne zahtijeva fizičko kretanje."
+          "a": "Ne. Cijelo iskustvo je sjedeće. Ostajete udobno u stolici svih 15 minuta i okrećete glavu da biste gledali oko sebe. Nema hodanja, stajanja ni predmeta koje treba držati."
+        },
+        {
+          "q": "Što ću zapravo vidjeti u VR naočalama?",
+          "a": "Vidjet ćete Dioklecijanovu palaču obnovljenu u punim arhitektonskim proporcijama, onakvu kakva je bila 305. godine. To uključuje ceremonijalne i stambene prostorije koje danas ne postoje, trijemove carskog kompleksa i luku koja je služila carskom domaćinstvu. Rekonstrukcija slijedi arheološka istraživanja i arhitektonsku analizu sačuvanih ostataka."
+        },
+        {
+          "q": "Na kojim je jezicima dostupna naracija?",
+          "a": "Na osam: engleskom, njemačkom, talijanskom, francuskom, hrvatskom, španjolskom, portugalskom i poljskom. Jezik birate prije početka projekcije, a svaki posjetitelj u istom terminu može odabrati drugi, pa se mješovite grupe ne moraju usuglašavati."
+        },
+        {
+          "q": "Hoće li mi od virtualne stvarnosti pozliti?",
+          "a": "Većini posjetitelja neće, jer je iskustvo sjedeće, a kamera se kreće mirno umjesto da vas baca kroz prostor. Ako znate da ste osjetljivi na simulaciju kretanja ili virtualne visine, recite to osoblju prije početka. Naočale možete skinuti u bilo kojem trenutku."
+        },
+        {
+          "q": "Koliko ranije trebam doći?",
+          "a": "Dovoljno je nekoliko minuta prije termina. Projekcije idu u fiksnim razmacima od 30 minuta i kreću na vrijeme, pa je pet minuta ranije dovoljno za upute osoblja i namještanje naočala prije početka rekonstrukcije."
+        },
+        {
+          "q": "Je li prostor prilagođen osobama s invaliditetom?",
+          "a": "Da. Diocletian's Dream je u prizemlju na adresi Zagrebačka ul. 1, s pristupom bez stepenica s ulice. Samo iskustvo je sjedeće, pa funkcionira i iz invalidskih kolica. Javite nam pri rezervaciji ako želite pomoć osoblja pri premještaju."
+        },
+        {
+          "q": "Koliko je rekonstrukcija povijesno točna?",
+          "a": "Model je izgrađen na arheološkim istraživanjima, povijesnim izvorima i arhitektonskoj analizi ostataka palače. Ondje gdje sačuvane strukture nisu cjelovite, rekonstrukcija praznine popunjava najutemeljenijom interpretacijom, a ne nagađanjem. Na povijesnoj interpretaciji savjetovao je akademik Josip Belamarić."
         }
       ]
     },
     "trailer": {
       "title": "Pogledaj trailer",
       "text": "Pogledajte odabrane prizore rekonstrukcije i otkrijte kako je Dioklecijanova palača digitalno obnovljena.",
-      "embedLabel": "Embedded Video"
+      "embedLabel": "Videozapis"
     },
     "booking": {
       "title": "Rezervirajte svoje VR iskustvo u Splitu",
-      "text": "Doživite Dioklecijanovu palaču u njezinu izvornom arhitektonskom obliku. Osigurajte svoju ulaznicu i zakoračite u rekonstruirano poglavlje rimske povijesti.",
+      "text": "Vidite Dioklecijanovu palaču u njezinu izvornom arhitektonskom obliku. Osigurajte ulaznicu i zakoračite u obnovljeno poglavlje rimske povijesti.",
       "cta": "Rezerviraj",
       "chipRomanEmpire": "Rimsko Carstvo",
       "chip3d": "3D rekonstrukcija",
       "chipUnesco": "UNESCO stara jezgra"
     },
     "seo": {
-      "metaTitle": "VR iskustvo Dioklecijanove palače u Splitu | Diocletians Dream",
-      "metaDescription": "Doživite Dioklecijanovu palaču onako kako je izgledala 305. godine kroz 15-minutno VR putovanje u Splitu. Suvremena interpretacija rimske povijesti. Rezervirajte posjet."
+      "metaTitle": "VR Dioklecijanova palača Split | Diocletian's Dream",
+      "metaDescription": "Vidite Dioklecijanovu palaču iz 305. godine u 15-minutnom VR iskustvu u Splitu. Sjedeće, 8 jezika, od 8 godina. Uz Zlatna vrata. Rezervirajte termin."
     },
     "sideCard": {
       "title": "Rekonstrukcija Dioklecijanove palače",
@@ -271,10 +325,10 @@
   },
   "visitPage": {
     "hero": {
-      "title": "Posjetite Diocletians Dream u Splitu",
-      "text": "Diocletians Dream nalazi se u povijesnoj jezgri Splita, u neposrednoj blizini Zlatnih vrata Dioklecijanove palače. Bilo da dolazite samostalno, s obitelji, u sklopu organizirane ture ili planirate školski posjet, naše iskustvo virtualne stvarnosti nudi strukturiran i pamtljiv način upoznavanja rimske baštine.",
+      "title": "Posjetite Diocletian's Dream u Splitu",
+      "text": "Diocletian's Dream nalazi se u povijesnoj jezgri Splita, nekoliko koraka od Zlatnih vrata Dioklecijanove palače. Bilo da dolazite sami, s obitelji, u sklopu ture ili sa školskom grupom, naše VR iskustvo pruža strukturiran i pamtljiv ulaz u rimsku baštinu.",
       "ctaPrimary": "Rezerviraj",
-      "eyebrow": "Posjetite Diocletians Dream Split · Zlatna vrata · termini po rasporedu",
+      "eyebrow": "Posjetite Diocletian's Dream Split · Zlatna vrata · termini po rasporedu",
       "ctaMap": "Karta i upute",
       "ctaHours": "Radno vrijeme",
       "chipHistoricCentre": "povijesna jezgra",
@@ -283,30 +337,30 @@
     },
     "individual": {
       "title": "Individualni posjeti",
-      "p1": "Individualni posjeti namijenjeni su solo putnicima, parovima, obiteljima i manjim skupinama prijatelja koji žele doživjeti Dioklecijanovu palaču kroz iskustvo virtualne stvarnosti.",
-      "p2": "15-minutna VR projekcija prikazuje se tijekom dana u unaprijed definiranim terminima. Budući da je broj mjesta po terminu ograničen, preporučujemo rezervaciju željenog termina unaprijed.",
-      "p3": "Ako ste u Splitu i tražite sadržajan kulturni sadržaj u blizini Dioklecijanove palače, ovo iskustvo pruža jasan i pristupačan uvid u rimske početke grada.",
+      "p1": "Individualni posjeti odgovaraju solo putnicima, parovima, obiteljima i manjim skupinama prijatelja koji žele vidjeti Dioklecijanovu palaču kroz virtualnu stvarnost.",
+      "p2": "15-minutna VR projekcija održava se tijekom dana u fiksnim terminima. Broj mjesta po terminu je ograničen, pa željeni termin rezervirajte unaprijed.",
+      "p3": "Ako ste u Splitu i tražite sadržajan kulturni program uz Dioklecijanovu palaču, ovaj format daje vam rimske početke grada u obliku koji stvarno možete vidjeti.",
       "cta": "Rezerviraj termin"
     },
     "groups": {
       "title": "Grupni posjeti",
       "p1": "Grupni posjeti dostupni su za organizirane turističke grupe, vođene razglede Splita, kulturne programe i privatne rezervacije.",
-      "p2": "Iskustvo se može uključiti kao dio vođenog razgleda Splita ili uvrstiti u širi kulturni program. Termine je moguće prilagoditi organiziranim grupama, ovisno o dostupnosti. Ako organizirate grupni posjet, molimo da nas kontaktirate unaprijed radi dogovora termina i posebnih uvjeta.",
-      "note": "Napomena: Tijekom izvansezonskog razdoblja (najčešće od studenoga do kraja veljače) redovni individualni posjeti mogu biti obustavljeni. Grupni posjeti mogu se organizirati na zahtjev.",
+      "p2": "Iskustvo se uklapa u vođeni razgled Splita ili u širi kulturni program. Termine možemo prilagoditi organiziranoj grupi, ovisno o dostupnosti. Ako organizirate grupni posjet, javite nam se unaprijed kako bismo dogovorili raspored i posebne uvjete.",
+      "note": "Napomena: tijekom izvansezonskog razdoblja, najčešće od studenoga do kraja veljače, redovni individualni posjeti mogu biti obustavljeni. Dogovoreni grupni posjeti i dalje se mogu organizirati na zahtjev.",
       "cta": "Pošaljite upit za grupni posjet",
       "ctaLinkText": "Kontakt"
     },
     "schools": {
       "title": "Školski posjeti",
-      "p1": "Diocletians Dream predstavlja edukativnu nadopunu nastavi povijesti i školskim izletima u Splitu.",
-      "p2": "Iskustvo pruža vizualnu i prostornu interpretaciju Dioklecijanove palače iz 305. godine, nadopunjujući nastavni sadržaj kroz suvremeni prikaz antičke arhitekture. Tijekom godina ugostili smo brojne školske grupe te primili pozitivne povratne informacije nastavnika i učenika.",
-      "p3": "Za školske posjete dostupne su posebne cijene. Konačna ponuda ovisi o broju učenika i veličini grupe. Potrebna je prethodna najava. Kontaktirajte nas kako bismo vam poslali prilagođenu ponudu i dostupne termine. Školski posjeti mogu se organizirati i izvan glavne sezone na upit.",
+      "p1": "Diocletian's Dream je edukativna nadopuna nastavi povijesti i školskim izletima u Splitu.",
+      "p2": "Iskustvo daje učenicima vizualnu i prostornu sliku Dioklecijanove palače iz 305. godine, što nastavni sadržaj podupire mnogo bolje nego tlocrt. Tijekom godina ugostili smo brojne školske grupe, a povratne informacije nastavnika i učenika dosljedno su dobre.",
+      "p3": "Za školske posjete dostupne su niže cijene. Konačna ponuda ovisi o broju učenika i veličini grupe, a potrebna je prethodna najava. Javite nam se za prilagođenu ponudu i dostupne termine. Školski posjeti mogu se dogovoriti i izvan glavne sezone.",
       "cta": "Zatražite ponudu za školski posjet",
       "ctaLinkText": "Kontakt"
     },
     "hours": {
       "title": "Radno vrijeme",
-      "intro": "Radno vrijeme podložno je promjenama. Diocletians Dream trenutno je otvoren:",
+      "intro": "Radno vrijeme mijenja se sa sezonom. Diocletian's Dream trenutno je otvoren:",
       "schedule": {
         "season1": "Studeni – ožujak",
         "time1": "11:00 – 16:00",
@@ -315,64 +369,80 @@
         "season3": "Svibanj – listopad",
         "time3": "10:00 – 20:00"
       },
-      "sessions": "VR projekcije započinju svakih 30 minuta tijekom dana, a posljednja projekcija počinje 30 minuta prije zatvaranja. Za najažurnije vrijeme provjerite Google.",
-      "note": "Radno vrijeme može se prilagoditi tijekom blagdana, posebnih događanja ili sezonskih promjena.",
-      "google": "Za najtočnije i ažurne informacije preporučujemo provjeru našeg službenog Google Business profila, koji redovito ažuriramo.",
+      "sessions": "VR projekcije počinju svakih 30 minuta tijekom dana, a posljednja kreće 30 minuta prije zatvaranja. Za najažurnije vrijeme provjerite Google.",
+      "note": "Radno vrijeme može se promijeniti tijekom blagdana, posebnih događanja ili sezonskih prilagodbi.",
+      "google": "Za najtočnije i najažurnije informacije provjerite naš službeni Google Business profil, koji redovito ažuriramo.",
       "googleLinkText": "Google Business profil"
     },
     "seasonal": {
       "title": "Sezonske informacije",
-      "p1": "Tijekom glavne sezone individualni posjeti odvijaju se prema objavljenom radnom vremenu, s projekcijama svakih 30 minuta.",
-      "p2": "U zimskom razdoblju (najčešće od studenoga do kraja veljače) redovno radno vrijeme može biti skraćeno ili privremeno obustavljeno. Organizirani grupni i školski posjeti u tom se razdoblju mogu dogovoriti unaprijed.",
-      "p3": "Za aktualne termine i dostupnost posjetite Rezerviraj ili nas kontaktirajte izravno.",
+      "p1": "Tijekom glavne sezone individualni posjeti prate objavljeno radno vrijeme, s projekcijama svakih 30 minuta.",
+      "p2": "Zimi, najčešće od studenoga do kraja veljače, redovno radno vrijeme može biti skraćeno ili privremeno obustavljeno. Dogovoreni grupni i školski posjeti u tom se razdoblju i dalje mogu organizirati na zahtjev.",
+      "p3": "Za aktualne termine i dostupnost pogledajte Rezerviraj ili nas kontaktirajte izravno.",
       "bookNowLinkText": "Rezerviraj"
     },
     "bookingInfo": {
       "title": "Informacije o rezervacijama",
-      "p1": "Preporučujemo rezervaciju unaprijed.",
-      "p2": "Iako primamo i posjetitelje bez prethodne najave kada ima slobodnih mjesta, projekcije se održavaju u fiksnim terminima svakih 30 minuta (na puni sat i pola sata). Budući da je broj mjesta po terminu ograničen, dolazak bez rezervacije može značiti čekanje sljedećeg slobodnog termina.",
-      "p3": "Kako biste osigurali željeni termin — osobito tijekom turističke sezone — preporučujemo rezervaciju unaprijed.",
-      "p4": "Za grupne aranžmane, školske popuste ili posebne ponude, molimo da nas kontaktirate.",
+      "p1": "Rezervaciju unaprijed toplo preporučujemo.",
+      "p2": "Posjetitelje bez najave primamo kad ima slobodnih mjesta, ali projekcije idu u fiksnim terminima svakih 30 minuta, na puni sat i pola sata. Broj mjesta po terminu je ograničen, pa dolazak bez rezervacije može značiti čekanje sljedećeg slobodnog termina.",
+      "p3": "Kako biste osigurali željeni termin, osobito tijekom sezone, rezervirajte unaprijed.",
+      "p4": "Za prilagođene ponude, grupne aranžmane ili školske popuste javite nam se izravno.",
       "ctaPrimary": "Rezerviraj",
       "ctaSecondary": "Kontaktirajte nas"
     },
     "faq": {
-      "title": "FAQ – Često postavljana pitanja",
+      "title": "Česta pitanja",
       "items": [
         {
           "q": "Je li potrebna rezervacija unaprijed?",
-          "a": "Rezervacija unaprijed snažno se preporučuje, osobito tijekom turističke sezone. Iako primamo posjetitelje bez rezervacije kada ima slobodnih mjesta, broj mjesta po terminu je ograničen, a projekcije se održavaju u fiksnim terminima svakih 30 minuta. Rezervacijom osiguravate željeni termin."
+          "a": "Rezervaciju unaprijed toplo preporučujemo, osobito tijekom turističke sezone. Posjetitelje bez rezervacije primamo kad u terminu ima mjesta, ali kapacitet po projekciji je ograničen, a termini idu u fiksnim razmacima od 30 minuta. Rezervacijom osiguravate željeno vrijeme."
         },
         {
           "q": "Koliko često se održavaju projekcije?",
-          "a": "Projekcije se održavaju svakih 30 minuta tijekom radnog vremena. Posljednja projekcija započinje 30 minuta prije zatvaranja. Za ažurne informacije provjerite radno vrijeme iznad ili naš Google Business profil."
+          "a": "VR projekcije održavaju se svakih 30 minuta tijekom dana, na puni sat i pola sata. Posljednja projekcija počinje 30 minuta prije zatvaranja. Za najažurnije informacije pogledajte radno vrijeme iznad ili naš službeni Google Business profil."
         },
         {
-          "q": "Gdje se nalazi Diocletians Dream?",
-          "a": "Nalazimo se na adresi Zagrebačka ul. 1, neposredno uz zidine Dioklecijanove palače, u povijesnoj jezgri Splita, u blizini Zlatnih vrata."
+          "q": "Gdje se nalazi Diocletian's Dream?",
+          "a": "Nalazimo se na adresi Zagrebačka ul. 1, neposredno uz zidine Dioklecijanove palače kraj Zlatnih vrata, u povijesnoj jezgri Splita."
         },
         {
-          "q": "Je li lokacija udaljena od Dioklecijanove palače?",
-          "a": "Da. Nalazimo se tik uz zidine palače, u neposrednoj blizini Zlatnih vrata. Do nas se dolazi pješice za manje od jedne minute tijekom razgledavanja stare gradske jezgre."
+          "q": "Koliko ste udaljeni od Dioklecijanove palače?",
+          "a": "Nalazimo se tik uz zidine palače i Zlatna vrata, manje od minute hoda od kompleksa, pa se posjet lako uklapa u jutro provedeno u staroj jezgri."
+        },
+        {
+          "q": "Kako do vas doći s Peristila?",
+          "a": "S Peristila prođite palačom prema sjeveru i izađite kroz Zlatna vrata. Diocletian's Dream je na adresi Zagrebačka ul. 1, s vaše lijeve strane po izlasku iz vrata, iza kipa Grgura Ninskog. Cijela šetnja traje oko tri minute."
+        },
+        {
+          "q": "Koliko košta ulaznica?",
+          "a": "Ulaznica za odrasle stoji €13. Dječja ulaznica, za dob od 8 do 14 godina, stoji €9. Cijena pokriva jednu punu 15-minutnu projekciju. Za školske grupe dostupne su niže cijene na upit, a organiziranim grupama izrađujemo posebnu ponudu."
+        },
+        {
+          "q": "Koje je vaše radno vrijeme?",
+          "a": "Radno vrijeme prati sezonu. Od studenoga do ožujka otvoreni smo od 11:00 do 16:00. U travnju i svibnju od 10:00 do 18:00. Kroz ljetnu sezonu do listopada od 10:00 do 20:00. Posljednja VR projekcija uvijek počinje 30 minuta prije zatvaranja, a radno vrijeme može se promijeniti oko blagdana."
+        },
+        {
+          "q": "Je li Diocletian's Dream dobar izbor po lošem vremenu?",
+          "a": "Jest. Prostor je u cijelosti zatvoren i u prizemlju, pa kiša, bura ili kolovoška vrućina ne mijenjaju ništa u samom iskustvu. Zbog toga je pouzdana zamjena kad razgledavanje Splita na otvorenom postane neugodno."
         },
         {
           "q": "Mogu li grupe posjetiti iskustvo izvan sezone?",
-          "a": "Da. Tijekom zimskog razdoblja redovni individualni posjeti mogu biti ograničeni, no organizirani grupni i školski posjeti mogu se dogovoriti unaprijed."
+          "a": "Da. Zimi, najčešće od studenoga do veljače, redovni individualni termini mogu biti smanjeni ili obustavljeni. Dogovoreni grupni i školski posjeti i dalje se mogu organizirati na zahtjev. Javite nam se unaprijed za dogovor termina."
         },
         {
           "q": "Postoje li popusti za školske grupe?",
-          "a": "Da. Za školske posjete dostupne su posebne cijene, ovisno o broju učenika i veličini grupe. Za detalje i ponudu kontaktirajte nas."
+          "a": "Da. Za školske posjete dostupne su niže cijene, ovisno o broju učenika i veličini grupe. Za detalje i prilagođenu ponudu javite nam se izravno."
         },
         {
           "q": "Je li iskustvo prikladno za obitelji s djecom?",
-          "a": "Da, ali samo za djecu stariju od 8 godina. Mlađa djeca trebaju biti u pratnji odrasle osobe. Više informacija dostupno je na stranici Iskustvo.",
+          "a": "Da, za djecu od 8 godina naviše. Mlađa djeca ne mogu sudjelovati, a onu do 14 godina treba pratiti odrasla osoba. Više informacija nalazi se na stranici Iskustvo.",
           "linkText": "Iskustvo"
         }
       ]
     },
     "seo": {
-      "metaTitle": "Posjetite Diocletians Dream u Splitu | Ulaznice i grupni posjeti",
-      "metaDescription": "Planirajte posjet Diocletians Dream u Splitu. Rezervirajte VR iskustvo ili pošaljite upit za grupne i školske posjete. Preporučuje se rezervacija unaprijed."
+      "metaTitle": "Posjetite Diocletian's Dream Split | Ulaznice i grupe",
+      "metaDescription": "Isplanirajte posjet Diocletian's Dreamu u Splitu. Radno vrijeme, put od Zlatnih vrata, cijene ulaznica te grupni i školski posjeti."
     },
     "sideCard": {
       "title": "Ulaznice i grupni posjeti",
@@ -381,7 +451,7 @@
     "location": {
       "eyebrow": "Lokacija",
       "title": "Povijesna jezgra Splita",
-      "address": "Zagrebačka ul. 1 — odmah uz zidine Dioklecijanove palače, blizu Zlatnih vrata.",
+      "address": "Zagrebačka ul. 1, odmah uz zidine Dioklecijanove palače, kraj Zlatnih vrata.",
       "ctaDirections": "Upute za dolazak"
     },
     "map": {
@@ -391,58 +461,54 @@
   "aboutPage": {
     "hero": {
       "title": "O nama",
-      "p1": "Diocletians Dream je specijalizirano iskustvo virtualne stvarnosti i VR muzej smješten u povijesnoj jezgri Splita. Projekt je osmišljen kako bi Dioklecijanovu palaču prikazao kroz suvremenu 3D rekonstrukciju, povezujući arheološka istraživanja, arhitektonsku analizu i naprednu tehnologiju virtualne stvarnosti.",
-      "p2": "Riječ je o jednom od prvih koncepata virtualnog muzeja kulturne baštine u Hrvatskoj te o prepoznatljivom kulturnom sadržaju unutar UNESCO-ove zaštićene jezgre Splita.",
-      "eyebrow": "VR muzej · Diocletians Dream · Split"
+      "p1": "Diocletian's Dream je iskustvo virtualne stvarnosti i VR muzej u povijesnoj jezgri Splita. Dioklecijanovu palaču prikazuje kroz uronjenu 3D rekonstrukciju, a nastao je spajanjem arheološke interpretacije, arhitektonske analize i suvremene VR tehnologije.",
+      "p2": "Bio je jedan od prvih koncepata virtualnog muzeja u Hrvatskoj i ostaje prepoznatljiv kulturni sadržaj unutar UNESCO-ove jezgre Splita.",
+      "eyebrow": "VR muzej · Diocletian's Dream · Split"
     },
     "mission": {
       "title": "Naša misija",
-      "p1": "Cilj Diocletians Dream-a jest omogućiti jasnije prostorno razumijevanje Dioklecijanove palače onako kako je izgledala 305. godine.",
-      "p2": "Iako palača i danas predstavlja jedan od najvažnijih rimskih spomenika na svijetu, njezin se izvorni oblik kroz stoljeća mijenjao uslijed prilagodbi i urbanog razvoja. VR rekonstrukcija pruža vizualnu interpretaciju njezine izvorne arhitektonske cjeline, ceremonijalnih prostora i carskog rasporeda.",
-      "p3": "Iskustvo ne zamjenjuje klasično povijesno tumačenje, već ga nadopunjuje, pomažući posjetiteljima da lakše razumiju ono što danas vide u očuvanim ostacima.",
+      "p1": "Diocletian's Dream postoji kako bi posjetiteljima dao jasniju prostornu sliku Dioklecijanove palače onakve kakva je bila 305. godine.",
+      "p2": "Palača je jedan od najvažnijih rimskih spomenika na svijetu, no stoljeća prilagodbi i urbanog razvoja promijenila su većinu njezine izvorne strukture. VR rekonstrukcija ponovno pokazuje arhitektonske proporcije, ceremonijalne prostore i carski raspored kao jednu cjelovitu građevinu.",
+      "p3": "Iskustvo nadopunjuje klasično povijesno tumačenje umjesto da ga zamjenjuje, pa posjetitelji lakše razumiju ono što vide u sačuvanim ostacima.",
       "linkText": "VR Iskustvo",
       "linkSentence": "Više o načinu rekonstrukcije saznajte na stranici VR Iskustvo."
     },
     "whyVr": {
       "title": "Zašto virtualna stvarnost i povijest",
-      "p1": "Povijesne lokacije često zahtijevaju maštu. Zidovi ostaju, ali volumeni nestaju. Proporcije se gube, a izvorni raspored postaje teško zamisliv.",
-      "p2": "Virtualna stvarnost omogućuje drugačiji pristup interpretaciji baštine. Rekonstrukcijom arhitektonskih prostora u stvarnoj veličini posjetiteljima se omogućuje razumijevanje:",
+      "p1": "Povijesne lokacije traže puno od vaše mašte. Zidovi ostaju, volumeni nestaju. Strukture se raspadaju, a izvorne proporcije postaju teško čitljive.",
+      "p2": "Virtualna stvarnost mijenja ono što posjetitelj može učiniti s ruševinom. Rekonstrukcija arhitektonskih prostora u punoj veličini omogućuje razumijevanje:",
       "bullets": [
         "Prostornog odnosa",
         "Monumentalnosti građevine",
         "Urbanog konteksta",
         "Unutarnje organizacije prostora"
       ],
-      "p3": "Kroz 360° modeliranje Diocletians Dream prikazuje palaču kao cjelovit arhitektonski sustav unutar Rimskog Carstva."
+      "p3": "Kroz 360-stupanjsko modeliranje Diocletian's Dream prikazuje palaču kao jedan cjelovit arhitektonski sustav unutar Rimskog Carstva."
     },
     "origin": {
       "title": "Nastanak projekta",
-      "p1": "Ideja o Diocletians Dreamu proizašla je iz jednostavnog opažanja: čak i vođeni razgledi Dioklecijanove palače uvelike se oslanjaju na objašnjenje i maštu.",
-      "p2": "Današnji obilazak palače zahtijeva mentalnu rekonstrukciju njezina izvornog izgleda. Projekt je razvijen kako bi premostio taj jaz, koristeći digitalnu tehnologiju kao alat za jasniju povijesnu interpretaciju. Osnivači su zamislili prostor u kojem posjetitelji mogu zastati, udaljiti se od gradske gužve i vidjeti cjelovitu arhitektonsku sliku nekadašnje carske rezidencije.",
-      "p3": "Razvoj je trajao više od godinu dana i uključivao suradnju povjesničara, dizajnera, digitalnih umjetnika i VR stručnjaka. Iskustvo je otvoreno za javnost 2020. godine te je od tada ugostilo desetke tisuća posjetitelja.",
-      "p4": "Od travnja 2026. posjetitelji mogu pogledati potpuno novi VR film, razvijen prema najnovijim produkcijskim i tehnološkim standardima, čime je dodatno unaprijeđena vizualna kvaliteta i narativna struktura rekonstrukcije.",
-      "note": "Potvrditi lansiranje novog VR filma u travnju 2026. prije objave."
+      "p1": "Ideja je proizašla iz jednostavnog opažanja: čak se i vođeni razgledi Dioklecijanove palače uvelike oslanjaju na objašnjenje i maštu.",
+      "p2": "Današnji obilazak palače znači da je u hodu mentalno obnavljate. Diocletian's Dream razvijen je da zatvori taj jaz, koristeći digitalnu tehnologiju u službi povijesne interpretacije. Osnivači su htjeli prostor u kojem posjetitelji mogu izaći iz gradske gužve, sjesti i vidjeti cjelovito arhitektonsko čitanje carske rezidencije.",
+      "p3": "Razvoj je trajao više od godinu dana i okupio povjesničare, dizajnere, digitalne umjetnike i VR stručnjake. Iskustvo je otvoreno za javnost 2020. godine i od tada je ugostilo desetke tisuća posjetitelja.",
+      "p4": "Od travnja 2026. posjetitelji gledaju potpuno novi VR film, izrađen prema suvremenim standardima uronjene tehnologije, s boljom vizualnom kvalitetom i razrađenijim narativom od izvorne rekonstrukcije."
     },
     "languages": {
       "title": "Dostupno na više jezika",
-      "p1": "Kako bi iskustvo bilo pristupačno međunarodnoj publici, Diocletians Dream dostupan je na osam jezika: engleskom, njemačkom, talijanskom, francuskom, hrvatskom, španjolskom, portugalskom i polskim.",
-      "p2": "Višejezična naracija omogućuje posjetiteljima da povijesnu rekonstrukciju dožive jasno i razumljivo, neovisno o kulturnom ili jezičnom podrijetlu.",
-      "note": "Dostupnost jezika za ažurirani VR film koji se pokreće u travnju 2026. potrebno je potvrditi prije objave."
+      "p1": "Kako bi iskustvo ostalo otvoreno međunarodnim posjetiteljima, Diocletian's Dream dostupan je na osam jezika: engleskom, njemačkom, talijanskom, francuskom, hrvatskom, španjolskom, portugalskom i poljskom.",
+      "p2": "Cilj je oduvijek bio rimsku baštinu predstaviti jasno, neovisno o kulturnom podrijetlu posjetitelja. Višejezična naracija omogućuje da rekonstrukciju dožive na jeziku na kojem razmišljaju."
     },
     "media": {
       "title": "Medijska prepoznatljivost",
-      "p1": "Od otvaranja, Diocletians Dream predstavljen je u regionalnim i međunarodnim turističkim publikacijama, kulturnim portalima i medijima.",
-      "p2": "Istican je kao inovativan pristup interpretaciji rimske baštine, suvremena nadopuna razgledima Splita te jedinstvena kulturna aktivnost u zatvorenom prostoru unutar stare gradske jezgre.",
-      "pressLogosPlaceholder": "Ovdje umetnite logotipe medija",
-      "linksPlaceholder": "Ovdje umetnite poveznice na članke",
-      "note": "Dodati članke i logotipe kada budu spremni.",
-      "pressLogosLabel": "Logotipi medija",
-      "articleLinksLabel": "Poveznice na članke"
+      "p1": "Od otvaranja, Diocletian's Dream predstavljen je u regionalnim i međunarodnim turističkim publikacijama, kulturnim portalima i medijima.",
+      "p2": "Novinari su ga opisivali kao nov pristup rimskoj baštini, suvremenu nadopunu razgledima Splita i osobit zatvoreni kulturni sadržaj unutar stare gradske jezgre.",
+      "featuredLabel": "Pisali su o nama",
+      "readArticle": "Pročitaj članak",
+      "watchVideo": "Pogledaj video"
     },
     "culturalLandscape": {
       "title": "Dio kulturnog identiteta Splita",
-      "p1": "Diocletians Dream nalazi se neposredno izvan zidina Dioklecijanove palače, svega minutu hoda od Zlatnih vrata, na adresi Zagrebačka ul. 1 u Splitu.",
-      "p2Intro": "Iskustvo se često kombinira s:",
+      "p1": "Diocletian's Dream nalazi se neposredno izvan zidina Dioklecijanove palače, oko minutu hoda od Zlatnih vrata, na adresi Zagrebačka ul. 1 u Splitu.",
+      "p2Intro": "Posjetitelji ga najčešće kombiniraju s:",
       "bullets": [
         "Vođenim razgledima palače",
         "Školskim izletima",
@@ -450,13 +516,42 @@
         "Organiziranim grupnim posjetima"
       ],
       "visitLinkText": "Planiraj posjet",
-      "visitSentence": "Za planiranje posjeta posjetite Planiraj posjet.",
+      "visitSentence": "Za planiranje posjeta pogledajte Planiraj posjet.",
       "experienceLinkText": "VR Iskustvo",
       "experienceSentence": "Za detaljan opis rekonstrukcije pogledajte VR Iskustvo."
     },
+    "faq": {
+      "title": "Česta pitanja o Diocletian's Dreamu",
+      "items": [
+        {
+          "q": "Što je Diocletian's Dream?",
+          "a": "Diocletian's Dream je VR muzej u Splitu. Nudi 15-minutno sjedeće iskustvo virtualne stvarnosti koje obnavlja Dioklecijanovu palaču iz 305. godine u punim arhitektonskim proporcijama, na temelju arheoloških istraživanja i analize sačuvanih ostataka."
+        },
+        {
+          "q": "Je li Diocletian's Dream pravi muzej?",
+          "a": "Riječ je o VR muzeju, a ne o zbirci predmeta. Umjesto vitrina, izložak je sama palača, digitalno obnovljena i prikazana u 360 stupnjeva. Kad je 2020. otvoren, bio je jedan od prvih koncepata virtualnog muzeja u Hrvatskoj."
+        },
+        {
+          "q": "Kada je Diocletian's Dream otvoren?",
+          "a": "Diocletian's Dream otvoren je za javnost 2020. godine, nakon više od godinu dana razvoja u kojem su sudjelovali povjesničari, dizajneri, digitalni umjetnici i VR stručnjaci. Od tada je kroz njega prošlo desetke tisuća posjetitelja, a 2022. i 2023. osvojio je Tripadvisorovu nagradu Travellers' Choice."
+        },
+        {
+          "q": "Kako je rekonstrukcija istražena?",
+          "a": "Model počiva na arheološkim istraživanjima, povijesnim izvorima i arhitektonskoj analizi ostataka palače. Na povijesnoj interpretaciji savjetovao je akademik Josip Belamarić, od arhitekture i proporcija kompleksa do toga kako je izgledao svakodnevni život u njemu."
+        },
+        {
+          "q": "Nalazi li se Diocletian's Dream unutar Dioklecijanove palače?",
+          "a": "Nalazimo se neposredno izvan zidina palače, na adresi Zagrebačka ul. 1, oko minutu hoda od Zlatnih vrata. Cijelo to područje je unutar UNESCO-ove zaštićene zone Splita, pa ste u svakom slučaju u povijesnoj jezgri."
+        },
+        {
+          "q": "Što donosi novi VR film u travnju 2026.?",
+          "a": "Od travnja 2026. prikazuje se potpuno novi VR film, izrađen prema suvremenim standardima uronjene tehnologije. Donosi bolju vizualnu kvalitetu i razrađeniji narativ od izvorne rekonstrukcije iz 2020. Format ostaje isti: 15 minuta, sjedeće, termini svakih 30 minuta."
+        }
+      ]
+    },
     "seo": {
-      "metaTitle": "O Diocletians Dream – VR muzej u Splitu",
-      "metaDescription": "Saznajte više o Diocletians Dreamu, VR muzeju u Splitu koji kroz 3D rekonstrukciju i povijesna istraživanja prikazuje Dioklecijanovu palaču."
+      "metaTitle": "O Diocletian's Dreamu | VR muzej u Splitu",
+      "metaDescription": "Diocletian's Dream je VR muzej u Splitu koji obnavlja Dioklecijanovu palaču iz 305. godine. Otvoren 2020., uz savjet akademika Josipa Belamarića."
     },
     "sideCard": {
       "title": "VR muzej Split",
@@ -469,8 +564,25 @@
       "text": "VR muzej Split · rekonstrukcija Dioklecijanove palače · UNESCO stara jezgra Split"
     }
   },
+  "partnersPage": {
+    "seo": {
+      "metaTitle": "Partneri | Što još posjetiti u Splitu | Diocletian's Dream",
+      "metaDescription": "Lokalna iskustva u Splitu koja rado preporučujemo: rafting kanjonom Cetine, gastro tura kroz staru gradsku jezgru i razgled grada autobusom s otvorenim krovom."
+    },
+    "hero": {
+      "eyebrow": "Partneri",
+      "title": "Što još posjetiti u Splitu",
+      "text": "Split nagrađuje znatiželjne. Ovo su lokalna iskustva koja rado preporučujemo svojim posjetiteljima, a svako vode ljudi koji dobro poznaju ovaj grad i njegovu obalu."
+    },
+    "cta": {
+      "title": "Provedite cijeli dan u Splitu",
+      "text": "Naš 15-minutni VR doživljaj nalazi se minutu hoda od Zlatnih vrata, pa se lako uklapa uz bilo koji od navedenih izleta — prije ili poslije njega.",
+      "experience": "Pogledajte doživljaj",
+      "visit": "Isplanirajte posjet"
+    }
+  },
   "header": {
-    "brand": "Diocletians Dream",
+    "brand": "Diocletian's Dream",
     "nav": {
       "home": "Početna",
       "about": "O nama",
@@ -502,7 +614,8 @@
     }
   },
   "footer": {
-    "tagline": "15-minutno VR iskustvo koje oživljava Dioklecijanovu palaču onakvu kakva je bila 305. godine, smješteno odmah uz zidine palače blizu Zlatnih vrata u Splitu.",
+    "tagline": "15-minutno VR iskustvo koje oživljava Dioklecijanovu palaču iz 305. godine, odmah uz zidine palače kraj Zlatnih vrata u Splitu.",
+    "logoAlt": "Logotip Diocletian's Dream",
     "explore": {
       "heading": "Istražite",
       "home": "Početna",
@@ -515,7 +628,9 @@
     "company": {
       "heading": "Tvrtka",
       "aboutUs": "O nama",
-      "contact": "Kontakt"
+      "visit": "Posjet",
+      "contact": "Kontakt",
+      "partners": "Partneri"
     },
     "getInTouch": {
       "heading": "Kontaktirajte nas"
@@ -531,8 +646,8 @@
   "blogPage": {
     "hero": {
       "eyebrow": "Blog",
-      "title": "Diocletians Dream Blog",
-      "intro": "Diocletians Dream blog donosi vam članke i vodiče o rimskoj povijesti, Dioklecijanovoj palači, savjetima za posjet Splitu i kulturnoj baštini grada. Bilo da planirate dolazak ili želite dublje upoznati povijest Rimskog Carstva, ovdje ćete pronaći dodatni kontekst koji nadopunjuje VR iskustvo."
+      "title": "Diocletian's Dream Blog",
+      "intro": "Članci i vodiči o rimskoj povijesti, Dioklecijanovoj palači, savjetima za posjet Splitu i kulturnoj baštini grada. Bilo da planirate dolazak ili čitate o Rimskom Carstvu, blog donosi kontekst iza VR iskustva."
     },
     "controls": {
       "searchPlaceholder": "Pretraži članke…",
@@ -558,18 +673,24 @@
     },
     "seo": {
       "title": "Saznajte više o rimskoj povijesti i kulturi Splita",
-      "text": "Naši članci obrađuju teme od povijesnog značaja Dioklecijanove palače do praktičnih savjeta za istraživanje Splita. Bez obzira istražujete li rimsku baštinu ili planirate svoj itinerar, blog nudi korisne informacije povezane s iskustvom virtualne stvarnosti.",
-      "metaTitle": "Blog Diocletians Dream | Rimska povijest i što raditi u Splitu",
-      "metaDescription": "Pročitajte članke o Dioklecijanovoj palači, rimskoj povijesti i aktivnostima u Splitu. Istražite vodiče kroz grad i kulturne teme povezane s VR iskustvom."
+      "text": "Naši članci obrađuju povijesni značaj Dioklecijanove palače i praktične savjete za Split. Bilo da istražujete rimsku baštinu ili slažete itinerar, blog donosi pozadinu iza našeg VR iskustva.",
+      "metaTitle": "Blog Diocletian's Dream | Rimska povijest i Split",
+      "metaDescription": "Članci o Dioklecijanovoj palači, rimskoj povijesti i aktivnostima u Splitu. Vodiči kroz grad i kulturni kontekst iza našeg VR iskustva."
     },
     "cta": {
       "experience": "Doživite rekonstrukciju palače",
       "visit": "Planirajte posjet",
       "book": "Rezervirajte termin"
+    },
+    "archive": {
+      "title": "Svi članci"
     }
   },
   "blogPostPage": {
     "back": "Natrag na blog",
+    "publishedLabel": "Objavljeno",
+    "updatedLabel": "Zadnja izmjena",
+    "byLabel": "Autor",
     "notFound": {
       "title": "Članak nije pronađen.",
       "text": "Članak je možda uklonjen ili je poveznica neispravna.",
@@ -581,7 +702,7 @@
     },
     "booking": {
       "eyebrow": "VR iskustvo",
-      "title": "Diocletians Dream",
+      "title": "Diocletian's Dream",
       "location": "305. godina · Split, Hrvatska",
       "durationLabel": "Trajanje",
       "durationValue": "15 minuta",
@@ -595,6 +716,10 @@
       "benefitCancellation": "Besplatno otkazivanje do 24 h ranije",
       "benefitVenue": "Prostor prilagođen kolicima",
       "cta": "Rezerviraj termin"
+    },
+    "related": {
+      "title": "Nastavite čitati",
+      "readLabel": "Pročitaj članak"
     }
   },
   "pageNotFound": {
@@ -603,13 +728,13 @@
     "text": "Stranica koju tražite ne postoji ili je premještena.",
     "cta": "Natrag na početnu",
     "seo": {
-      "metaTitle": "Stranica nije pronađena | Diocletians Dream",
+      "metaTitle": "Stranica nije pronađena | Diocletian's Dream",
       "metaDescription": "Tražena stranica ne postoji."
     }
   },
   "blogInvite": {
     "title": "Istražite rimsku povijest i vodiče kroz Split",
-    "text": "Otkrijte članke o Dioklecijanovoj palači, rimskoj baštini i aktivnostima u Splitu. Saznajte više kroz sadržaj povezan s VR iskustvom.",
+    "text": "Članci o Dioklecijanovoj palači, rimskoj baštini i aktivnostima u Splitu, s kulturnim kontekstom iza VR iskustva.",
     "ctaPrimary": "Posjetite blog",
     "ctaExperience": "VR iskustvo",
     "ctaVisit": "Planirajte posjet"
@@ -617,12 +742,12 @@
   "bookingPage": {
     "hero": {
       "title": "Rezervirajte VR iskustvo Dioklecijanove palače",
-      "text": "Zakoračite u rekonstruirani svijet rimskog doba i doživite Dioklecijanovu palaču onako kako je izgledala 305. godine. Naše 15-minutno, u potpunosti sjedeće iskustvo virtualne stvarnosti prikazuje palaču u njezinu izvornom arhitektonskom obliku kroz 360° rekonstrukciju. Projekcije se održavaju svakih 30 minuta tijekom dana. Zbog ograničenog broja mjesta po terminu preporučujemo rezervaciju unaprijed."
+      "text": "Zakoračite u obnovljeno poglavlje rimske povijesti i vidite Dioklecijanovu palaču onakvu kakva je bila 305. godine. Naše 15-minutno, potpuno sjedeće VR iskustvo prikazuje palaču u izvornom arhitektonskom obliku kroz 360-stupanjsku rekonstrukciju. Projekcije idu svakih 30 minuta tijekom dana, a kapacitet po terminu je ograničen, pa rezervirajte unaprijed."
     },
     "booking": {
       "eyebrow": "Rezerviraj",
       "title": "Odaberite željeni datum i termin u nastavku.",
-      "text": "Projekcije se održavaju svakih 30 minuta tijekom dana. Zbog ograničenog broja mjesta po terminu preporučujemo rezervaciju unaprijed."
+      "text": "Projekcije se održavaju svakih 30 minuta tijekom dana. Kapacitet po terminu je ograničen, pa toplo preporučujemo rezervaciju unaprijed."
     },
     "facts": {
       "durationLabel": "Trajanje",
@@ -635,21 +760,21 @@
       "bookingValue": "Preporučujemo unaprijed"
     },
     "widget": {
-      "title": "Diocletians Dream VR Experience",
+      "title": "Diocletian's Dream VR iskustvo",
       "badge": "15 min",
-      "note": "Sigurno plaćanje · Trenutna potvrda · Besplatno otkazivanje do 24h ranije"
+      "note": "Sigurno plaćanje · Trenutna potvrda · Besplatno otkazivanje do 24 h ranije"
     },
     "policy": {
       "eyebrow": "Važne informacije",
       "title": "Otkazivanje i povrat sredstava",
-      "p1": "Rezervaciju je moguće izmijeniti ili otkazati najkasnije 24 sata prije zakazanog termina. Za promjene unutar 24 sata molimo da nas kontaktirate izravno te ćemo, gdje je moguće, pokušati izaći u susret.",
-      "p2": "U slučaju tehničkih poteškoća ili nepredviđenih okolnosti nudimo puni povrat sredstava ili alternativni termin.",
-      "p3": "Napominjemo da je VR iskustvo namijenjeno posjetiteljima starijima od 8 godina. Djeci mlađoj od 8 godina sudjelovanje nije dopušteno. Ako su ulaznice kupljene za djecu ispod preporučene dobi, ulaz može biti odbijen, a povrat sredstava u tom slučaju nije moguć."
+      "p1": "Rezervaciju možete promijeniti ili otkazati do 24 sata prije termina. Za promjene unutar 24 sata javite nam se izravno i pomoći ćemo gdje možemo.",
+      "p2": "Ako tehnički problemi ili nepredviđene okolnosti spriječe održavanje projekcije, nudimo puni povrat sredstava ili drugi termin.",
+      "p3": "VR iskustvo namijenjeno je posjetiteljima od 8 godina naviše. Djeca mlađa od 8 godina ne mogu sudjelovati. Ako su ulaznice kupljene za dijete ispod te dobi, ulaz može biti odbijen po dolasku, a povrat sredstava u tom slučaju nije moguć."
     },
     "location": {
       "eyebrow": "Pronađite nas",
-      "title": "Lokacija Diocletians Dream",
-      "text": "Nalazimo se na adresi Zagrebačka ul. 1, neposredno uz zidine Dioklecijanove palače, u blizini Zlatnih vrata. Prostor je u potpunosti zatvoren i prilagođen osobama s invaliditetom.",
+      "title": "Lokacija Diocletian's Dream",
+      "text": "Nalazimo se na adresi Zagrebačka ul. 1, neposredno uz zidine Dioklecijanove palače kraj Zlatnih vrata. Prostor je u cijelosti zatvoren i prilagođen osobama s invaliditetom.",
       "addressLabel": "Adresa",
       "addressLine1": "Zagrebačka ul. 1",
       "addressLine2": "21000 Split, Hrvatska",
@@ -657,17 +782,45 @@
     },
     "faq": {
       "eyebrow": "FAQ",
-      "title": "FAQ – Često postavljana pitanja",
-      "q1": "Koliko traje VR iskustvo?",
-      "a1": "VR iskustvo traje približno 15 minuta i svo vrijeme sjedite.",
-      "q2": "Koliko često se održavaju projekcije?",
-      "a2": "Projekcije započinju svakih 30 minuta tijekom radnog vremena (na puni sat i pola sata). Zbog ograničenog kapaciteta preporučujemo rezervaciju unaprijed.",
-      "q3": "Gdje se nalazi Diocletians Dream?",
-      "a3": "Nalazimo se na adresi Zagrebačka ul. 1, neposredno uz zidine Dioklecijanove palače, u blizini Zlatnih vrata. Prostor je u potpunosti zatvoren i prilagođen osobama s invaliditetom.",
-      "q4": "Mogu li kupiti ulaznicu na licu mjesta?",
-      "a4": "Da, ako ima slobodnih mjesta. Ipak, budući da se projekcije održavaju u fiksnim terminima s ograničenim brojem posjetitelja, preporučujemo rezervaciju unaprijed. Ako je željeni termin po dolasku popunjen, ponudit ćemo vam prvi sljedeći slobodan termin.",
-      "q5": "Na kojim je jezicima dostupno iskustvo?",
-      "a5": "Iskustvo je dostupno na engleskom, njemačkom, talijanskom, francuskom, hrvatskom, španjolskom, poljskom i portugalskom jeziku. Prije početka projekcije možete odabrati željeni jezik."
+      "title": "Česta pitanja",
+      "items": [
+        {
+          "q": "Koliko traje VR iskustvo?",
+          "a": "VR iskustvo traje približno 15 minuta i cijelo vrijeme sjedite. Računajte na oko 25 minuta u prostoru ukupno, što uključuje upute osoblja i namještanje naočala prije početka."
+        },
+        {
+          "q": "Koliko košta ulaznica?",
+          "a": "Ulaznica za odrasle stoji €13, a dječja, za dob od 8 do 14 godina, €9. To je puna cijena jedne 15-minutne projekcije, bez dodatne naplate za naočale ili odabrani jezik. Grupne i školske cijene izrađujemo na upit."
+        },
+        {
+          "q": "Koliko često se održavaju projekcije?",
+          "a": "Projekcije počinju svakih 30 minuta tijekom dana, na puni sat i pola sata. Posljednja projekcija kreće 30 minuta prije zatvaranja. Kapacitet po terminu je ograničen, pa rezervirajte unaprijed da osigurate željeno vrijeme."
+        },
+        {
+          "q": "Gdje se nalazi Diocletian's Dream?",
+          "a": "Nalazimo se na adresi Zagrebačka ul. 1, neposredno uz zidine Dioklecijanove palače kraj Zlatnih vrata. Prostor je u cijelosti zatvoren i prilagođen osobama s invaliditetom, s pristupom bez stepenica s ulice."
+        },
+        {
+          "q": "Mogu li kupiti ulaznicu na licu mjesta?",
+          "a": "Da, posjetitelje bez rezervacije primamo kad u terminu ima mjesta. Budući da projekcije idu u fiksnim terminima s ograničenim brojem sjedala, rezervaciju unaprijed toplo preporučujemo. Ako je željeni termin po dolasku popunjen, osoblje će vam ponuditi prvi sljedeći slobodan."
+        },
+        {
+          "q": "Mogu li promijeniti ili otkazati rezervaciju?",
+          "a": "Rezervaciju možete besplatno pomaknuti ili otkazati do 24 sata prije termina. Unutar tih 24 sata javite nam se izravno i pomoći ćemo gdje možemo. Ako tehnički problem spriječi projekciju, dobivate puni povrat ili drugi termin."
+        },
+        {
+          "q": "Postoji li najniža dob?",
+          "a": "Da. Iskustvo je za posjetitelje od 8 godina naviše, a djeca mlađa od 8 godina ne mogu sudjelovati. Djecu do 14 godina treba pratiti odrasla osoba. Ako je ulaznica kupljena za dijete ispod najniže dobi, ulaz može biti odbijen bez povrata sredstava."
+        },
+        {
+          "q": "Na kojim je jezicima dostupno iskustvo?",
+          "a": "VR iskustvo dostupno je na engleskom, njemačkom, talijanskom, francuskom, hrvatskom, španjolskom, poljskom i portugalskom. Jezik birate prije početka projekcije, a svaki posjetitelj u terminu može odabrati svoj."
+        },
+        {
+          "q": "Nudite li cijene za grupe i škole?",
+          "a": "Da. Za školske grupe dostupne su niže cijene, ovisno o broju učenika i veličini grupe. Organiziranim turističkim grupama i privatnim rezervacijama izrađujemo posebnu ponudu. Javite nam se prije posjeta za prilagođenu ponudu i dostupne termine."
+        }
+      ]
     },
     "heroCard": {
       "eyebrow": "VR Iskustvo",
@@ -677,13 +830,13 @@
       "languagesLabel": "Jezici",
       "languagesValue": "8 dostupnih",
       "incl1": "Trenutna potvrda rezervacije",
-      "incl2": "Besplatno otkazivanje do 24h",
+      "incl2": "Besplatno otkazivanje do 24 h",
       "incl3": "Prostor prilagođen osobama s invaliditetom",
       "cta": "Rezervirajte termin"
     },
     "seo": {
-      "metaTitle": "Rezervirajte VR ulaznice za Dioklecijanovu palaču | Diocletians Dream Split",
-      "metaDescription": "Rezervirajte 15-minutno VR iskustvo Dioklecijanove palače u Splitu. Odaberite termin i osigurajte ulaznice online."
+      "metaTitle": "Rezervirajte VR ulaznice | Diocletian's Dream Split",
+      "metaDescription": "Rezervirajte 15-minutno VR iskustvo Dioklecijanove palače u Splitu. Odrasli €13, djeca €9. Termini svakih 30 minuta. Otkazivanje do 24 h besplatno."
     }
   },
   "cookieBanner": {

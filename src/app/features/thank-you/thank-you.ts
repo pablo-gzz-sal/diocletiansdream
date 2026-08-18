@@ -33,8 +33,8 @@ export class ThankYou implements OnInit {
   }
 
   ngOnInit(): void {
-    this.seo.setTitle('Booking confirmed | Diocletians Dream');
-    this.seo.setDescription('Your Diocletians Dream VR booking is confirmed.');
+    this.seo.setTitle("Booking confirmed | Diocletian's Dream");
+    this.seo.setDescription("Your Diocletian's Dream VR booking is confirmed.");
     this.seo.setRobots(true); // always noindex, nofollow
   }
 

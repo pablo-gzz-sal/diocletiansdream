@@ -1,7 +1,14 @@
 <section id="trailer" class="trailer trailer--full-viewport">
+  <div
+    class="trailer-poster"
+    [class.trailer-poster--hidden]="videoRevealed"
+    aria-hidden="true"
+  ></div>
+
   <iframe
     #playerFrame
     class="trailer-video"
+    [class.trailer-video--visible]="videoRevealed"
     [src]="playerUrl"
     allow="autoplay; fullscreen; picture-in-picture"
     allowfullscreen
@@ -38,7 +45,7 @@
     </p>
   </div>
 
-  @if (!hasStarted) {
+  @if (!hasStarted && !autoplayAllowed) {
     <button
       type="button"
       class="trailer-play"
@@ -51,7 +58,11 @@
     </button>
   }
 
-  <section class="booking-dock" [attr.aria-label]="'home.heroConversion.bookingInfo' | translate">
+  <section
+    class="booking-dock"
+    [class.booking-dock--mobile-hidden]="heroCopyVisible"
+    [attr.aria-label]="'home.heroConversion.bookingInfo' | translate"
+  >
     <dl class="booking-dock__facts">
       <div class="booking-fact">
         <dd>

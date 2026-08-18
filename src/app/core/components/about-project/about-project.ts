@@ -6,6 +6,7 @@ import { RevealOnScrollDirective } from '../../../shared/animations/reveal-on-sc
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { LocalePathPipe } from '../../../core/i18n/locale-path.pipe';
+import { shouldDisableMotion } from '../../../shared/animations/motion-preference';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -24,7 +25,7 @@ export class AboutProject implements AfterViewInit, OnDestroy {
   ngAfterViewInit(): void {
     if (typeof window === 'undefined') return;
 
-    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const reduced = shouldDisableMotion();
     if (reduced) return;
 
     const root = this.el.nativeElement;

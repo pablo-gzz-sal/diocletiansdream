@@ -33,6 +33,6 @@ describe('IntroReveal', () => {
     expect(host.querySelectorAll('h1').length).toBe(0);
     expect(host.querySelector('.intro-title')?.textContent)
       .withContext('the wordmark itself should still be there, just not as an h1')
-      .toContain('Diocletians');
+      .toContain("Diocletian's");
   });
 });

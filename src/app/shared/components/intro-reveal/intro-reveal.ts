@@ -3,6 +3,7 @@ import { AfterViewInit, OnDestroy, ElementRef, ViewChild, Component } from '@ang
 import { TranslateModule } from '@ngx-translate/core';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { shouldDisableMotion } from '../../animations/motion-preference';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -22,7 +23,7 @@ export class IntroReveal implements AfterViewInit, OnDestroy {
   private ctx?: gsap.Context;
 
   ngAfterViewInit(): void {
-    if (typeof window === 'undefined') return;
+    if (typeof window === 'undefined' || shouldDisableMotion()) return;
 
     this.ctx = gsap.context(() => {
       // Initial states

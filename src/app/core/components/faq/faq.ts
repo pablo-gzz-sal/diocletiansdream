@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 import gsap from 'gsap';
 import { RevealOnScrollDirective } from '../../../shared/animations/reveal-on-scroll-directive';
+import { shouldDisableMotion } from '../../../shared/animations/motion-preference';
 
 interface FaqItem {
   /** i18n key */
@@ -24,13 +25,29 @@ export class Faq implements AfterViewInit {
   newsletterEmail: string = '';
   isSubmitting: boolean = false;
 
+  /**
+   * i18n key stems under home.faq.items. Order is the answer order on the page,
+   * and it is also the order Google and the LLM crawlers read out of the
+   * FAQPage schema the landing page emits, so the questions people actually
+   * search for (duration, price, booking) come first.
+   */
+  static readonly KEYS = [
+    'duration',
+    'price',
+    'booking',
+    'age',
+    'location',
+    'language',
+    'firstTime',
+    'worthIt',
+  ] as const;
+
   /** q/a hold i18n keys, resolved by the translate pipe — see home.faq.items. */
-  faqs: FaqItem[] = [
-    { q: 'home.faq.items.duration.q', a: 'home.faq.items.duration.a', open: true },
-    { q: 'home.faq.items.booking.q', a: 'home.faq.items.booking.a', open: false },
-    { q: 'home.faq.items.age.q', a: 'home.faq.items.age.a', open: false },
-    { q: 'home.faq.items.location.q', a: 'home.faq.items.location.a', open: false },
-  ];
+  faqs: FaqItem[] = Faq.KEYS.map((key, index) => ({
+    q: `home.faq.items.${key}.q`,
+    a: `home.faq.items.${key}.a`,
+    open: index === 0,
+  }));
 
   constructor(private el: ElementRef<HTMLElement>) {}
 
@@ -69,7 +86,7 @@ export class Faq implements AfterViewInit {
         if (idx !== i && faq.open) {
           faq.open = false;
           const p = panels[idx];
-          if (p) gsap.to(p, { height: 0, opacity: 0, duration: 0.28, ease: 'power2.in' });
+          if (p) this.setPanelOpen(p, false);
         }
       });
       this.faqs[i].open = true;
@@ -80,15 +97,26 @@ export class Faq implements AfterViewInit {
     const panel = panels[i];
     if (!panel) return;
 
-    if (isOpening) {
-      // GSAP natively handles height:'auto' — measures, animates, cleans up
-      gsap.fromTo(panel,
-        { height: 0, opacity: 0 },
-        { height: 'auto', opacity: 1, duration: 0.42, ease: 'power2.out' }
-      );
-    } else {
-      gsap.to(panel, { height: 0, opacity: 0, duration: 0.28, ease: 'power2.in' });
+    this.setPanelOpen(panel, isOpening);
+  }
+
+  private setPanelOpen(panel: HTMLElement, open: boolean): void {
+    if (shouldDisableMotion()) {
+      gsap.set(panel, { height: open ? 'auto' : 0, opacity: open ? 1 : 0 });
+      return;
     }
+
+    if (open) {
+      // GSAP natively handles height:'auto' — measures, animates, cleans up
+      gsap.fromTo(
+        panel,
+        { height: 0, opacity: 0 },
+        { height: 'auto', opacity: 1, duration: 0.42, ease: 'power2.out' },
+      );
+      return;
+    }
+
+    gsap.to(panel, { height: 0, opacity: 0, duration: 0.28, ease: 'power2.in' });
   }
 
   onSubscribe(): void {

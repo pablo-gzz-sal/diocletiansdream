@@ -2,10 +2,19 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>Diocletians Dream VR Museum | Step back into 305 AD</title>
+    <title>Diocletian's Dream VR Museum | Step Back Into 305 AD</title>
     <base href="/" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="A 15-minute VR museum experience in Split that brings Diocletians Palace back to life in 305 AD. Located just outside the palace walls near the Golden Gate. Book tickets online." />
+    <meta name="description" content="A 15-minute VR museum experience in Split that rebuilds Diocletian's Palace as it stood in 305 AD. Beside the Golden Gate. Adult €13, child €9. Book online." />
+
+    <!--
+      Preconnect to the third-party origins the first viewport actually needs.
+      The Vimeo trailer is the LCP element on the home page, and the DNS +
+      TLS handshake for player.vimeo.com is otherwise paid after Angular boots.
+    -->
+    <link rel="preconnect" href="https://player.vimeo.com" />
+    <link rel="preconnect" href="https://www.googletagmanager.com" />
+    <link rel="dns-prefetch" href="https://app.turitop.com" />
 
     <!-- Google Search Console site verification (carried over from the old WordPress site). -->
     <meta name="google-site-verification" content="spY1d7Mrx40JOT4u7GjuC1GKnHSPCHdFBLrEg4X3Kfo" />
@@ -75,20 +84,34 @@
     <meta name="robots" content="index, follow" />
     <link rel="canonical" href="https://diocletiansdream.com/" />
 
-    <!-- Open Graph -->
-    <meta property="og:site_name" content="Diocletians Dream VR Museum" />
+    <!--
+      Open Graph. og:image was missing entirely, which meant every share of the
+      home page rendered as a bare text link, and ChatGPT and Perplexity fell
+      back to scraping arbitrary body text for a summary. PageSeoService
+      overwrites title/description/url per route; these are the SSR defaults.
+    -->
+    <meta property="og:site_name" content="Diocletian's Dream VR Museum" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://diocletiansdream.com/" />
-    <meta property="og:title" content="Diocletians Dream VR Museum | Step back into 305 AD" />
-    <meta property="og:description" content="Step into a VR reconstruction of Diocletians Palace as it stood in 305 AD. An immersive 15-minute experience in Split, Croatia." />
+    <meta property="og:title" content="Diocletian's Dream VR Museum | Step Back Into 305 AD" />
+    <meta property="og:description" content="Step into a VR reconstruction of Diocletian's Palace as it stood in 305 AD. A 15-minute experience in Split, Croatia." />
     <meta property="og:locale" content="en_US" />
+    <meta property="og:image" content="https://diocletiansdream.com/assets/images/og-default.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Diocletian's Palace reconstructed in virtual reality as it stood in 305 AD" />
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Diocletians Dream VR Museum | Step back into 305 AD" />
-    <meta name="twitter:description" content="Step into a VR reconstruction of Diocletians Palace as it stood in 305 AD. An immersive 15-minute experience in Split, Croatia." />
+    <meta name="twitter:title" content="Diocletian's Dream VR Museum | Step Back Into 305 AD" />
+    <meta name="twitter:description" content="Step into a VR reconstruction of Diocletian's Palace as it stood in 305 AD. A 15-minute experience in Split, Croatia." />
+    <meta name="twitter:image" content="https://diocletiansdream.com/assets/images/og-default.jpg" />
 
-    <link rel="icon" type="image/svg+xml" href="assets/images/ddLogo.png">
+    <meta name="theme-color" content="#2d046a" />
+
+    <!-- The logo is a PNG. Declaring image/svg+xml made Chrome discard it. -->
+    <link rel="icon" type="image/png" href="assets/images/ddLogo.png" />
+    <link rel="apple-touch-icon" href="assets/images/ddLogo.png" />
   </head>
   <body>
     <app-root></app-root>

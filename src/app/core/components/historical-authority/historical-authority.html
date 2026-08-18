@@ -1,0 +1,48 @@
+<section
+  class="historical-authority"
+  data-testid="historical-authority"
+  aria-labelledby="historical-authority-title"
+>
+  <div class="historical-authority__inner">
+    <div
+      class="historical-authority__heading"
+      revealOnScroll
+      [revealDelay]="0.04"
+      [revealY]="32"
+    >
+      <p class="eyebrow">{{ 'home.authority.eyebrow' | translate }}</p>
+      <h2 id="historical-authority-title" class="historical-authority__title">
+        <span class="historical-authority__title-line historical-authority__title-line--lead">
+          {{ 'home.authority.titleLead' | translate }}
+        </span>
+        <span class="historical-authority__title-line">
+          {{ 'home.authority.titleMiddle' | translate }}
+        </span>
+        <span class="historical-authority__title-line">
+          {{ 'home.authority.titleEnd' | translate }}
+        </span>
+      </h2>
+    </div>
+
+    <div
+      class="historical-authority__proof"
+      revealOnScroll
+      [revealDelay]="0.14"
+      [revealY]="36"
+    >
+      <p class="historical-authority__collaboration">
+        {{ 'home.authority.collaboration' | translate }}
+        <strong data-testid="historical-authority-name">
+          {{ 'home.authority.honorific' | translate }} Josip Belamarić
+        </strong>
+      </p>
+      <p class="historical-authority__copy">{{ 'home.authority.copy' | translate }}</p>
+      <p class="historical-authority__detail">{{ 'home.authority.detail' | translate }}</p>
+    </div>
+
+    <div class="historical-authority__seal" aria-hidden="true">
+      <span>305</span>
+      <small>AD</small>
+    </div>
+  </div>
+</section>

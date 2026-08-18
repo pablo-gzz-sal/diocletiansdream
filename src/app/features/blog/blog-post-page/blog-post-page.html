@@ -67,16 +67,17 @@
           Byline and revision date, visible on the page rather than only in
           schema. Google reads the rendered date for freshness, and a reader who
           can see who wrote a piece and when it was last checked trusts it more.
-          Both are omitted when WordPress has nothing real to show.
+          The byline falls back to the brand when WordPress has no real person
+          attached; the revision date is omitted unless the post actually moved.
         -->
         <p
-          *ngIf="authorName(post) || wasUpdated(post)"
           class="mt-5 flex flex-wrap items-center gap-x-3 gap-y-1 font-[family-name:var(--font-sans)] text-[0.78rem] leading-[1.6] text-ink-60"
         >
-          <span *ngIf="authorName(post) as author">
-            {{ 'blogPostPage.byLabel' | translate }} <strong class="font-medium text-ink">{{ author }}</strong>
+          <span>
+            {{ 'blogPostPage.byLabel' | translate }}
+            <strong class="font-medium text-ink">{{ bylineName(post) }}</strong>
           </span>
-          <span *ngIf="authorName(post) && wasUpdated(post)" aria-hidden="true">·</span>
+          <span *ngIf="wasUpdated(post)" aria-hidden="true">·</span>
           <span *ngIf="wasUpdated(post)">
             {{ 'blogPostPage.updatedLabel' | translate }}
             <time [attr.datetime]="post.modified">{{ modifiedLabel(post) }}</time>
@@ -115,6 +116,37 @@
           {{ 'blogPostPage.footer.cta' | translate }}
         </a>
       </div>
+
+      <!-- Keep reading: the only post-to-post links in the journal. -->
+      @if (relatedPosts.length) {
+        <nav class="mt-16" [attr.aria-label]="'blogPostPage.related.title' | translate">
+          <h2
+            class="font-[family-name:var(--font-sans)] text-[0.65rem] font-medium tracking-[0.18em] uppercase text-ink-60 mb-5"
+          >
+            {{ 'blogPostPage.related.title' | translate }}
+          </h2>
+
+          <ul class="grid gap-x-8 gap-y-4 sm:grid-cols-2 list-none p-0 m-0">
+            <li *ngFor="let related of relatedPosts" class="border-t border-black/10 pt-4">
+              <a
+                [routerLink]="postLink(related)"
+                class="blog-related-link group block no-underline"
+              >
+                <span
+                  class="font-[family-name:var(--font-serif)] text-[1.05rem] leading-snug text-ink group-hover:text-ink-60 transition-colors block"
+                >
+                  {{ titleText(related) }}
+                </span>
+                <span
+                  class="mt-1.5 font-[family-name:var(--font-sans)] text-[0.7rem] tracking-[0.12em] uppercase text-ink-60 block"
+                >
+                  {{ 'blogPostPage.related.readLabel' | translate }}
+                </span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      }
     </article>
 
         <aside class="blog-post-sidebar">

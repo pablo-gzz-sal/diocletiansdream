@@ -22,4 +22,15 @@ describe('BlogInvite', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('exposes mobile-safe action hooks for every invitation link', () => {
+    component.showSecondaryLinks = true;
+    fixture.detectChanges();
+
+    const actions = fixture.nativeElement.querySelector('.blog-invite-actions');
+    const links = fixture.nativeElement.querySelectorAll('.blog-invite-action');
+
+    expect(actions).not.toBeNull();
+    expect(links.length).toBe(3);
+  });
 });

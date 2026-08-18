@@ -1,0 +1,63 @@
+/* ══════════════════════════════════════════
+   PARTNERS PAGE
+   The cards themselves are owned by
+   core/components/partners (partners.css).
+   ══════════════════════════════════════════ */
+
+/* Same geometry as .partners-inner in partners.css, so the H1, the cards and
+   the closing CTA all share one left edge. Both sides read the site-wide
+   --dd-container / --dd-page-x tokens rather than hardcoding a gutter. */
+.pp-inner {
+  max-width: var(--dd-container);
+  margin: 0 auto;
+  padding: 0 var(--dd-page-x);
+}
+
+/* ─── Hero ─── */
+.partners-hero {
+  /* Top clears the fixed header. Bottom uses the same --dd-section-y the cards
+     section uses for its top padding, so the gap under the intro paragraph
+     matches the gap above the cards. */
+  padding-top: clamp(8rem, 13vw, 10.5rem);
+  padding-bottom: var(--dd-section-y);
+}
+
+.partners-hero-copy {
+  max-width: 44rem;
+}
+
+/* ─── Closing CTA ─── */
+.partners-cta {
+  /* Continues the cards section's warm background so the two read as one
+     block, rather than banding the page with a third colour.
+
+     The !important overrides `main > section:not(:first-child)` in styles.css,
+     which forces padding-block on every direct section child. Left alone it
+     stacks a full --dd-section-y on top of the cards section's own bottom
+     padding and opens a dead gap between the cards and this panel. */
+  background: var(--color-warm);
+  padding-block: 0 var(--dd-section-y) !important;
+}
+
+.partners-cta-panel {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border-radius: var(--radius-xl);
+  border: 1px solid rgba(250, 248, 244, 0.14);
+  /* Dark wash over the reconstruction still, matching the treatment on the
+     About page's image bands. The gradient is what makes the cream text
+     legible — the underlying image is bright, so it cannot be dropped. */
+  background:
+    linear-gradient(104deg, rgba(20, 14, 26, 0.88), rgba(30, 20, 34, 0.7)),
+    url('/assets/images/vr/emperor-peristyle.jpg') center 42% / cover no-repeat;
+  padding: clamp(2rem, 4.5vw, 3.5rem);
+}
+
+.partners-cta-title {
+  color: #fff9ee;
+}
+
+.partners-cta-text {
+  color: rgba(250, 248, 244, 0.72);
+}

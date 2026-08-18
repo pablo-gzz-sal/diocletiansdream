@@ -63,6 +63,29 @@ export class SeoService {
   }
 
   /**
+   * Preloads the page's largest-contentful image. Heroes painted as CSS
+   * backgrounds are invisible to the preload scanner and cannot carry
+   * `fetchpriority`, so the browser only discovers them after the stylesheet
+   * parses — which is exactly the delay LCP measures. Pages are prerendered,
+   * so this lands in the served HTML rather than arriving after hydration.
+   * Kept to one link: preloading images the page does not paint first would
+   * compete with the one it does.
+   */
+  setPreloadImage(href: string) {
+    this.doc
+      .querySelectorAll('link[rel="preload"][as="image"][data-seo-lcp]')
+      .forEach((el) => el.remove());
+
+    const link = this.renderer.createElement('link');
+    link.setAttribute('rel', 'preload');
+    link.setAttribute('as', 'image');
+    link.setAttribute('href', href);
+    link.setAttribute('fetchpriority', 'high');
+    link.setAttribute('data-seo-lcp', '');
+    this.renderer.appendChild(this.doc.head, link);
+  }
+
+  /**
    * Marks the SSR response so the Node server can promote it to the given HTTP
    * status (used for real 404s on unknown routes). Renders a small meta tag the
    * Express handler looks for; harmless in the browser.

@@ -12,7 +12,14 @@ import { DEFAULT_LANG, SupportedLang } from './i18n.config';
  *
  * The blog and the legal pages are English-only and must NOT be listed here.
  */
-export const TRANSLATED_PATHS: readonly string[] = ['/', '/experience', '/visit', '/about', '/booking'];
+export const TRANSLATED_PATHS: readonly string[] = [
+  '/',
+  '/experience',
+  '/visit',
+  '/about',
+  '/partners',
+  '/booking',
+];
 
 const HR_PREFIX = /^\/hr(?=\/|$)/;
 
@@ -31,6 +38,7 @@ const HR_SLUGS: Readonly<Record<string, string>> = {
   '/experience': '/iskustvo',
   '/visit': '/posjet',
   '/about': '/o-nama',
+  '/partners': '/partneri',
   '/booking': '/rezervacija',
 };
 

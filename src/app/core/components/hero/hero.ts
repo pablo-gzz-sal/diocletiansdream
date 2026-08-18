@@ -6,6 +6,7 @@ import { RevealOnScrollDirective } from '../../../shared/animations/reveal-on-sc
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { LocalePathPipe } from '../../../core/i18n/locale-path.pipe';
+import { shouldDisableMotion } from '../../../shared/animations/motion-preference';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -32,7 +33,7 @@ export class Hero implements AfterViewInit, OnDestroy {
   visitCards = [
     {
       title: 'Location',
-      text: "Right by Diocletians Palace — easy to combine with your Old Town walk.",
+      text: "Right by Diocletian's Palace, easy to combine with your Old Town walk.",
       cta: 'Get tickets',
       link: '/booking',
     },
@@ -56,7 +57,7 @@ export class Hero implements AfterViewInit, OnDestroy {
     if (typeof window === 'undefined') return;
 
     // Respect reduced-motion preference
-    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const reduced = shouldDisableMotion();
 
     const root = this.el.nativeElement;
 

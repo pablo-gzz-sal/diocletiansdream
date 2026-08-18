@@ -185,6 +185,33 @@
       </nav>
     }
 
+    <!--
+      Full archive. The card grid above is paginated in the browser, so only the
+      first page ever exists in the served HTML — which left every post past the
+      ninth with no crawlable link pointing at it. This lists all of them as
+      plain anchors, so the whole archive is reachable in one hop.
+    -->
+    @if (allPosts().length) {
+      <nav class="mx-auto max-w-7xl dd-page-gutter pb-16" [attr.aria-label]="'blogPage.archive.title' | translate">
+        <h2
+          class="font-[family-name:var(--font-sans)] text-[0.65rem] font-medium tracking-[0.18em] uppercase text-ink-60 mb-4"
+        >
+          {{ 'blogPage.archive.title' | translate }}
+        </h2>
+
+        <ul class="grid gap-x-8 gap-y-1 sm:grid-cols-2 lg:grid-cols-3 list-none p-0 m-0">
+          <li *ngFor="let post of allPosts()" class="py-1.5 border-b border-black/8">
+            <a
+              [routerLink]="postLink(post)"
+              class="blog-archive-link font-[family-name:var(--font-sans)] text-[0.82rem] leading-snug text-ink-60 no-underline hover:text-ink transition-colors"
+            >
+              {{ titleText(post) }}
+            </a>
+          </li>
+        </ul>
+      </nav>
+    }
+
     <!-- SEO footer block + Internal links -->
     <app-cta-block></app-cta-block>
   }

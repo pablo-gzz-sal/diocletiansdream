@@ -62,6 +62,7 @@ async function main() {
     { path: '/visit/', changefreq: 'monthly', priority: '0.9' },
     { path: '/booking/', changefreq: 'weekly', priority: '0.9' },
     { path: '/about/', changefreq: 'monthly', priority: '0.7' },
+    { path: '/partners/', changefreq: 'monthly', priority: '0.5' },
   ];
 
   // The blog index exists in both locales (/blog/ <-> /hr/blog/), so it carries
@@ -82,6 +83,7 @@ async function main() {
     '/experience/': '/iskustvo/',
     '/visit/': '/posjet/',
     '/about/': '/o-nama/',
+    '/partners/': '/partneri/',
     '/booking/': '/rezervacija/',
   };
 

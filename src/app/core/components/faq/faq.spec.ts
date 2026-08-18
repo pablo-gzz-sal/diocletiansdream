@@ -3,6 +3,7 @@ import gsap from 'gsap';
 
 import { Faq } from './faq';
 import { commonTestImports, commonTestProviders } from '../../../../testing/test-setup';
+import { MOBILE_MOTION_QUERY } from '../../../shared/animations/motion-preference';
 
 describe('Faq', () => {
   let component: Faq;
@@ -61,7 +62,10 @@ describe('Faq', () => {
     buttons[2].click();
     fixture.detectChanges();
 
-    expect(component.faqs.map((f) => f.open)).toEqual([false, false, true, false]);
+    // Derived from faqs.length rather than a literal array: the FAQ set grows
+    // as questions are added, and only the clicked index should ever be open.
+    const expected = component.faqs.map((_, i) => i === 2);
+    expect(component.faqs.map((f) => f.open)).toEqual(expected);
     expect(host.querySelectorAll('[data-faq-item]')[2].classList).toContain('faq-item--open');
   });
 
@@ -72,6 +76,7 @@ describe('Faq', () => {
    */
   it('expands the clicked question own panel, not the next one', () => {
     const host: HTMLElement = fixture.nativeElement;
+    spyOn(window, 'matchMedia').and.returnValue({ matches: false } as MediaQueryList);
     const fromTo = spyOn(gsap, 'fromTo').and.callThrough();
 
     const items = host.querySelectorAll<HTMLElement>('[data-faq-item]');
@@ -82,5 +87,22 @@ describe('Faq', () => {
     expect(items[1].contains(target))
       .withContext('GSAP expanded a panel belonging to a different question')
       .toBe(true);
+  });
+
+  it('updates the clicked panel immediately without a tween on mobile', () => {
+    const host: HTMLElement = fixture.nativeElement;
+    spyOn(window, 'matchMedia').and.callFake((query: string) => ({
+      matches: query === MOBILE_MOTION_QUERY,
+    }) as MediaQueryList);
+    const fromTo = spyOn(gsap, 'fromTo').and.callThrough();
+    const set = spyOn(gsap, 'set').and.callThrough();
+
+    const items = host.querySelectorAll<HTMLElement>('[data-faq-item]');
+    items[1].querySelector<HTMLButtonElement>('.faq-q')!.click();
+
+    expect(fromTo).not.toHaveBeenCalled();
+    expect(set).toHaveBeenCalled();
+    const target = set.calls.mostRecent().args[0] as HTMLElement;
+    expect(items[1].contains(target)).toBeTrue();
   });
 });
