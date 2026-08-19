@@ -7,6 +7,30 @@ import { SeoService } from '../../shared/services/seo-service';
 
 /** Where the verbatim vendor snippet lives — see the header comment in that file. */
 const TURITOP_SCRIPT_SRC = '/assets/vendor/turitop-thankyou.js';
+const GA4_MEASUREMENT_ID = 'G-QN1CZT8HXQ';
+const GOOGLE_ADS_TAG_ID = 'AW-11199515913';
+
+type GoogleTagWindow = Window & {
+  dataLayer?: unknown[][];
+  gtag?: (...args: unknown[]) => void;
+};
+
+/**
+ * The vendor snippet sends the purchase through the global `gtag` function.
+ * The site-wide tag normally creates it in index.html, but this page is the
+ * revenue-critical fallback: establish the queue here too if another shell,
+ * cache, or tag blocker removed the global bridge before the snippet loads.
+ */
+export function ensureGoogleTagBridge(doc: Document): void {
+  const win = doc.defaultView as GoogleTagWindow | null;
+  if (!win || typeof win.gtag === 'function') return;
+
+  win.dataLayer = win.dataLayer || [];
+  win.gtag = (...args: unknown[]) => win.dataLayer?.push(args);
+  win.gtag('js', new Date());
+  win.gtag('config', GA4_MEASUREMENT_ID);
+  win.gtag('config', GOOGLE_ADS_TAG_ID);
+}
 
 /**
  * Booking confirmation page (/dd-thankyou/). TuriTop redirects here after a
@@ -41,6 +65,7 @@ export class ThankYou implements OnInit {
   private loadTuritop(): void {
     if (!this.hasBooking()) return;
 
+    ensureGoogleTagBridge(this.doc);
     const script = this.doc.createElement('script');
     script.src = TURITOP_SCRIPT_SRC;
     this.doc.body.appendChild(script);
