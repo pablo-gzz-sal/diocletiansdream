@@ -48,7 +48,7 @@
       "titleMiddle": "utemeljena na",
       "titleEnd": "stručnom znanju",
       "collaboration": "Razvijeno u suradnji s",
-      "honorific": "Akademik",
+      "honorific": "Profesor",
       "copy": "Stručni povijesni uvid oblikovao je našu interpretaciju Dioklecijanove palače iz 305. godine, od arhitekture i proporcija do atmosfere svakodnevnog života unutar carskog kompleksa.",
       "detail": "Povijesna i umjetnička istraživanja vode cijeli doživljaj, pa tehnologija služi priči umjesto da je zamjenjuje."
     },
@@ -292,7 +292,7 @@
         },
         {
           "q": "Koliko je rekonstrukcija povijesno točna?",
-          "a": "Model je izgrađen na arheološkim istraživanjima, povijesnim izvorima i arhitektonskoj analizi ostataka palače. Ondje gdje sačuvane strukture nisu cjelovite, rekonstrukcija praznine popunjava najutemeljenijom interpretacijom, a ne nagađanjem. Na povijesnoj interpretaciji savjetovao je akademik Josip Belamarić."
+          "a": "Model je izgrađen na arheološkim istraživanjima, povijesnim izvorima i arhitektonskoj analizi ostataka palače. Ondje gdje sačuvane strukture nisu cjelovite, rekonstrukcija praznine popunjava najutemeljenijom interpretacijom, a ne nagađanjem. Na povijesnoj interpretaciji savjetovao je profesor Josip Belamarić."
         }
       ]
     },
@@ -537,7 +537,7 @@
         },
         {
           "q": "Kako je rekonstrukcija istražena?",
-          "a": "Model počiva na arheološkim istraživanjima, povijesnim izvorima i arhitektonskoj analizi ostataka palače. Na povijesnoj interpretaciji savjetovao je akademik Josip Belamarić, od arhitekture i proporcija kompleksa do toga kako je izgledao svakodnevni život u njemu."
+          "a": "Model počiva na arheološkim istraživanjima, povijesnim izvorima i arhitektonskoj analizi ostataka palače. Na povijesnoj interpretaciji savjetovao je profesor Josip Belamarić, od arhitekture i proporcija kompleksa do toga kako je izgledao svakodnevni život u njemu."
         },
         {
           "q": "Nalazi li se Diocletian's Dream unutar Dioklecijanove palače?",
@@ -551,7 +551,7 @@
     },
     "seo": {
       "metaTitle": "O Diocletian's Dreamu | VR muzej u Splitu",
-      "metaDescription": "Diocletian's Dream je VR muzej u Splitu koji obnavlja Dioklecijanovu palaču iz 305. godine. Otvoren 2020., uz savjet akademika Josipa Belamarića."
+      "metaDescription": "Diocletian's Dream je VR muzej u Splitu koji obnavlja Dioklecijanovu palaču iz 305. godine. Otvoren 2020., uz savjet profesora Josipa Belamarića."
     },
     "sideCard": {
       "title": "VR muzej Split",
