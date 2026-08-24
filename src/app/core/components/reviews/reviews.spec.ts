@@ -22,4 +22,13 @@ describe('Reviews', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('exposes the five-star rating as one labelled image', () => {
+    const stars = fixture.nativeElement.querySelector('.reviews-stars') as HTMLElement;
+
+    expect(stars).not.toBeNull();
+    expect(stars.getAttribute('role')).toBe('img');
+    expect(stars.getAttribute('aria-label')).toBe('5 out of 5 stars');
+    expect(stars.querySelectorAll('svg[aria-hidden="true"]').length).toBe(5);
+  });
 });

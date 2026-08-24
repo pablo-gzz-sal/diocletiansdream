@@ -22,4 +22,12 @@ describe('Highlights', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('does not label the decorative marquee through a generic div', () => {
+    const wrapper = fixture.nativeElement.querySelector('.marquee-wrap') as HTMLElement;
+
+    expect(wrapper).not.toBeNull();
+    expect(wrapper.hasAttribute('aria-label')).toBeFalse();
+    expect(wrapper.querySelector('.marquee-track')?.getAttribute('aria-hidden')).toBe('true');
+  });
 });
