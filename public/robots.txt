@@ -3,10 +3,9 @@
 User-agent: *
 Allow: /
 
-# The booking confirmation page is a private post-purchase step. It carries a
-# noindex tag already; keeping it out of the crawl also keeps it from diluting
-# the conversion path in Search Console.
-Disallow: /dd-thankyou/
+# The booking confirmation page carries a noindex,nofollow meta tag and is
+# omitted from the sitemap. It intentionally remains crawlable so search
+# engines can read and enforce that directive.
 
 # AI search crawlers, allowed explicitly.
 #
