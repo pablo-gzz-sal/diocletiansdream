@@ -1,4 +1,4 @@
-import { Component, Inject, OnDestroy, OnInit, PLATFORM_ID } from '@angular/core';
+import { AfterViewInit, Component, Inject, OnDestroy, OnInit, PLATFORM_ID } from '@angular/core';
 import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 import { Header } from '../../core/components/header/header';
 import { Footer } from '../../core/components/footer/footer';
@@ -8,6 +8,7 @@ import { SeoService } from '../../shared/services/seo-service';
 import { RevealOnScrollDirective } from '../../shared/animations/reveal-on-scroll-directive';
 import { FaqEntry, StructuredDataService } from '../../shared/services/structured-data';
 import { LocalePathPipe } from '../../core/i18n/locale-path.pipe';
+import { AnalyticsService } from '../../shared/services/analytics.service';
 
 @Component({
   selector: 'app-booking',
@@ -16,14 +17,17 @@ import { LocalePathPipe } from '../../core/i18n/locale-path.pipe';
   templateUrl: './booking.html',
   styleUrl: './booking.css',
 })
-export class Booking implements OnInit, OnDestroy {
+export class Booking implements OnInit, AfterViewInit, OnDestroy {
   private static readonly JSON_LD_ID = 'ld-booking';
+  private widgetObserver?: IntersectionObserver;
+  private widgetViewTracked = false;
 
   constructor(
     private pageSeo: PageSeoService,
     private seo: SeoService,
     private translate: TranslateService,
     private sd: StructuredDataService,
+    private analytics: AnalyticsService,
     @Inject(DOCUMENT) private doc: Document,
     @Inject(PLATFORM_ID) private platformId: Object,
   ) {}
@@ -54,8 +58,29 @@ export class Booking implements OnInit, OnDestroy {
     }
   }
 
+  ngAfterViewInit(): void {
+    if (!isPlatformBrowser(this.platformId) || typeof IntersectionObserver === 'undefined') return;
+
+    const widget = this.doc.getElementById('booking-widget');
+    if (!widget) return;
+
+    this.widgetObserver = new IntersectionObserver(
+      (entries) => {
+        if (this.widgetViewTracked) return;
+        if (!entries.some((entry) => entry.isIntersecting && entry.intersectionRatio >= 0.5)) return;
+
+        this.widgetViewTracked = true;
+        this.analytics.track('booking_widget_view', { cta_location: 'booking_widget' });
+        this.widgetObserver?.disconnect();
+      },
+      { threshold: 0.5 },
+    );
+    this.widgetObserver.observe(widget);
+  }
+
   ngOnDestroy(): void {
     // <script> tags survive client-side navigation — drop it on the way out.
+    this.widgetObserver?.disconnect();
     this.seo.clearJsonLd(Booking.JSON_LD_ID);
   }
 
