@@ -111,6 +111,8 @@
         </p>
         <a
           [href]="('/booking' | locPath) + '/#booking-widget'"
+          data-analytics-event="book_now_click"
+          data-analytics-location="blog_post_footer"
           class="inline-flex items-center justify-center rounded-full border border-ink px-6 py-3 font-[family-name:var(--font-sans)] text-[0.68rem] font-medium tracking-[0.15em] uppercase text-ink hover:bg-ink hover:text-warm transition-colors no-underline whitespace-nowrap"
         >
           {{ 'blogPostPage.footer.cta' | translate }}
@@ -182,7 +184,7 @@
               <li><span aria-hidden="true">✓</span>{{ 'blogPostPage.booking.benefitVenue' | translate }}</li>
             </ul>
 
-            <a [href]="('/booking' | locPath) + '/#booking-widget'" class="blog-post-booking-card__cta">
+            <a [href]="('/booking' | locPath) + '/#booking-widget'" data-analytics-event="book_now_click" data-analytics-location="blog_post_sidebar" class="blog-post-booking-card__cta">
               {{ 'blogPostPage.booking.cta' | translate }}
             </a>
           </div>

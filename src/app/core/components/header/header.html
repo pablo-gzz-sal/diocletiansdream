@@ -86,6 +86,10 @@
         <button
           type="button"
           (click)="switchTo('en')"
+          data-analytics-event="language_switch"
+          data-analytics-location="desktop_header"
+          [attr.data-from-language]="currentLang()"
+          data-to-language="en"
           class="flex items-center gap-1.5 rounded-full px-3 py-[5px] text-[0.72rem] font-medium transition-all duration-200 cursor-pointer border-none"
           [style]="currentLang() === 'en' ? 'background: var(--color-ink); color: var(--color-warm)' : 'background: transparent; color: rgba(26,24,20,0.42)'"
         >
@@ -95,6 +99,10 @@
         <button
           type="button"
           (click)="switchTo('hr')"
+          data-analytics-event="language_switch"
+          data-analytics-location="desktop_header"
+          [attr.data-from-language]="currentLang()"
+          data-to-language="hr"
           class="flex items-center gap-1.5 rounded-full px-3 py-[5px] text-[0.72rem] font-medium transition-all duration-200 cursor-pointer border-none"
           [style]="currentLang() === 'hr' ? 'background: var(--color-ink); color: var(--color-warm)' : 'background: transparent; color: rgba(26,24,20,0.42)'"
         >
@@ -105,6 +113,8 @@
 
         <a
           [href]="('/booking' | locPath) + '/#booking-widget'"
+          data-analytics-event="book_now_click"
+          data-analytics-location="desktop_header"
           class="dd-desktop-cta inline-flex items-center justify-center shrink-0 rounded-full px-5 py-2.5 text-[0.8rem] font-bold tracking-[0.11em] uppercase no-underline transition-all hover:brightness-110"
           style="background: var(--dd-purple); color: #fff; box-shadow: 0 3px 14px rgba(45,4,106,0.30);"
         >
@@ -117,6 +127,8 @@
         @if (scrolled()) {
           <a
             [href]="('/booking' | locPath) + '/#booking-widget'"
+            data-analytics-event="book_now_click"
+            data-analytics-location="mobile_header"
             class="dd-mobile-booking-cta"
             data-testid="mobile-sticky-booking-cta"
           >
@@ -292,6 +304,10 @@
         <button
           type="button"
           (click)="switchTo('en')"
+          data-analytics-event="language_switch"
+          data-analytics-location="mobile_menu"
+          [attr.data-from-language]="currentLang()"
+          data-to-language="en"
           class="flex items-center gap-1.5 rounded-full px-3 py-[5px] text-[0.72rem] font-medium transition-all duration-200 cursor-pointer border-none"
           [style]="currentLang() === 'en' ? 'background: var(--color-ink); color: var(--color-warm)' : 'background: transparent; color: rgba(26,24,20,0.42)'"
         >
@@ -301,6 +317,10 @@
         <button
           type="button"
           (click)="switchTo('hr')"
+          data-analytics-event="language_switch"
+          data-analytics-location="mobile_menu"
+          [attr.data-from-language]="currentLang()"
+          data-to-language="hr"
           class="flex items-center gap-1.5 rounded-full px-3 py-[5px] text-[0.72rem] font-medium transition-all duration-200 cursor-pointer border-none"
           [style]="currentLang() === 'hr' ? 'background: var(--color-ink); color: var(--color-warm)' : 'background: transparent; color: rgba(26,24,20,0.42)'"
         >
@@ -315,6 +335,8 @@
       <!-- book CTA -->
       <a
         [href]="('/booking' | locPath) + '/#booking-widget'"
+        data-analytics-event="book_now_click"
+        data-analytics-location="mobile_menu"
         (click)="closeMenu()"
         data-testid="mobile-menu-booking-cta"
         class="flex items-center justify-center rounded-full text-warm py-3 text-[0.82rem] font-bold tracking-[0.11em] uppercase hover:brightness-110 transition-all no-underline"

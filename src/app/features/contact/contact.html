@@ -65,7 +65,7 @@
           </p>
 
           <div class="mt-8 flex flex-wrap gap-3">
-            <a [href]="('/booking' | locPath) + '/#booking-widget'" class="btn btn--dark">
+            <a [href]="('/booking' | locPath) + '/#booking-widget'" data-analytics-event="book_now_click" data-analytics-location="visit_hero" class="btn btn--dark">
               {{ 'visitPage.hero.ctaPrimary' | translate }}
             </a>
             <a [routerLink]="'/visit' | locPath" fragment="map" class="btn btn--ghost">{{ 'visitPage.hero.ctaMap' | translate }}</a>
@@ -124,7 +124,7 @@
           >
             {{ 'visitPage.location.ctaDirections' | translate }}
           </a>
-          <a [href]="('/booking' | locPath) + '/#booking-widget'" class="btn btn--dark">
+          <a [href]="('/booking' | locPath) + '/#booking-widget'" data-analytics-event="book_now_click" data-analytics-location="visit_location" class="btn btn--dark">
             {{ 'visitPage.hero.ctaPrimary' | translate }}
           </a>
         </div>
@@ -175,7 +175,7 @@
             </p>
 
             <div class="visit-audience-actions mt-auto pt-4 border-t border-black/10">
-              <a [href]="('/booking' | locPath) + '/#booking-widget'" class="btn btn--dark">
+              <a [href]="('/booking' | locPath) + '/#booking-widget'" data-analytics-event="book_now_click" data-analytics-location="visit_individual" class="btn btn--dark">
                 {{ 'visitPage.individual.cta' | translate }}
               </a>
             </div>
@@ -208,6 +208,9 @@
             <div class="visit-audience-actions mt-auto pt-4 border-t border-black/10 flex flex-wrap gap-3">
               <a
                 href="mailto:contact@diocletiansdream.com"
+                data-analytics-event="contact_click"
+                data-analytics-location="group_email_button"
+                data-contact-method="email"
                 class="inline-flex items-center justify-center rounded-full px-7 py-3 font-[family-name:var(--font-sans)] text-[0.8rem] font-medium text-ink hover:opacity-90 transition-opacity no-underline"
                 style="background: var(--dd-gold)"
               >
@@ -215,6 +218,9 @@
               </a>
               <a
                 href="mailto:contact@diocletiansdream.com"
+                data-analytics-event="contact_click"
+                data-analytics-location="group_email_link"
+                data-contact-method="email"
                 class="inline-flex items-center gap-2 font-[family-name:var(--font-sans)] text-[0.8rem] font-medium text-ink underline underline-offset-4 hover:opacity-60 transition-opacity"
               >
                 {{ 'visitPage.groups.ctaLinkText' | translate }} →
@@ -246,6 +252,9 @@
             <div class="visit-audience-actions mt-auto pt-4 border-t border-black/10 flex flex-wrap gap-3">
               <a
                 href="mailto:contact@diocletiansdream.com"
+                data-analytics-event="contact_click"
+                data-analytics-location="accessibility_email"
+                data-contact-method="email"
                 class="inline-flex items-center justify-center rounded-full px-7 py-3 font-[family-name:var(--font-sans)] text-[0.8rem] font-medium text-white hover:opacity-90 transition-opacity no-underline"
                 style="background: var(--dd-purple)"
               >
@@ -331,8 +340,8 @@
           </div>
 
           <div class="visit-hours-actions mt-8 flex flex-wrap gap-3">
-            <a [href]="('/booking' | locPath) + '/#booking-widget'" class="btn btn--dark">{{ 'visitPage.bookingInfo.ctaPrimary' | translate }}</a>
-            <a href="mailto:contact@diocletiansdream.com" class="btn btn--cream">{{ 'visitPage.bookingInfo.ctaSecondary' | translate }}</a>
+            <a [href]="('/booking' | locPath) + '/#booking-widget'" data-analytics-event="book_now_click" data-analytics-location="visit_hours" class="btn btn--dark">{{ 'visitPage.bookingInfo.ctaPrimary' | translate }}</a>
+            <a href="mailto:contact@diocletiansdream.com" data-analytics-event="contact_click" data-analytics-location="visit_hours_email" data-contact-method="email" class="btn btn--cream">{{ 'visitPage.bookingInfo.ctaSecondary' | translate }}</a>
           </div>
         </div>
       </div>
@@ -366,6 +375,8 @@
               {{ 'visitPage.seasonal.p3' | translate }}
               <a
                 [href]="('/booking' | locPath) + '/#booking-widget'"
+                data-analytics-event="book_now_click"
+                data-analytics-location="visit_seasonal"
                 class="inline-link ml-2"
               >
                 {{ 'visitPage.seasonal.bookNowLinkText' | translate }} →
@@ -409,10 +420,10 @@
             </p>
 
             <div class="pt-4 border-t border-black/10 flex flex-wrap gap-3">
-              <a [href]="('/booking' | locPath) + '/#booking-widget'" class="btn btn--dark">
+              <a [href]="('/booking' | locPath) + '/#booking-widget'" data-analytics-event="book_now_click" data-analytics-location="visit_booking_panel" class="btn btn--dark">
                 {{ 'visitPage.bookingInfo.ctaPrimary' | translate }}
               </a>
-              <a href="mailto:contact@diocletiansdream.com" class="btn btn--cream">
+              <a href="mailto:contact@diocletiansdream.com" data-analytics-event="contact_click" data-analytics-location="seasonal_email" data-contact-method="email" class="btn btn--cream">
                 {{ 'visitPage.bookingInfo.ctaSecondary' | translate }}
               </a>
             </div>
@@ -500,6 +511,8 @@
         <div class="flex flex-col gap-3 lg:items-end shrink-0">
           <a
             [href]="('/booking' | locPath) + '/#booking-widget'"
+            data-analytics-event="book_now_click"
+            data-analytics-location="visit_closing"
             class="inline-flex items-center justify-center rounded-full px-8 py-3.5 font-[family-name:var(--font-sans)] text-[0.8rem] font-medium text-white hover:opacity-90 transition-opacity no-underline whitespace-nowrap"
             style="background: var(--dd-purple)"
           >

@@ -17,7 +17,7 @@
             {{ 'blogPage.cta.visit' | translate }} →
           </a>
 
-          <a [href]="('/booking' | locPath) + '/#booking-widget'" class="cta-block-action btn btn--dark">
+          <a [href]="('/booking' | locPath) + '/#booking-widget'" data-analytics-event="book_now_click" data-analytics-location="blog_index_cta" class="cta-block-action btn btn--dark">
             {{ 'blogPage.cta.book' | translate }} →
           </a>
         </div>
