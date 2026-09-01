@@ -38,6 +38,16 @@ describe('Booking', () => {
 
     window.IntersectionObserver =
       FakeIntersectionObserver as unknown as typeof IntersectionObserver;
+    // Keep the production TuriTop loader intact while preventing a real
+    // third-party script request from leaking errors into later Karma specs.
+    const appendChild = document.body.appendChild.bind(document.body);
+    spyOn(document.body, 'appendChild').and.callFake(<T extends Node>(node: T): T => {
+      if (node instanceof HTMLScriptElement && node.id === 'js-turitop') {
+        return node;
+      }
+
+      return appendChild(node) as T;
+    });
 
     await TestBed.configureTestingModule({
       imports: [Booking, ...commonTestImports],
