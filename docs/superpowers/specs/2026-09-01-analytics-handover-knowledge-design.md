@@ -6,8 +6,8 @@ Create durable project knowledge that lets a future Codex chat understand the Se
 
 ## Deliverables
 
-1. `docs/analytics-tracking-knowledge.md`: the authoritative internal handover.
-2. `docs/internal-work-log/2026-09-01-ga4-conversion-interaction-tracking.md`: a standalone internal work-log entry, excluded from the August client report.
+1. `../docs/analytics-tracking-knowledge.md`: the authoritative internal handover in the DiocletianVR knowledge base.
+2. `../docs/internal-work-log/2026-09-01-ga4-conversion-interaction-tracking.md`: a standalone internal work-log entry, excluded from the August client report.
 
 ## Analytics Handover Structure
 

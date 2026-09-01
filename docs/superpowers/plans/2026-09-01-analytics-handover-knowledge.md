@@ -13,15 +13,15 @@
 ## File Structure
 
 - Modify: `../AGENTS.md` — require review of the Analytics handover before analytics work and maintenance of the handover as tracking evolves.
-- Create: `docs/analytics-tracking-knowledge.md` — authoritative GA4 implementation, reporting, interpretation, and continuation guide.
-- Create: `docs/internal-work-log/2026-09-01-ga4-conversion-interaction-tracking.md` — internal-only tracking work log.
+- Create: `../docs/analytics-tracking-knowledge.md` — authoritative GA4 implementation, reporting, interpretation, and continuation guide.
+- Create: `../docs/internal-work-log/2026-09-01-ga4-conversion-interaction-tracking.md` — internal-only tracking work log.
 
 ### Task 1: Establish the Analytics continuation source
 
 **Files:**
 
 - Modify: `../AGENTS.md`
-- Create: `docs/analytics-tracking-knowledge.md`
+- Create: `../docs/analytics-tracking-knowledge.md`
 
 - [ ] **Step 1: Add the mandatory AGENTS instruction**
 
@@ -42,7 +42,7 @@ Create a concise Markdown guide that documents the four event names and paramete
 Run:
 
 ```bash
-rg -n "analytics-tracking-knowledge|book_now_click|booking_widget_view|contact_click|language_switch" ../AGENTS.md docs/analytics-tracking-knowledge.md
+rg -n "analytics-tracking-knowledge|book_now_click|booking_widget_view|contact_click|language_switch" ../AGENTS.md ../docs/analytics-tracking-knowledge.md
 ```
 
 Expected: AGENTS contains the mandatory review rule and the handover contains all four approved events.
@@ -50,15 +50,15 @@ Expected: AGENTS contains the mandatory review rule and the handover contains al
 - [ ] **Step 4: Commit the continuation source**
 
 ```bash
-git add ../AGENTS.md docs/analytics-tracking-knowledge.md
-git commit -m "docs: add analytics tracking handover"
+# The DiocletianVR knowledge base is outside this nested website Git repository.
+# Verify the parent files directly; do not attempt to add them to this repository.
 ```
 
 ### Task 2: Record the internal-only tracking work
 
 **Files:**
 
-- Create: `docs/internal-work-log/2026-09-01-ga4-conversion-interaction-tracking.md`
+- Create: `../docs/internal-work-log/2026-09-01-ga4-conversion-interaction-tracking.md`
 
 - [ ] **Step 1: Write the internal work log**
 
@@ -69,7 +69,7 @@ Record the completed GA4 interaction tracking work in client-readable internal l
 Run:
 
 ```bash
-rg -n "Internal only|after the August|Why this was done|Expected outcome|dd-thankyou|SiteGround" docs/internal-work-log/2026-09-01-ga4-conversion-interaction-tracking.md
+rg -n "Internal only|after the August|Why this was done|Expected outcome|dd-thankyou|SiteGround" ../docs/internal-work-log/2026-09-01-ga4-conversion-interaction-tracking.md
 ```
 
 Expected: The log is clearly internal-only, outside the August report, explains purpose and outcome, and confirms purchase-flow protection.
@@ -77,8 +77,8 @@ Expected: The log is clearly internal-only, outside the August report, explains 
 - [ ] **Step 3: Commit the internal work log**
 
 ```bash
-git add docs/internal-work-log/2026-09-01-ga4-conversion-interaction-tracking.md
-git commit -m "docs: record GA4 interaction tracking work"
+# The DiocletianVR knowledge base is outside this nested website Git repository.
+# Verify the parent file directly; do not attempt to add it to this repository.
 ```
 
 ## Self-Review
