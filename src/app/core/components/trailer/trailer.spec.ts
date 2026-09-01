@@ -36,7 +36,7 @@ describe('Trailer', () => {
     expect(playerFrame.src).toContain('loop=1');
     expect(playerFrame.src).toContain('muted=1');
     expect(bookingCta).withContext('hero booking CTA').not.toBeNull();
-    expect(bookingCta.getAttribute('href')).toBe('/booking');
+    expect(bookingCta.getAttribute('href')).toBe('/booking/#booking-widget');
   });
 
   it('marks the mobile booking dock hidden exactly while the hero copy is visible', () => {

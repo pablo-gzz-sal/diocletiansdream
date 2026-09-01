@@ -7,11 +7,12 @@ import { OG_DEFAULT_IMAGE, PageSeoService } from '../../shared/services/page-seo
 import { SeoService } from '../../shared/services/seo-service';
 import { RevealOnScrollDirective } from '../../shared/animations/reveal-on-scroll-directive';
 import { FaqEntry, StructuredDataService } from '../../shared/services/structured-data';
+import { LocalePathPipe } from '../../core/i18n/locale-path.pipe';
 
 @Component({
   selector: 'app-booking',
   standalone: true,
-  imports: [Header, Footer, TranslateModule, RevealOnScrollDirective],
+  imports: [Header, Footer, TranslateModule, RevealOnScrollDirective, LocalePathPipe],
   templateUrl: './booking.html',
   styleUrl: './booking.css',
 })

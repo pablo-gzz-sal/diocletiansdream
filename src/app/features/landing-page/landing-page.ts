@@ -2,7 +2,7 @@ import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild } fr
 import { Header } from '../../core/components/header/header';
 import { Footer } from '../../core/components/footer/footer';
 import { SeoService } from '../../shared/services/seo-service';
-import { TranslateService } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { Trailer } from '../../core/components/trailer/trailer';
 import { Experience } from '../../core/components/experience/experience';
 import { Visit } from '../../core/components/visit/visit';
@@ -15,6 +15,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { OG_DEFAULT_IMAGE, PageSeoService } from '../../shared/services/page-seo';
 import { FaqEntry, StructuredDataService } from '../../shared/services/structured-data';
 import { shouldDisableMotion } from '../../shared/animations/motion-preference';
+import { I18nService } from '../../core/i18n/i18n.service';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -29,7 +30,8 @@ gsap.registerPlugin(ScrollTrigger);
     HistoricalAuthority,
     Reviews,
     Faq,
-    Highlights],
+    Highlights,
+    TranslateModule],
   templateUrl: './landing-page.html',
   styleUrl: './landing-page.css',
 })
@@ -38,6 +40,41 @@ export class LandingPage implements OnInit, AfterViewInit, OnDestroy {
 
   marqueeItems: string[] = [];
 
+  readonly featuredArticles = [
+    {
+      key: 'emperor',
+      href: {
+        en: '/what-you-didnt-know-about-emperor-diocletian/',
+        hr: '/hr/sto-niste-znali-o-caru-dioklecijanu/',
+      },
+      image: 'assets/images/vr/emperor-peristyle.jpg',
+    },
+    {
+      key: 'shopping',
+      href: {
+        en: '/a-locals-guide-to-shopping-in-split/',
+        hr: '/hr/lokalni-vodic-za-shopping-u-splitu/',
+      },
+      image: 'assets/images/vr/market-pottery.jpg',
+    },
+    {
+      key: 'ruins',
+      href: {
+        en: '/hidden-roman-ruins-in-split-you-probably-walked-past/',
+        hr: '/hr/skrivene-rimske-rusevine-u-splitu/',
+      },
+      image: 'assets/images/vr/trailer-stills/imperial-audience-hall.jpg',
+    },
+    {
+      key: 'palace',
+      href: {
+        en: '/historical-significance-of-diocletians-palace/',
+        hr: '/hr/povijesni-znacaj-dioklecijanove-palace/',
+      },
+      image: 'assets/images/vr/temple-facade.jpg',
+    },
+  ];
+
   private cleanups: Array<() => void> = [];
 
   private static readonly JSON_LD_ID = 'ld-home';
@@ -45,9 +82,20 @@ export class LandingPage implements OnInit, AfterViewInit, OnDestroy {
   constructor(
     private seo: SeoService,
     private translate: TranslateService,
+    private i18n: I18nService,
     private pageSeo: PageSeoService,
     private sd: StructuredDataService,
   ) {}
+
+  featuredArticleHref(article: typeof this.featuredArticles[number]): string {
+    return article.href[this.i18n.current()];
+  }
+
+  featuredArticlesBlogHref(): string {
+    return this.i18n.current() === 'hr'
+      ? 'https://diocletiansdream.com/hr/blog/'
+      : 'https://diocletiansdream.com/blog/';
+  }
 
   ngOnInit(): void {
     this.applySeo();

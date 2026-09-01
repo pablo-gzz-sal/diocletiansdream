@@ -22,4 +22,10 @@ describe('Footer', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('keeps the Booking navigation link on the booking page', () => {
+    const bookingLink = fixture.nativeElement.querySelector('a[href="/booking"]') as HTMLAnchorElement | null;
+
+    expect(bookingLink?.getAttribute('href')).toBe('/booking');
+  });
 });

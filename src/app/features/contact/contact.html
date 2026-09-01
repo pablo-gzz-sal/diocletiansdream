@@ -65,7 +65,7 @@
           </p>
 
           <div class="mt-8 flex flex-wrap gap-3">
-            <a [routerLink]="'/booking' | locPath" class="btn btn--dark">
+            <a [href]="('/booking' | locPath) + '/#booking-widget'" class="btn btn--dark">
               {{ 'visitPage.hero.ctaPrimary' | translate }}
             </a>
             <a [routerLink]="'/visit' | locPath" fragment="map" class="btn btn--ghost">{{ 'visitPage.hero.ctaMap' | translate }}</a>
@@ -124,7 +124,7 @@
           >
             {{ 'visitPage.location.ctaDirections' | translate }}
           </a>
-          <a [routerLink]="'/booking' | locPath" class="btn btn--dark">
+          <a [href]="('/booking' | locPath) + '/#booking-widget'" class="btn btn--dark">
             {{ 'visitPage.hero.ctaPrimary' | translate }}
           </a>
         </div>
@@ -175,7 +175,7 @@
             </p>
 
             <div class="visit-audience-actions mt-auto pt-4 border-t border-black/10">
-              <a [routerLink]="'/booking' | locPath" class="btn btn--dark">
+              <a [href]="('/booking' | locPath) + '/#booking-widget'" class="btn btn--dark">
                 {{ 'visitPage.individual.cta' | translate }}
               </a>
             </div>
@@ -331,7 +331,7 @@
           </div>
 
           <div class="visit-hours-actions mt-8 flex flex-wrap gap-3">
-            <a [routerLink]="'/booking' | locPath" class="btn btn--dark">{{ 'visitPage.bookingInfo.ctaPrimary' | translate }}</a>
+            <a [href]="('/booking' | locPath) + '/#booking-widget'" class="btn btn--dark">{{ 'visitPage.bookingInfo.ctaPrimary' | translate }}</a>
             <a href="mailto:contact@diocletiansdream.com" class="btn btn--cream">{{ 'visitPage.bookingInfo.ctaSecondary' | translate }}</a>
           </div>
         </div>
@@ -365,7 +365,7 @@
             <p class="font-[family-name:var(--font-sans)] text-[0.95rem] leading-[1.85] text-ink-60">
               {{ 'visitPage.seasonal.p3' | translate }}
               <a
-                [routerLink]="'/booking' | locPath"
+                [href]="('/booking' | locPath) + '/#booking-widget'"
                 class="inline-link ml-2"
               >
                 {{ 'visitPage.seasonal.bookNowLinkText' | translate }} →
@@ -409,7 +409,7 @@
             </p>
 
             <div class="pt-4 border-t border-black/10 flex flex-wrap gap-3">
-              <a [routerLink]="'/booking' | locPath" class="btn btn--dark">
+              <a [href]="('/booking' | locPath) + '/#booking-widget'" class="btn btn--dark">
                 {{ 'visitPage.bookingInfo.ctaPrimary' | translate }}
               </a>
               <a href="mailto:contact@diocletiansdream.com" class="btn btn--cream">
@@ -499,7 +499,7 @@
 
         <div class="flex flex-col gap-3 lg:items-end shrink-0">
           <a
-            [routerLink]="'/booking' | locPath"
+            [href]="('/booking' | locPath) + '/#booking-widget'"
             class="inline-flex items-center justify-center rounded-full px-8 py-3.5 font-[family-name:var(--font-sans)] text-[0.8rem] font-medium text-white hover:opacity-90 transition-opacity no-underline whitespace-nowrap"
             style="background: var(--dd-purple)"
           >

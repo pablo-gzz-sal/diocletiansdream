@@ -28,7 +28,7 @@
         <span class="vcard-num">02</span>
         <p class="vcard-title">{{ 'home.unique.journey.title' | translate }}</p>
         <p class="vcard-text">{{ 'home.unique.journey.text' | translate }}</p>
-        <a [routerLink]="'/booking' | locPath" class="btn btn--dark vcard-btn">
+        <a [href]="('/booking' | locPath) + '/#booking-widget'" class="btn btn--dark vcard-btn">
           {{ 'home.hero.ctaPrimary' | translate }}
         </a>
       </div>

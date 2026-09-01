@@ -1,6 +1,5 @@
 import { CommonModule } from '@angular/common';
 import { AfterViewInit, Component, ElementRef, OnDestroy } from '@angular/core';
-import { RouterLink } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { RevealOnScrollDirective } from '../../../shared/animations/reveal-on-scroll-directive';
 import gsap from 'gsap';
@@ -13,7 +12,7 @@ gsap.registerPlugin(ScrollTrigger);
 @Component({
   selector: 'app-hero',
   standalone: true,
-  imports: [CommonModule, RouterLink, TranslateModule, RevealOnScrollDirective, LocalePathPipe],
+  imports: [CommonModule, TranslateModule, RevealOnScrollDirective, LocalePathPipe],
   templateUrl: './hero.html',
   styleUrl: './hero.css',
 })

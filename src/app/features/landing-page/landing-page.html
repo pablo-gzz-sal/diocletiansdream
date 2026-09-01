@@ -12,6 +12,36 @@
   <app-historical-authority></app-historical-authority>
   <app-reviews></app-reviews>
   <app-faq></app-faq>
+
+  <section class="featured-articles" aria-labelledby="featured-articles-heading" data-testid="featured-articles">
+    <div class="featured-articles__inner mx-auto max-w-7xl dd-page-gutter">
+      <div class="featured-articles__heading">
+        <p class="featured-articles__eyebrow">{{ 'home.featuredArticles.eyebrow' | translate }}</p>
+        <h2 id="featured-articles-heading">{{ 'home.featuredArticles.title' | translate }}</h2>
+        <p>{{ 'home.featuredArticles.intro' | translate }}</p>
+      </div>
+
+      <div class="featured-articles__grid">
+        @for (article of featuredArticles; track article.key) {
+          <a [href]="featuredArticleHref(article)" class="featured-article" data-testid="featured-article">
+            <span class="featured-article__image">
+              <img [src]="article.image" [alt]="('home.featuredArticles.articles.' + article.key + '.alt') | translate" loading="lazy" />
+            </span>
+            <h3>{{ ('home.featuredArticles.articles.' + article.key + '.title') | translate }}</h3>
+            <p>{{ ('home.featuredArticles.articles.' + article.key + '.intro') | translate }}</p>
+            <span class="featured-article__link">{{ 'home.featuredArticles.readArticle' | translate }} <span aria-hidden="true">→</span></span>
+          </a>
+        }
+      </div>
+
+      <p class="featured-articles__invite" data-testid="featured-articles-invite">
+        {{ 'home.featuredArticles.invite' | translate }}
+        <a [href]="featuredArticlesBlogHref()" class="featured-articles__blog-link" data-testid="featured-articles-blog-link">
+          {{ 'home.featuredArticles.readMore' | translate }} <span aria-hidden="true">→</span>
+        </a>
+      </p>
+    </div>
+  </section>
 </main>
 
 <app-footer></app-footer>

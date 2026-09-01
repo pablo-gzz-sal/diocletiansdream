@@ -74,7 +74,7 @@
 
           <!-- Internal linking (Experience + Visit) -->
           <div class="mt-8 flex flex-wrap gap-3">
-            <a [routerLink]="'/booking' | locPath" class="btn btn--dark">
+            <a [href]="('/booking' | locPath) + '/#booking-widget'" class="btn btn--dark">
               {{ 'header.cta.bookNow' | translate }}
             </a>
             <a [routerLink]="'/experience' | locPath" class="btn btn--ghost">

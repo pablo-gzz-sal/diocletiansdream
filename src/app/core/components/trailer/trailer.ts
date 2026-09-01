@@ -1,7 +1,6 @@
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { Component, ElementRef, inject, OnDestroy, PLATFORM_ID, ViewChild } from '@angular/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
-import { RouterLink } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import Player from '@vimeo/player';
 import { LocalePathPipe } from '../../i18n/locale-path.pipe';
@@ -9,7 +8,7 @@ import { LocalePathPipe } from '../../i18n/locale-path.pipe';
 @Component({
   selector: 'app-trailer',
   standalone: true,
-  imports: [CommonModule, RouterLink, TranslateModule, LocalePathPipe],
+  imports: [CommonModule, TranslateModule, LocalePathPipe],
   templateUrl: './trailer.html',
   styleUrl: './trailer.css',
 })

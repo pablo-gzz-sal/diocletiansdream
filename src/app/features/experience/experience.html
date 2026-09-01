@@ -71,7 +71,7 @@
           </p>
 
           <div class="mt-8 flex flex-wrap gap-3">
-            <a [routerLink]="'/booking' | locPath" class="btn btn--dark">
+            <a [href]="('/booking' | locPath) + '/#booking-widget'" class="btn btn--dark">
               {{ 'experiencePage.whatYouWillSee.ctaBook' | translate }}
             </a>
             <a [routerLink]="'/experience' | locPath" fragment="trailer" class="btn btn--ghost">
@@ -142,7 +142,7 @@
         <p class="experience-trailer__copy mt-6">
           {{ 'experiencePage.trailer.text' | translate }}
         </p>
-        <a [routerLink]="'/booking' | locPath" class="btn btn--cream mt-8">
+        <a [href]="('/booking' | locPath) + '/#booking-widget'" class="btn btn--cream mt-8">
           {{ 'experiencePage.whatYouWillSee.ctaBook' | translate }}
         </a>
       </div>
@@ -205,7 +205,7 @@
           </p>
 
           <div class="mt-7 flex flex-wrap gap-3">
-            <a [routerLink]="'/booking' | locPath" class="btn btn--dark">
+            <a [href]="('/booking' | locPath) + '/#booking-widget'" class="btn btn--dark">
               {{ 'experiencePage.whatYouWillSee.ctaBook' | translate }}
             </a>
             <a [routerLink]="'/experience' | locPath" fragment="how" class="btn btn--ghost">
@@ -688,7 +688,7 @@
                   {{ item.a }}
                 </p>
 
-                <a *ngIf="item.linkText" [routerLink]="'/booking' | locPath" class="inline-link mt-4">
+                <a *ngIf="item.linkText" [href]="('/booking' | locPath) + '/#booking-widget'" class="inline-link mt-4">
                   {{ item.linkText }} →
                 </a>
               </div>
@@ -749,7 +749,7 @@
 
         <div class="flex flex-col gap-3 lg:items-end shrink-0">
           <a
-            [routerLink]="'/booking' | locPath"
+            [href]="('/booking' | locPath) + '/#booking-widget'"
             class="inline-flex items-center justify-center rounded-full px-8 py-3.5 font-[family-name:var(--font-sans)] text-[0.8rem] font-medium bg-[color:var(--dd-gold)] text-ink hover:opacity-90 transition-opacity no-underline whitespace-nowrap"
           >
             {{ 'experiencePage.booking.cta' | translate }}

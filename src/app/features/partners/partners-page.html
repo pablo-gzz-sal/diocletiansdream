@@ -80,7 +80,7 @@
         </p>
 
         <div class="mt-7 flex flex-wrap gap-3">
-          <a [routerLink]="'/booking' | locPath" class="btn btn--cream">
+          <a [href]="('/booking' | locPath) + '/#booking-widget'" class="btn btn--cream">
             {{ 'header.cta.bookNow' | translate }}
           </a>
           <a [routerLink]="'/experience' | locPath" class="btn btn--ghost-light">

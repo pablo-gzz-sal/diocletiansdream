@@ -34,7 +34,7 @@ describe('Header', () => {
     ) as HTMLAnchorElement | null;
 
     expect(bookingLink).not.toBeNull();
-    expect(bookingLink?.getAttribute('href')).toBe('/booking');
+    expect(bookingLink?.getAttribute('href')).toBe('/booking/#booking-widget');
   });
 
   it('renders the fixed mobile menu layer only while the menu is open', () => {
@@ -51,7 +51,7 @@ describe('Header', () => {
     ) as HTMLAnchorElement | null;
 
     expect(menuPanel?.classList.contains('right-4')).toBeTrue();
-    expect(bookingLink?.getAttribute('href')).toBe('/booking');
+    expect(bookingLink?.getAttribute('href')).toBe('/booking/#booking-widget');
 
     component.closeMenu();
     fixture.detectChanges();

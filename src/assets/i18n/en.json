@@ -10,6 +10,36 @@
       "3Line": "into",
       "4Line": "305 AD."
     },
+    "featuredArticles": {
+      "eyebrow": "Explore beyond the palace",
+      "title": "Stories from Split",
+      "intro": "Continue discovering the people, places, and history that make this city remarkable.",
+      "readArticle": "Read article",
+      "invite": "Looking for more ways to explore Split? Visit our journal for local stories, practical guides, and a deeper look at the palace.",
+      "readMore": "Read more articles",
+      "articles": {
+        "emperor": {
+          "title": "Emperor Diocletian",
+          "intro": "Meet the ruler whose retirement palace became the living heart of modern Split.",
+          "alt": "Emperor Diocletian overlooking the imperial palace"
+        },
+        "shopping": {
+          "title": "Shopping in Split",
+          "intro": "Find local markets, crafts, and souvenirs that make a thoughtful reminder of Split.",
+          "alt": "Market stalls in the historic centre of Split"
+        },
+        "ruins": {
+          "title": "Hidden Roman ruins in Split",
+          "intro": "Look beyond the familiar streets to uncover the Roman traces woven through the city.",
+          "alt": "Roman arches and columns within Diocletian's Palace"
+        },
+        "palace": {
+          "title": "History of Diocletian's Palace",
+          "intro": "Discover how an imperial residence became the historic centre visitors explore today.",
+          "alt": "Temple façade within Diocletian's Palace"
+        }
+      }
+    },
     "trailer": {
       "eyebrow": "The Sizzle Reel",
       "title": "See the dream in motion",

@@ -3,6 +3,152 @@
    Gisou-inspired editorial aesthetic
    ================================================ */
 
+.featured-articles {
+  padding: 7rem 0;
+  background: var(--sand);
+}
+
+.featured-articles__inner {
+  margin: 0 auto;
+}
+
+.featured-articles__heading {
+  max-width: 42rem;
+  text-align: center;
+  margin: 0 auto 3.5rem;
+}
+
+.featured-articles__eyebrow {
+  margin: 0 0 0.75rem;
+  color: var(--dd-gold);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.featured-articles h2 {
+  margin: 0;
+  color: var(--ink);
+  font-family: var(--font-serif);
+  font-size: clamp(2.4rem, 4vw, 3.5rem);
+  font-weight: 400;
+  line-height: 0.98;
+}
+
+.featured-articles__heading > p:last-child {
+  margin: 1rem auto 0;
+  color: var(--ink-60);
+  font-size: 1rem;
+  line-height: 1.65;
+}
+
+.featured-articles__grid {
+  display: flex;
+  max-width: 64rem;
+  margin: 0 auto;
+  flex-wrap: wrap;
+  gap: 2.5rem 3rem;
+  justify-content: center;
+}
+
+.featured-article {
+  flex: 0 1 13.25rem;
+  color: var(--ink);
+  text-align: center;
+  text-decoration: none;
+}
+
+.featured-article__image {
+  display: block;
+  width: min(100%, 12rem);
+  aspect-ratio: 1;
+  margin: 0 auto 1.25rem;
+  overflow: hidden;
+  border: 1px solid rgba(26, 24, 20, 0.14);
+  border-radius: 50%;
+  background: var(--cream);
+  box-shadow: 0 12px 30px rgba(26, 24, 20, 0.1);
+}
+
+.featured-article__image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.35s ease;
+}
+
+.featured-article h3 {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: clamp(1.45rem, 2vw, 1.85rem);
+  font-weight: 500;
+  line-height: 1.05;
+}
+
+.featured-article > p {
+  margin: 0.7rem auto 0;
+  max-width: 17rem;
+  color: var(--ink-60);
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.featured-article__link,
+.featured-articles__blog-link {
+  color: var(--dd-purple);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.featured-article__link {
+  display: inline-block;
+  margin-top: 1rem;
+}
+
+.featured-articles__invite {
+  max-width: 38rem;
+  margin: 3.5rem auto 0;
+  color: var(--ink-60);
+  font-size: 0.95rem;
+  line-height: 1.7;
+  text-align: center;
+}
+
+.featured-articles__blog-link {
+  margin-left: 0.3rem;
+  text-decoration: underline;
+  text-underline-offset: 0.35em;
+}
+
+.featured-article:hover .featured-article__image img,
+.featured-article:focus-visible .featured-article__image img {
+  transform: scale(1.06);
+}
+
+.featured-article:focus-visible,
+.featured-articles__blog-link:focus-visible {
+  outline: 2px solid var(--dd-purple);
+  outline-offset: 0.45rem;
+}
+
+@media (max-width: 639px) {
+  .featured-articles {
+    padding: 5rem 0;
+  }
+
+  .featured-articles__grid {
+    gap: 2.25rem 1rem;
+  }
+
+  .featured-article__image {
+    width: min(100%, 9.5rem);
+  }
+}
+
 /* ─── Google Fonts (add to index.html <head>)
    <link rel="preconnect" href="https://fonts.googleapis.com">
    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

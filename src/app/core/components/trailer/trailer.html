@@ -32,7 +32,7 @@
     </header>
 
     <a
-      [routerLink]="'/booking' | locPath"
+      [href]="('/booking' | locPath) + '/#booking-widget'"
       class="btn btn--cream trailer-cta"
       data-testid="hero-overlay-booking-cta"
       [attr.tabindex]="heroCopyVisible ? null : -1"
@@ -105,7 +105,7 @@
       </div>
     </dl>
 
-    <a [routerLink]="'/booking' | locPath" class="btn btn--cream booking-dock__cta" data-testid="hero-booking-cta">
+    <a [href]="('/booking' | locPath) + '/#booking-widget'" class="btn btn--cream booking-dock__cta" data-testid="hero-booking-cta">
       {{ 'home.heroConversion.bookingCta' | translate }}
     </a>
   </section>
