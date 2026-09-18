@@ -39,6 +39,35 @@ describe('WpService', () => {
     expect(got[0].content.rendered).not.toContain('http://');
   });
 
+  it('requests only card data for archive and related-post lists', () => {
+    service.getPosts(1, 100, 'en').subscribe();
+
+    const request = http.expectOne(isPosts);
+    expect(request.request.params.get('_fields')).toBe(
+      'id,slug,date,modified,title,excerpt,link,categories,jetpack_featured_media_url',
+    );
+    request.flush([]);
+  });
+
+  it('upgrades only the two confirmed legacy outbound links with working HTTPS destinations', () => {
+    let got: any;
+    service.getPostBySlug('x').subscribe((p) => (got = p));
+
+    http.expectOne(isPosts).flush([
+      {
+        content: {
+          rendered:
+            '<a href="http://www.adriatic.hr">Adriatic</a><a href="http://www.oh-split.com">OH Split</a><a href="http://example.test">Untouched</a>',
+        },
+      },
+    ]);
+    http.expectNone(isMedia);
+
+    expect(got[0].content.rendered).toContain('https://www.adriatic.hr');
+    expect(got[0].content.rendered).toContain('https://www.oh-split.com');
+    expect(got[0].content.rendered).toContain('http://example.test');
+  });
+
   /**
    * Regression: one flaky request used to be fatal in a way nobody could see.
    * BlogPostPage turns a fetch error into "Post not found" + noindex, so a

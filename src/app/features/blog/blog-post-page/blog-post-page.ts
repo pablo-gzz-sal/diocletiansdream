@@ -443,7 +443,7 @@ export class BlogPostPage implements OnInit, OnDestroy {
   }
 
   featuredImage(post: any): string | null {
-    return post?._embedded?.['wp:featuredmedia']?.[0]?.source_url ?? null;
+    return post?.jetpack_featured_media_url ?? post?._embedded?.['wp:featuredmedia']?.[0]?.source_url ?? null;
   }
 
   /**

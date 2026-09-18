@@ -29,6 +29,8 @@ export class WpService {
   // Rewrite the host to the CMS (wpBaseUrl), which actually serves the media.
   private readonly oldMediaHost = new URL(environment.siteUrl).host; // diocletiansdream.com
   private readonly newMediaHost = new URL(environment.wpBaseUrl).host; // cms.diocletiansdream.com
+  private readonly postListFields =
+    'id,slug,date,modified,title,excerpt,link,categories,jetpack_featured_media_url';
 
   private readonly content = inject(WpContentService);
 
@@ -54,7 +56,14 @@ export class WpService {
       .split(`.wp.com/${this.oldMediaHost}/wp-content`)
       .join(`.wp.com/${this.newMediaHost}/wp-content`)
       .split(`http://${this.newMediaHost}/`)
-      .join(`https://${this.newMediaHost}/`);
+      .join(`https://${this.newMediaHost}/`)
+      // These two legacy partner links have confirmed HTTPS destinations. Keep
+      // this intentionally exact: other outbound URLs are content decisions,
+      // not an automatic scheme-migration surface.
+      .split('http://www.adriatic.hr')
+      .join('https://www.adriatic.hr')
+      .split('http://www.oh-split.com')
+      .join('https://www.oh-split.com');
     return JSON.parse(json) as T;
   }
 
@@ -62,7 +71,11 @@ export class WpService {
     let params = new HttpParams()
       .set('page', page)
       .set('per_page', perPage)
-      .set('_embed', 'true');
+      // `getPosts` feeds cards and related links only. Requesting all post
+      // bodies here made Angular serialize the whole archive into every blog
+      // page's server-state script. Jetpack's media URL keeps card imagery
+      // without the large WordPress embed payload.
+      .set('_fields', this.postListFields);
     // Polylang language filter (see the mu-plugin `dd-polylang-rest`). Omitted
     // for English callers, which keeps the default-language behaviour.
     if (lang) params = params.set('lang', lang);
@@ -162,5 +175,5 @@ export class WpService {
 }
 
 export function getFeaturedImage(post: any): string | null {
-  return post?._embedded?.['wp:featuredmedia']?.[0]?.source_url ?? null;
+  return post?.jetpack_featured_media_url ?? post?._embedded?.['wp:featuredmedia']?.[0]?.source_url ?? null;
 }
