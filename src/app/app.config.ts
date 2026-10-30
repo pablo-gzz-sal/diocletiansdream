@@ -1,4 +1,6 @@
-import { ApplicationConfig, importProvidersFrom, provideBrowserGlobalErrorListeners, provideZoneChangeDetection } from '@angular/core';
+import { ApplicationConfig, DOCUMENT, PLATFORM_ID, importProvidersFrom, inject, provideAppInitializer, provideBrowserGlobalErrorListeners, provideZoneChangeDetection } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { firstValueFrom } from 'rxjs';
 import { provideRouter, withInMemoryScrolling } from '@angular/router';
 
 import { routes } from './app.routes';
@@ -7,9 +9,27 @@ import {  TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { JsonTranslateLoader } from './core/i18n/json-translate.loader';
 import { provideClientHydration, withEventReplay } from '@angular/platform-browser';
 import { trailingSlashUrlSerializerProvider } from './core/trailing-slash-url-serializer';
+import { I18nService } from './core/i18n/i18n.service';
 
 export function HttpLoaderFactory(http: HttpClient) {
-  return new JsonTranslateLoader(http);
+  return new JsonTranslateLoader(http, isThankYouPath(inject(DOCUMENT).location.pathname));
+}
+
+function isThankYouPath(path: string): boolean {
+  return path.startsWith('/dd-thankyou');
+}
+
+/**
+ * Translations no longer ship inside the page, so hold hydration until they have
+ * loaded. The prerendered page is already on screen, and `| translate` never
+ * shows raw keys.
+ */
+function loadTranslationsBeforeHydration(): Promise<unknown> | void {
+  const path = inject(DOCUMENT).location.pathname;
+  if (!isPlatformBrowser(inject(PLATFORM_ID)) || isThankYouPath(path)) return;
+
+  const lang = path === '/hr' || path.startsWith('/hr/') ? 'hr' : 'en';
+  return firstValueFrom(inject(I18nService).activate(lang)).catch(() => undefined);
 }
 
 export const appConfig: ApplicationConfig = {
@@ -37,5 +57,6 @@ export const appConfig: ApplicationConfig = {
         },
       }),
     ), provideClientHydration(withEventReplay()),
+    provideAppInitializer(loadTranslationsBeforeHydration),
   ]
 };

@@ -85,6 +85,30 @@ async function main() {
     }
   }
 
+  // A page's source may only carry that page's own content. Text from other
+  // pages or articles has twice slipped into the hidden page data, unnoticed
+  // because it is invisible in the browser and every other check still passes.
+  for (const page of pages) {
+    if (MAY_BE_404.has(page) || page === 'dd-thankyou/index.html') continue;
+    const html = await readFile(join(OUT_DIR, page), 'utf8');
+    const state = html.match(/<script id="ng-state"[^>]*>([\s\S]*?)<\/script>/)?.[1] ?? '';
+    const head = html.match(/<head>[\s\S]*?<\/head>/)?.[0] ?? '';
+
+    if (/assets\/i18n|experiencePage|bookingPage|cookieBanner/.test(state)) {
+      fail(`${page} ships the whole translation file in its page data.`);
+    }
+    if (/yoast_head(?!_json)|_links|"schema"|&q;schema&q;/.test(state)) {
+      fail(`${page} ships raw WordPress data (Yoast or REST links) in its page data.`);
+    }
+    if (posts.includes(page) && (state.match(/"slug"|&q;slug&q;/g) ?? []).length > 5) {
+      fail(`${page} ships other articles in its page data (only 4 related cards are allowed).`);
+    }
+    if (/<!--/.test(head)) fail(`${page} has developer comments in its <head>.`);
+    if (/rel="preconnect"[^>]*player\.vimeo\.com/.test(head) && page !== 'index.html' && page !== 'hr/index.html') {
+      fail(`${page} preconnects to Vimeo, which only the home page uses.`);
+    }
+  }
+
   for (const required of ['.htaccess', 'robots.txt', 'sitemap.xml']) {
     if (!existsSync(join(OUT_DIR, required))) fail(`Missing ${required} in the build output.`);
   }

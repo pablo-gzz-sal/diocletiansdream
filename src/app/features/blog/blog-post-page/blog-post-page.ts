@@ -1,5 +1,5 @@
-import { Component, DOCUMENT, HostListener, Inject, OnDestroy, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, DOCUMENT, HostListener, Inject, OnDestroy, OnInit, PLATFORM_ID, TransferState, inject, makeStateKey } from '@angular/core';
+import { CommonModule, isPlatformServer } from '@angular/common';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { WpService } from '../../../shared/services/wp-service';
@@ -37,6 +37,8 @@ export class BlogPostPage implements OnInit, OnDestroy {
    * to flow and readers had no next step inside the journal.
    */
   relatedPosts: any[] = [];
+  private readonly transferState = inject(TransferState);
+  private readonly platformId = inject(PLATFORM_ID);
   readonly relatedCount = 4;
 
   private sub?: Subscription;
@@ -155,6 +157,8 @@ export class BlogPostPage implements OnInit, OnDestroy {
       type: 'article',
       locale: this.lang === 'hr' ? 'hr_HR' : 'en_US',
     });
+    // The shell's image details describe the default image, not this post's.
+    this.seo.setArticleImageDetails(title);
 
     // BlogPosting schema
     this.seo.setJsonLd('ld-blogposting', this.buildBlogPostingJsonLd(post, url, title, description, image));
@@ -393,7 +397,16 @@ export class BlogPostPage implements OnInit, OnDestroy {
    */
   private loadRelated(post: any): void {
     this.relatedSub?.unsubscribe();
-    this.relatedSub = this.wp.getPosts(1, 100, this.lang).subscribe({
+
+    // Prerendered pages carry only their own 4 cards, never the other articles.
+    const key = makeStateKey<any[]>(`related:${this.lang}:${post?.slug}`);
+    if (this.transferState.hasKey(key)) {
+      this.relatedPosts = this.transferState.get(key, []);
+      this.transferState.remove(key);
+      return;
+    }
+
+    this.relatedSub = this.wp.getRelatedCandidates(this.lang).subscribe({
       next: (posts) => {
         const all = (posts ?? []).filter((p: any) => p?.slug);
         const pool = all.filter((p: any) => p?.id !== post?.id);
@@ -420,6 +433,11 @@ export class BlogPostPage implements OnInit, OnDestroy {
           });
 
         this.relatedPosts = ordered.slice(0, this.relatedCount);
+        if (isPlatformServer(this.platformId)) {
+          this.transferState.set(key, this.relatedPosts.map(({ id, slug, title, jetpack_featured_media_url }) => (
+            { id, slug, title, jetpack_featured_media_url }
+          )));
+        }
       },
       error: () => {
         this.relatedPosts = [];

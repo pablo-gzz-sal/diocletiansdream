@@ -78,6 +78,7 @@ export class LandingPage implements OnInit, AfterViewInit, OnDestroy {
   private cleanups: Array<() => void> = [];
 
   private static readonly JSON_LD_ID = 'ld-home';
+  private static readonly VIMEO_PRECONNECT_ID = 'preconnect-vimeo';
 
   constructor(
     private seo: SeoService,
@@ -98,6 +99,8 @@ export class LandingPage implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    // The Vimeo trailer is this page's LCP element, and only this page uses it.
+    this.seo.setPreconnect(LandingPage.VIMEO_PRECONNECT_ID, 'https://player.vimeo.com');
     this.applySeo();
     this.translate.get('home.marquee.items').subscribe((items: string[]) => {
       this.marqueeItems = items;
@@ -144,6 +147,7 @@ export class LandingPage implements OnInit, AfterViewInit, OnDestroy {
     this.cleanups = [];
     // <script> tags survive client-side navigation — drop it on the way out.
     this.seo.clearJsonLd(LandingPage.JSON_LD_ID);
+    this.seo.clearJsonLd(LandingPage.VIMEO_PRECONNECT_ID);
   }
 
   /** The home FAQ pairs, resolved from the same i18n keys the accordion renders. */

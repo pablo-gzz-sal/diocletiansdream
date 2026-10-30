@@ -1,7 +1,8 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Injectable, inject } from '@angular/core';
+import { Injectable, PLATFORM_ID, TransferState, inject, makeStateKey } from '@angular/core';
+import { isPlatformServer } from '@angular/common';
 import { environment } from '../../../environments/environment';
-import { catchError, map, Observable, of, retry, switchMap, timer } from 'rxjs';
+import { catchError, map, Observable, of, retry, switchMap, tap, timer } from 'rxjs';
 import { AltById, attachmentIdsIn, WpContentService } from './wp-content';
 
 /**
@@ -30,9 +31,12 @@ export class WpService {
   private readonly oldMediaHost = new URL(environment.siteUrl).host; // diocletiansdream.com
   private readonly newMediaHost = new URL(environment.wpBaseUrl).host; // cms.diocletiansdream.com
   private readonly postListFields =
-    'id,slug,date,modified,title,excerpt,link,categories,tags,jetpack_featured_media_url';
+    'id,slug,date,modified,title,excerpt,link,categories,jetpack_featured_media_url';
+  private readonly relatedFields = 'id,slug,title,tags,jetpack_featured_media_url';
 
   private readonly content = inject(WpContentService);
+  private readonly transferState = inject(TransferState);
+  private readonly platformId = inject(PLATFORM_ID);
 
   constructor(private http: HttpClient) {}
 
@@ -71,7 +75,7 @@ export class WpService {
     let params = new HttpParams()
       .set('page', page)
       .set('per_page', perPage)
-      // `getPosts` feeds cards and related links only. Requesting all post
+      // `getPosts` feeds the blog index cards only. Requesting all post
       // bodies here made Angular serialize the whole archive into every blog
       // page's server-state script. Jetpack's media URL keeps card imagery
       // without the large WordPress embed payload.
@@ -91,18 +95,74 @@ export class WpService {
   }
 
   /**
+   * Candidates for a post's related cards. Never transferred with the page: the
+   * prerendered source of an article must not carry the other articles. The
+   * page stores just the 4 cards it picks (see BlogPostPage.loadRelated).
+   */
+  getRelatedCandidates(lang?: string) {
+    let params = new HttpParams().set('per_page', 100).set('_fields', this.relatedFields);
+    if (lang) params = params.set('lang', lang);
+
+    return this.http.get<any[]>(`${this.api}/posts`, { params, transferCache: false }).pipe(
+      retryTransient(),
+      map((posts) => this.normalizeMedia(posts)),
+    );
+  }
+
+  /**
    * The only place `content.rendered` is cleaned, because it is the only place
    * a full body is rendered — the list pages show excerpts, so cleaning their
    * dozen unread bodies would be pure waste.
    */
   getPostBySlug(slug: string, lang?: string) {
+    const key = makeStateKey<any>(`post:${lang ?? 'en'}:${slug}`);
+    if (this.transferState.hasKey(key)) {
+      const post = this.transferState.get(key, null);
+      this.transferState.remove(key);
+      return of([post]);
+    }
+
     let params = new HttpParams().set('slug', slug).set('_embed', 'true');
     if (lang) params = params.set('lang', lang);
-    return this.http.get<any[]>(`${this.api}/posts`, { params }).pipe(
+    return this.http.get<any[]>(`${this.api}/posts`, { params, transferCache: false }).pipe(
       retryTransient(),
       map((posts) => this.normalizeMedia(posts)),
       switchMap((posts) => this.withCleanContent(posts)),
+      tap((posts) => {
+        if (isPlatformServer(this.platformId) && posts?.length) {
+          this.transferState.set(key, this.forTransfer(posts[0]));
+        }
+      }),
     );
+  }
+
+  /**
+   * Only what the post page reads on its first browser render. The raw response
+   * also holds Yoast's full head, REST links and embedded media records, which
+   * would otherwise ship in the page source of every article.
+   */
+  private forTransfer(post: any): any {
+    const yoast = post?.yoast_head_json;
+    const author = post?._embedded?.author?.[0];
+    const media = post?._embedded?.['wp:featuredmedia']?.[0];
+    return {
+      id: post?.id,
+      slug: post?.slug,
+      date: post?.date,
+      modified: post?.modified,
+      title: post?.title,
+      content: post?.content,
+      excerpt: post?.excerpt,
+      tags: post?.tags,
+      lang: post?.lang,
+      translations: post?.translations,
+      jetpack_featured_media_url: post?.jetpack_featured_media_url,
+      yoast_head_json: yoast && { title: yoast.title, description: yoast.description, og_title: yoast.og_title },
+      _embedded: {
+        author: author ? [{ name: author.name, url: author.url }] : [],
+        'wp:featuredmedia': media ? [{ source_url: media.source_url }] : [],
+      },
+    };
   }
 
   private withCleanContent(posts: any[]): Observable<any[]> {
@@ -140,14 +200,14 @@ export class WpService {
       .set('per_page', Math.min(ids.length, 100))
       .set('_fields', 'id,alt_text');
 
-    return this.http.get<any[]>(`${this.api}/media`, { params }).pipe(
+    return this.http.get<any[]>(`${this.api}/media`, { params, transferCache: false }).pipe(
       map((media) => new Map(media.map((m) => [m.id as number, (m.alt_text as string) ?? '']))),
       catchError(() => of(empty)),
     );
   }
 
   getCategories() {
-    return this.http.get<any[]>(`${this.api}/categories?per_page=100`);
+    return this.http.get<any[]>(`${this.api}/categories?per_page=100&_fields=id,slug,name`);
   }
 
   getSamplePosts(lang?: string): Observable<any[]> {

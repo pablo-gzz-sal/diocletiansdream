@@ -1,3 +1,4 @@
+import { TransferState, makeStateKey } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { HttpRequest, provideHttpClient } from '@angular/common/http';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
@@ -39,12 +40,40 @@ describe('WpService', () => {
     expect(got[0].content.rendered).not.toContain('http://');
   });
 
+  it('keeps the other articles out of the page data when loading related posts', () => {
+    service.getRelatedCandidates('en').subscribe();
+
+    const request = http.expectOne(isPosts);
+    expect(request.request.params.get('_fields')).toBe('id,slug,title,tags,jetpack_featured_media_url');
+    expect(request.request.transferCache).toBe(false);
+    request.flush([]);
+  });
+
+  it('does not transfer the raw post response with the page', () => {
+    service.getPostBySlug('x').subscribe();
+
+    const request = http.expectOne(isPosts);
+    expect(request.request.transferCache).toBe(false);
+    request.flush([]);
+  });
+
+  it('serves a prerendered post from its trimmed page data', () => {
+    const post = { id: 1, slug: 'x' };
+    TestBed.inject(TransferState).set(makeStateKey<any>('post:en:x'), post);
+    let got: any;
+
+    service.getPostBySlug('x').subscribe((posts) => (got = posts));
+
+    http.expectNone(isPosts);
+    expect(got).toEqual([post]);
+  });
+
   it('requests only card data for archive and related-post lists', () => {
     service.getPosts(1, 100, 'en').subscribe();
 
     const request = http.expectOne(isPosts);
     expect(request.request.params.get('_fields')).toBe(
-      'id,slug,date,modified,title,excerpt,link,categories,tags,jetpack_featured_media_url',
+      'id,slug,date,modified,title,excerpt,link,categories,jetpack_featured_media_url',
     );
     request.flush([]);
   });

@@ -156,6 +156,22 @@ export class SeoService {
     this.meta.updateTag({ name: 'twitter:card', content: tags.image ? 'summary_large_image' : 'summary' });
   }
 
+  setArticleImageDetails(alt: string) {
+    this.meta.updateTag({ property: 'og:image:alt', content: alt });
+    this.meta.removeTag('property="og:image:width"');
+    this.meta.removeTag('property="og:image:height"');
+  }
+
+  /** Remove it with clearJsonLd(id), like the JSON-LD blocks. */
+  setPreconnect(id: string, href: string) {
+    this.doc.getElementById(id)?.remove();
+    const link = this.renderer.createElement('link');
+    link.id = id;
+    link.rel = 'preconnect';
+    link.href = href;
+    this.renderer.appendChild(this.doc.head, link);
+  }
+
   setJsonLd(id: string, data: unknown) {
     // Remove existing script with same id
     const existing = this.doc.getElementById(id);

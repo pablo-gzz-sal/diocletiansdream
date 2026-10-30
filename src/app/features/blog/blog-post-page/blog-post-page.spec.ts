@@ -1,3 +1,4 @@
+import { TransferState, makeStateKey } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ActivatedRoute, Router, convertToParamMap } from '@angular/router';
 import { BehaviorSubject, Observable, of } from 'rxjs';
@@ -207,7 +208,7 @@ describe('BlogPostPage', () => {
       ...extra,
     });
     const relatedFor = (post: any, posts: any[]) => {
-      spyOn(TestBed.inject(WpService), 'getPosts').and.returnValue(of(posts));
+      spyOn(TestBed.inject(WpService), 'getRelatedCandidates').and.returnValue(of(posts));
       (component as any).loadRelated(post);
       return component.relatedPosts.map((p) => p.id);
     };
@@ -250,15 +251,27 @@ describe('BlogPostPage', () => {
 
     it('rotates within a topic so sibling posts do not all link to the same four', () => {
       const posts = Array.from({ length: 7 }, (_, i) => summary(i + 1, [7]));
-      const getPosts = spyOn(TestBed.inject(WpService), 'getPosts').and.returnValue(of(posts));
+      const candidates = spyOn(TestBed.inject(WpService), 'getRelatedCandidates').and.returnValue(of(posts));
 
       (component as any).loadRelated(posts[0]);
       const first = component.relatedPosts.map((p) => p.id);
       (component as any).loadRelated(posts[3]);
       const second = component.relatedPosts.map((p) => p.id);
 
-      expect(getPosts).toHaveBeenCalledTimes(2);
+      expect(candidates).toHaveBeenCalledTimes(2);
       expect(first).not.toEqual(second);
+    });
+
+    it('reuses the prerendered cards without loading the other articles', () => {
+      const cards = [summary(7, [])];
+      const state = TestBed.inject(TransferState);
+      state.set(makeStateKey<any[]>('related:en:post-1'), cards);
+      const candidates = spyOn(TestBed.inject(WpService), 'getRelatedCandidates');
+
+      (component as any).loadRelated(summary(1, [7]));
+
+      expect(component.relatedPosts).toEqual(cards);
+      expect(candidates).not.toHaveBeenCalled();
     });
 
     it('renders each related post as a static card with its image and title', () => {
