@@ -187,6 +187,16 @@ describe('BlogPostPage', () => {
     );
   });
 
+  it('names the company and its profiles as author when WordPress only has the brand account', () => {
+    const post = { _embedded: { author: [{ name: '@diocletiansdream' }] } };
+
+    const author = (component as any).authorNode(post);
+
+    expect(author['@type']).toBe('Organization');
+    expect(author.name).toBe("Diocletian's Dream");
+    expect(author.sameAs).toContain('https://www.facebook.com/diocletiansdream/');
+  });
+
   it('does not double-brand a fallback title that already carries the site name', () => {
     const post = { title: { rendered: 'Kako je nastao Diocletian’s Dream' } };
 

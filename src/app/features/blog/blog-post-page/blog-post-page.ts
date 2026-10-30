@@ -7,6 +7,7 @@ import { Header } from '../../../core/components/header/header';
 import { Footer } from '../../../core/components/footer/footer';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { SeoService } from '../../../shared/services/seo-service';
+import { SAME_AS } from '../../../shared/services/structured-data';
 import { CtaBlock } from '../../../shared/components/cta-block/cta-block';
 import { LocalePathPipe } from '../../../core/i18n/locale-path.pipe';
 import { PostLanguageRouteService } from '../../../core/i18n/post-language-route.service';
@@ -287,14 +288,21 @@ export class BlogPostPage implements OnInit, OnDestroy {
   /**
    * Author node for the schema graph. Falls back to the Organization when
    * WordPress has no real name attached, which keeps the article valid without
-   * inventing a byline.
+   * inventing a byline. Article pages don't carry the site-wide Organization
+   * node, so the name and profiles have to be stated here.
    */
   private authorNode(post: any) {
     const name = this.authorName(post);
     const url = this.stripHtml(post?._embedded?.author?.[0]?.url ?? '').trim();
 
     if (!name) {
-      return { '@type': 'Organization', '@id': `${this.SITE_URL}/#organization` };
+      return {
+        '@type': 'Organization',
+        '@id': `${this.SITE_URL}/#organization`,
+        name: this.ORG_NAME,
+        url: `${this.SITE_URL}/`,
+        sameAs: SAME_AS,
+      };
     }
 
     return {

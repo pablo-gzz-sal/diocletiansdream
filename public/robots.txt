@@ -7,17 +7,29 @@ Allow: /
 # omitted from the sitemap. It intentionally remains crawlable so search
 # engines can read and enforce that directive.
 
-# AI search crawlers, allowed explicitly.
-#
-# These are the read-at-query-time crawlers that decide whether this site can be
-# cited in an AI answer, and they are separate from the bulk training scrapers.
-# Blocking them (a common 2024-25 reflex) removes the business from ChatGPT and
-# Perplexity results entirely, so the intent is spelled out here rather than
-# left to the wildcard above.
+# AI search and user-request crawlers: these let the site be found and cited
+# in AI answers.
 User-agent: OAI-SearchBot
 Allow: /
 
+User-agent: ChatGPT-User
+Allow: /
+
 User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+# AI training and model-use controls: allowed by choice. They do not decide
+# whether the site appears in AI search answers.
+User-agent: GPTBot
 Allow: /
 
 User-agent: ClaudeBot

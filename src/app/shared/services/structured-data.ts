@@ -35,10 +35,11 @@ export const ID = {
  * live page: an unverified `sameAs` weakens entity resolution instead of
  * helping it.
  *
- * LinkedIn is deliberately absent. The company page has not been created yet —
- * add it here and to the footer once it exists.
+ * LinkedIn added 2026-10-30 from the URL Gordan supplied; the footer icon uses
+ * the same address.
  */
-const SAME_AS = [
+export const SAME_AS = [
+  'https://www.linkedin.com/company/diocletians-dream/',
   'https://www.instagram.com/diocletiansdream/',
   'https://www.facebook.com/diocletiansdream/',
   'https://www.tiktok.com/@diocletiansdream',
