@@ -1,5 +1,5 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Injectable, PLATFORM_ID, TransferState, inject, makeStateKey } from '@angular/core';
+import { DOCUMENT, Injectable, PLATFORM_ID, TransferState, inject, makeStateKey } from '@angular/core';
 import { isPlatformServer } from '@angular/common';
 import { environment } from '../../../environments/environment';
 import { catchError, map, Observable, of, retry, switchMap, tap, timer } from 'rxjs';
@@ -37,6 +37,7 @@ export class WpService {
   private readonly content = inject(WpContentService);
   private readonly transferState = inject(TransferState);
   private readonly platformId = inject(PLATFORM_ID);
+  private readonly doc = inject(DOCUMENT);
 
   constructor(private http: HttpClient) {}
 
@@ -116,10 +117,12 @@ export class WpService {
    */
   getPostBySlug(slug: string, lang?: string) {
     const key = makeStateKey<any>(`post:${lang ?? 'en'}:${slug}`);
-    if (this.transferState.hasKey(key)) {
+    const prerendered = this.doc.querySelector('.blog-prose');
+    if (this.transferState.hasKey(key) && prerendered) {
       const post = this.transferState.get(key, null);
       this.transferState.remove(key);
-      return of([post]);
+      // The body is already in the page, so it is not stored a second time.
+      return of([{ ...post, content: { rendered: prerendered.innerHTML } }]);
     }
 
     let params = new HttpParams().set('slug', slug).set('_embed', 'true');
@@ -137,9 +140,9 @@ export class WpService {
   }
 
   /**
-   * Only what the post page reads on its first browser render. The raw response
-   * also holds Yoast's full head, REST links and embedded media records, which
-   * would otherwise ship in the page source of every article.
+   * Only what the post page reads on its first browser render, without what the
+   * page can already read elsewhere. The raw response also holds Yoast's full
+   * head, REST links and embedded media records, and the article body again.
    */
   private forTransfer(post: any): any {
     const yoast = post?.yoast_head_json;
@@ -151,16 +154,17 @@ export class WpService {
       date: post?.date,
       modified: post?.modified,
       title: post?.title,
-      content: post?.content,
-      excerpt: post?.excerpt,
-      tags: post?.tags,
-      lang: post?.lang,
       translations: post?.translations,
       jetpack_featured_media_url: post?.jetpack_featured_media_url,
-      yoast_head_json: yoast && { title: yoast.title, description: yoast.description, og_title: yoast.og_title },
+      yoast_head_json: {
+        title: yoast?.title,
+        description: yoast?.description,
+        ...(yoast?.title ? {} : { og_title: yoast?.og_title }),
+      },
+      ...(yoast?.description ? {} : { excerpt: post?.excerpt }),
       _embedded: {
-        author: author ? [{ name: author.name, url: author.url }] : [],
-        'wp:featuredmedia': media ? [{ source_url: media.source_url }] : [],
+        ...(author?.name?.startsWith('@') ? {} : { author: author ? [{ name: author.name, url: author.url }] : [] }),
+        ...(post?.jetpack_featured_media_url ? {} : { 'wp:featuredmedia': media ? [{ source_url: media.source_url }] : [] }),
       },
     };
   }

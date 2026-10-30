@@ -55,11 +55,11 @@ DirectoryIndex index.html
 # Fallback 404 for non-route requests (e.g. a missing asset with an extension).
 ErrorDocument 404 /404/index.html
 
-# Pages and translation files stay cached for 5 minutes, then the browser asks the server whether they
+# Pages stay cached for 5 minutes, then the browser asks the server whether they
 # changed (a quick 304 when not). Without this, browsers guess the lifetime and can
 # keep old HTML for days, pointing at bundle files a later deploy has removed.
 <IfModule mod_headers.c>
-  <FilesMatch "\.(html|json)$">
+  <FilesMatch "\.html$">
     Header set Cache-Control "public, max-age=300, must-revalidate"
   </FilesMatch>
 </IfModule>

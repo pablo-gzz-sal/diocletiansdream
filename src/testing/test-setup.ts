@@ -18,7 +18,7 @@ export const commonTestImports = [
     fallbackLang: 'en',
     loader: {
       provide: TranslateLoader,
-      useFactory: (http: HttpClient) => new JsonTranslateLoader(http),
+      useFactory: (http: HttpClient) => new JsonTranslateLoader(http, true),
       deps: [HttpClient],
     },
   }),

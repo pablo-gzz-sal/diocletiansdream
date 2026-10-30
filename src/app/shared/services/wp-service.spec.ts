@@ -57,15 +57,19 @@ describe('WpService', () => {
     request.flush([]);
   });
 
-  it('serves a prerendered post from its trimmed page data', () => {
-    const post = { id: 1, slug: 'x' };
-    TestBed.inject(TransferState).set(makeStateKey<any>('post:en:x'), post);
+  it('serves a prerendered post from its trimmed page data and the body already in the page', () => {
+    const prose = document.createElement('div');
+    prose.className = 'blog-prose';
+    prose.innerHTML = '<p>Body</p>';
+    document.body.appendChild(prose);
+    TestBed.inject(TransferState).set(makeStateKey<any>('post:en:x'), { id: 1, slug: 'x' });
     let got: any;
 
     service.getPostBySlug('x').subscribe((posts) => (got = posts));
+    prose.remove();
 
     http.expectNone(isPosts);
-    expect(got).toEqual([post]);
+    expect(got).toEqual([{ id: 1, slug: 'x', content: { rendered: '<p>Body</p>' } }]);
   });
 
   it('requests only card data for archive and related-post lists', () => {

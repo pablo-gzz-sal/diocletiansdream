@@ -103,6 +103,9 @@ async function main() {
     if (posts.includes(page) && (state.match(/"slug"|&q;slug&q;/g) ?? []).length > 5) {
       fail(`${page} ships other articles in its page data (only 4 related cards are allowed).`);
     }
+    if (posts.includes(page) && /"content"|&q;content&q;/.test(state)) {
+      fail(`${page} ships its article body a second time in its page data.`);
+    }
     if (/<!--/.test(head)) fail(`${page} has developer comments in its <head>.`);
     if (/rel="preconnect"[^>]*player\.vimeo\.com/.test(head) && page !== 'index.html' && page !== 'hr/index.html') {
       fail(`${page} preconnects to Vimeo, which only the home page uses.`);

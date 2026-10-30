@@ -19,7 +19,7 @@ describe('I18nService', () => {
           fallbackLang: 'en',
           loader: {
             provide: TranslateLoader,
-            useFactory: (h: HttpClient) => new JsonTranslateLoader(h),
+            useFactory: (h: HttpClient) => new JsonTranslateLoader(h, true),
             deps: [HttpClient],
           },
         }),

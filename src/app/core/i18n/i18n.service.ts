@@ -45,23 +45,9 @@ export class I18nService {
     this.doc.documentElement.lang = lang;
     if (this.isBrowser) {
       localStorage.setItem(LANG_STORAGE_KEY, lang);
-    } else {
-      this.preloadTranslations(lang);
     }
 
     return this.translate.use(lang).pipe(map(() => lang));
-  }
-
-  /** Starts the download with the page, so hydration barely waits for it. */
-  private preloadTranslations(lang: SupportedLang): void {
-    if (this.doc.getElementById('preload-translations')) return;
-    const link = this.doc.createElement('link');
-    link.id = 'preload-translations';
-    link.setAttribute('rel', 'preload');
-    link.setAttribute('as', 'fetch');
-    link.setAttribute('crossorigin', 'anonymous');
-    link.setAttribute('href', `/assets/i18n/${lang}.json`);
-    this.doc.head.appendChild(link);
   }
 
   current(): SupportedLang {
