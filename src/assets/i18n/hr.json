@@ -159,7 +159,7 @@
         },
         "price": {
           "q": "Koliko košta ulaznica?",
-          "a": "Ulaznica za odrasle stoji €13, a dječja, za dob od 8 do 14 godina, €9. To je puna cijena jedne 15-minutne projekcije. Platiti možete online pri rezervaciji ili na licu mjesta kad u terminu ima slobodnih mjesta."
+          "a": "Ulaznica za odrasle stoji €13, a dječja, za dob od 8 do 14 godina, €9. To je puna cijena jedne 15-minutne projekcije. Platiti možete online pri rezervaciji ili na licu mjesta kad u terminu ima slobodnih mjesta. Na licu mjesta primamo gotovinu, kartice i Apple Pay."
         },
         "booking": {
           "q": "Trebam li rezervirati unaprijed?",
@@ -232,7 +232,7 @@
     "howItWorks": {
       "title": "Kako iskustvo funkcionira",
       "p1": "VR projekcija traje približno 15 minuta.",
-      "p2": "Projekcije se održavaju svakih 30 minuta tijekom dana, u fiksnim terminima na puni sat i pola sata: 11:00, 11:30, 12:00, 12:30 i tako dalje. Dođite nekoliko minuta prije termina kako bi projekcija krenula na vrijeme. Posljednja projekcija počinje 30 minuta prije zatvaranja.",
+      "p2": "Projekcije se održavaju svakih 30 minuta tijekom dana, u fiksnim terminima na puni sat i pola sata: 11:00, 11:30, 12:00, 12:30 i tako dalje. Dođite oko pet minuta prije termina kako bi projekcija krenula na vrijeme. Posljednja projekcija počinje 30 minuta prije zatvaranja.",
       "p3": "Osoblje vam daje kratke upute, namjesti VR naočale i uvodi vas u obnovljenu palaču. Sve je osmišljeno za one koji VR koriste prvi put i nema kontrolera koje treba naučiti.",
       "p4": "Posjetitelji ulaze u manjim grupama prema rezerviranom terminu. Za radno vrijeme i planiranje dolaska pogledajte stranicu Planiraj posjet.",
       "visitUsLinkText": "Planiraj posjet"
@@ -285,7 +285,7 @@
       "items": [
         {
           "q": "Koliko traje iskustvo?",
-          "a": "VR projekcija traje približno 15 minuta. Termini počinju svakih 30 minuta, na puni sat i pola sata, dakle 11:00, 11:30, 12:00 i dalje. Dođite nekoliko minuta prije svog termina. Posljednja projekcija počinje 30 minuta prije zatvaranja."
+          "a": "VR projekcija traje približno 15 minuta. Termini počinju svakih 30 minuta, na puni sat i pola sata, dakle 11:00, 11:30, 12:00 i dalje. Molimo dođite oko pet minuta prije svog termina. Posljednja projekcija počinje 30 minuta prije zatvaranja."
         },
         {
           "q": "Je li iskustvo prikladno za djecu?",
@@ -302,7 +302,7 @@
         },
         {
           "q": "Što ću zapravo vidjeti u VR naočalama?",
-          "a": "Vidjet ćete Dioklecijanovu palaču obnovljenu u punim arhitektonskim proporcijama, onakvu kakva je bila 305. godine. To uključuje ceremonijalne i stambene prostorije koje danas ne postoje, trijemove carskog kompleksa i luku koja je služila carskom domaćinstvu. Rekonstrukcija slijedi arheološka istraživanja i arhitektonsku analizu sačuvanih ostataka."
+          "a": "Vidjet ćete Dioklecijanovu palaču u punim arhitektonskim proporcijama, onakvu kakva je mogla izgledati oko 305. godine. To uključuje ceremonijalne i stambene prostorije koje danas ne postoje, trijemove carskog kompleksa i luku koja je služila carskom domaćinstvu. Rekonstrukcija slijedi arheološka istraživanja i arhitektonsku analizu sačuvanih ostataka."
         },
         {
           "q": "Na kojim je jezicima dostupna naracija?",
@@ -314,7 +314,7 @@
         },
         {
           "q": "Koliko ranije trebam doći?",
-          "a": "Dovoljno je nekoliko minuta prije termina. Projekcije idu u fiksnim razmacima od 30 minuta i kreću na vrijeme, pa je pet minuta ranije dovoljno za upute osoblja i namještanje naočala prije početka rekonstrukcije."
+          "a": "Oko pet minuta prije termina. Projekcije idu u fiksnim razmacima od 30 minuta i kreću na vrijeme, pa vam to ostavlja dovoljno vremena za upute osoblja i namještanje naočala."
         },
         {
           "q": "Je li prostor prilagođen osobama s invaliditetom?",
@@ -322,7 +322,11 @@
         },
         {
           "q": "Koliko je rekonstrukcija povijesno točna?",
-          "a": "Model je izgrađen na arheološkim istraživanjima, povijesnim izvorima i arhitektonskoj analizi ostataka palače. Ondje gdje sačuvane strukture nisu cjelovite, rekonstrukcija praznine popunjava najutemeljenijom interpretacijom, a ne nagađanjem. Na povijesnoj interpretaciji savjetovao je profesor Josip Belamarić."
+          "a": "Rekonstrukcija počiva na arheološkim istraživanjima, povijesnim izvorima i arhitektonskoj analizi, uz doprinos profesora Josipa Belamarića. Ondje gdje sačuvane strukture nisu cjelovite prikazuje najutemeljeniju interpretaciju, pa je shvatite kao stručnu rekonstrukciju, a ne kao apsolutnu izvjesnost."
+        },
+        {
+          "q": "Kakva je prostorija i jesu li naočale čiste?",
+          "a": "Projekciju gledate u klimatiziranoj, zvučno kontroliranoj tematskoj prostoriji s prigušenim svjetlom nalik svijećama, koje smanjuje smetnje svjetla u naočalama. Svaki gost koristi vlastite naočale, koje se čiste prije i nakon svakog gledanja."
         }
       ]
     },
@@ -441,7 +445,7 @@
         },
         {
           "q": "Kako do vas doći s Peristila?",
-          "a": "S Peristila prođite palačom prema sjeveru i izađite kroz Zlatna vrata. Diocletian's Dream je na adresi Zagrebačka ul. 1, s vaše lijeve strane po izlasku iz vrata, iza kipa Grgura Ninskog. Cijela šetnja traje oko tri minute."
+          "a": "S Peristila hodajte oko dvije minute do kipa Grgura Ninskog kraj ulaza na Zlatna vrata, a zatim prijeđite park Đardin oko 80 metara. Diocletian's Dream je na adresi Zagrebačka ul. 1."
         },
         {
           "q": "Koliko košta ulaznica?",
@@ -467,6 +471,14 @@
           "q": "Je li iskustvo prikladno za obitelji s djecom?",
           "a": "Da, za djecu od 8 godina naviše. Mlađa djeca ne mogu sudjelovati, a onu do 14 godina treba pratiti odrasla osoba. Više informacija nalazi se na stranici Iskustvo.",
           "linkText": "Iskustvo"
+        },
+        {
+          "q": "Kako mogu platiti na licu mjesta?",
+          "a": "Na licu mjesta primamo gotovinu, kartice i Apple Pay."
+        },
+        {
+          "q": "Mogu li povesti kućnog ljubimca?",
+          "a": "Nažalost, kućni ljubimci nisu dopušteni."
         }
       ]
     },
@@ -485,7 +497,7 @@
       "ctaDirections": "Upute za dolazak"
     },
     "map": {
-      "tip": "Savjet: dođite nekoliko minuta ranije na kratke upute prije svog termina."
+      "tip": "Savjet: dođite oko pet minuta ranije na kratke upute prije svog termina."
     }
   },
   "aboutPage": {
@@ -519,7 +531,7 @@
       "title": "Nastanak projekta",
       "p1": "Ideja je proizašla iz jednostavnog opažanja: čak se i vođeni razgledi Dioklecijanove palače uvelike oslanjaju na objašnjenje i maštu.",
       "p2": "Današnji obilazak palače znači da je u hodu mentalno obnavljate. Diocletian's Dream razvijen je da zatvori taj jaz, koristeći digitalnu tehnologiju u službi povijesne interpretacije. Osnivači su htjeli prostor u kojem posjetitelji mogu izaći iz gradske gužve, sjesti i vidjeti cjelovito arhitektonsko čitanje carske rezidencije.",
-      "p3": "Razvoj je trajao više od godinu dana i okupio povjesničare, dizajnere, digitalne umjetnike i VR stručnjake. Iskustvo je otvoreno za javnost 2020. godine i od tada je ugostilo desetke tisuća posjetitelja.",
+      "p3": "Projekt je okupio povjesničare, dizajnere, digitalne umjetnike i VR stručnjake. Iskustvo je otvoreno za javnost 2020. godine i od tada je ugostilo desetke tisuća posjetitelja.",
       "p4": "Od travnja 2026. posjetitelji gledaju potpuno novi VR film, izrađen prema suvremenim standardima uronjene tehnologije, s boljom vizualnom kvalitetom i razrađenijim narativom od izvorne rekonstrukcije."
     },
     "languages": {
@@ -555,7 +567,7 @@
       "items": [
         {
           "q": "Što je Diocletian's Dream?",
-          "a": "Diocletian's Dream je VR muzej u Splitu. Nudi 15-minutno sjedeće iskustvo virtualne stvarnosti koje obnavlja Dioklecijanovu palaču iz 305. godine u punim arhitektonskim proporcijama, na temelju arheoloških istraživanja i analize sačuvanih ostataka."
+          "a": "Diocletian's Dream je VR muzej u Splitu. Nudi 15-minutno sjedeće iskustvo virtualne stvarnosti koje rekonstruira Dioklecijanovu palaču onakvu kakva je mogla izgledati oko 305. godine, u punim arhitektonskim proporcijama, na temelju arheoloških istraživanja i analize sačuvanih ostataka."
         },
         {
           "q": "Je li Diocletian's Dream pravi muzej?",
@@ -563,11 +575,11 @@
         },
         {
           "q": "Kada je Diocletian's Dream otvoren?",
-          "a": "Diocletian's Dream otvoren je za javnost 2020. godine, nakon više od godinu dana razvoja u kojem su sudjelovali povjesničari, dizajneri, digitalni umjetnici i VR stručnjaci. Od tada je kroz njega prošlo desetke tisuća posjetitelja, a 2022. i 2023. osvojio je Tripadvisorovu nagradu Travellers' Choice."
+          "a": "Diocletian's Dream otvoren je za javnost 2020. godine, a razvili su ga povjesničari, dizajneri, digitalni umjetnici i VR stručnjaci. Od tada je kroz njega prošlo desetke tisuća posjetitelja, a 2022. i 2023. osvojio je Tripadvisorovu nagradu Travellers' Choice."
         },
         {
           "q": "Kako je rekonstrukcija istražena?",
-          "a": "Model počiva na arheološkim istraživanjima, povijesnim izvorima i arhitektonskoj analizi ostataka palače. Na povijesnoj interpretaciji savjetovao je profesor Josip Belamarić, od arhitekture i proporcija kompleksa do toga kako je izgledao svakodnevni život u njemu."
+          "a": "Model počiva na arheološkim istraživanjima, povijesnim izvorima i arhitektonskoj analizi ostataka palače. Profesor Josip Belamarić dao je doprinos povijesnoj interpretaciji, od arhitekture i proporcija kompleksa do toga kako je mogao izgledati svakodnevni život u njemu."
         },
         {
           "q": "Nalazi li se Diocletian's Dream unutar Dioklecijanove palače?",
@@ -748,7 +760,7 @@
       "cta": "Rezerviraj termin"
     },
     "related": {
-      "title": "Nastavite čitati",
+      "title": "Želite znati više?",
       "readLabel": "Pročitaj članak"
     }
   },
@@ -824,7 +836,7 @@
         },
         {
           "q": "Koliko često se održavaju projekcije?",
-          "a": "Projekcije počinju svakih 30 minuta tijekom dana, na puni sat i pola sata. Posljednja projekcija kreće 30 minuta prije zatvaranja. Kapacitet po terminu je ograničen, pa rezervirajte unaprijed da osigurate željeno vrijeme."
+          "a": "Projekcije počinju svakih 30 minuta tijekom dana, na puni sat i pola sata. Posljednja projekcija kreće 30 minuta prije zatvaranja. Kapacitet po terminu je ograničen, pa rezervirajte unaprijed da osigurate željeno vrijeme. Molimo dođite oko pet minuta prije termina."
         },
         {
           "q": "Gdje se nalazi Diocletian's Dream?",
@@ -836,7 +848,7 @@
         },
         {
           "q": "Mogu li promijeniti ili otkazati rezervaciju?",
-          "a": "Rezervaciju možete besplatno pomaknuti ili otkazati do 24 sata prije termina. Unutar tih 24 sata javite nam se izravno i pomoći ćemo gdje možemo. Ako tehnički problem spriječi projekciju, dobivate puni povrat ili drugi termin."
+          "a": "Rezervaciju možete besplatno pomaknuti ili otkazati do 24 sata prije termina. Unutar tih 24 sata javite nam se izravno i pomoći ćemo gdje možemo. Ako tehnički problem spriječi projekciju, dobivate puni povrat ili drugi termin. Ako ste rezervirali putem druge platforme, vrijedi njezina politika otkazivanja."
         },
         {
           "q": "Postoji li najniža dob?",
@@ -849,6 +861,10 @@
         {
           "q": "Nudite li cijene za grupe i škole?",
           "a": "Da. Za školske grupe dostupne su niže cijene, ovisno o broju učenika i veličini grupe. Organiziranim turističkim grupama i privatnim rezervacijama izrađujemo posebnu ponudu. Javite nam se prije posjeta za prilagođenu ponudu i dostupne termine."
+        },
+        {
+          "q": "Što ako zakasnim?",
+          "a": "Projekcije počinju na vrijeme. Ako zakasnite ili propustite projekciju, možemo vas pokušati premjestiti na prvu sljedeću slobodnu, no to može značiti čekanje od sat vremena ili duže."
         }
       ]
     },

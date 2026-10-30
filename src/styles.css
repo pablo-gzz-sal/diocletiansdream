@@ -468,6 +468,39 @@ body {
   }
 }
 
+/* The Jetpack tiled-gallery markup in older refreshed posts has no stylesheet
+   here either, so its paired images would stack. Match the grid above; the
+   inline flex-basis widths are overridden so both images in a row are equal.
+   WordPress also injects <br> around these images, which would add blank lines. */
+.blog-prose .tiled-gallery__row {
+  display: flex;
+  gap: 0.75rem;
+  margin: 0 0 0.75rem;
+}
+
+.blog-prose .tiled-gallery__col {
+  flex: 1 1 0 !important;
+  min-width: 0;
+}
+
+.blog-prose .tiled-gallery__item {
+  margin: 0;
+  overflow: hidden;
+  border-radius: 0.9rem;
+  background: var(--color-sand);
+}
+
+.blog-prose .tiled-gallery__item br {
+  display: none;
+}
+
+.blog-prose .tiled-gallery__item img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+}
+
 /* ────────────────────────────────────────────
    LANDING TILE GRID SPANS
    Used via [ngClass] in landing component.

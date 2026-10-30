@@ -13,6 +13,25 @@ DirectoryIndex index.html
   # (Does not match the blog index "/blog/" itself.)
   RewriteRule ^blog/([^/]+)/?$ /$1/ [R=301,L]
 
+  # Legacy and merged URLs (SEO action plan D4, D9, D10, D14). They sit above the
+  # trailing-slash rule so no-slash variants reach the target in one hop, and
+  # WordPress-era taxonomy pages are not part of this site. Query strings such as
+  # UTM tags are kept by default.
+  RewriteRule ^contact(-2)?/?$ /visit/ [R=301,L]
+  RewriteRule ^about-us/?$ /about/ [R=301,L]
+  RewriteRule ^(booking-greyline|tickets-order|book-now)/?$ /booking/ [R=301,L]
+  RewriteRule ^privacy-policy/?$ /privacy/ [R=301,L]
+  RewriteRule ^cookie-policy/?$ /cookies/ [R=301,L]
+  RewriteRule ^(home-gline-2|home-smartspace)/?$ / [R=301,L]
+  RewriteRule ^home-hrvatski/?$ /hr/ [R=301,L]
+  RewriteRule ^(diocletian-s-palace-vr-experience|diocletian-palace-vr-experience)/?$ /diocletians-palace-vr-experience/ [R=301,L]
+  RewriteRule ^one-day-in-split-initinerary-from-diocletians-palace/?$ /one-day-in-split-itinerary-from-diocletians-palace/ [R=301,L]
+  RewriteRule ^the-ultimate-guide-to-diocletian('s)?-palace/?$ /the-ultimate-guide-to-diocletians-palace/ [R=301,L]
+  RewriteRule ^a-locals-guide-not-found/?$ /a-locals-guide-to-shopping-in-split/ [R=301,L]
+  RewriteRule ^how-to-spend-a-rainy-day-in-split/?$ /what-to-do-in-split-when-it-rains/ [R=301,L]
+  RewriteRule ^hr/kako-provesti-kisan-dan-u-splitu/?$ /hr/sto-raditi-u-splitu-kad-pada-kisa/ [R=301,L]
+  RewriteRule ^(tag|author|category)(/|$) /blog/ [R=301,L]
+
   # Canonical trailing slash: add a slash to any non-file request that lacks
   # one, so /experience -> /experience/ (matches the prerendered folder URLs).
   RewriteCond %{REQUEST_FILENAME} !-f

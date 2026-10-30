@@ -30,7 +30,7 @@ export class WpService {
   private readonly oldMediaHost = new URL(environment.siteUrl).host; // diocletiansdream.com
   private readonly newMediaHost = new URL(environment.wpBaseUrl).host; // cms.diocletiansdream.com
   private readonly postListFields =
-    'id,slug,date,modified,title,excerpt,link,categories,jetpack_featured_media_url';
+    'id,slug,date,modified,title,excerpt,link,categories,tags,jetpack_featured_media_url';
 
   private readonly content = inject(WpContentService);
 

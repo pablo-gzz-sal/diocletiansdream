@@ -159,7 +159,7 @@
         },
         "price": {
           "q": "How much does a ticket cost?",
-          "a": "An adult ticket is €13 and a child ticket, for ages 8 to 14, is €9. That is the full price for one 15-minute session. You can pay online when you book or at the door when a session still has space."
+          "a": "An adult ticket is €13 and a child ticket, for ages 8 to 14, is €9. That is the full price for one 15-minute session. You can pay online when you book or at the door when a session still has space. On site we accept cash, card and Apple Pay."
         },
         "booking": {
           "q": "Do I need to book in advance?",
@@ -232,7 +232,7 @@
     "howItWorks": {
       "title": "How the Experience Works",
       "p1": "The VR experience lasts about 15 minutes.",
-      "p2": "Sessions run every 30 minutes through the day at fixed times, on the hour and half past: 11:00, 11:30, 12:00, 12:30 and so on. Arrive a few minutes before your slot so your session starts on time. The last session of the day begins 30 minutes before closing.",
+      "p2": "Sessions run every 30 minutes through the day at fixed times, on the hour and half past: 11:00, 11:30, 12:00, 12:30 and so on. Arrive about five minutes before your slot so your session starts on time. The last session of the day begins 30 minutes before closing.",
       "p3": "Our staff give you a short introduction, fit your headset, and guide you into the reconstructed palace. The whole thing is built for first-time VR users, and there are no controllers to learn.",
       "p4": "Visitors go in as small groups at their assigned time. For opening hours and practical planning, see Visit Us.",
       "visitUsLinkText": "Visit Us"
@@ -285,7 +285,7 @@
       "items": [
         {
           "q": "How long does the experience last?",
-          "a": "The VR experience lasts about 15 minutes. Sessions start every 30 minutes, on the hour and half past, so 11:00, 11:30, 12:00 and onward. Arrive a few minutes early for your slot. The final screening begins 30 minutes before closing time."
+          "a": "The VR experience lasts about 15 minutes. Sessions start every 30 minutes, on the hour and half past, so 11:00, 11:30, 12:00 and onward. Please arrive about five minutes before your slot. The final screening begins 30 minutes before closing time."
         },
         {
           "q": "Is it suitable for children?",
@@ -302,7 +302,7 @@
         },
         {
           "q": "What will I actually see inside the headset?",
-          "a": "You see Diocletian's Palace rebuilt at full architectural scale in 305 AD. That covers the ceremonial and residential rooms that no longer survive, the colonnaded spaces of the imperial complex, and the harbour that served the emperor's household. The reconstruction follows archaeological research and architectural analysis of the surviving remains."
+          "a": "You see Diocletian's Palace at full architectural scale, as it may have appeared around 305 AD. That covers the ceremonial and residential rooms that no longer survive, the colonnaded spaces of the imperial complex, and the harbour that served the emperor's household. The reconstruction follows archaeological research and architectural analysis of the surviving remains."
         },
         {
           "q": "Which languages is the narration available in?",
@@ -314,7 +314,7 @@
         },
         {
           "q": "How early should I arrive for my session?",
-          "a": "A few minutes before your slot is enough. Sessions run on fixed 30-minute intervals and start on time, so arriving five minutes early leaves room for the staff briefing and for getting the headset fitted comfortably before the reconstruction begins."
+          "a": "About five minutes before your slot. Sessions run on fixed 30-minute intervals and start on time, so this leaves room for the staff briefing and for getting the headset fitted comfortably."
         },
         {
           "q": "Is the venue wheelchair accessible?",
@@ -322,7 +322,11 @@
         },
         {
           "q": "How historically accurate is the reconstruction?",
-          "a": "The model is built from archaeological research, historical sources and architectural analysis of the palace remains. Where the surviving structures are incomplete, the reconstruction fills the gaps with the most defensible interpretation instead of a guess. Professor Josip Belamarić advised on the historical interpretation."
+          "a": "The reconstruction draws on archaeological research, historical sources and architectural analysis, with input from Professor Josip Belamarić. Where the surviving structures are incomplete, it shows the most defensible interpretation, so see it as an informed reconstruction rather than a certainty."
+        },
+        {
+          "q": "What is the room like, and are the headsets clean?",
+          "a": "You watch in an air-conditioned, sound-controlled themed room with low, candle-effect lighting, which reduces light interference in the headset. Each guest uses their own headset, cleaned before and after each viewing."
         }
       ]
     },
@@ -441,7 +445,7 @@
         },
         {
           "q": "How do I get to you from the Peristyle?",
-          "a": "Walk north through the palace from the Peristyle and out through the Golden Gate. Diocletian's Dream is at Zagrebačka ul. 1, on your left as you leave the gate, past the Grgur Ninski statue. The whole walk takes about three minutes."
+          "a": "From the Peristyle, walk about two minutes to the Gregory of Nin statue beside the Golden Gate entrance, then cross Đardin (Jardin) park for about 80 metres. Diocletian's Dream is at Zagrebačka ul. 1."
         },
         {
           "q": "How much do tickets cost?",
@@ -467,6 +471,14 @@
           "q": "Is the experience suitable for families with children?",
           "a": "Yes, for children aged 8 and above. Younger children cannot take part, and under-14s should be accompanied by an adult. More detail is in the Experience section.",
           "linkText": "Experience"
+        },
+        {
+          "q": "How can I pay on site?",
+          "a": "On site we accept cash, card and Apple Pay."
+        },
+        {
+          "q": "Can I bring my pet?",
+          "a": "Sorry, pets are not allowed."
         }
       ]
     },
@@ -485,7 +497,7 @@
       "ctaDirections": "Get directions"
     },
     "map": {
-      "tip": "Tip: arrive a few minutes early for the briefing before your scheduled time slot."
+      "tip": "Tip: arrive about five minutes early for the briefing before your scheduled time slot."
     }
   },
   "aboutPage": {
@@ -519,7 +531,7 @@
       "title": "The Origin of the Project",
       "p1": "The idea behind Diocletian's Dream came from a simple observation: even guided tours of Diocletian's Palace lean heavily on explanation and imagination.",
       "p2": "Walking through the palace today means mentally rebuilding it as you go. Diocletian's Dream was developed to close that gap, using digital technology in service of historical interpretation. The founders wanted a space where visitors could step out of the crowded streets, sit down, and see a complete architectural reading of the imperial residence.",
-      "p3": "Development took over a year and brought together historians, designers, digital artists and VR specialists. The experience opened to the public in 2020 and has since welcomed tens of thousands of visitors.",
+      "p3": "The project brought together historians, designers, digital artists and VR specialists. The experience opened to the public in 2020 and has since welcomed tens of thousands of visitors.",
       "p4": "From April 2026, visitors can see a completely new VR film, produced to current immersive technology standards, with better visual quality and more narrative depth than the original reconstruction."
     },
     "languages": {
@@ -555,7 +567,7 @@
       "items": [
         {
           "q": "What is Diocletian's Dream?",
-          "a": "Diocletian's Dream is a virtual reality museum in Split, Croatia. It runs a 15-minute seated VR experience that rebuilds Diocletian's Palace as it stood in 305 AD, at full architectural scale, from archaeological research and architectural analysis of the surviving remains."
+          "a": "Diocletian's Dream is a virtual reality museum in Split, Croatia. It runs a 15-minute seated VR experience that reconstructs Diocletian's Palace as it may have looked around 305 AD, at full architectural scale, from archaeological research and architectural analysis of the surviving remains."
         },
         {
           "q": "Is Diocletian's Dream a real museum?",
@@ -563,11 +575,11 @@
         },
         {
           "q": "When did Diocletian's Dream open?",
-          "a": "Diocletian's Dream opened to the public in 2020, after more than a year of development involving historians, designers, digital artists and VR specialists. Tens of thousands of visitors have been through it since, and it won the Tripadvisor Travellers' Choice award in 2022 and 2023."
+          "a": "Diocletian's Dream opened to the public in 2020, developed by historians, designers, digital artists and VR specialists. Tens of thousands of visitors have been through it since, and it won the Tripadvisor Travellers' Choice award in 2022 and 2023."
         },
         {
           "q": "How was the reconstruction researched?",
-          "a": "The model is based on archaeological research, historical sources and architectural analysis of the palace remains. Professor Josip Belamarić advised on the historical interpretation, from the architecture and proportions of the complex down to how daily life inside it would have looked."
+          "a": "The model is based on archaeological research, historical sources and architectural analysis of the palace remains. Professor Josip Belamarić gave input on the historical interpretation, from the architecture and proportions of the complex to how daily life inside it may have looked."
         },
         {
           "q": "Is Diocletian's Dream inside Diocletian's Palace?",
@@ -748,7 +760,7 @@
       "cta": "Book a session"
     },
     "related": {
-      "title": "Keep reading",
+      "title": "Want to know more?",
       "readLabel": "Read article"
     }
   },
@@ -824,7 +836,7 @@
         },
         {
           "q": "How often do sessions run?",
-          "a": "Sessions begin every 30 minutes through the day, on the hour and half past. The last session of the day starts 30 minutes before closing. Capacity per session is limited, so book ahead to lock in the slot you want."
+          "a": "Sessions begin every 30 minutes through the day, on the hour and half past. The last session of the day starts 30 minutes before closing. Capacity per session is limited, so book ahead to lock in the slot you want. Please arrive about five minutes before your slot."
         },
         {
           "q": "Where is Diocletian's Dream located?",
@@ -836,7 +848,7 @@
         },
         {
           "q": "Can I change or cancel my booking?",
-          "a": "You can reschedule or cancel free of charge up to 24 hours before your session. Inside that 24-hour window, contact us directly and we will help where we can. If a technical problem stops your session going ahead, you get a full refund or another time slot."
+          "a": "You can reschedule or cancel free of charge up to 24 hours before your session. Inside that 24-hour window, contact us directly and we will help where we can. If a technical problem stops your session going ahead, you get a full refund or another time slot. If you booked through a third-party platform, that platform's cancellation policy applies."
         },
         {
           "q": "Is there a minimum age?",
@@ -849,6 +861,10 @@
         {
           "q": "Do you offer group or school rates?",
           "a": "Yes. Discounted rates are available for school groups, with pricing based on the number of students and the group size. Organised travel groups and private bookings are quoted separately. Contact us ahead of your visit for a tailored offer and available dates."
+        },
+        {
+          "q": "What happens if I am late?",
+          "a": "Shows start on time. If you are late or miss your show, we may be able to move you to the next available show, but this can mean waiting an hour or more."
         }
       ]
     },

@@ -18,8 +18,8 @@ test('English copy identifies Josip Belamarić as Professor everywhere', () => {
 
 test('Croatian copy uses Profesor with grammatically correct inflection', () => {
   assert.equal(hr.home.authority.honorific, 'Profesor');
-  assert.match(hr.experiencePage.faq.items[9].a, /profesor Josip Belamarić/);
-  assert.match(hr.aboutPage.faq.items[3].a, /profesor Josip Belamarić/);
+  assert.match(hr.experiencePage.faq.items[9].a, /profesora Josipa Belamarića/);
+  assert.match(hr.aboutPage.faq.items[3].a, /Profesor Josip Belamarić/);
   assert.match(hr.aboutPage.seo.metaDescription, /profesora Josipa Belamarića/);
   assert.doesNotMatch(JSON.stringify(hr), /akademik/i);
 });

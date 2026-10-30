@@ -44,7 +44,7 @@ describe('WpService', () => {
 
     const request = http.expectOne(isPosts);
     expect(request.request.params.get('_fields')).toBe(
-      'id,slug,date,modified,title,excerpt,link,categories,jetpack_featured_media_url',
+      'id,slug,date,modified,title,excerpt,link,categories,tags,jetpack_featured_media_url',
     );
     request.flush([]);
   });

@@ -8,23 +8,6 @@ import { WpService } from '../../../shared/services/wp-service';
 import { PostLanguageRouteService } from '../../../core/i18n/post-language-route.service';
 import { commonTestImports, commonTestProviders } from '../../../../testing/test-setup';
 
-/**
- * A Croatian post whose Yoast SEO-title field was left in English — the exact
- * payload that shipped an English <title> on /hr/vr-iskustvo-dioklecijanova-palaca/.
- */
-const HR_POST_WITH_ENGLISH_YOAST_TITLE = {
-  slug: 'vr-iskustvo-dioklecijanova-palaca',
-  title: {
-    rendered:
-      'Zašto je VR iskustvo jedan od najboljih načina da upoznate Dioklecijanovu palaču',
-  },
-  yoast_head_json: {
-    title: 'VR Experience in Split: Discover Diocletian’s Palace',
-    og_title:
-      'Zašto je VR iskustvo jedan od najboljih načina da upoznate Dioklecijanovu palaču',
-  },
-};
-
 type PostLoadObserver = {
   next: (posts: any[]) => void;
   error: (error: unknown) => void;
@@ -163,10 +146,18 @@ describe('BlogPostPage', () => {
     expect(preview.getAttribute('src')).toBe('https://example.com/second.jpg');
   });
 
-  it('takes the Croatian title from og_title when the Yoast SEO title is English', () => {
-    expect(pickTitle('hr', HR_POST_WITH_ENGLISH_YOAST_TITLE)).toBe(
-      "Zašto je VR iskustvo jedan od najboljih načina da upoznate Dioklecijanovu palaču | Diocletian's Dream"
-    );
+  it('uses a rewritten Croatian Yoast SEO title as written in WordPress', () => {
+    const post = {
+      title: {
+        rendered: 'Zašto je VR iskustvo jedan od najboljih načina da upoznate Dioklecijanovu palaču',
+      },
+      yoast_head_json: {
+        title: 'VR iskustvo Dioklecijanove palače: Split 305. godine',
+        og_title: 'Zašto je VR iskustvo jedan od najboljih načina da upoznate Dioklecijanovu palaču',
+      },
+    };
+
+    expect(pickTitle('hr', post)).toBe('VR iskustvo Dioklecijanove palače: Split 305. godine');
   });
 
   it('keeps the authored Yoast SEO title on English posts, even when it is a rewrite', () => {
@@ -195,14 +186,8 @@ describe('BlogPostPage', () => {
     );
   });
 
-  it('does not double-brand a title that already carries the site name', () => {
-    const post = {
-      title: { rendered: 'Kako je nastao Diocletian’s Dream' },
-      yoast_head_json: {
-        title: 'How Diocletian’s Dream came to be',
-        og_title: 'Kako je nastao Diocletian’s Dream',
-      },
-    };
+  it('does not double-brand a fallback title that already carries the site name', () => {
+    const post = { title: { rendered: 'Kako je nastao Diocletian’s Dream' } };
 
     expect(pickTitle('hr', post)).toBe('Kako je nastao Diocletian’s Dream');
   });
@@ -211,6 +196,87 @@ describe('BlogPostPage', () => {
     expect(pickTitle('hr', { title: { rendered: 'Tko je bio Dioklecijan?' } })).toBe(
       "Tko je bio Dioklecijan? | Diocletian's Dream"
     );
+  });
+
+  describe('related posts', () => {
+    const summary = (id: number, tags: number[], extra: object = {}) => ({
+      id,
+      slug: `post-${id}`,
+      title: { rendered: `Post ${id}` },
+      tags,
+      ...extra,
+    });
+    const relatedFor = (post: any, posts: any[]) => {
+      spyOn(TestBed.inject(WpService), 'getPosts').and.returnValue(of(posts));
+      (component as any).loadRelated(post);
+      return component.relatedPosts.map((p) => p.id);
+    };
+
+    it('puts posts sharing the most tags first, wherever they sit in the list', () => {
+      const posts = [
+        summary(1, [9]),
+        summary(2, [9]),
+        summary(3, [9]),
+        summary(4, [9]),
+        summary(5, [9]),
+        summary(6, [7]),
+        summary(7, [7, 8]),
+        summary(8, [7]),
+        summary(9, [7, 8]),
+      ];
+
+      const ids = relatedFor(summary(5, [7, 8]), posts);
+
+      expect(ids.length).toBe(4);
+      expect(ids.slice(0, 2).sort()).toEqual([7, 9]);
+      expect(ids.slice(2).sort()).toEqual([6, 8]);
+    });
+
+    it('tops up from the rest of the archive when too few posts share a tag', () => {
+      const posts = [summary(1, [7]), summary(2, [7]), summary(3, [9]), summary(4, [9]), summary(5, [9])];
+
+      const ids = relatedFor(summary(1, [7]), posts);
+
+      expect(ids[0]).toBe(2);
+      expect(ids.length).toBe(4);
+      expect(ids).not.toContain(1);
+    });
+
+    it('still gives an untagged post four links', () => {
+      const posts = [summary(1, []), summary(2, [7]), summary(3, [7]), summary(4, [9]), summary(5, [9])];
+
+      expect(relatedFor(summary(1, []), posts).length).toBe(4);
+    });
+
+    it('rotates within a topic so sibling posts do not all link to the same four', () => {
+      const posts = Array.from({ length: 7 }, (_, i) => summary(i + 1, [7]));
+      const getPosts = spyOn(TestBed.inject(WpService), 'getPosts').and.returnValue(of(posts));
+
+      (component as any).loadRelated(posts[0]);
+      const first = component.relatedPosts.map((p) => p.id);
+      (component as any).loadRelated(posts[3]);
+      const second = component.relatedPosts.map((p) => p.id);
+
+      expect(getPosts).toHaveBeenCalledTimes(2);
+      expect(first).not.toEqual(second);
+    });
+
+    it('renders each related post as a static card with its image and title', () => {
+      component.loading = false;
+      component.post = { date: '2026-08-11T00:00:00.000Z', title: { rendered: 'Post' }, content: { rendered: '' } };
+      component.relatedPosts = [
+        summary(1, [7], { jetpack_featured_media_url: 'https://example.com/one.jpg' }),
+        summary(2, [7]),
+      ];
+      fixture.detectChanges();
+
+      const cards = fixture.nativeElement.querySelectorAll('.blog-related-link');
+      expect(cards.length).toBe(2);
+      expect(cards[0].querySelector('img')?.getAttribute('src')).toBe('https://example.com/one.jpg');
+      expect(cards[0].querySelector('img')?.getAttribute('loading')).toBe('lazy');
+      expect(cards[0].textContent).toContain('Post 1');
+      expect(cards[1].querySelector('img')).toBeNull();
+    });
   });
 
   it('spells the post date in Croatian on hr pages', () => {

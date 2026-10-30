@@ -119,21 +119,31 @@
         </a>
       </div>
 
-      <!-- Keep reading: the only post-to-post links in the journal. -->
+      <!-- Related articles: picked by shared topic tag, see loadRelated(). -->
       @if (relatedPosts.length) {
         <nav class="mt-16" [attr.aria-label]="'blogPostPage.related.title' | translate">
-          <h2
-            class="font-[family-name:var(--font-sans)] text-[0.65rem] font-medium tracking-[0.18em] uppercase text-ink-60 mb-5"
-          >
+          <h2 class="font-[family-name:var(--font-serif)] font-light text-[1.5rem] text-ink mb-6">
             {{ 'blogPostPage.related.title' | translate }}
           </h2>
 
-          <ul class="grid gap-x-8 gap-y-4 sm:grid-cols-2 list-none p-0 m-0">
-            <li *ngFor="let related of relatedPosts" class="border-t border-black/10 pt-4">
+          <ul class="grid gap-x-6 gap-y-8 sm:grid-cols-2 list-none p-0 m-0">
+            <li *ngFor="let related of relatedPosts">
               <a
                 [routerLink]="postLink(related)"
                 class="blog-related-link group block no-underline"
               >
+                <div class="overflow-hidden rounded-[1rem] border border-black/10 mb-3">
+                  <img
+                    *ngIf="featuredImage(related) as img; else relatedPlaceholder"
+                    [src]="img"
+                    alt=""
+                    class="aspect-[16/9] w-full object-cover block group-hover:scale-[1.04] transition-transform duration-500"
+                    loading="lazy"
+                  />
+                  <ng-template #relatedPlaceholder>
+                    <div class="aspect-[16/9] w-full bg-gradient-to-br from-sand to-[#ddd5c5]"></div>
+                  </ng-template>
+                </div>
                 <span
                   class="font-[family-name:var(--font-serif)] text-[1.05rem] leading-snug text-ink group-hover:text-ink-60 transition-colors block"
                 >

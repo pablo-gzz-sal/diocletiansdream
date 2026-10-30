@@ -194,13 +194,9 @@ export class BlogPostPage implements OnInit, OnDestroy {
   }
 
   /**
-   * The Yoast SEO-title field is authored per post and on a few Croatian
-   * translations it was left in English — /hr/vr-iskustvo-dioklecijanova-palaca/
-   * shipped "VR Experience in Split: Discover Diocletian's Palace" over Croatian
-   * body copy. On hr we therefore accept that field only when it is actually
-   * built on the post's own (translated) title, and otherwise fall back to
-   * Yoast's og_title, which follows the translated title. English posts keep
-   * their authored SEO title untouched: those pages are indexed as-is.
+   * The Yoast SEO-title field is authored per post, in both languages, and is
+   * used exactly as written in WordPress. Falls back to the translated title
+   * when the field is empty.
    */
   private pickSeoTitle(post: any): string {
     // Try plugin fields first (examples). Adjust to your WP payload.
@@ -213,24 +209,9 @@ export class BlogPostPage implements OnInit, OnDestroy {
 
     const localized = this.stripHtml(post?.yoast_head_json?.og_title || post?.title?.rendered || '').trim();
 
-    if (authored && (this.lang !== 'hr' || this.derivesFrom(authored, localized))) return authored;
+    if (authored) return authored;
     if (localized) return this.withSiteName(localized);
-    return authored || this.SITE_NAME;
-  }
-
-  /**
-   * Whether the authored SEO title grew out of the post's own title (Yoast's
-   * default is the title plus a site-name suffix) rather than being a leftover
-   * from the other language. A short prefix is enough to tell the languages
-   * apart without tripping on separators the editor added mid-title.
-   */
-  private derivesFrom(authored: string, localized: string): boolean {
-    const key = this.normalizeTitle(localized).slice(0, 15);
-    return !!key && this.normalizeTitle(authored).includes(key);
-  }
-
-  private normalizeTitle(value: string): string {
-    return value.toLowerCase().replace(/[’']/g, "'").replace(/\s+/g, ' ').trim();
+    return this.SITE_NAME;
   }
 
   /** Brands the title, unless it already carries the site name. */
@@ -399,16 +380,16 @@ export class BlogPostPage implements OnInit, OnDestroy {
 
   /** --- Existing helpers --- */
   /**
-   * Picks siblings for the "keep reading" list: posts sharing a category first,
-   * then the rest of the archive to top up. Same language only — the Croatian
-   * and English trees are separate sites as far as crawlers are concerned.
+   * Picks siblings for the end-of-article list: posts sharing the most WordPress
+   * tags first, then the rest of the archive to top up. Same language only — the
+   * Croatian and English trees are separate sites as far as crawlers are
+   * concerned. Tags are hidden topic data: the site has no tag pages.
    *
-   * The window into that pool is rotated by the post's own position. Taking a
-   * plain `slice(0, 4)` would hand every article in a category the identical
-   * four links, so a handful of posts would collect all the internal links and
-   * the rest none — the problem this block exists to solve. Rotating spreads
-   * incoming links across the archive and stays deterministic, which matters
-   * because these pages are prerendered.
+   * Each group is rotated by the post's own position. Taking a plain
+   * `slice(0, 4)` would hand every article in a topic the identical four links,
+   * so a handful of posts would collect all the internal links and the rest
+   * none. Rotating spreads incoming links across the topic and stays
+   * deterministic, which matters because these pages are prerendered.
    */
   private loadRelated(post: any): void {
     this.relatedSub?.unsubscribe();
@@ -421,15 +402,24 @@ export class BlogPostPage implements OnInit, OnDestroy {
           return;
         }
 
-        const categories: number[] = post?.categories ?? [];
-        const shares = (p: any) => (p?.categories ?? []).some((c: number) => categories.includes(c));
-        const ordered = [...pool.filter(shares), ...pool.filter((p: any) => !shares(p))];
+        const tags: number[] = post?.tags ?? [];
+        const sharedTags = (p: any) => (p?.tags ?? []).filter((t: number) => tags.includes(t)).length;
+        const position = Math.max(0, all.findIndex((p: any) => p?.id === post?.id));
 
-        const offset = Math.max(0, all.findIndex((p: any) => p?.id === post?.id));
-        this.relatedPosts = Array.from(
-          { length: Math.min(this.relatedCount, ordered.length) },
-          (_, i) => ordered[(offset + i) % ordered.length],
-        );
+        const groups = new Map<number, any[]>();
+        for (const p of pool) {
+          const shared = sharedTags(p);
+          groups.set(shared, [...(groups.get(shared) ?? []), p]);
+        }
+        const ordered = [...groups.keys()]
+          .sort((a, b) => b - a)
+          .flatMap((shared) => {
+            const group = groups.get(shared) as any[];
+            const offset = position % group.length;
+            return [...group.slice(offset), ...group.slice(0, offset)];
+          });
+
+        this.relatedPosts = ordered.slice(0, this.relatedCount);
       },
       error: () => {
         this.relatedPosts = [];
