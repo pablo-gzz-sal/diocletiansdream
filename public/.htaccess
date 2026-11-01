@@ -26,6 +26,7 @@ DirectoryIndex index.html
   RewriteRule ^home-hrvatski/?$ /hr/ [R=301,L]
   RewriteRule ^(diocletian-s-palace-vr-experience|diocletian-palace-vr-experience)/?$ /diocletians-palace-vr-experience/ [R=301,L]
   RewriteRule ^one-day-in-split-initinerary-from-diocletians-palace/?$ /one-day-in-split-itinerary-from-diocletians-palace/ [R=301,L]
+  RewriteRule ^seen-diocletians-palace-already-heres-how-to-experience-it-differently/?$ /diocletians-palace-vr-experience-2/ [R=301,L]
   RewriteRule ^the-ultimate-guide-to-diocletian('s)?-palace/?$ /the-ultimate-guide-to-diocletians-palace/ [R=301,L]
   RewriteRule ^a-locals-guide-not-found/?$ /a-locals-guide-to-shopping-in-split/ [R=301,L]
   RewriteRule ^how-to-spend-a-rainy-day-in-split/?$ /what-to-do-in-split-when-it-rains/ [R=301,L]
