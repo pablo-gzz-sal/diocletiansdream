@@ -58,6 +58,14 @@ export class LandingPage implements OnInit, AfterViewInit, OnDestroy {
       image: 'assets/images/vr/market-pottery.jpg',
     },
     {
+      key: 'museums',
+      href: {
+        en: '/cultural-treasures-top-5-must-visit-museums-in-split/',
+        hr: '/hr/top-5-muzeja-u-splitu/',
+      },
+      image: 'assets/images/vr/trailer-stills/roman-harbour-galleys.jpg',
+    },
+    {
       key: 'ruins',
       href: {
         en: '/hidden-roman-ruins-in-split-you-probably-walked-past/',

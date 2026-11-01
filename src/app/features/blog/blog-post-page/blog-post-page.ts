@@ -490,6 +490,31 @@ export class BlogPostPage implements OnInit, OnDestroy {
     return post?.content?.rendered ?? '';
   }
 
+  /**
+   * Jump links inside a post. [innerHTML] strips `id`, so the target is the heading
+   * whose text slugifies to the link's hash: `#mestrovic-gallery` finds "Meštrović Gallery".
+   */
+  onPostJumpLinkClick(event: MouseEvent): void {
+    if (event.ctrlKey || event.metaKey || event.shiftKey) return;
+    const link = (event.target as HTMLElement | null)?.closest?.('.blog-prose a') as HTMLAnchorElement | null;
+    if (!link?.hash) return;
+    const path = (value: string) => value.replace(/\/+$/, '');
+    if (path(link.pathname) !== path(this.doc.location.pathname)) return;
+
+    const slug = (text: string) => text
+      .normalize('NFD')
+      .replace(/[̀-ͯ]/g, '')
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/^-+|-+$/g, '');
+    const headings = Array.from(link.closest('.blog-prose')?.querySelectorAll<HTMLElement>('h2, h3, h4') ?? []);
+    const heading = headings.find((item) => slug(item.textContent ?? '') === link.hash.slice(1));
+    if (!heading) return;
+
+    event.preventDefault();
+    heading.scrollIntoView({ block: 'start' });
+  }
+
   /** Handles images inserted through [innerHTML] without turning them into router links. */
   onPostImageClick(event: MouseEvent): void {
     const image = (event.target as HTMLElement | null)?.closest?.('img') as HTMLImageElement | null;

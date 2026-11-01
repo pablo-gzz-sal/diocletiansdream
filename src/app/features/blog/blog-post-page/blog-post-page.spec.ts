@@ -123,6 +123,53 @@ describe('BlogPostPage', () => {
     expect(lightbox?.querySelector('img')?.getAttribute('src')).toBe('https://example.com/gallery.jpg');
   });
 
+  it('jumps from a post link to the heading its hash names, since Angular strips id from post HTML', () => {
+    component.loading = false;
+    component.post = {
+      date: '2026-11-01T00:00:00.000Z',
+      title: { rendered: 'Museums' },
+      content: {
+        rendered:
+          `<table><tbody><tr><td><a href="https://diocletiansdream.com${location.pathname}#mestrovic-gallery">Meštrović Gallery</a></td></tr></tbody></table>` +
+          '<h3>Split City Museum</h3><h3>Meštrović Gallery</h3>',
+      },
+    };
+    fixture.detectChanges();
+
+    const headings = fixture.nativeElement.querySelectorAll('.blog-prose h3') as NodeListOf<HTMLElement>;
+    const scroll = spyOn(headings[1], 'scrollIntoView');
+    const click = new MouseEvent('click', { bubbles: true, cancelable: true });
+    (fixture.nativeElement.querySelector('.blog-prose a') as HTMLAnchorElement).dispatchEvent(click);
+
+    expect(click.defaultPrevented).toBeTrue();
+    expect(scroll).toHaveBeenCalled();
+  });
+
+  it('leaves post links to other pages alone, and keeps their new-tab attributes', () => {
+    component.loading = false;
+    component.post = {
+      date: '2026-11-01T00:00:00.000Z',
+      title: { rendered: 'Museums' },
+      content: {
+        rendered:
+          '<h3>Froggyland</h3><a href="https://example.com/other/#froggyland" target="_blank" rel="noopener">Froggyland</a>',
+      },
+    };
+    fixture.detectChanges();
+
+    const link = fixture.nativeElement.querySelector('.blog-prose a') as HTMLAnchorElement;
+    const scroll = spyOn(fixture.nativeElement.querySelector('.blog-prose h3') as HTMLElement, 'scrollIntoView');
+    link.addEventListener('click', (event) => {
+      expect(event.defaultPrevented).toBeFalse();
+      event.preventDefault();
+    });
+    link.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true }));
+
+    expect(scroll).not.toHaveBeenCalled();
+    expect(link.getAttribute('target')).toBe('_blank');
+    expect(link.getAttribute('rel')).toBe('noopener');
+  });
+
   it('moves to the next image in the post from the lightbox', () => {
     component.loading = false;
     component.post = {

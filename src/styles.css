@@ -1220,6 +1220,33 @@ main :where(h1, h2, h3, h4) {
   -webkit-overflow-scrolling: touch;
 }
 
+.blog-prose :where(h2, h3, h4) {
+  scroll-margin-top: 6rem;
+}
+
+.blog-prose table {
+  margin: 1.75rem 0;
+  border-collapse: collapse;
+  font-family: var(--font-sans);
+  font-size: 0.92rem;
+  line-height: 1.5;
+  color: var(--color-ink-60);
+}
+
+.blog-prose :where(th, td) {
+  min-width: 6rem;
+  padding: 0.65rem 0.85rem;
+  border-bottom: 1px solid rgba(26, 24, 20, 0.14);
+  text-align: left;
+  vertical-align: top;
+}
+
+.blog-prose th {
+  font-weight: 600;
+  color: var(--color-ink);
+  border-bottom-color: rgba(26, 24, 20, 0.4);
+}
+
 main {
   isolation: isolate;
   position: relative;

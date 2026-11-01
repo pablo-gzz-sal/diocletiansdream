@@ -135,6 +135,21 @@
   outline-offset: 0.45rem;
 }
 
+/* Five cards: one row on wide screens, 3 + 2 below that, so no card sits alone. */
+@media (min-width: 640px) and (max-width: 1179px) {
+  .featured-articles__grid {
+    max-width: 46rem;
+  }
+}
+
+@media (min-width: 1180px) {
+  .featured-articles__grid {
+    max-width: 78.25rem;
+    flex-wrap: nowrap;
+    gap: 2.5rem 2rem;
+  }
+}
+
 @media (max-width: 639px) {
   .featured-articles {
     padding: 5rem 0;

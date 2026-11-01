@@ -30,6 +30,11 @@ describe('LandingPage', () => {
           intro: 'Find local markets, crafts, and souvenirs that make a thoughtful reminder of Split.',
           alt: 'Market stalls in the historic centre of Split',
         },
+        museums: {
+          title: 'Best museums in Split',
+          intro: 'Compare them by walking time, closed days and ticket price, with Salona and Trogir nearby.',
+          alt: 'Roman galleys in the harbour below the palace',
+        },
         ruins: {
           title: 'Hidden Roman ruins in Split',
           intro: 'Look beyond the familiar streets to uncover the Roman traces woven through the city.',
@@ -59,6 +64,11 @@ describe('LandingPage', () => {
           title: 'Shopping u Splitu',
           intro: 'Otkrijte lokalne tržnice, rukotvorine i suvenire koji će vas podsjećati na Split.',
           alt: 'Tržnica u povijesnoj jezgri Splita',
+        },
+        museums: {
+          title: 'Najbolji muzeji u Splitu',
+          intro: 'Usporedite ih po udaljenosti, neradnim danima i cijeni ulaznice, uz Salonu i Trogir u blizini.',
+          alt: 'Rimske galije u luci ispod palače',
         },
         ruins: {
           title: 'Skrivene rimske ruševine u Splitu',
@@ -120,7 +130,7 @@ describe('LandingPage', () => {
     expect(authority.compareDocumentPosition(reviews) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
   });
 
-  it('shows four fully linked featured articles after the FAQ', () => {
+  it('shows five fully linked featured articles after the FAQ', () => {
     translate.setTranslation('en', {
       home: { featuredArticles: featuredArticleTranslations.en },
     }, true);
@@ -145,12 +155,14 @@ describe('LandingPage', () => {
     const expectedLinks = [
       '/what-you-didnt-know-about-emperor-diocletian/',
       '/a-locals-guide-to-shopping-in-split/',
+      '/cultural-treasures-top-5-must-visit-museums-in-split/',
       '/hidden-roman-ruins-in-split-you-probably-walked-past/',
       '/historical-significance-of-diocletians-palace/',
     ];
     const expectedImages = [
       'assets/images/vr/emperor-peristyle.jpg',
       'assets/images/vr/market-pottery.jpg',
+      'assets/images/vr/trailer-stills/roman-harbour-galleys.jpg',
       'assets/images/vr/trailer-stills/imperial-audience-hall.jpg',
       'assets/images/vr/temple-facade.jpg',
     ];
@@ -192,12 +204,14 @@ describe('LandingPage', () => {
     expect(articleLinks.map((link) => link.getAttribute('href'))).toEqual([
       '/hr/sto-niste-znali-o-caru-dioklecijanu/',
       '/hr/lokalni-vodic-za-shopping-u-splitu/',
+      '/hr/top-5-muzeja-u-splitu/',
       '/hr/skrivene-rimske-rusevine-u-splitu/',
       '/hr/povijesni-znacaj-dioklecijanove-palace/',
     ]);
     expect(articleLinks.map((link) => link.querySelector('h3')?.textContent?.trim())).toEqual([
       'Car Dioklecijan',
       'Shopping u Splitu',
+      'Najbolji muzeji u Splitu',
       'Skrivene rimske ruševine u Splitu',
       'Povijest Dioklecijanove palače',
     ]);
